@@ -1,10 +1,10 @@
 import React from 'react';
 import LoginForm from '../components/login/LoginForm'
-function Login({login, user}) {
-    console.log(user)
+function Login({location}) {
+    const backLocation = location.state ? location.state.data.pathname: "/";
   return (
     <div>
-      <LoginForm/>
+      <LoginForm backLocation={backLocation}/>
     </div>
   );
 }

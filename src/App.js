@@ -7,7 +7,8 @@ import {
 } from "react-router-dom";
 import Home from './pages/Home';
 import Login from './pages/Login';
-import {signIn} from './deletData/Auth';
+import {signIn} from './deletData/Auth'
+import PrivateRoute from './util/PrivateRoute'
 //style관련
 import GlobalStyle from "./styles/GlobalStyle";
 import { ThemeProvider } from "styled-components";
@@ -22,19 +23,13 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Router>
-      <div>
-        asdasd
-        
-        <Switch>
-          <Route path="/login">
-            <Login user={user} login={login}/>
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+        <div>
+          <Switch>
+            <Route path="/login" component={Login} />
+            <PrivateRoute path="/" component={Home}/>
+          </Switch>
+        </div>
+      </Router>
   </ThemeProvider>
   );
 }
