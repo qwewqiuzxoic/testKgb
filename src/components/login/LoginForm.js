@@ -2,14 +2,15 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-function LoginForm({data}) {
-    const loc = data;
+function LoginForm({ backLocation }) {
+    const backlocation = backLocation;
+    console.log(backlocation)
     let history = useHistory();
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
         localStorage.setItem('id',data.id);
         localStorage.setItem('password',data.password);
-        history.push(loc);
+        history.push(backlocation);
     }
 
     
