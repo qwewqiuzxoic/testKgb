@@ -10,6 +10,7 @@ const fontSizes = {
   };
   
   const colors = {
+      boldBlack : "#333333",
       black: "#404345",
       white: "#FFFFFF",
       yellow: "#FFC034",

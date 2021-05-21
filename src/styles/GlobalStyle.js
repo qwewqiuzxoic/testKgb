@@ -100,6 +100,7 @@ const GlobalStyles = createGlobalStyle`
         line-height:1.4;
         color:${({theme}) => theme.colors.black};
         font-weight:300;
+        font-size: ${({theme}) => theme.fontSizes.m};
       }
       a {
         color: inherit;
