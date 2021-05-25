@@ -15,6 +15,8 @@ import MontserratLightWoff from "./fonts/Montserrat-Light.woff";
 import MontserratBold from "./fonts/Montserrat-SemiBold.ttf";
 import MontserratBoldWoff from "./fonts/Montserrat-SemiBold.woff";
 
+import SCDream3 from "./fonts/SCDream3.otf";
+import SCDream3Woff from "./fonts/SCDream3.woff";
 import SCDream4 from "./fonts/SCDream4.otf";
 import SCDream4Woff from "./fonts/SCDream4.woff";
 import SCDream5 from "./fonts/SCDream5.otf";
@@ -64,7 +66,12 @@ const GlobalStyles = createGlobalStyle`
            url(${MontserratBoldWoff}) format('woff');
       font-weight: 400;
       }
-
+      @font-face {
+      font-family: 'SCDream';
+      src: url(${SCDream3}) format('otf'),
+           url(${SCDream3Woff}) format('woff');
+      font-weight: 300;
+      }
       @font-face {
       font-family: 'SCDream';
       src: url(${SCDream4}) format('otf'),
@@ -101,6 +108,7 @@ const GlobalStyles = createGlobalStyle`
         color:${({theme}) => theme.colors.black};
         font-weight:300;
         font-size: ${({theme}) => theme.fontSizes.m};
+        letter-spacing:-0.3px;
       }
       a {
         color: inherit;

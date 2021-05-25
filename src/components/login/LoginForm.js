@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 12px;
     `;
 
 const LogoBox = styled.div`
@@ -122,6 +122,7 @@ function LoginForm({ backLocation }) {
         localStorage.setItem('id',data.id);
         localStorage.setItem('password',data.password);
         history.push(backlocation);
+        console.log(11)
     }
 
     return (
