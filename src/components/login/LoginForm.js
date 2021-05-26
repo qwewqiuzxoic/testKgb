@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {login} from '../../redux/thunkFn/login.thunk'
 //style관련
 import styled from 'styled-components';
 
@@ -115,7 +117,6 @@ const ContactBtn = styled.a`
 
 function LoginForm({ backLocation }) {
     const backlocation = backLocation;
-    console.log(backlocation)
     let history = useHistory();
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
@@ -123,7 +124,13 @@ function LoginForm({ backLocation }) {
         localStorage.setItem('password',data.password);
         history.push(backlocation);
     }
+    const aaaa = useSelector(state => state.loginReducer);
 
+    const dispatch = useDispatch();
+
+    const login2 = () =>{
+        dispatch(login("천희범",1024));
+    }
     return (
     <Wrapper>
         <LogoBox>
@@ -131,12 +138,10 @@ function LoginForm({ backLocation }) {
         </LogoBox>
         <Subtitle>이사서비스매뉴얼을 알고<br/>실천은 성공의 지름길입니다</Subtitle>
         <FormBox onSubmit={handleSubmit(onSubmit)}>
-            <input {...register("email",{required:true, pattern:/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i})} placeholder="아이디"/>
+            <input {...register("email",{required:true})} placeholder="아이디"/>
             {errors.email?.type === 'required' && <MsgError>email을 입력해주세요</MsgError>}
-            {errors.email?.type === 'pattern' && <MsgError>이메일 패턴</MsgError>}
-            <input {...register("password",{required:true, pattern:/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/})} placeholder="비밀번호"/>
+            <input {...register("password",{required:true})} placeholder="비밀번호"/>
             {errors.password?.type === 'required' && <MsgError>비밀번호를 입력해주세요</MsgError>}
-            {errors.password?.type === 'pattern' && <MsgError>비밀번호 패턴</MsgError>}
             <BtnLogin type="submit" value="로그인" />
         </FormBox>
         <CheckboxContainer>
@@ -146,6 +151,9 @@ function LoginForm({ backLocation }) {
         <ContactBtnContainer>
             <ContactBtn>본사 담당자 연결</ContactBtn>
         </ContactBtnContainer>      
+        <button onClick={()=>{login2()}}>
+aa
+        </button>
     </Wrapper>
   );
 }
