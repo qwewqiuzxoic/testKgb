@@ -1,5 +1,5 @@
 import { LOGIN_FAIL,LOGIN_SUCCESS,LOGIN_LOADING } from '../types/auth.type'
-import axios from 'axios'
+
 export const loginSuccess = (data) =>{
     return{
         type:LOGIN_SUCCESS,

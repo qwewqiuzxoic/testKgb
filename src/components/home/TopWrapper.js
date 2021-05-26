@@ -2,14 +2,14 @@ import React from 'react';
 import LineTitArea from './LineTitArea'
 
 import styled from 'styled-components';
-import { FlexBox, ChangeFont } from '../commonStyle';
+import { FlexBox, ChangeFont, Gutter } from '../commonStyle';
 
 
 const Wrapper = styled.div`
     position:absolute;
     top:0;
     width:100%;
-    padding:0 12px;
+    ${Gutter()}
 `;
 const Slogan = styled.div`
   margin-top: 16px;

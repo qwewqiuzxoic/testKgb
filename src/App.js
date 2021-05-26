@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Team1 from './pages/Team1';
 import {signIn} from './deletData/Auth'
 import PrivateRoute from './util/PrivateRoute'
 //style관련
@@ -36,7 +37,7 @@ function App() {
         <div>
           <Switch>
             <Route path="/login" component={Login} />
-            <PrivateRoute path="/" component={Home}/>
+            <PrivateRoute path="/" component={Team1}/>
           </Switch>
         </div>
       </Router>

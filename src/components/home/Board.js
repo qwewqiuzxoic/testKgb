@@ -2,10 +2,10 @@ import React from 'react';
 import BoardTitArea from './BoardTitArea'
 
 import styled from 'styled-components';
-import { FlexBox, ChangeFont } from '../commonStyle';
+import { FlexBox, ChangeFont, Gutter } from '../commonStyle';
 
 const Wrapper = styled.div`
-    padding:0 12px 32px 12px;
+    ${Gutter('0 12px 32px 12px')};
     width:100%;
 `
 const Post = styled.div`
