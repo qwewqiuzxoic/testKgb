@@ -8,6 +8,7 @@ import {
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Board from "./pages/Board";
+import BoardDetail from "./pages/BoardDetail";
 
 import {signIn} from './deletData/Auth'
 import PrivateRoute from './util/PrivateRoute'
@@ -39,6 +40,7 @@ function App() {
           <Switch>
             <Route path="/login" component={Login} />
             <PrivateRoute path="/board/:boardTitle" component={Board}/>
+            <PrivateRoute path="/boarddetail/:number" component={BoardDetail}/>
             <PrivateRoute path="/" component={Home}/>
           </Switch>
         </div>

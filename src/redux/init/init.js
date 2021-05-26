@@ -11,3 +11,9 @@ export const boardInit = {
     error: {}
 
 }
+
+export const boardDetailInit= {
+    data: {},
+    loading: false,
+    error: {}
+}

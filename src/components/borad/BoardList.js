@@ -1,22 +1,16 @@
-import React, { useEffect } from 'react';
-import { getBoardList } from '../../redux/thunkFn/borad.thunk';
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
 
-function BoardList() {
-    const dispatch = useDispatch();
-    const state = useSelector(state => state.boardReducer.BoardList);
-    useEffect(() => {
-        dispatch(getBoardList())
-        console.log(state)
-        return () => {
-            
-        }
-    }, [state])
+
+function BoardList({title, regdate, board_sn}) {
+   
   return (
     <div>
-      <button>
-          aaaa
-      </button>
+        <div>
+            {title}
+        </div>
+        <div>
+            {regdate}
+        </div>
     </div>
   );
 }
