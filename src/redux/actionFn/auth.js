@@ -1,5 +1,5 @@
-import { LOGIN_FAIL,LOGIN_SUCCESS,LOGIN_LOADING } from '../types/auth.type'
-import axios from 'axios'
+import { LOGIN_FAIL,LOGIN_SUCCESS,LOGIN_LOADING } from '../types/auth.type';
+
 export const loginSuccess = (data) =>{
     return{
         type:LOGIN_SUCCESS,

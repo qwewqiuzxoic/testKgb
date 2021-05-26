@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
     margin: 0 auto;
-    padding: 0 12px;
+    padding: 0 24px;
     `;
 
 const LogoBox = styled.div`
@@ -119,19 +119,20 @@ function LoginForm({ backLocation }) {
     const backlocation = backLocation;
     let history = useHistory();
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const onSubmit = data => {
-        localStorage.setItem('id',data.id);
-        localStorage.setItem('password',data.password);
-        history.push(backlocation);
-        console.log(11)
-    }
-    const aaaa = useSelector(state => state.loginReducer);
-
     const dispatch = useDispatch();
-
-    const login2 = () =>{
+    const user = useSelector(state=>state.loginReducer.user);
+    const onSubmit = data => {
         dispatch(login("천희범",1024));
     }
+    useEffect(() => {
+        if(user.userid){
+            history.push(backlocation);
+        }
+        console.log(user)
+        return () => {
+        }
+    }, [user])
+
     return (
     <Wrapper>
         <LogoBox>
@@ -152,9 +153,7 @@ function LoginForm({ backLocation }) {
         <ContactBtnContainer>
             <ContactBtn>본사 담당자 연결</ContactBtn>
         </ContactBtnContainer>      
-        <button onClick={()=>{login2()}}>
-aa
-        </button>
+
     </Wrapper>
   );
 }
