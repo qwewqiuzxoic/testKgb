@@ -1,14 +1,8 @@
-
-import { LOGIN_FAIL,LOGIN_SUCCESS,LOGIN_LOADING } from '../types/auth.type'
-
-const init = {
-    user:{},
-    loading:false,
-    error:{}
-}
+import { LOGIN_FAIL, LOGIN_SUCCESS, LOGIN_LOADING } from '../types/auth.type'
+import { authInit } from '../init/init'
 
 
-export default function loginReducer(state = init, action) {
+export default function boardReducer(state = authInit, action) {
     switch (action.type) {
         case LOGIN_FAIL:
             return{
@@ -27,9 +21,6 @@ export default function loginReducer(state = init, action) {
                 user:action.data
             }     
         default: 
-            return state
+            return state;
     }
-
-
-
 }

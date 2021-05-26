@@ -1,4 +1,4 @@
-import { LOGIN_FAIL,LOGIN_SUCCESS,LOGIN_LOADING } from '../types/auth.type'
+import { LOGIN_FAIL,LOGIN_SUCCESS,LOGIN_LOADING } from '../types/auth.type';
 
 export const loginSuccess = (data) =>{
     return{

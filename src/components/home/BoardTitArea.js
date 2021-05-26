@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FlexBox, ChangeFont } from '../commonStyle';
 
@@ -37,7 +38,9 @@ function BoardTitArea({name, rightText, lineColor, bgColor, color, weight, right
   return (
     <Wrapper bgColor={bgColor} lineColor={lineColor}>
       <TitName color={color} weight={weight}>{name}</TitName>
-      <RightText rightColor={rightColor}>{rightText}</RightText>
+      <Link to="/board/2" >
+        <RightText rightColor={rightColor}>{rightText}</RightText>
+      </Link>
     </Wrapper>
   );
 }

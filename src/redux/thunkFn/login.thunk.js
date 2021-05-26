@@ -1,5 +1,7 @@
 import axios from 'axios'
-import {loginError, loginLoading, loginSuccess} from '../actionFn/auth'
+import {loginError, loginLoading, loginSuccess} from '../actionFn/auth';
+import { useHistory } from "react-router-dom";
+
 export const login = (userid,password) => dispatch  => {
     dispatch(loginLoading())
     const url = '/BM/API/auth/login.asp';
@@ -8,6 +10,7 @@ export const login = (userid,password) => dispatch  => {
             password: password
         }).then(function (res) {
             dispatch(loginSuccess(res.data.user));
+            localStorage.setItem('user', res.data.user);
              // response  
              console.log(res);
         }).catch(function (error) {
