@@ -19,7 +19,10 @@ const fontSizes = {
       green:"#28F173",
       blue: "#43C9F0",
       primary: "#009B90",
-      secondary: "#2F8DB7"
+      secondary: "#2F8DB7",
+      grey1:"#DFE5EA",
+      grey2:"#ACB6BC", 
+      grey3:"#CED5DB"
   };
     
   const deviceSizes = {
