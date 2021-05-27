@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  useHistory
 } from "react-router-dom";
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -23,20 +24,25 @@ import ReduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware  } from 'redux';
 import rootReducer from './redux';
 import logger from 'redux-logger';
+import Top from "./components/base/Top";
 
 
 function App() {
+
   const [user, setUser] = useState(null);
   const login = ({ email, password }) => setUser(signIn({ email, password }));
   const authenticated = user != null;
   const store = createStore(rootReducer,  composeWithDevTools(applyMiddleware(ReduxThunk,logger))
   ); // 스토어를 만듭니다.
+
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Provider store={store}>
       <Router>
         <div>
+          <Top/>
           <Switch>
             <Route path="/login" component={Login} />
             <PrivateRoute path="/board/:boardTitle" component={Board}/>

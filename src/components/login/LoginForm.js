@@ -122,13 +122,13 @@ function LoginForm({ backLocation }) {
     const dispatch = useDispatch();
     const user = useSelector(state=>state.loginReducer.user);
     const onSubmit = data => {
-        dispatch(login("천희범",1024));
+        dispatch(login(data.id,data.password));
     }
     useEffect(() => {
         if(user.userid){
+            console.log(123)
             history.push(backlocation);
         }
-        console.log(user)
         return () => {
         }
     }, [user])
@@ -140,7 +140,7 @@ function LoginForm({ backLocation }) {
         </LogoBox>
         <Subtitle>이사서비스매뉴얼을 알고<br/>실천은 성공의 지름길입니다</Subtitle>
         <FormBox onSubmit={handleSubmit(onSubmit)}>
-            <input {...register("email",{required:true})} placeholder="아이디"/>
+            <input {...register("id",{required:true})} placeholder="아이디"/>
             {errors.email?.type === 'required' && <MsgError>email을 입력해주세요</MsgError>}
             <input {...register("password",{required:true})} placeholder="비밀번호"/>
             {errors.password?.type === 'required' && <MsgError>비밀번호를 입력해주세요</MsgError>}
