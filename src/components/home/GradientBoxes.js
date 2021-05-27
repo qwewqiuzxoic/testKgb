@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlexBox } from '../commonStyle';
+import { FlexBox, Gutter } from '../commonStyle';
 
 const Wrapper = styled.div`
     ${FlexBox("space-around")}
     margin: 104px auto 40px;
-    padding:0 12px;
+    ${Gutter()};
 `
 
 const GradientBox = styled.div`

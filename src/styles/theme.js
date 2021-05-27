@@ -22,7 +22,8 @@ const fontSizes = {
       secondary: "#2F8DB7",
       grey1:"#DFE5EA",
       grey2:"#ACB6BC", 
-      grey3:"#CED5DB"
+      grey3:"#CED5DB",
+      bg:"#F3F7FB"
   };
     
   const deviceSizes = {

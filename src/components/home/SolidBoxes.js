@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlexBox } from '../commonStyle';
+import { FlexBox, Gutter} from '../commonStyle';
 
 const Wrapper = styled.div`
     ${FlexBox()};
+    ${Gutter()};
     padding:0 12px;
     margin: 45px auto 40px;
 `
