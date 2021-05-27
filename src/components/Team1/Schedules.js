@@ -41,7 +41,7 @@ const Call = styled.div`
 `
 const Dt = styled.div`
     font-weight: bold;
-    font-size: ${(props) => props.theme.colors.s};
+    font-size: ${(props) => props.theme.fontSizes.s};
     color:  ${(props) => props.theme.colors.grey2};
 `
 const Dd = styled.div`

@@ -8,6 +8,7 @@ import {
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Team1 from './pages/Team1';
+import Team2_1 from './pages/Team2_1';
 import Board from "./pages/Board";
 import BoardDetail from "./pages/BoardDetail";
 

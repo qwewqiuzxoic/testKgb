@@ -12,6 +12,9 @@ const Title = styled.div`
   color:  ${(props) => props.theme.colors.white};
 `;
 const SubTit = styled.div`
+  font-weight:200;
+  font-size :  ${(props) => props.theme.fontSizes.l};
+  color:  ${(props) => props.theme.colors.white};
 `;
 
 function H1({title, subtit}) {
