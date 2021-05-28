@@ -17,3 +17,23 @@ export const boardDetailInit= {
     loading: false,
     error: {}
 }
+
+export const orderIndividual = {
+    data: {
+        name: '',
+        phone: '',
+        call: '',
+        moveForm: '',
+        maveDate: '',
+        packingDate: '',
+        startingPoint: '',
+        destination: '',
+        distance:0,
+        option1:'',
+        option2:'',
+        car:'',
+        contract: ''
+    },
+    loading: false,
+    error: {}
+}
