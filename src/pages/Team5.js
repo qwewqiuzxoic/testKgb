@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Head from '../components/commonStyle/Head';
-import UploadBox from '../components/Team5/UploadBox';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 
 
