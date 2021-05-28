@@ -13,6 +13,7 @@ import Team2_1 from './pages/Team2_1';
 import Team3_1 from './pages/Team3_1';
 import Team5 from './pages/Team5';
 import Team6_1 from './pages/Team6_1';
+import Team7 from './pages/Team7';
 import Board from "./pages/Board";
 import BoardDetail from "./pages/BoardDetail";
 
@@ -52,7 +53,7 @@ function App() {
             <Route path="/login" component={Login} />
             <PrivateRoute path="/board/:boardTitle" component={Board}/>
             <PrivateRoute path="/boarddetail/:number" component={BoardDetail}/>
-            <PrivateRoute path="/" component={Team6_1}/>
+            <PrivateRoute path="/" component={Team7}/>
           </Switch>
         </div>
       </Router>
