@@ -10,30 +10,40 @@ const Wrapper = styled.div`
 const ContentArea = styled.div`
     position:relative;
     margin-top:30px;
-
     ${Gutter()};
-    .header, .row {
-      display: flex;
       
-      div {
-        flex: 1;
-        padding: 0.2rem 0.4em;
-        border: 1px solid rgb(238, 238, 238);
-      }
-    }
-    
-    .header {
-      background-color: rgb(238, 238, 238);
-      div { 
-        cursor: pointer;
-      }
-    }
-  }
 `;
 const Table = styled.div`
     display: flex;
     flex-direction: column;
+    text-align:center;
+
 `;
+const TableHead = styled.div`
+      display: flex;
+      background-color: #F3F7FB;
+      border-top: 1px solid #82898E;
+      div{
+        flex: 1;
+        padding: 10px 0.4em;
+      }
+
+`;
+const TableRow = styled.div`
+      display: flex;
+      background-color: #fff;
+      ${ChangeFont(true)}
+      div{
+        flex: 1;
+        padding: 10px 0.4em;
+        border-bottom: 1px solid #DFE5EA;
+
+      }
+
+`;
+const TableBody = styled.div`
+`;
+
 
 
 const data = [
@@ -45,11 +55,11 @@ const data = [
   {num: '6소장', name: '박정구6', call: '010-1234-4566'}, 
 ]
 const Row = ({num, name, call}) => (
-  <div className="row">
+  <TableRow className="row">
     <div>{num}</div>
     <div>{name}</div>
     <div>{call}</div>  
-  </div>
+  </TableRow>
 );
 
 
@@ -63,14 +73,14 @@ function Team7() {
         <Head title="긴급연락망" subtit="KGB의 긴급연락망입니다" pb="90px"/>
         <ContentArea>
         <Table>
-          <div className="header">
+          <TableHead className="header">
             <div>번호</div>
             <div>이름</div>
             <div>전화번호</div>
-          </div>
-          <div className="body">
+          </TableHead>
+          <TableBody className="body">
             {rows}
-          </div>
+          </TableBody>
         </Table>
         </ContentArea>      
       </Wrapper>
