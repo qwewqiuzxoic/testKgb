@@ -41,7 +41,7 @@ function InputGroup({id, title, ph, textAlign}) {
   return (
     <Wrapper>
         <Label htmlFor={id}>{ title }</Label>
-        <Input type="text" id={id} pleceholder={ph} textAlign={textAlign} onChange={handleChange}></Input>
+        <Input type="text" id={id} placeholder={ph} textAlign={textAlign} onChange={handleChange}></Input>
     </Wrapper>
   );
 }
