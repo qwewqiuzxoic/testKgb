@@ -126,7 +126,6 @@ function LoginForm({ backLocation }) {
     }
     useEffect(() => {
         if(user.userid){
-            console.log(123)
             history.push(backlocation);
         }
         return () => {
