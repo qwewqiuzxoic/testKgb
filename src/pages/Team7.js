@@ -96,6 +96,7 @@ const Row = ({num, name, call}) => (
 
 function Team7() {
   const [tableData, setTableData] = useState(data);
+  const [tab,setTab]= useState(0);
   const rows = tableData.map( (rowData) => <Row {...rowData} />);
 
   return (
@@ -103,10 +104,10 @@ function Team7() {
       <Wrapper>
         <Head title="긴급연락망" subtit="KGB의 긴급연락망입니다" pb="90px"/>
         <Tabs>
-          <TabName className="selected">YCAP</TabName>
-          <TabName>KGB이사</TabName>
-          <TabName>YES2404</TabName>
-          <TabName>YES2404</TabName>
+          <TabName className={tab === 0 ? "selected": ""} onClick={()=>setTab(0)}>YCAP</TabName>
+          <TabName className={tab === 1 ? "selected": ""} onClick={()=>setTab(1)}>KGB이사</TabName>
+          <TabName className={tab === 2 ? "selected": ""} onClick={()=>setTab(2)}>YES2404</TabName>
+          <TabName className={tab === 3 ? "selected": ""} onClick={()=>setTab(3)}>YES2404</TabName>
         </Tabs>
         <ContentArea>
           <TableTitle title="가맹차주 (서울)" color = "#009B90"/>

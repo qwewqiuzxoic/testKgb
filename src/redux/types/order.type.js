@@ -1,21 +1,3 @@
-data: {
-    name: '',
-    phone: '',
-    call: '',
-    moveForm: '',
-    maveDate: '',
-    packingDate: '',
-    startingPoint: '',
-    destination: '',
-    distance:0,
-    option1:'',
-    option2:'',
-    car:'',
-    contract: ''
-},
-loading: false,
-error: {}
-
 
 export const ORDER_NAME = 'ORDER_NAME';;
 export const ORDER_PHONE = 'ORDER_PHONE';
@@ -26,5 +8,12 @@ export const ORDER_PACKINGDATE = 'ORDER_PACKINGDATE';
 export const ORDER_STARTINGPOINT = 'ORDER_STARTINGPOINT';
 export const ORDER_DESTINATION = 'ORDER_DESTINATION';
 export const ORDER_DISTANCE = 'ORDER_DISTANCE';
+export const ORDER_OPTION_1 = 'ORDER_OPTION_1';
+export const ORDER_OPTION_2 = 'ORDER_OPTION_2';
+export const ORDER_CAR = 'ORDER_CAR';
+export const ORDER_CONTRACT = 'ORDER_CONTRACT';
+export const ORDER_LOADING = 'ORDER_LOADING';
+export const ORDER_ERROR = 'ORDER_ERROR';
+
 
 
