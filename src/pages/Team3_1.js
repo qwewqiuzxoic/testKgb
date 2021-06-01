@@ -3,9 +3,17 @@ import H1 from '../components/commonStyle/H1'
 import Button from '../components/commonStyle/Button'
 import GroupTitle from '../components/commonStyle/GroupTitle'
 import InputGroup from '../components/commonStyle/InputGroup'
-
+import DaumPostcode from "react-daum-postcode";
 import styled from 'styled-components';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import OrderAddress from '../components/order/OrderAddress';
+import OrderDate from '../components/order/OrderDate';
+import Customer from '../components/order/Customer';
+import OrderAddressOption from '../components/order/OrderAddressOption';
+import OrderDistance from '../components/order/OrderDistance';
+import OrderOptionCost from '../components/order/OrderOptionCost';
+import Ordercontract1 from '../components/order/Ordercontract1';
+import OrderCar from '../components/order/OrderCar';
 
 
 const Wrapper = styled.div`
@@ -33,65 +41,46 @@ const selectOptions = ['이사형태1', '이사형태2']
 
 
 function Team3_1() {
+
+
   return (
     <>
       <Wrapper>
         <TopBg>
             <H1 title="개인오더" subtit="KGB의 방문견적서 내역입니다"></H1>
         </TopBg>
-        <ContentArea>
-            <GroupTitle title="고객정보"/>
-            <InputGroup id="customerName" title="고객명"/>
-            <InputGroup id="customerTel0" title="대표전화 (SMS)"/>
-            <InputGroup id="customerTel1" title="전화번호"/>
-        </ContentArea>  
-        <div>
-          <select name="이사형태" placeholder="이사형태를 선택해주세요">
-            <option value="">이사형태를 선택해주세요</option>
-            <option value="형태 1">형태 1</option>
-            <option value="형태 2">형태 2</option>
-            <option value="형태 3">형태 3</option>
-            <option value="형태 4">형태 4</option>
-            <option value="형태 5">형태 5</option>
-            <option value="형태 6">형태 6</option>
-          </select>
+          <div>
+            고객 정보
+            <Customer />
+          </div>
           <div>
             이사정보
-            <div>
-              <div>
-                이사날짜
-              </div>
-              <input type="date" />
-            </div>
+            <OrderDate/>
           </div>
           <div>
             정보입력
-            <div>
-              <div>
-                출발지 주소
-              </div>
-              <input type="text" />
-              <button>
-                주소찾기
-              </button>
-              <input type="text"/>
-            </div>
-            <div>
-              <div>
-                도착지 주소
-              </div>
-              <input type="text" />
-              <button>
-                주소찾기
-              </button>
-              <input type="text"/>
-            </div>
+            <OrderAddress/>
           </div>
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-        </div>
+          <div>
+            운송거리 (km)
+            <OrderDistance/>
+          </div>
+          <div>
+            작업정보 입력 
+            <OrderAddressOption/>
+          </div>
+          <div>
+            옵션 비용
+            <OrderOptionCost/>
+          </div>
+          <div>
+            계약 정보
+            <Ordercontract1/>
+          </div>
+          <div>
+            차량정보
+            <OrderCar/>
+          </div>
       </Wrapper>
     </>
   );
