@@ -23,7 +23,7 @@ function OrderAddressOption() {
          작업정보 옵션
         </div>
         <div>
-          <input type="checkbox" name="menu1" id="menu1" />
+          <input type="checkbox" name="menu1" id="menu1" value="500" onChange={(e)=>console.log(e.target.value)}/>
           <input type="checkbox" name="menu2" id="menu2" />
           <input type="checkbox" name="menu3" id="menu3" />
           <input type="checkbox" name="menu4" id="menu4" />
