@@ -1,35 +1,59 @@
 import React from 'react';
+import styled from 'styled-components';
+import { FlexBox, ChangeFont, InputStyle, LabelStyle} from '../commonStyle';
+import CheckGroup from '../commonStyle/CheckGroup';
 
+const Wrapper = styled.div`
+`;
+const Layout = styled.div`
+  ${FlexBox()};
+  margin-top:5px;
+  input:first-child{
+    margin-right:10px;
+  }
+  &>div{
+    width:50%;
+    margin-top:0px;
+    margin-bottom:4px;
+
+  }
+`;
+const Group = styled.div`
+  margin-top:10px;
+`;
+const Label = styled.label`
+  ${LabelStyle()};
+`;
+const Input = styled.input`
+  ${InputStyle()};
+`;
 function OrderAddressOption() {
   return (
-    <div>
-      <div>
-        작업정보 입력
-      </div>
-      <div>
-        <div>
-          출발지 주소
-        </div>
-        <div>
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
-        </div>
-      </div>
-
-
-      <div>
-        <div>
-         작업정보 옵션
-        </div>
-        <div>
-          <input type="checkbox" name="menu1" id="menu1" />
-          <input type="checkbox" name="menu2" id="menu2" />
-          <input type="checkbox" name="menu3" id="menu3" />
-          <input type="checkbox" name="menu4" id="menu4" />
-        </div>
-      </div>
-    </div>
+    <Wrapper>
+      <Group>
+      <Label htmlFor="info_from">
+        출발지 주소
+      </Label>
+      <Input id="info_from" type="text" placeholder="이송거리(m)" textAlign="right"/>
+      <Layout>
+        <Input type="text" placeholder="층수" textAlign="right"/>
+        <Input type="text" placeholder="계단(층)" textAlign="right"/>
+      </Layout>
+      </Group>
+      <Group>
+      <Label htmlFor="info_from">
+      작업정보 옵션
+      </Label>
+        <Layout>
+          <CheckGroup id="menu1" name="menu1" label="사다리차 이용"></CheckGroup>
+          <CheckGroup id="menu2" name="menu2" label="엘리베이터"></CheckGroup>
+        </Layout>
+        <Layout>
+          <CheckGroup id="menu3" name="menu3" label="곤도라 사용"></CheckGroup>
+          <CheckGroup id="menu4" name="menu4" label="로프 사용"></CheckGroup>
+        </Layout>
+      </Group>
+    </Wrapper>
   );
 }
 

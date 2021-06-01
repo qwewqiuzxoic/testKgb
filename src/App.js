@@ -53,7 +53,7 @@ function App() {
             <Route path="/login" component={Login} />
             <PrivateRoute path="/board/:boardTitle" component={Board}/>
             <PrivateRoute path="/boarddetail/:number" component={BoardDetail}/>
-            <PrivateRoute path="/" component={Team7}/>
+            <PrivateRoute path="/" component={Team3_1}/>
           </Switch>
         </div>
       </Router>

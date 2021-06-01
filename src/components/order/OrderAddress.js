@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
 import FindAddress from './FindAddress';
 import PopUpAddress from './PopUpAddress';
+import styled from 'styled-components';
+import { ChangeFont, LabelStyle } from '../commonStyle';
+
+const Wrapper = styled.div`
+  margin-top:10px;
+`;
+const Layout = styled.div`
+  margin-top:10px;
+`;
+const Label = styled.label`
+  ${LabelStyle()};
+`;
 
 function OrderAddress() {
   const [address1, setAddress1] = useState({open:false, data:""});
@@ -34,20 +46,20 @@ function OrderAddress() {
     })
   }
   return (
-    <div>
-    <div>
-      <div>
+    <Wrapper>
+    <Layout>
+      <Label htmlFor="addr_from">
         출발지 주소
-      </div>
+      </Label>
       <PopUpAddress/>
-    </div>
-    <div>
-      <div>
+    </Layout>
+    <Layout>
+      <Label htmlFor="addr_to">
         도착지 주소
-      </div>
+      </Label>
       <PopUpAddress/>
-    </div>    
-  </div>
+    </Layout>    
+  </Wrapper>
   );
 }
 
