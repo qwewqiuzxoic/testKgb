@@ -1,6 +1,7 @@
 import React , {useState} from 'react';
 import styled from 'styled-components';
 import { Gutter, FlexBox } from '../commonStyle';
+import DropDown from './DropDown';
 
 const Wrapper = styled.div`
     margin-top:30px;
@@ -61,19 +62,20 @@ function Nav() {
         {menuItems.map(function(menuItem, i) {
             if (menuItem.subMenus != undefined) {
                 return (
-                    <ul key={i}>
-                        <Row index={i} onClick={(e) => toggleDropdown(e)}>
-                            <span>{menuItem.name}</span>
-                            <IconBox>
-                                <img src={process.env.PUBLIC_URL + '/images/ico_down.png'} alt="메뉴열기"/>
-                            </IconBox>
-                        </Row>
-                        <DropdownList>                 
-                        {menuItem.subMenus.map(function(subMenu, i) {
-                                return <Li key={i}>{subMenu.name}</Li>
-                            })}
-                        </DropdownList>
-                    </ul>
+                    <DropDown key={i} menuItem={menuItem} i={i}/>
+                    // <ul key={i}>
+                    //     <Row index={i} onClick={(e) => toggleDropdown(e)}>
+                    //         <span>{menuItem.name}</span>
+                    //         <IconBox>
+                    //             <img src={process.env.PUBLIC_URL + '/images/ico_down.png'} alt="메뉴열기"/>
+                    //         </IconBox>
+                    //     </Row>
+                    //     <DropdownList>                 
+                    //     {menuItem.subMenus.map(function(subMenu, i) {
+                    //             return <Li key={i}>{subMenu.name}</Li>
+                    //         })}
+                    //     </DropdownList>
+                    // </ul>
                 )
             } else {
                 return (
