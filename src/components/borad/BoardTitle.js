@@ -16,11 +16,11 @@ const TopBg = styled.div`
 
 `;
 
-function BoardTitle() {
+function BoardTitle({title, subtit}) {
   return (
     <Wrapper>
       <TopBg>
-        <H1 title="우리팀 톡톡" subtit="KGB의 우리팀톡톡입니다"></H1>
+        <H1 title={title} subtit={subtit}></H1>
       </TopBg>
     </Wrapper>
   );
