@@ -1,5 +1,20 @@
 import React from 'react';
 import DaumPostcode from "react-daum-postcode";
+import styled from 'styled-components';
+import { FlexBox, ChangeFont } from '../commonStyle';
+
+const Wrapper = styled.div`
+  button{
+  background:   ${(props) => props.theme.colors.white};;
+  position:fixed;
+  width:100%;
+  height:50px;
+  bottom:0;
+  right:0;
+  left:0;
+  z-index:9;
+  }
+`;
 
 function FindAddress(props) {
     const handlePostCode = (data) => {
@@ -20,19 +35,18 @@ function FindAddress(props) {
  
     const postCodeStyle = {
         display: "block",
-        position: "absolute",
-        top: "10%",
-        width: "600px",
-        height: "600px",
-        padding: "7px",
+        position: "fixed",
+        top: "0",
+        left: '0',
+        width: "100%",
+        height: "100%",
       };
  
     return(
-        <div>
+        <Wrapper>
             <DaumPostcode style={postCodeStyle} onComplete={handlePostCode} />
-            // 닫기 버튼 생성
             <button type='button' onClick={() => {props.onClose()}} className='postCode_btn'>닫기</button>
-        </div>
+        </Wrapper>
     )
 }
 
