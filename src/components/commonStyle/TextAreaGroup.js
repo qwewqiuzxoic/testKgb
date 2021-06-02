@@ -19,7 +19,7 @@ const TextArea = styled.textarea`
   height:130px;
   padding: 10px 15px;
   background:${(props) => props.value ? '#F3F7FB' : '#FFFFFF'};
-  border: ${(props) => props.value ? '0 none' : props.theme.colors.grey1};
+  border: ${(props) => props.value ? '0 none' : `1px solid ${props.theme.colors.grey1}`};
   border-radius: 4px;
   ${ChangeFont(true, 200)};
   &:focus, &:active, &.active{
