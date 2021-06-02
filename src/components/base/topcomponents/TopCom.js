@@ -59,7 +59,7 @@ function TopCom({clickMenu}) {
             <img src={process.env.PUBLIC_URL + '/images/ico_back.svg'} alt="icon" />
         </IconBack>
         <PageName>
-            커뮤니티
+            페이지제목  
         </PageName>
         <IconMenu onClick={()=>clickMenu()}>
             <img src={process.env.PUBLIC_URL + '/images/ico_menu.svg'} alt="KGB" />

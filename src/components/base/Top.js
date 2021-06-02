@@ -38,7 +38,7 @@ function Top() {
         )
     }else{
         return(
-            <div>a</div>
+            <TopCom clickMenu={clickMenu}/>
         )
     }
   
