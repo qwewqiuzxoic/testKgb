@@ -33,10 +33,12 @@ import { createStore, applyMiddleware  } from 'redux';
 import rootReducer from './redux';
 import logger from 'redux-logger';
 import Top from "./components/base/Top";
+import axios from "axios";
 
 
 function App() {
-
+  // axios.get("http://localhost:3001/memo/2").then(res=>{
+  // })
 
   const user = useSelector(state=>state.loginReducer.user);
 

@@ -67,14 +67,18 @@ const schedules = [
     },
 ]
 
-function Schedules() {
+function Schedules({data}) {
+    console.log("여기는")
+    console.log(data)
+    console.log("여기는")
   return (
     <Wrapper>
-        {schedules.map((schedule, index)=> (
-            <Box key={index} color={schedule.color}>
+        {data.map((schedule, index)=> (
+            <Box key={index} color="#28F173">
                 <Row>
                     <Name color={schedule.color}><span>[{schedule.state}] </span>{schedule.name}</Name>
-                    <Call>{schedule.call}</Call>
+                    {/* <Call>{schedule.call}</Call> */}
+                    <Call>00000000</Call>
                 </Row>
                 <Row>
                     <Dt>작업일</Dt>
