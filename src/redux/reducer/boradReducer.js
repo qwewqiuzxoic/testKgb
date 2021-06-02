@@ -42,7 +42,7 @@ export function boardDetailReducer(state = boardDetailInit, action) {
         case BOARD_DETAIL_SUCCESS:
             return{
                 ...state,
-                boardList:action.data
+                data:action.data
             }     
         default: 
             return state

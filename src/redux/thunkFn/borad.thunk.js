@@ -28,9 +28,8 @@ export const getBoardDetail = (sn) => dispatch => {
         axios.post(url, {
             "sn": sn
         }).then(function (res) {
-            dispatch(boardDetailSuccess(res.data.list));
+            dispatch(boardDetailSuccess(res.data));
              // response  
-             console.log(res.data.list);
         }).catch(function (error) {
             console.log(error);
             dispatch(boardDetailError(error))

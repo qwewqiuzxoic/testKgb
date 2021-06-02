@@ -10,9 +10,9 @@ export const login = (userid,password) => dispatch  => {
             password: password
         }).then(function (res) {
             dispatch(loginSuccess(res.data.user));
-            localStorage.setItem('user', res.data.user);
+            localStorage.setItem('user', JSON.stringify(res.data.user));
+            //console.log(JSON.parse(localStorage.getItem('user')));
              // response  
-             console.log(res);
         }).catch(function (error) {
             console.log(error);
             dispatch(loginError(error))

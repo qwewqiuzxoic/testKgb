@@ -25,7 +25,7 @@ function BoardListWrap({boardCode}) {
   return (
     <Wrapper>
         {state.length ==0? <div>로딩중</div>:state.map((post, index)=> (
-            <BoardList key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index}/>
+            <BoardList key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index} loginname={post.loginname} tname={post.tname} countview={post.countview} cnt={post.cnt}/>
         ))}
         
     </Wrapper>
