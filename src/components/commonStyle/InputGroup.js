@@ -20,7 +20,7 @@ const Input = styled.input`
   padding:0 15px;
   text-align: ${(props) => props.textAlign ? props.textAlign : 'left'};
   background:${(props) => props.value ? '#F3F7FB' : '#FFFFFF'};
-  border: ${(props) => props.value ? '0 none' : props.theme.colors.grey1};
+  border: ${(props) => props.value ? '0 none' : `1px solid ${props.theme.colors.grey1}`};
   border-radius: 4px;
   ${ChangeFont(true, 200)};
   &:focus, &:active, &.active{

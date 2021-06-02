@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 
 `;
 
-function BoardListWrap8_1({boardCode}) {
+function BoardListWrap8_1({boardCode, onClick}) {
     console.log(boardCode)
     const dispatch = useDispatch();
     const state = useSelector(state => state.boardReducer.boardList);
@@ -25,9 +25,8 @@ function BoardListWrap8_1({boardCode}) {
   return (
     <Wrapper>
         {state.length ==0? <div>로딩중</div>:state.map((post, index)=> (
-            <BoardList8_1 key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index}/>
+            <BoardList8_1 key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index} onClick={onClick}/>
         ))}
-        
     </Wrapper>
   );
 }

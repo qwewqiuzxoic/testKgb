@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     padding:15px;
     margin-bottom:8px;
     box-shadow: 4px 4px 5px #33333314;
-
+    cursor:pointer;
 `;
 const Layout = styled.div`
   ${FlexBox()}
@@ -43,10 +43,10 @@ const ContentDate = styled.div`
 `;
 
 
-function BoardList8_1({title, regdate, board_sn, index}) {
+function BoardList8_1({title, regdate, board_sn, index, onClick}) {
    
   return (
-    <Wrapper index={index}>
+    <Wrapper index={index} onClick={onClick}>
       <Layout>
         <Title>{title}</Title>
         <Date>{regdate}</Date>
