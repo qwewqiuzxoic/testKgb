@@ -14,11 +14,10 @@ const Label = styled.label`
   margin-bottom:5px;
 `;
 
-const Input = styled.input`
+const TextArea = styled.textarea`
   width:100%;
-  height:40px;
-  padding:0 15px;
-  text-align: ${(props) => props.textAlign ? props.textAlign : 'left'};
+  height:130px;
+  padding: 10px 15px;
   background: #FFFFFF;
   border: 1px solid  ${(props) => props.theme.colors.grey1};
   border-radius: 4px;
@@ -32,7 +31,7 @@ const Input = styled.input`
     }
 `;
 
-function InputGroup({id, title, ph, textAlign}) {
+function TextAreaGroup({id, title, ph}) {
   const [inputValue, setInputValue] = useState('');
 
   const handleChange = e => {
@@ -43,9 +42,9 @@ function InputGroup({id, title, ph, textAlign}) {
   return (
     <Wrapper>
         <Label htmlFor={id}>{ title }</Label>
-        <Input type="text" id={id} placeholder={ph} textAlign={textAlign} onChange={handleChange}></Input>
+        <TextArea id={id} placeholder={ph} onChange={handleChange}></TextArea>
     </Wrapper>
   );
 }
 
-export default InputGroup;
+export default TextAreaGroup;
