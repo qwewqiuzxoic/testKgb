@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import Team1 from './pages/Team1';
 import Team2_1 from './pages/Team2_1';
 import Team3_1 from './pages/Team3_1';
+import Team3_2 from './pages/Team3_2';
 import Team5 from './pages/Team5';
 import Team6_1 from './pages/Team6_1';
 import Team7 from './pages/Team7';
@@ -54,7 +55,7 @@ function App() {
             <Route path="/login" component={Login} />
             <PrivateRoute path="/board/:boardTitle" component={Board}/>
             <PrivateRoute path="/boarddetail/:number" component={BoardDetail}/>
-            <PrivateRoute path="/" component={Team8_1}/>
+            <PrivateRoute path="/" component={Team3_2}/>
           </Switch>
         </div>
       </Router>
