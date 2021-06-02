@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
-
+import React from 'react';
 import Head from '../components/commonStyle/Head';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 import styled from 'styled-components';
-import Modal from '../components/base/Modal'
-import GroupTitle from '../components/commonStyle/GroupTitle';
-import TextAreaGroup from '../components/commonStyle/TextAreaGroup';
-import Button from '../components/commonStyle/Button';
+
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -24,7 +20,6 @@ const Box = styled.div`
     margin-bottom:15px;
     border-radius: 4px;
     ${Gutter('15px')};
-    cursor: pointer;
 `
 const Row = styled.div`
     ${FlexBox()};
@@ -60,19 +55,7 @@ const Dt = styled.div`
 const Dd = styled.div`
     ${ChangeFont(true, 200)};
 `
-const Section = styled.div`
-    border-bottom : 1px solid #DFE5EA;
-    padding-bottom:12px;
-    margin-bottom:12px;
-    &:last-child{
-        border: 0 none;
-    }
-`
-const ModalTit = styled.div`
-  font-size :  13px;
-  font-weight: bold;
-  margin-bottom: 8px;
-`;
+
 const lists6_1 = [
   {
         state:'대기',
@@ -110,89 +93,43 @@ const lists6_1 = [
 ]
 
 function Team6_1() {
-    const [ modalOpen, setModalOpen ] = useState(false);
-
-    const openModal = () => {
-        setModalOpen(true);
-    }
-    const closeModal = () => {
-        setModalOpen(false);
-    }
-
-    return (
-        <>
-        <Wrapper>
-            <Head title="팀 단체사진" subtit="KGB의 우리팀톡톡입니다" pb="90px"/>
-            <ContentArea>
-            {lists6_1.map((list, index)=> (
-                <Box key={index} onClick={ openModal }>
-                    <Row>
-                        <Title>{list.title}</Title>
-                        <State color="#009944">{list.state}</State>
-                    </Row>
-                    <Row>
-                        <Name>{list.name}</Name>
-                        <Weight color="#009944">{list.weight}</Weight>
-                    </Row>
-                    <Row>
-                        <Dt>이사날짜</Dt>
-                        <Dd>{list.date1}</Dd>
-                    </Row>
-                    <Row>
-                        <Dt>연락처</Dt>
-                        <Dd>{list.call}</Dd>
-                    </Row>
-                    <Row>
-                        <Dt>전지역</Dt>
-                        <Dd>{list.region}</Dd>
-                    </Row>
-                    <Row>
-                        <Dt>등록일</Dt>
-                        <Dd>{list.date2}</Dd>
-                    </Row>
-                </Box>
-            ))}
-            </ContentArea>
-            <Modal open={ modalOpen } close={ closeModal } header="대기내용" subHeader="2020.01.01" bg="#FAFAFA">
-                <Box>
-                    <Section>
-                        <ModalTit>지원구분</ModalTit>
-                        <Row>
-                            <Dt>대기</Dt>
-                            <Dd>2020.01.01</Dd>
-                        </Row>
-                    </Section>
-                    <Section>
-                        <ModalTit>지원자</ModalTit>
-                        <Row>
-                            <Dt>[YES2404] 서울 73팀</Dt>
-                            <Dd>010-1234-5678</Dd>
-                        </Row>
-                    </Section>
-                    <Section>
-                        <ModalTit>지원내용</ModalTit>
-                        <Row>
-                            <Dt>이사날짜</Dt>
-                            <Dd>2021 .01 .01</Dd>
-                        </Row>
-                        <Row>
-                            <Dt>인원/차량</Dt>
-                            <Dd>1명 / 1톤</Dd>
-                        </Row>
-                        <Row>
-                            <Dt>이사지역</Dt>
-                            <Dd>전지역</Dd>
-                        </Row>
-                    </Section> 
-                    <Section>
-                        <ModalTit>메모내용</ModalTit>
-                        <p>지원대기입니다 지원대기입니다 지원대기입니다 지원대기입니다 지원대기입니다 지원대기입니다</p>
-                    </Section> 
-                </Box>
-            </Modal>      
-        </Wrapper>
-        </>
-    );
+  return (
+    <>
+      <Wrapper>
+        <Head title="팀 단체사진" subtit="KGB의 우리팀톡톡입니다" pb="90px"/>
+        <ContentArea>
+        {lists6_1.map((list, index)=> (
+            <Box key={index}>
+                <Row>
+                    <Title>{list.title}</Title>
+                    <State color="#009944">{list.state}</State>
+                </Row>
+                <Row>
+                    <Name>{list.name}</Name>
+                    <Weight color="#009944">{list.weight}</Weight>
+                </Row>
+                <Row>
+                    <Dt>이사날짜</Dt>
+                    <Dd>{list.date1}</Dd>
+                </Row>
+                <Row>
+                    <Dt>연락처</Dt>
+                    <Dd>{list.call}</Dd>
+                </Row>
+                <Row>
+                    <Dt>전지역</Dt>
+                    <Dd>{list.region}</Dd>
+                </Row>
+                <Row>
+                    <Dt>등록일</Dt>
+                    <Dd>{list.date2}</Dd>
+                </Row>
+             </Box>
+        ))}
+        </ContentArea>      
+      </Wrapper>
+    </>
+  );
 }
 
 export default Team6_1;
