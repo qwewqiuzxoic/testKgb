@@ -62,6 +62,7 @@ function App() {
             <PrivateRoute path="/team5" component={Team5}/>
             <PrivateRoute path="/team6_1" component={Team6_1}/>
             <PrivateRoute path="/team7" component={Team7}/>
+            <PrivateRoute path="/Team8_1" component={Team8_1}/>
             <PrivateRoute path="/" component={Home}/>
           </Switch>
         </div>

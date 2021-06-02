@@ -18,8 +18,8 @@ const TextArea = styled.textarea`
   width:100%;
   height:130px;
   padding: 10px 15px;
-  background: #FFFFFF;
-  border: 1px solid  ${(props) => props.theme.colors.grey1};
+  background:${(props) => props.value ? '#F3F7FB' : '#FFFFFF'};
+  border: ${(props) => props.value ? '0 none' : props.theme.colors.grey1};
   border-radius: 4px;
   ${ChangeFont(true, 200)};
   &:focus, &:active, &.active{
@@ -31,7 +31,7 @@ const TextArea = styled.textarea`
     }
 `;
 
-function TextAreaGroup({id, title, ph}) {
+function TextAreaGroup({id, title, ph, value}) {
   const [inputValue, setInputValue] = useState('');
 
   const handleChange = e => {
@@ -42,7 +42,7 @@ function TextAreaGroup({id, title, ph}) {
   return (
     <Wrapper>
         <Label htmlFor={id}>{ title }</Label>
-        <TextArea id={id} placeholder={ph} onChange={handleChange}></TextArea>
+        <TextArea id={id} placeholder={ph} onChange={handleChange} value={value}></TextArea>
     </Wrapper>
   );
 }
