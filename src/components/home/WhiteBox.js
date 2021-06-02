@@ -4,12 +4,12 @@ import { ChangeFont } from '../commonStyle';
 
 const Wrapper = styled.div`
   width: ${(props) => props.width || "100%"};
+  height: calc(100% - 10px);
   background:  ${(props) => props.bg || "white"};
   box-shadow: 14px 14px 40px #69B7F61A;
   border-radius: ${(props) => props.radius || "12px"};
   padding: 15px 0 15px 10px;
   margin-bottom: ${(props) => props.mgb || "10px"};
-  width:31%;
 `
 const IconArea = styled.div`
   width:37px;
