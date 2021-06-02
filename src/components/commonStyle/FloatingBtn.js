@@ -19,9 +19,9 @@ const Wrapper = styled.button`
     }
 `;
 
-function FloatingBtn({bg, icon}) {
+function FloatingBtn({bg, icon, onClick}) {
   return (
-    <Wrapper bg={bg} icon={icon}>
+    <Wrapper bg={bg} icon={icon} onClick={onClick}>
         <img src={process.env.PUBLIC_URL + `/images/${icon}.png`}/>
     </Wrapper>
   );
