@@ -11,7 +11,6 @@ import Login from './pages/Login';
 import Team1 from './pages/Team1';
 import Team2_1 from './pages/Team2_1';
 import Team3_1 from './pages/Team3_1';
-import Team3_2 from './pages/Team3_2';
 import Team5 from './pages/Team5';
 import Team6_1 from './pages/Team6_1';
 import Team7 from './pages/Team7';
