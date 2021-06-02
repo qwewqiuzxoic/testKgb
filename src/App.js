@@ -19,6 +19,7 @@ import Team8_1 from './pages/Team8_1';
 import Board from "./pages/Board";
 import BoardDetail from "./pages/BoardDetail";
 import Manage2_1 from "./pages/Manage2_1";
+import Manage2_2 from "./pages/Manage2_2";
 
 import {signIn} from './deletData/Auth'
 import PrivateRoute from './util/PrivateRoute'
@@ -64,7 +65,7 @@ function App() {
             <PrivateRoute path="/team6_1" component={Team6_1}/>
             <PrivateRoute path="/team7" component={Team7}/>
             <PrivateRoute path="/Team8_1" component={Team8_1}/>
-            <PrivateRoute path="/Manage2_1" component={Manage2_1}/>
+            <PrivateRoute path="/Manage2_2" component={Manage2_2}/>
             <PrivateRoute path="/" component={Home}/>
           </Switch>
         </div>
