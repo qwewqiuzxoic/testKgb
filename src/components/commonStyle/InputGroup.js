@@ -19,8 +19,8 @@ const Input = styled.input`
   height:40px;
   padding:0 15px;
   text-align: ${(props) => props.textAlign ? props.textAlign : 'left'};
-  background: #FFFFFF;
-  border: 1px solid  ${(props) => props.theme.colors.grey1};
+  background:${(props) => props.value ? '#F3F7FB' : '#FFFFFF'};
+  border: ${(props) => props.value ? '0 none' : props.theme.colors.grey1};
   border-radius: 4px;
   ${ChangeFont(true, 200)};
   &:focus, &:active, &.active{
@@ -32,8 +32,8 @@ const Input = styled.input`
     }
 `;
 
-function InputGroup({id, title, ph, textAlign}) {
-  const [inputValue, setInputValue] = useState('');
+function InputGroup({id, title, ph, textAlign, value}) {
+  const [inputValue, setInputValue] = useState(value);
 
   const handleChange = e => {
     e.target.value === '' ? e.target.classList.remove('active'):e.target.classList.add('active');
@@ -43,7 +43,7 @@ function InputGroup({id, title, ph, textAlign}) {
   return (
     <Wrapper>
         <Label htmlFor={id}>{ title }</Label>
-        <Input type="text" id={id} placeholder={ph} textAlign={textAlign} onChange={handleChange}></Input>
+        <Input type="text" id={id} placeholder={ph} textAlign={textAlign} onChange={handleChange}value={value}></Input>
     </Wrapper>
   );
 }
