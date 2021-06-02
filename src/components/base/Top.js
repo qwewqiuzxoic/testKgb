@@ -36,6 +36,10 @@ function Top() {
         return (
             <TopHome clickMenu={clickMenu}/>
         )
+    }else{
+        return(
+            <div>a</div>
+        )
     }
   
 }

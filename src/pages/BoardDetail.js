@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import BoardTitle from '../components/borad/BoardTitle';
 import CommentBox from '../components/borad/CommentBox';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 import Button from '../components/commonStyle/Button';
 
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBoardDetail } from '../redux/thunkFn/borad.thunk';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -63,6 +65,14 @@ const ButtonArea = styled.div`
 
 function BoardDetail({match}) {
   const number = match.params.number;
+  const sn = match.params.sn;
+  const dispatch = useDispatch();
+
+  const boardDetail = useSelector(state => state.boardDetailReducer.data);
+  useEffect(() => {
+      dispatch(getBoardDetail(sn))
+  }, [])
+
 
   return (
     <Wrapper>
@@ -70,11 +80,11 @@ function BoardDetail({match}) {
         <ContentArea>
           <ContentBox>
             <Title>
-            정말 최고의 이사였어요 너무 고생하셨어요 감사합니다 내용이 노출됩니다 내용이 노출됩니다
+            {boardDetail.title}
             </Title>
             <PostInfo>
-              <Writer>노지수(서울1팀)</Writer>
-              <Date>2021.01.01</Date>
+              <Writer>{boardDetail.loginid}({boardDetail.tname})</Writer>
+              <Date>{boardDetail.regdate}</Date>
             </PostInfo>
             <Desc>
               <img src={process.env.PUBLIC_URL + '/images/dummyImg.jpg'} alt="icon" />

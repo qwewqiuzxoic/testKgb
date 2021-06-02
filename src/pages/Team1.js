@@ -45,15 +45,14 @@ const SelectedDay = styled.div`
   }
 `
 
-function Home() {
+function Team1() {
     const [dateState, setDateState] = useState(new Date())
     const changeDate = (e) => {
         setDateState(e)
   }
 
-  console.log(moment().format())
   return (
-    <>
+    <div>
       <Wrapper>
         <TopBg>
             <H1 title="작업일정 (월별)" subtit=""></H1>
@@ -68,8 +67,8 @@ function Home() {
           <Schedules></Schedules>
         </ScheduleBox>
       </Wrapper>
-    </>
+    </div>
   );
 }
 
-export default Home;
+export default Team1;

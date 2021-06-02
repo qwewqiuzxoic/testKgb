@@ -25,7 +25,7 @@ import PrivateRoute from './util/PrivateRoute'
 import GlobalStyle from "./styles/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import theme from './styles/theme'
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import ReduxThunk from 'redux-thunk';
 
@@ -37,29 +37,35 @@ import Top from "./components/base/Top";
 
 function App() {
 
-  const [user, setUser] = useState(null);
-  const login = ({ email, password }) => setUser(signIn({ email, password }));
-  const authenticated = user != null;
-  const store = createStore(rootReducer,  composeWithDevTools(applyMiddleware(ReduxThunk,logger))
-  ); // 스토어를 만듭니다.
 
+  const user = useSelector(state=>state.loginReducer.user);
+
+  useEffect(() => {
+      console.log(JSON.parse(localStorage.getItem('user')));
+      return () => {
+        }
+  }, [user])
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Provider store={store}>
       <Router>
         <div>
           <Top/>
           <Switch>
             <Route path="/login" component={Login} />
             <PrivateRoute path="/board/:boardTitle" component={Board}/>
-            <PrivateRoute path="/boarddetail/:number" component={BoardDetail}/>
-            <PrivateRoute path="/" component={Team6_3}/>
+            <PrivateRoute path="/boarddetail/:number/:sn" component={BoardDetail}/>
+            <PrivateRoute path="/team1" component={Team1}/>
+            <PrivateRoute path="/team2_1" component={Team2_1}/>
+            <PrivateRoute path="/team3_1" component={Team3_1}/>
+            <PrivateRoute path="/team5" component={Team5}/>
+            <PrivateRoute path="/team6_1" component={Team6_1}/>
+            <PrivateRoute path="/team7" component={Team7}/>
+            <PrivateRoute path="/" component={Home}/>
           </Switch>
         </div>
       </Router>
-      </Provider>
   </ThemeProvider>
   );
 }

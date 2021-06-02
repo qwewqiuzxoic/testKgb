@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 import loginReducer from './reducer/loginReducer';
-import {boardReducer} from './reducer/boradReducer';
+import {boardReducer,boardDetailReducer} from './reducer/boradReducer';
 
 const rootReducer = combineReducers({
     loginReducer,
-    boardReducer
+    boardReducer,
+    boardDetailReducer
 });
 export default rootReducer;

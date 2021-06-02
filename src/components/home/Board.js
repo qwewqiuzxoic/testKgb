@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import styled from 'styled-components';
 import { FlexBox, ChangeFont, Gutter } from '../commonStyle';
+import { Link } from 'react-router-dom';
+import BoardDetail from '../../pages/BoardDetail';
 
 const Wrapper = styled.div`
     ${Gutter('0 12px 32px 12px')};
@@ -25,20 +27,7 @@ const Date = styled.div`
   font-size: ${(props) => props.theme.fontSizes.s};
 
 `
-const Posts = [
-    {
-        title : "2019년 10월 베스트 칭찬글 발표",
-        date : "2019 .01 .01",
-    },
-    {
-        title : "2019년 11월 베스트 칭찬글 발표",
-        date : "2019 .01 .01",
-    },
-    {
-        title : "2019년 12월 베스트 칭찬글 발표",
-        date : "2019 .01 .01",
-    },
-]
+
 
 function Board() {
   const dispatch = useDispatch();
@@ -54,10 +43,14 @@ function Board() {
        {}
         <div>
           {boardList.length == 0 ? "LOADING": boardList.map((post, index)=> (
-          <Post key={index} title={post.title}  desc={post.desc} >
-              <Title>{post.title}</Title>
-              <Date>{post.regdate}</Date>
-          </Post>
+            <Post key={index} title={post.title}  desc={post.desc} >
+                <Title>
+                  <Link to={`boarddetail/2/${post.board_sn}`}>
+                  {post.title}
+                  </Link>
+                </Title>
+                <Date>{post.regdate}</Date>
+            </Post>
         ))}
         </div>
     </Wrapper>

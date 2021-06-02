@@ -46,7 +46,7 @@ const Date = styled.div`
 `;
 
 
-function BoardList({title, regdate, board_sn, index}) {
+function BoardList({title, regdate, board_sn, index, loginname ,tname, cnt,countview}) {
    
   return (
     <Wrapper index={index}>
@@ -54,7 +54,7 @@ function BoardList({title, regdate, board_sn, index}) {
             {title} <span> [11]</span>
         </Title>
         <PostInfo>
-          <Writer>서울1팀</Writer>
+          <Writer>{loginname}</Writer>
           <span></span>
           <Date>{regdate}</Date>
         </PostInfo>
