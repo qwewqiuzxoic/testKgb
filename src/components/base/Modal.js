@@ -34,23 +34,30 @@ const ModalClose = styled.button`
 const Section = styled.div`
     position:absolute;
     width: 100%;
-    height:90%;
+    height:calc(100% - 50px);
     bottom:0;
     margin:0 auto;
     border-radius: 30px 30px 0 0;
-    background-color: #fff;
+    background-color: ${(props) => props.bg ? props.bg : '#fff'};
     overflow: hidden;
     }
 `
 const Header = styled.div`
     position: relative;
-    height:50px;
-    line-height: 50px;
+    padding: 15px 0;
     font-weight: bold;
     text-align: center;
     font-size: ${(props) => props.theme.fontSizes.l};
     border-bottom: 1px solid #DFE5EA;
+    background-color: #fff;
 
+    span{
+        display:block;
+        margin-top:2px;
+        ${ChangeFont(true, 200)};
+        font-size: ${(props) => props.theme.fontSizes.m};
+        color:#ACB6BC;
+    }
 `
 const Contents = styled.div`
     ${Gutter()}
@@ -58,7 +65,7 @@ const Contents = styled.div`
 `
 
 const Modal = ( props ) => {
-    const { open, close, header } = props;
+    const { open, close, header, subHeader, bg } = props;
     return (
         <Wrapper className={ open ? 'openModal modal' : 'modal' }>
             { open ? (
@@ -66,9 +73,10 @@ const Modal = ( props ) => {
                 <ModalClose className="close" onClick={close}>
                     <img src={process.env.PUBLIC_URL + `/images/btn_x.svg`}/>
                 </ModalClose>
-                <Section>
+                <Section bg={bg}>
                     <Header>
                         {header}
+                        <span>{subHeader ? subHeader : ''}</span>
                     </Header>
                     <Contents>
                         {props.children}
