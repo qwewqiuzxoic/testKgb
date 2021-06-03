@@ -244,5 +244,36 @@
             "price":1500000,
             "name": "ㅁㅁㅁ"
         }
-    ]
+    ],
+    "board1":[
+        {"id":1,"boardname":null,"title":0,"name":"GMC","date":"2021-01-29","contents":0},
+        {"id":2,"boardname":null,"title":0,"name":"Toyota","date":"2021-05-08","contents":0},
+        {"id":3,"boardname":null,"title":0,"name":"Suzuki","date":"2021-01-27","contents":0},
+        {"id":4,"boardname":null,"title":1,"name":"Toyota","date":"2021-04-14","contents":0},
+        {"id":5,"boardname":null,"title":1,"name":"Suzuki","date":"2021-06-04","contents":0},
+        {"id":6,"boardname":null,"title":0,"name":"Honda","date":"2020-11-01","contents":0},
+        {"id":7,"boardname":null,"title":0,"name":"Volkswagen","date":"2021-05-04","contents":0},
+        {"id":8,"boardname":null,"title":1,"name":"Audi","date":"2021-04-14","contents":1},
+        {"id":9,"boardname":null,"title":0,"name":"Cadillac","date":"2020-08-21","contents":1},
+        {"id":10,"boardname":null,"title":0,"name":"Dodge","date":"2021-05-16","contents":1},
+        {"id":11,"boardname":null,"title":1,"name":"Kia","date":"2021-02-22","contents":1},
+        {"id":12,"boardname":null,"title":1,"name":"Chevrolet","date":"2020-09-11","contents":1},
+        {"id":13,"boardname":null,"title":1,"name":"Dodge","date":"2020-10-07","contents":1},
+        {"id":14,"boardname":null,"title":1,"name":"Chevrolet","date":"2020-11-03","contents":1},
+        {"id":15,"boardname":null,"title":1,"name":"Chrysler","date":"2021-03-16","contents":0},
+        {"id":16,"boardname":null,"title":0,"name":"Toyota","date":"2021-05-03","contents":1},
+        {"id":17,"boardname":null,"title":0,"name":"Dodge","date":"2021-03-11","contents":1},
+        {"id":18,"boardname":null,"title":0,"name":"Mercury","date":"2020-08-28","contents":0},
+        {"id":19,"boardname":null,"title":0,"name":"Honda","date":"2020-10-14","contents":1},
+        {"id":20,"boardname":null,"title":1,"name":"Jeep","date":"2020-11-27","contents":1},
+        {"id":21,"boardname":null,"title":0,"name":"Isuzu","date":"2021-04-22","contents":1},
+        {"id":22,"boardname":null,"title":0,"name":"Porsche","date":"2020-06-05","contents":1},
+        {"id":23,"boardname":null,"title":1,"name":"Plymouth","date":"2021-03-31","contents":0},
+        {"id":24,"boardname":null,"title":0,"name":"Chevrolet","date":"2021-06-10","contents":1},
+        {"id":25,"boardname":null,"title":1,"name":"Pontiac","date":"2020-10-11","contents":0},
+        {"id":26,"boardname":null,"title":1,"name":"Toyota","date":"2020-09-12","contents":1},
+        {"id":27,"boardname":null,"title":0,"name":"Volvo","date":"2021-06-18","contents":1},
+        {"id":28,"boardname":null,"title":1,"name":"Ford","date":"2021-02-01","contents":0},
+        {"id":29,"boardname":null,"title":0,"name":"Nissan","date":"2021-06-04","contents":1},
+        {"id":30,"boardname":null,"title":0,"name":"Maserati","date":"2020-06-19","contents":0}]
   }

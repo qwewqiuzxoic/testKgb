@@ -9,6 +9,8 @@ import styled from 'styled-components';
 import '../styles/Calender.css'
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDaySc, getMonthSc } from '../redux/thunkFn/schedule.thunk';
 
 
 const Wrapper = styled.div`
@@ -59,19 +61,18 @@ function checkDay(date){
 
 function Team1() {
     const [dateState, setDateState] = useState(new Date())
-    const [schedule, setSchedule] = useState([])             //모든 작업일 저장
-    const [daySchedule, setDaySchedule] = useState([])       //날짜 선택 저장
+    const dispatch = useDispatch();
+    const monthSc = useSelector(state=>state.monthScReducer.data);
+    const daySc = useSelector(state=>state.dayScReducer.data);
     const changeDate = (e) => {
         setDateState(e)
-        axios.get(`http://localhost:3001/calendar?date=${getToday(e)}`).then(res =>{
-            setDaySchedule(res.data)
-        })
+        dispatch(getDaySc(getToday(e)));
   }
   const tday = getToday(new Date());
   const checkDay = ({ date, view }) =>{
       var day = getToday(date);
       var text = [];
-      if(schedule.length===0)
+      if(monthSc.length===0)
         return null;
       for(var i=0; schedule.length>i; i++){
         if(schedule[i].date === day){
@@ -83,6 +84,7 @@ function Team1() {
                 text.push(<span className="state2"></span>)
             }else if(schedule[i].state === 3){
                 text.push(<span className="state3"></span>)
+
             }
         }
       }
@@ -91,12 +93,8 @@ function Team1() {
       );
   }
   useEffect(() => {
-    axios.get(`http://localhost:3001/calendar`).then(res =>{
-      setSchedule(res.data)
-    })
-    axios.get(`http://localhost:3001/calendar?date=${tday}`).then(res =>{
-      setDaySchedule(res.data)
-    })
+    dispatch(getMonthSc());
+    dispatch(getDaySc(tday));
     return () => {
       
     }
@@ -104,7 +102,7 @@ function Team1() {
   return (
     <div>
       <Wrapper>
-          {/* {schedule.length > 0 ?schedule[0].date:null} */}
+          {monthSc.length > 0 ?monthSc[0].date:null}
         <TopBg>
             <H1 title="작업일정 (월별)" subtit=""></H1>
             <Calendar tileContent={checkDay} value={dateState} data="aa" onChange={changeDate} calendarType="US" locale="EN"/>
@@ -115,7 +113,7 @@ function Team1() {
             <p>{moment(dateState).format('dddd DD, MMMM')}</p>
             <span>{moment(dateState).format('YYYY-MM-DD')===moment(new Date()).format('YYYY-MM-DD') ? '오늘' : ''}</span>
           </SelectedDay>
-          <Schedules data={daySchedule}></Schedules>
+          <Schedules data={daySc}></Schedules>
         </ScheduleBox>
       </Wrapper>
     </div>

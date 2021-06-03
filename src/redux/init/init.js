@@ -18,6 +18,17 @@ export const boardDetailInit= {
     error: {}
 }
 
+export const monthScInit={
+    data:[],
+    loading: false,
+    error:{}
+}
+
+export const dayScInit={
+    data:[],
+    loading: false,
+    error:{}
+}
 export const orderIndividual = {
     data: {
         name: '',                                   //이름
