@@ -43,16 +43,79 @@ const Li = styled.li`
 
 `
 const menuItems = [
-    {name: '작업/대리점 관리', subMenus: [{name: '작업일정(월별)'}, {name: '방문견적 및 개인오더 입력'}, {name: '우리팀 톡톡'}, {name: '팀단체사진 등록'}, {name: '지원요청/대기'}, {name: '긴급연락망'}, {name: '상조회'}, {name: '권역 및 대표'}, {name: '담당 외주업체 '},]},
-    {name: '품질 관리', subMenus: [{name: '칭찬글'}, {name: '꾸중글'}, {name: '미계약 해피콜'}, {name: '계약 해피콜'}, {name: 'A/S현황'}, {name: 'A/S처리노하우'}, {name: '현장실사체크리스트'}, {name: '대리점실사체크리스트'}, {name: '자가평가'}, {name: '월평가(경고현황)'}, {name: '브랜드평가 사진제출'},]},
-    {name: '커뮤니티', subMenus: [{name: '공지사항'}, {name: '자유게시판'}, {name: '작업일정변경요청'}, {name: '건의함'}, {name: '비리제보'}, {name: '쪽지'},]},
-    {name: '교육', subMenus: [{name: '교육공지 / 이용안내'}, {name: '교육일정 / 신청'}, {name: '교육참석내역'}, {name: '교육자료실(일반 / 영상)'}, {name: '이수대상 교육'}, {name: '교육평가'}, {name: '실시간 화상교육'}, {name: '교육출결체크'}, {name: '교육설문'}, {name: '매뉴얼 학습'}, {name: ''},]},
-    {name: '본사업무', subMenus: [{name: '청구서관리'}, {name: '일반자료실'}, {name: '자재주문'}, {name: '자재주문내역'}, {name: '홈페이지연결'}, {name: '담당자연결'},]},
+    {
+        name: '작업/대리점 관리',
+        subMenus: [
+            {name: '작업일정(월별)', link:'/Team1'},
+            {name: '방문견적 및 개인오더 입력', link:'/'},
+            {name: '우리팀 톡톡', link:'/board/2'}, 
+            {name: '팀단체사진 등록', link:'/'}, 
+            {name: '지원요청/대기', link:'/'}, 
+            {name: '긴급연락망', link:'/'}, 
+            {name: '상조회', link:'/'}, 
+            {name: '권역 및 대표', link:'/'}, 
+            {name: '담당 외주업체 ', link:'/'}
+        ]
+    },
+    {
+        name: '품질 관리', 
+        subMenus: [
+            {name: '칭찬글', link:'/board/3'}, 
+            {name: '꾸중글', link:'/board/4'}, 
+            {name: '미계약 해피콜', link:'/'}, 
+            {name: '계약 해피콜', link:'/'}, 
+            {name: 'A/S현황', link:'/'}, 
+            {name: 'A/S처리노하우', link:'/'}, 
+            {name: '현장실사체크리스트', link:'/'}, 
+            {name: '대리점실사체크리스트', link:'/'}, 
+            {name: '자가평가', link:'/'}, 
+            {name: '월평가(경고현황)', link:'/'}, 
+            {name: '브랜드평가 사진제출', link:'/'}
+        ]
+    },
+    {
+        name: '커뮤니티',
+        subMenus: [
+            {name: '공지사항', link:'/board/5'},
+            {name: '자유게시판', link:'board/1'},
+            {name: '작업일정변경요청', link:'/'},
+            {name: '건의함', link:'/'},
+            {name: '비리제보', link:'/'},
+            {name: '쪽지', link:'/'},
+        ]
+    },
+    {
+        name: '교육', 
+        subMenus: [
+            {name: '교육공지 / 이용안내', link:'/'}, 
+            {name: '교육일정 / 신청', link:'/'}, 
+            {name: '교육참석내역', link:'/'}, 
+            {name: '교육자료실(일반 / 영상)', link:'/'}, 
+            {name: '이수대상 교육', link:'/'}, 
+            {name: '교육평가', link:'/'}, 
+            {name: '실시간 화상교육', link:'/'}, 
+            {name: '교육출결체크', link:'/'}, 
+            {name: '교육설문', link:'/'}, 
+            {name: '매뉴얼 학습', link:'/'}, 
+            {name: '', link:'/'}
+        ]
+    },
+    {
+        name: '본사업무',
+        subMenus: [
+            {name: '청구서관리', link:'/'}, 
+            {name: '일반자료실', link:'/'}, 
+            {name: '자재주문', link:'/'}, 
+            {name: '자재주문내역', link:'/'}, 
+            {name: '홈페이지연결', link:'/'}, 
+            {name: '담당자연결', link:'/'}
+        ]
+    },
 ]
 
 
 
-function Nav() {
+function Nav({clickMenu}) {
     //const [isOpen, setOpen] = useState(false);
     const toggleDropdown = (e) =>{
         console.log(e)
@@ -62,7 +125,7 @@ function Nav() {
         {menuItems.map(function(menuItem, i) {
             if (menuItem.subMenus != undefined) {
                 return (
-                    <DropDown key={i} menuItem={menuItem} i={i}/>
+                    <DropDown key={i} menuItem={menuItem} clickMenu={clickMenu} i={i}/>
                     // <ul key={i}>
                     //     <Row index={i} onClick={(e) => toggleDropdown(e)}>
                     //         <span>{menuItem.name}</span>

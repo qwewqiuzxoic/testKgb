@@ -100,7 +100,6 @@ function Team1() {
   return (
     <div>
       <Wrapper>
-          {monthSc.length > 0 ?monthSc[0].date:null}
         <TopBg>
             <H1 title="작업일정 (월별)" subtit=""></H1>
             <Calendar tileContent={checkDay} value={dateState} data="aa" onChange={changeDate} calendarType="US" locale="EN"/>

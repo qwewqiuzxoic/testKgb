@@ -68,9 +68,7 @@ const schedules = [
 ]
 
 function Schedules({data}) {
-    console.log("여기는")
-    console.log(data)
-    console.log("여기는")
+ 
   return (
     <Wrapper>
         {data.map((schedule, index)=> (

@@ -34,7 +34,7 @@ function Board() {
 
   const boardList = useSelector(state => state.boardReducer.boardList);
   useEffect(() => {
-      dispatch(getBoardList())
+      dispatch(getBoardList("YES2404","공지사항"))
   }, [])
 
   return (
@@ -45,7 +45,7 @@ function Board() {
           {boardList.length == 0 ? "LOADING": boardList.map((post, index)=> (
             <Post key={index} title={post.title}  desc={post.desc} >
                 <Title>
-                  <Link to={`boarddetail/2/${post.board_sn}`}>
+                  <Link to={`boarddetail/5/${post.board_sn}`}>
                   {post.title}
                   </Link>
                 </Title>
