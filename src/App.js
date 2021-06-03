@@ -21,6 +21,7 @@ import BoardDetail from "./pages/BoardDetail";
 import Manage1_1 from "./pages/Manage1_1";
 import Manage2_1 from "./pages/Manage2_1";
 import Manage2_2 from "./pages/Manage2_2";
+import Manage3_1 from "./pages/Manage3_1";
 
 import {signIn} from './deletData/Auth'
 import PrivateRoute from './util/PrivateRoute'
@@ -71,6 +72,7 @@ function App() {
             <PrivateRoute path="/Manage1_1" component={Manage1_1}/>
             <PrivateRoute path="/Manage2_1" component={Manage2_1}/>
             <PrivateRoute path="/Manage2_2" component={Manage2_2}/>
+            <PrivateRoute path="/Manage3_1" component={Manage3_1}/>
             <PrivateRoute path="/" component={Home}/>
           </Switch>
         </div>
