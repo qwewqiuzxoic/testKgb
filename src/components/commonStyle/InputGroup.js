@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ChangeFont } from './';
+import { LabelStyle } from './';
 
 
 const Wrapper = styled.div`
@@ -8,10 +9,7 @@ const Wrapper = styled.div`
 `;
 
 const Label = styled.label`
-  display:inline-block;
-  font-size: ${(props) => props.theme.fontSizes.s};
-  color:  ${(props) => props.theme.colors.grey2};
-  margin-bottom:5px;
+  ${LabelStyle()}
 `;
 
 const Input = styled.input`
