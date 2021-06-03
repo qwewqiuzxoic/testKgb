@@ -7,6 +7,7 @@ export function boardReducer(state = boardInit, action) {
         case BOARD_FAIL:
             return{
                 ...state,
+                loading:false,
                 error:action.data
             }
         case BOARD_LOADING:
@@ -18,6 +19,7 @@ export function boardReducer(state = boardInit, action) {
         case BOARD_SUCCESS:
             return{
                 ...state,
+                loading:false,
                 boardList:action.data
             }     
         default: 
