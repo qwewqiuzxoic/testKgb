@@ -74,17 +74,16 @@ function Team1() {
       var text = [];
       if(monthSc.length===0)
         return null;
-      for(var i=0; schedule.length>i; i++){
-        if(schedule[i].date === day){
-            if(schedule[i].state === 0){
+      for(var i=0; monthSc.length>i; i++){
+        if(monthSc[i].date === day){
+            if(monthSc[i].state === 0){
                 text.push(<span className="state0"></span>)
-            }else if(schedule[i].state === 1){
+            }else if(monthSc[i].state === 1){
                 text.push(<span className="state1"></span>)
-            }else if(schedule[i].state === 2){
+            }else if(monthSc[i].state === 2){
                 text.push(<span className="state2"></span>)
-            }else if(schedule[i].state === 3){
+            }else if(monthSc[i].state === 3){
                 text.push(<span className="state3"></span>)
-
             }
         }
       }
@@ -102,7 +101,7 @@ function Team1() {
   return (
     <div>
       <Wrapper>
-          {monthSc.length > 0 ?monthSc[0].date:null}
+          {/* {monthSc.length > 0 ?monthSc[0].date:null} */}
         <TopBg>
             <H1 title="작업일정 (월별)" subtit=""></H1>
             <Calendar tileContent={checkDay} value={dateState} data="aa" onChange={changeDate} calendarType="US" locale="EN"/>
