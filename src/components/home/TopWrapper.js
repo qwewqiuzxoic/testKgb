@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import LineTitArea from './LineTitArea'
 
 import styled from 'styled-components';
 import { FlexBox, ChangeFont, Gutter } from '../commonStyle';
+import axios from 'axios';
 
 
 const Wrapper = styled.div`
@@ -123,28 +124,93 @@ const NullBox = styled.div`
   color:${(props) => props.theme.colors.grey3};
 
 `
+function getToday(){
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = ("0" + (1 + date.getMonth())).slice(-2);
+  var day = ("0" + date.getDate()).slice(-2);
 
+  return year + "." + month + "." + day;
+}
+function getTomorrowdate(){
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = ("0" + (1 + date.getMonth())).slice(-2);
+  var day = ("0" + (date.getDate()+1)).slice(-2);
+  return year + "." + month + "." + day;
+}
+function getAfTomorrowdate(){
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = ("0" + (1 + date.getMonth())).slice(-2);
+  var day = ("0" + (date.getDate()+2)).slice(-2);
+  return year + "." + month + "." + day;
+}
 function TopWrapper() {
+  const date = getToday();
+  const tomm = getTomorrowdate();
+  const afTomm = getAfTomorrowdate();
+  const [today,setToday] = useState({
+    date:'',
+    start:'',
+    end:'',
+  });
+  const [scTomm,setscTomm] = useState({
+    date:'',
+    start:'',
+    end:'',
+  });
+  const [scAfTomm,setscAfTomm] = useState({
+    date:'',
+    start:'',
+    end:'',
+  });
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user)
+  useEffect(() => {
+    axios.get(`http://localhost:3001/calendar?date=${date}`).then(res =>{
+      if(res.data[0] !== undefined){
+        setToday(res.data[0])
+      }
+    })
+    axios.get(`http://localhost:3001/calendar?date=${tomm}`).then(res =>{
+      if(res.data[0] !== undefined){
+        setscTomm(res.data[0])
+      }
+    })
+    axios.get(`http://localhost:3001/calendar?date=${afTomm}`).then(res =>{
+      if(res.data[0] !== undefined){
+        setscAfTomm(res.data[0])
+      }
+
+    })
+    return () => {
+      
+    }
+  }, [])
+
+
+
   return (
     <Wrapper>
       <Slogan>오늘 고객에게 최선을 다합니다</Slogan>
       <MainBox width="100%" bg="rgba(255, 255, 255, .2)">
-        <LineTitArea name="오늘일정" rightText="2021.01.01" lineColor="#3397B9" bgColor="rgba(255, 255, 255, .4)" color="#ffffff"></LineTitArea>
+        <LineTitArea name="오늘일정" rightText={date} lineColor="#3397B9" bgColor="rgba(255, 255, 255, .4)" color="#ffffff"></LineTitArea>
           {/* <TitArea>
               <TitName>오늘일정</TitName>
               <Date>2021.01.01</Date>
           </TitArea> */}
           <UserArea>
-              <p>홍길동</p>
-              <p>010-1234-5678</p>
+              <p>{user.userid}</p>
+              <p>{user.goods_tel}</p>
           </UserArea>
           <TrackingArea>
               <TrackBg>
               </TrackBg>
               <img src={process.env.PUBLIC_URL + '/images/car.png'} alt="현재위치"/>
               <TrackAddr>
-                  <p>수원시 권선구 세류동</p>
-                  <p>고양시 일산동구 백석동</p>
+                  <p>{today.start}</p>
+                  <p>{today.end}</p>
               </TrackAddr>
           </TrackingArea>
       </MainBox>
@@ -152,23 +218,36 @@ function TopWrapper() {
         {/* 맵함수.... */}
         <MainBox width="48%" padding="16px 20px">
           <LineTitArea name="내일일정"  lineColor="linear-gradient(90deg, rgba(0, 155, 144, 1) 0%, rgba(39, 194, 129, 1) 100%)" bgColor="#DFE5EA" color="#009B90" weight="bold"></LineTitArea>
-          <Desc>
+          {scTomm.date === "" ?<NullBox>일정없음</NullBox> :
+            <Desc>
             <Name>홍길동</Name>
             <Phone>010-1234-5678</Phone>
             <RouteArea>
-              <GreyText>세류동</GreyText>
+              <GreyText>{scTomm.start}</GreyText>
               <ArrowBox>
                 <img src={process.env.PUBLIC_URL + '/images/arrowRoute.png'} alt="이동" />
               </ArrowBox>
-              <GreyText>백석동</GreyText>
+              <GreyText>{scTomm.end}</GreyText>
             </RouteArea>
           </Desc>
+            }
         </MainBox>
         <MainBox width="48%" padding="16px 20px">
           <LineTitArea name="모레일정" lineColor="linear-gradient(90deg, #009B90 0%, #2F8DB7 100%)" bgColor="#F3F7FB" color="#2F8EB6" weight="bold"></LineTitArea>
-          <Desc>
-            <NullBox>일정없음</NullBox>
+            {scAfTomm.date === "" ?<NullBox>일정없음</NullBox> :
+            <Desc>
+            <Name>홍길동</Name>
+            <Phone>010-1234-5678</Phone>
+            <RouteArea>
+              <GreyText>{scTomm.start}</GreyText>
+              <ArrowBox>
+                <img src={process.env.PUBLIC_URL + '/images/arrowRoute.png'} alt="이동" />
+              </ArrowBox>
+              <GreyText>{scTomm.end}</GreyText>
+            </RouteArea>
           </Desc>
+            }
+            
         </MainBox>
       </BoxArea>
     </Wrapper>
