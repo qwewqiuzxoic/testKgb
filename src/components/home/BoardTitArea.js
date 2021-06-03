@@ -38,7 +38,7 @@ function BoardTitArea({name, rightText, lineColor, bgColor, color, weight, right
   return (
     <Wrapper bgColor={bgColor} lineColor={lineColor}>
       <TitName color={color} weight={weight}>{name}</TitName>
-      <Link to="/board/2" >
+      <Link to="/board/5" >
         <RightText rightColor={rightColor}>{rightText}</RightText>
       </Link>
     </Wrapper>

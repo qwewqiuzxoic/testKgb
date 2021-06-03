@@ -64,7 +64,7 @@ function Menu({clickMenu}) {
             <img src={process.env.PUBLIC_URL + '/images/ico_close.svg'} alt="닫기" />
           </CloseBtn>
       </TopBox>
-      <Nav></Nav>
+      <Nav clickMenu={clickMenu}></Nav>
       <BottomBox>
           <CallBox name ="KGB포장이사 담당자" num="010-1234-5645" color="#009B90"/>
           <CallBox name ="자재 담당자" num="010-1234-5645" color="#3397B9"/>

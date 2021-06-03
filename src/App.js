@@ -48,7 +48,7 @@ function App() {
   // })
 
   const user = useSelector(state=>state.loginReducer.user);
-
+  const [menu, setMenu] = useState(true);
   useEffect(() => {
       console.log(JSON.parse(localStorage.getItem('user')));
       return () => {
@@ -60,27 +60,29 @@ function App() {
       <GlobalStyle />
       <Router>
         <div>
-          <Top/>
-          <Switch>
-            <Route path="/login" component={Login} />
-            <PrivateRoute path="/board/:boardTitle" component={Board}/>
-            <PrivateRoute path="/boarddetail/:number/:sn" component={BoardDetail}/>
-            <PrivateRoute path="/team1" component={Team1}/>
-            <PrivateRoute path="/team2_1" component={Team2_1}/>
-            <PrivateRoute path="/team3_1" component={Team3_1}/>
-            <PrivateRoute path="/team5" component={Team5}/>
-            <PrivateRoute path="/team6_1" component={Team6_1}/>
-            <PrivateRoute path="/team7" component={Team7}/>
-            <PrivateRoute path="/Team8_1" component={Team8_1}/>
-            <PrivateRoute path="/Manage1_1" component={Manage1_1}/>
-            <PrivateRoute path="/Manage2_1" component={Manage2_1}/>
-            <PrivateRoute path="/Manage2_2" component={Manage2_2}/>
-            <PrivateRoute path="/Manage3_1" component={Manage3_1}/>
-            <PrivateRoute path="/Manage5_1" component={Manage5_1}/>
-            <PrivateRoute path="/Manage6" component={Manage6}/>
-            <PrivateRoute path="/Manage9_1" component={Manage9_1}/>
-            <PrivateRoute path="/" component={Home}/>
-          </Switch>
+          <Top setMenu={setMenu} menu={menu}/>
+            {menu ?
+               <Switch>
+                <Route path="/login" component={Login} />
+                <PrivateRoute path="/board/:boardTitle" component={Board}/>
+                <PrivateRoute path="/boarddetail/:number/:sn" component={BoardDetail}/>
+                <PrivateRoute path="/team1" component={Team1}/>
+                <PrivateRoute path="/team2_1" component={Team2_1}/>
+                <PrivateRoute path="/team3_1" component={Team3_1}/>
+                <PrivateRoute path="/team5" component={Team5}/>
+                <PrivateRoute path="/team6_1" component={Team6_1}/>
+                <PrivateRoute path="/team7" component={Team7}/>
+                <PrivateRoute path="/Team8_1" component={Team8_1}/>
+                <PrivateRoute path="/Manage1_1" component={Manage1_1}/>
+                <PrivateRoute path="/Manage2_1" component={Manage2_1}/>
+                <PrivateRoute path="/Manage2_2" component={Manage2_2}/>
+                <PrivateRoute path="/Manage3_1" component={Manage3_1}/>
+                <PrivateRoute path="/Manage5_1" component={Manage5_1}/>
+                <PrivateRoute path="/Manage6" component={Manage6}/>
+                <PrivateRoute path="/Manage9_1" component={Manage9_1}/>
+                <PrivateRoute path="/" component={Home}/>
+              </Switch>
+            :null}
         </div>
       </Router>
   </ThemeProvider>

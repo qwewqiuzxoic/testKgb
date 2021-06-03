@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Gutter, FlexBox } from '../commonStyle';
 
@@ -35,7 +36,7 @@ const Li = styled.li`
     cursor:pointer;
 
 `
-function DropDown({menuItem, i}) {
+function DropDown({menuItem, i,clickMenu}) {
     const [toggle,setToggle]=useState(false);
     const toggleDropdown = (e) =>{
         setToggle(!toggle)
@@ -53,7 +54,11 @@ function DropDown({menuItem, i}) {
         <DropdownList>                 
             {menuItem.subMenus.map(function(subMenu, k) {
                 if(toggle){
-                    return <Li key={k}>{subMenu.name}</Li>
+                    return (
+                        <Link to={subMenu.link} onClick={()=>clickMenu()}>
+                            <Li key={k}>{subMenu.name}</Li>
+                        </Link>
+                    )
                 }else{
                     return null;
                 }

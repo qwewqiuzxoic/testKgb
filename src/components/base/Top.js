@@ -5,12 +5,13 @@ import TopCom from './topcomponents/TopCom';
 import TopHome from './topcomponents/TopHome';
 import TopLogin from './topcomponents/TopLogin';
 
-function Top() {
+function Top({setMenu,menu}) {
     const [menuState, setMenuState] = useState(false);
     const [url, setUrl]= useState(window.location.pathname);
     const [backUrl, setBackUrl] = useState(window.location.pathname);
     const clickMenu = () =>{
         setMenuState(!menuState);
+        setMenu(!menu);
     }
    
     const history = useHistory() 
