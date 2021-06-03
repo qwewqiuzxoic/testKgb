@@ -76,19 +76,20 @@ function Team1() {
         return null;
       for(var i=0; monthSc.length>i; i++){
         if(monthSc[i].date === day){
-          console.log(monthSc[i].id)
             if(monthSc[i].state === 0){
-                text.push(<span>{monthSc[i].id}+계약</span>)
+                text.push(<span className="state0"></span>)
             }else if(monthSc[i].state === 1){
-                text.push(<span>{monthSc[i].id}+완료</span>)
+                text.push(<span className="state1"></span>)
             }else if(monthSc[i].state === 2){
-                text.push(<span>{monthSc[i].id}+대기</span>)
+                text.push(<span className="state2"></span>)
             }else if(monthSc[i].state === 3){
-                text.push(<span>{monthSc[i].id}+??</span>)
+                text.push(<span className="state3"></span>)
             }
         }
       }
-      return text;
+      return (
+        <div className="state_wrapper">{text}</div>
+      );
   }
   useEffect(() => {
     dispatch(getMonthSc());
@@ -100,6 +101,7 @@ function Team1() {
   return (
     <div>
       <Wrapper>
+
         <TopBg>
             <H1 title="작업일정 (월별)" subtit=""></H1>
             <Calendar tileContent={checkDay} value={dateState} data="aa" onChange={changeDate} calendarType="US" locale="EN"/>
