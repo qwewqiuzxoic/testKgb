@@ -149,3 +149,51 @@
     border: 1px solid #009B90;
     color: #009B90;
   }
+  .state_wrapper{
+    display:flex;
+    justify-content: center;;
+    max-width:40px;
+    margin:0 auto;
+    margin-top:-28px;
+    padding: 15px 0;
+  }
+  .state_wrapper .state0{
+    display: inline-block;
+    width:3px;
+    height:3px;
+    border-radius:1.5px;
+    background: #43C9F0;
+    margin:0 1.5px;
+  }
+  .state_wrapper .state1{
+    display: inline-block;
+    width:3px;
+    height:3px;
+    border-radius:1.5px;
+    background: #28F173;
+    margin:0 1.5px;
+  }
+  .state_wrapper .state2{
+    display: inline-block;
+    width:3px;
+    height:3px;
+    border-radius:1.5px;
+    background: #FFC034;
+    margin:0 1.5px;
+  }
+  .state_wrapper .state3{
+    display: inline-block;
+    width:3px;
+    height:3px;
+    border-radius:1.5px;
+    background: #EE883E;
+    margin:0 1.5px;
+  }
+  .state_wrapper .state4{
+    display: inline-block;
+    width:3px;
+    height:3px;
+    border-radius:1.5px;
+    background: #FF4D55;
+    margin:0 1.5px;
+  }

@@ -74,21 +74,23 @@ function Team1() {
       var text = [];
       if(monthSc.length===0)
         return null;
-      for(var i=0; monthSc.length>i; i++){
-        if(monthSc[i].date === day){
-          console.log(monthSc[i].id)
-            if(monthSc[i].state === 0){
-                text.push(<span>{monthSc[i].id}+계약</span>)
-            }else if(monthSc[i].state === 1){
-                text.push(<span>{monthSc[i].id}+완료</span>)
-            }else if(monthSc[i].state === 2){
-                text.push(<span>{monthSc[i].id}+대기</span>)
-            }else if(monthSc[i].state === 3){
-                text.push(<span>{monthSc[i].id}+??</span>)
+      for(var i=0; schedule.length>i; i++){
+        if(schedule[i].date === day){
+            if(schedule[i].state === 0){
+                text.push(<span className="state0"></span>)
+            }else if(schedule[i].state === 1){
+                text.push(<span className="state1"></span>)
+            }else if(schedule[i].state === 2){
+                text.push(<span className="state2"></span>)
+            }else if(schedule[i].state === 3){
+                text.push(<span className="state3"></span>)
+
             }
         }
       }
-      return text;
+      return (
+        <div className="state_wrapper">{text}</div>
+      );
   }
   useEffect(() => {
     dispatch(getMonthSc());
