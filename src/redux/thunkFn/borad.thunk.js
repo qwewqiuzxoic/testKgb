@@ -13,6 +13,9 @@ export const getBoardList = (brandName, boardName) => dispatch  => {
         }).then(function (res) {
             dispatch(boardSuccess(res.data.list));
              // response  
+             if(res.data.list.length === 0){
+                dispatch(boardSuccess(res.data.list));
+             }
              console.log(res.data.list);
         }).catch(function (error) {
             console.log(error);

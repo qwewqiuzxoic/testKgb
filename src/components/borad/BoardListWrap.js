@@ -18,7 +18,6 @@ function BoardListWrap({boardCode}) {
       name:"",
       title:""
     });
-    const [boardName2, setBoardName2] = useState("")
 
     const dispatch = useDispatch();
     const state = useSelector(state => state.boardReducer.boardList);
@@ -27,36 +26,41 @@ function BoardListWrap({boardCode}) {
       
       if(boardCodeNm === 1){
         setBoardName({
+          ...boardName,
           name:"자유게시판",
           title:"자유게시판"
         })
       }else if(boardCodeNm === 2){
         setBoardName({
+          ...boardName,
           name:"우리팀톡톡",
           title:"우리팀톡톡"
         })    
       }else if(boardCodeNm === 3){
         setBoardName({
+          ...boardName,
           name:"칭찬하기",
           title:"칭찬글"
         })    
       }else if(boardCodeNm === 4){
         setBoardName({
+          ...boardName,
           name:"꾸중하기",
           title:"꾸중글"
         })    
       }else if(boardCodeNm === 5){
         setBoardName({
+          ...boardName,
           name:"소사장공지사항",
           title:"공지사항"
         })    
       }
-
+      if(boardName.name !== ""){
         dispatch(getBoardList("YES2404",boardName.name))
+      }
         return () => {
-            
         }
-    }, [boardName])
+    }, [boardName.name])
   return (
     <Wrapper>
         {state.length ==0? <div>로딩중</div>:state.map((post, index)=> (

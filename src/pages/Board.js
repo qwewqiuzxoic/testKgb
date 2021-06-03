@@ -8,6 +8,7 @@ import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyl
 import InputGroup from '../components/commonStyle/InputGroup';
 import TextAreaGroup from '../components/commonStyle/TextAreaGroup';
 import Button from '../components/commonStyle/Button';
+import { useHistory } from 'react-router-dom'
 
 import styled from 'styled-components';
 
@@ -23,6 +24,8 @@ const ContentArea = styled.div`
 
 function Board({match}) {
     const code = match.params.boardTitle;
+    const history = useHistory() 
+    //const [code, setCode] = useState(match.params.boardTitle)
     const [ modalOpen, setModalOpen ] = useState(false);
 
     const openModal = () => {
@@ -31,6 +34,7 @@ function Board({match}) {
     const closeModal = () => {
         setModalOpen(false);
     }
+
 
   
   return (

@@ -101,7 +101,6 @@ function Team1() {
   return (
     <div>
       <Wrapper>
-
         <TopBg>
             <H1 title="작업일정 (월별)" subtit=""></H1>
             <Calendar tileContent={checkDay} value={dateState} data="aa" onChange={changeDate} calendarType="US" locale="EN"/>
