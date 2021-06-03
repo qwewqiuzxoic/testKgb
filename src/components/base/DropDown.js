@@ -27,7 +27,6 @@ const IconBox = styled.div`
 `
 const DropdownList = styled.div`
     background: #FBFBFB;
-    ${ Gutter('8px 0') };
 
 `
 const Li = styled.li`
@@ -46,7 +45,9 @@ function DropDown({menuItem, i}) {
         <Row index={i}  onClick={(e) => toggleDropdown(e)}>
             <span>{menuItem.name}</span>
             <IconBox>
-                <img src={process.env.PUBLIC_URL + '/images/ico_down.png'} alt="메뉴열기"/>
+                { toggle ? 
+                <img src={process.env.PUBLIC_URL + '/images/ico_up.png'} alt="메뉴닫기"/> : 
+                <img src={process.env.PUBLIC_URL + '/images/ico_down.png'} alt="메뉴열기"/> }
             </IconBox>
         </Row>
         <DropdownList>                 
