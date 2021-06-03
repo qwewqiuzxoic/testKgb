@@ -11,14 +11,50 @@ const Box = styled.div`
     box-shadow: 4px 4px 20px #33333314;
     margin-bottom:15px;
     ${Gutter('14px 18px')};
-    &:before{
+    &.color0:before{
         position:absolute;
         content:'';
         width:1.5px;
         height:100%;
         top:0;
         left:0;
-        background:${(props) => props.color}     
+        background:#43C9F0;
+    }
+    &.color1:before{
+        position:absolute;
+        content:'';
+        width:1.5px;
+        height:100%;
+        top:0;
+        left:0;
+        background:#28F173;
+    }
+    &.color2:before{
+        position:absolute;
+        content:'';
+        width:1.5px;
+        height:100%;
+        top:0;
+        left:0;
+        background:#FFC034;
+    }
+    &.color3:before{
+        position:absolute;
+        content:'';
+        width:1.5px;
+        height:100%;
+        top:0;
+        left:0;
+        background:#EE883E;
+    }
+    &.color4:before{
+        position:absolute;
+        content:'';
+        width:1.5px;
+        height:100%;
+        top:0;
+        left:0;
+        background:#FF4D55;
     }
 `
 const Row = styled.div`
@@ -28,8 +64,20 @@ const Row = styled.div`
 `
 const Name = styled.div`
         font-weight: bold;
-    span{
-        color : ${(props) => props.color};
+    span.color0{
+        color : #43C9F0;
+    }
+    span.color1{
+        color : #28F173;
+    }
+    span.color2{
+        color : #FFC034;
+    }
+    span.color3{
+        color : #EE883E;
+    }
+    span.color4{
+        color : #FF4D55;
     }
 `
 const Call = styled.div`
@@ -47,25 +95,6 @@ const Dd = styled.div`
     ${ChangeFont(true, 200)};
 `
 
-const schedules = [
-    {
-        state:'계약',
-        name: '최선정',
-        call: '010-1234-5678',
-        date: '2021.01.01',
-        price: '1,250,000',
-        color: '#FFC034'
-    },
-    {
-        state:'계약',
-        name: '최선정',
-        call: '010-1234-5678',
-        date: '2021.01.01',
-        price: '1,250,000',
-        color: '#28F173'
-    },
-]
-
 function Schedules({data}) {
     console.log("여기는")
     console.log(data)
@@ -73,9 +102,9 @@ function Schedules({data}) {
   return (
     <Wrapper>
         {data.map((schedule, index)=> (
-            <Box key={index} color="#28F173">
+            <Box key={index} className={`color${schedule.state}`}>
                 <Row>
-                    <Name color={schedule.color}><span>[{schedule.state}] </span>{schedule.name}</Name>
+                    <Name><span className={`color${schedule.state}`}>[{schedule.state}]</span>{schedule.name}</Name>
                     {/* <Call>{schedule.call}</Call> */}
                     <Call>00000000</Call>
                 </Row>
