@@ -65,7 +65,7 @@ function App() {
                <Switch>
                 <Route path="/login" component={Login} />
                 <PrivateRoute path="/board/:boardTitle" component={Board}/>
-                <PrivateRoute path="/boarddetail/:number/:sn" component={BoardDetail}/>
+                <PrivateRoute path="/boarddetail/:sn" component={BoardDetail}/>
                 <PrivateRoute path="/team1" component={Team1}/>
                 <PrivateRoute path="/team2_1" component={Team2_1}/>
                 <PrivateRoute path="/team3_1" component={Team3_1}/>
