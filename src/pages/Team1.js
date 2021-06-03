@@ -76,17 +76,19 @@ function Team1() {
       for(var i=0; schedule.length>i; i++){
         if(schedule[i].date === day){
             if(schedule[i].state === 0){
-                text.push(<span>{schedule[i].id}+계약</span>)
+                text.push(<span className="state0"></span>)
             }else if(schedule[i].state === 1){
-                text.push(<span>{schedule[i].id}+완료</span>)
+                text.push(<span className="state1"></span>)
             }else if(schedule[i].state === 2){
-                text.push(<span>{schedule[i].id}+대기</span>)
+                text.push(<span className="state2"></span>)
             }else if(schedule[i].state === 3){
-                text.push(<span>{schedule[i].id}+??</span>)
+                text.push(<span className="state3"></span>)
             }
         }
       }
-      return text;
+      return (
+        <div className="state_wrapper">{text}</div>
+      );
   }
   useEffect(() => {
     axios.get(`http://localhost:3001/calendar`).then(res =>{
@@ -102,7 +104,7 @@ function Team1() {
   return (
     <div>
       <Wrapper>
-          {schedule.length > 0 ?schedule[0].date:null}
+          {/* {schedule.length > 0 ?schedule[0].date:null} */}
         <TopBg>
             <H1 title="작업일정 (월별)" subtit=""></H1>
             <Calendar tileContent={checkDay} value={dateState} data="aa" onChange={changeDate} calendarType="US" locale="EN"/>

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { FlexBox, Gutter, ChangeFont } from '../commonStyle';
 
 const Wrapper = styled.div`
-  ${Gutter()};
   margin:20px auto;
 `;
 const Box = styled.div`
