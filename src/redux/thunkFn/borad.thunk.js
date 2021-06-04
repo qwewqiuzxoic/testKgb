@@ -9,7 +9,7 @@ export const getBoardList = (brandName, boardName) => dispatch  => {
             "is_notice" : 0,
             "board_cate" : "",
             "page" : 1,
-            "pagesize" : 4
+            "pagesize" : 10
         }).then(function (res) {
             dispatch(boardSuccess(res.data.list));
              // response  

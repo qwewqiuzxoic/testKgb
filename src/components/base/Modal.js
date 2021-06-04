@@ -65,7 +65,13 @@ const Contents = styled.div`
 `
 
 const Modal = ( props ) => {
+
+
+
     const { open, close, header, subHeader, bg } = props;
+
+
+    
     return (
         <Wrapper className={ open ? 'openModal modal' : 'modal' }>
             { open ? (
