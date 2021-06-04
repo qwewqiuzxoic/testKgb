@@ -11,6 +11,8 @@ import Button from '../components/commonStyle/Button';
 import { useHistory } from 'react-router-dom'
 
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { getBoardList } from '../redux/thunkFn/borad.thunk';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -25,6 +27,8 @@ const ContentArea = styled.div`
 function Board({match}) {
     const code = match.params.boardTitle;
     const history = useHistory() 
+  
+    
     //const [code, setCode] = useState(match.params.boardTitle)
     const [ modalOpen, setModalOpen ] = useState(false);
 
@@ -34,14 +38,99 @@ function Board({match}) {
     const closeModal = () => {
         setModalOpen(false);
     }
-
+    const boardCodeNm = Number(code);
+    const [boardName, setBoardName] = useState({
+      name:"",
+      title:"",
+      subtit:"",
+      check:false,
+      teamNm:true,
+    });
+    const [boardSubName, setBoardSubName] = useState({
+      name1:"",
+      name2:""
+    })
+    const changeTeamNm = ()=>{
+      setBoardName({
+        ...boardName,
+        teamNm:!boardName.teamNm
+      })
+      console.log(boardName)
+    }
+    const dispatch = useDispatch();
+  
+    useEffect(() => {
+      
+      if(boardCodeNm === 1){
+        setBoardName({
+          ...boardName,
+          name:"자유게시판",
+          title:"자유게시판",
+          subtit:"KGB의 자유게시판서비스입니다",
+          check:false,
+          teamNm:true,
+        })
+      }else if(boardCodeNm === 2){
+        setBoardName({
+          ...boardName,
+          name:"우리팀톡톡",
+          title:"우리팀톡톡",
+          subtit:"KGB의 우리팀 톡톡입니다",
+          check:false,
+          teamNm:true,
+        })   
+        
+      }else if(boardCodeNm === 3){
+        setBoardName({
+          ...boardName,
+          name:"칭찬하기",
+          title:"칭찬글",
+          subtit:"KGB의 칭찬글서비스입니다",
+          check:true,
+          teamNm:true,
+        })    
+        setBoardSubName({
+          ...boardSubName,
+          name1:"우리 팀",
+          name2:"다른 팀"
+        })
+      }else if(boardCodeNm === 4){
+        setBoardName({
+          ...boardName,
+          name:"꾸중하기",
+          title:"꾸중글",
+          subtit:"KGB의 꾸중글서비스입니다",
+          check:true,
+          teamNm:true,
+        })    
+        setBoardSubName({
+          ...boardSubName,
+          name1:"우리 팀",
+          name2:"다른 팀"
+        }) 
+      }else if(boardCodeNm === 5){
+        setBoardName({
+          ...boardName,
+          name:"소사장공지사항",
+          title:"공지사항",
+          subtit:"KGB의 공지사항입니다",
+          check:false,
+          teamNm:true,
+        })    
+      }
+      if(boardName.name !== ""){
+        dispatch(getBoardList("YES2404",boardName.name))
+      }
+        return () => {
+        }
+    }, [boardName.name])
 
   
   return (
       <Wrapper>
-            <BoardTitle  title="우리팀 톡톡" subtit="KGB의 우리팀톡톡입니다" boardCode={code}/>
+            <BoardTitle  title={boardName.title} subtit={boardName.subtit} check={boardName.check} boardSubName={boardSubName} changeTeamNm={changeTeamNm}/>
             <ContentArea>
-                <BoardListWrap boardCode={code} />
+                <BoardListWrap check={boardName.check} teamCheck={boardName.teamNm}/>
             </ContentArea>
             <FloatingBtn bg="#009B90" icon="ico_add" onClick={ openModal }/>
             <Modal open={ modalOpen } close={ closeModal } header="글쓰기">

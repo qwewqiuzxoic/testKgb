@@ -4,6 +4,7 @@ import Nav from './Nav.js';
 import CallBox from './CallBox.js';
 import SnsLinks from './SnsLinks.js';
 import { Gutter, FlexBox } from '../commonStyle';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
     top:0;
@@ -57,9 +58,11 @@ function Menu({clickMenu}) {
   return (
     <Wrapper>
       <TopBox>
+        <Link to="/"  onClick={()=>{clickMenu()}}>
           <Logo>
             <img src={process.env.PUBLIC_URL + '/images/logo_w.svg'} alt="KGB" />
           </Logo>
+          </Link>
           <CloseBtn onClick={()=>{clickMenu()}}>
             <img src={process.env.PUBLIC_URL + '/images/ico_close.svg'} alt="닫기" />
           </CloseBtn>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../commonStyle';
 
@@ -51,7 +52,10 @@ function BoardList({title, regdate, board_sn, index, loginname ,tname, cnt,count
   return (
     <Wrapper index={index}>
         <Title>
-            {title} <span> [11]</span>
+          <Link to={`/boarddetail/${board_sn}`}>
+            {title}
+          </Link>
+          <span> [11]</span>
         </Title>
         <PostInfo>
           <Writer>{loginname}</Writer>

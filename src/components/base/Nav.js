@@ -68,7 +68,7 @@ const menuItems = [
             {name: 'A/S처리노하우', link:'/'}, 
             {name: '현장실사체크리스트', link:'/'}, 
             {name: '대리점실사체크리스트', link:'/'}, 
-            {name: '자가평가', link:'/'}, 
+            {name: '자가평가', link:'/Manage11'}, 
             {name: '월평가(경고현황)', link:'/'}, 
             {name: '브랜드평가 사진제출', link:'/'}
         ]
