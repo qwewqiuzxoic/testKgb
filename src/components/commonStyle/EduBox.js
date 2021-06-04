@@ -26,7 +26,8 @@ const Date = styled.div`
     color:#ACB6BC;
 `;
 
-const propsArea = styled.div`
+const PropsArea = styled.div`
+    ${FlexBox()};
 `;
 
 function EduBox(props) {
@@ -37,9 +38,9 @@ function EduBox(props) {
         <Title>{props.title}</Title>
         <Date>{props.date}</Date>
       </Layout>
-      <propsArea>
+      <PropsArea>
         {props.children}
-      </propsArea>
+      </PropsArea>
     </Wrapper>
   );
 }
