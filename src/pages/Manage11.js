@@ -195,12 +195,17 @@ function Manage11() {
     })
 
     const increaseIndex = ()=>{
+        if(data.questionCount.length<(data.page*3)){
+            alert("모든문항을 체크해주세요")
+            return
+        }
         setData({
             ...data,
             page:data.page+1
         });
     }
     const decreaseIndex = ()=>{
+       
         setData({
             ...data,
             page:data.page-1
