@@ -25,6 +25,8 @@ import Manage3_1 from "./pages/Manage3_1";
 import Manage5_1 from "./pages/Manage5_1";
 import Manage6 from "./pages/Manage6";
 import Manage9_1 from "./pages/Manage9_1";
+import Manage10_1 from "./pages/Manage10_1";
+import Manage11_1_4 from "./pages/Manage11_1_4";
 
 import {signIn} from './deletData/Auth'
 import PrivateRoute from './util/PrivateRoute'
@@ -80,6 +82,8 @@ function App() {
                 <PrivateRoute path="/Manage5_1" component={Manage5_1}/>
                 <PrivateRoute path="/Manage6" component={Manage6}/>
                 <PrivateRoute path="/Manage9_1" component={Manage9_1}/>
+                <PrivateRoute path="/Manage10_1" component={Manage10_1}/>
+                <PrivateRoute path="/Manage11_1_4" component={Manage11_1_4}/>
                 <PrivateRoute path="/" component={Home}/>
               </Switch>
             :null}
