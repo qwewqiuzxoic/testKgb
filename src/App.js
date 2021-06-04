@@ -41,6 +41,7 @@ import rootReducer from './redux';
 import logger from 'redux-logger';
 import Top from "./components/base/Top";
 import axios from "axios";
+import Manage11 from "./pages/Manage11";
 
 
 function App() {
@@ -80,6 +81,7 @@ function App() {
                 <PrivateRoute path="/Manage5_1" component={Manage5_1}/>
                 <PrivateRoute path="/Manage6" component={Manage6}/>
                 <PrivateRoute path="/Manage9_1" component={Manage9_1}/>
+                <PrivateRoute path="/Manage11" component={Manage11}/>
                 <PrivateRoute path="/" component={Home}/>
               </Switch>
             :null}
