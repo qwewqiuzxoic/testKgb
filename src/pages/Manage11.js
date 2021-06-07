@@ -5,6 +5,7 @@ import Button from '../components/commonStyle/Button';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 import styled from 'styled-components';
 import { now } from 'moment';
+import TextArea from '../components/Manage11/mComponent/TextArea';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -217,11 +218,12 @@ const list = [
 
 function Manage11() {
     const [data, setData] = useState({
-        reslut:[0,0,0,0,0,
-                0,0,0,0,0,
-                0,0,0,0,0],
+        reslut:[5,5,5,5,5,
+                5,5,5,5,5,
+                5,5,5,5,5],
         page:1,
-        questionCount:[]
+        questionCount:[],
+        text:""
     })
 
     const increaseIndex = ()=>{
@@ -236,11 +238,12 @@ function Manage11() {
         });
     }
     const decreaseIndex = ()=>{
-       
         setData({
             ...data,
             page:data.page-1
         });
+        console.log(data.reslut);
+
     }
     const updateData = (index,result)=>{
         console.log(index, result)
@@ -260,7 +263,13 @@ function Manage11() {
             })
         })
     }
- 
+    const setText = (event) =>{
+        setData({
+            ...data,
+            text:event.target.value
+        })
+        console.log(data)
+    }
     const submitData = ()=>{
         console.log(data)
     }
@@ -272,11 +281,12 @@ function Manage11() {
         {
             list.map((props, index)=>
                 <QuestionBox key={index} page={data.page} pageIndex={props.index} qIndex={index} title={props.title} subTitle={props.subTitle} question={props.question} option={props.option}
-                updateData={updateData}/>
+                updateData={updateData} check={data.reslut[index]}/>
                 )
         }
+        {data.page === 5? <TextArea setText={setText} text={data.text}/> : null}
         <BtnArea>
-            {data.page === 1 ? null :<BtnWrap onClick={increaseIndex}><Button bg="#F2F6F8" color='#404345' text='이전' h='40px' fs='12px' mgt='30px'/></BtnWrap>}
+            {data.page === 1 ? null :<BtnWrap onClick={decreaseIndex}><Button bg="#F2F6F8" color='#404345' text='이전' h='40px' fs='12px' mgt='30px'/></BtnWrap>}
             {data.page === 5 ? null :<BtnWrap onClick={increaseIndex}><Button bg="#3397B9" color='#fff' text='다음' h='40px' fs='12px' mgt='30px'/></BtnWrap>}
             {data.page === 5 ?<BtnWrap onClick={submitData}><Button bg="#3397B9" color='#fff' text='제출하기' h='40px' fs='12px' mgt='30px'/></BtnWrap> : null}
         </BtnArea>
