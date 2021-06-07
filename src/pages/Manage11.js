@@ -1,6 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import QuestionBox from '../components/Manage11/QuestionBox';
+import Head from '../components/commonStyle/Head';
+import Button from '../components/commonStyle/Button';
+import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import styled from 'styled-components';
+import { now } from 'moment';
 
+const Wrapper = styled.div`
+    background: #FAFAFA;
+`;
+const ContentArea = styled.div`
+    ${Gutter()};
+`;
+const Paging = styled.div`
+    ${ChangeFont(true)};   
+    font-size:  ${(props) => props.theme.fontSizes.s};
+    text-align: right;
+    margin:16px 0 14px;
+`
+const PageNow = styled.span`
+    font-size:  ${(props) => props.theme.fontSizes.m};
+`
+const PageTotal = styled.span`
+    font-size:  ${(props) => props.theme.fontSizes.xs};
+    color : #82898E;
+`
+const BtnArea = styled.div`
+    ${FlexBox()}; 
+`
+const BtnWrap = styled.div`
+    width:49%;
+`
 const list = [
     {
         index:1,
@@ -195,6 +225,7 @@ function Manage11() {
     })
 
     const increaseIndex = ()=>{
+        console.log('incled'+data);
         if(data.questionCount.length<(data.page*3)){
             alert("모든문항을 체크해주세요")
             return
@@ -212,6 +243,7 @@ function Manage11() {
         });
     }
     const updateData = (index,result)=>{
+        console.log(index, result)
         if(!data.questionCount.includes(index)){
             setData({
                 ...data,
@@ -233,19 +265,23 @@ function Manage11() {
         console.log(data)
     }
   return (
-    <div>
-      {
-          list.map((props, index)=>
-            <QuestionBox key={index} page={data.page} pageIndex={props.index} qIndex={index} title={props.title} subTitle={props.subTitle} question={props.question} option={props.option}
-            updateData={updateData}/>
-            )
-      }
-    {data.page === 1 ? null :<div onClick={decreaseIndex}>이전</div>}
-    {data.page === 5 ? null :<div onClick={increaseIndex}>다음</div> }
-     <div onClick={submitData}>
-         제출하기
-     </div>
-    </div>
+    <Wrapper>
+        <Head title="자가평가" subtit="KGB의 자가평가글입니다"/>
+        <ContentArea>
+            <Paging>진행률 : <PageNow>0{data.page}</PageNow><PageTotal>/05</PageTotal></Paging>
+        {
+            list.map((props, index)=>
+                <QuestionBox key={index} page={data.page} pageIndex={props.index} qIndex={index} title={props.title} subTitle={props.subTitle} question={props.question} option={props.option}
+                updateData={updateData}/>
+                )
+        }
+        <BtnArea>
+            {data.page === 1 ? null :<BtnWrap onClick={increaseIndex}><Button bg="#F2F6F8" color='#404345' text='이전' h='40px' fs='12px' mgt='30px'/></BtnWrap>}
+            {data.page === 5 ? null :<BtnWrap onClick={increaseIndex}><Button bg="#3397B9" color='#fff' text='다음' h='40px' fs='12px' mgt='30px'/></BtnWrap>}
+            {data.page === 5 ?<BtnWrap onClick={submitData}><Button bg="#3397B9" color='#fff' text='제출하기' h='40px' fs='12px' mgt='30px'/></BtnWrap> : null}
+        </BtnArea>
+     </ContentArea>
+    </Wrapper>
   );
 }
 
