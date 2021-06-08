@@ -27,9 +27,13 @@ const PageTotal = styled.span`
 `
 const BtnArea = styled.div`
     ${FlexBox()}; 
+    justify-content: flex-end;
 `
 const BtnWrap = styled.div`
     width:49%;
+    &.mgr{
+        margin-right:2%;
+    }
 `
 const list = [
     {
@@ -276,7 +280,11 @@ function Manage11() {
                 )
         }
         <BtnArea>
+<<<<<<< Updated upstream
             {data.page === 1 ? null :<BtnWrap onClick={increaseIndex}><Button bg="#F2F6F8" color='#404345' text='이전' h='40px' fs='12px' mgt='30px'/></BtnWrap>}
+=======
+            {data.page === 1 ? null :<BtnWrap onClick={decreaseIndex} className="mgr"><Button bg="#F2F6F8" color='#404345' text='이전' h='40px' fs='12px' mgt='30px'/></BtnWrap>}
+>>>>>>> Stashed changes
             {data.page === 5 ? null :<BtnWrap onClick={increaseIndex}><Button bg="#3397B9" color='#fff' text='다음' h='40px' fs='12px' mgt='30px'/></BtnWrap>}
             {data.page === 5 ?<BtnWrap onClick={submitData}><Button bg="#3397B9" color='#fff' text='제출하기' h='40px' fs='12px' mgt='30px'/></BtnWrap> : null}
         </BtnArea>
