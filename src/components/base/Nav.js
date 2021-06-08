@@ -95,7 +95,7 @@ const menuItems = [
             {name: '교육평가', link:'/'}, 
             {name: '실시간 화상교육', link:'/'}, 
             {name: '교육출결체크', link:'/'}, 
-            {name: '교육설문', link:'/'}, 
+            {name: '교육설문', link:'/manage13'}, 
             {name: '매뉴얼 학습', link:'/'}, 
             {name: '', link:'/'}
         ]

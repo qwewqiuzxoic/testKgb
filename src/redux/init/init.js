@@ -18,6 +18,12 @@ export const boardDetailInit= {
     error: {}
 }
 
+export const boardPostInit = {
+    loading:false,
+    result:"",
+    error:{}
+}
+
 export const monthScInit={
     data:[],
     loading: false,

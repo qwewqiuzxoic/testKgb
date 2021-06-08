@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import loginReducer from './reducer/loginReducer';
-import {boardReducer,boardDetailReducer} from './reducer/boradReducer';
+import {boardReducer,boardDetailReducer, boardPostReducer} from './reducer/boradReducer';
 import {dayScReducer, monthScReducer} from './reducer/scheduleReducer';
 
 const rootReducer = combineReducers({
@@ -8,6 +8,7 @@ const rootReducer = combineReducers({
     boardReducer,
     boardDetailReducer,
     dayScReducer,
-    monthScReducer
+    monthScReducer,
+    boardPostReducer
 });
 export default rootReducer;
