@@ -16,6 +16,7 @@ import Team6_1 from './pages/Team6_1';
 import Team6_3 from './pages/Team6_3';
 import Team7 from './pages/Team7';
 import Team8_1 from './pages/Team8_1';
+import Team9 from './pages/Team9';
 import Board from "./pages/Board";
 import BoardDetail from "./pages/BoardDetail";
 import Manage1_1 from "./pages/Manage1_1";
@@ -29,6 +30,7 @@ import Manage10_1 from "./pages/Manage10_1";
 import Manage11_1_4 from "./pages/Manage11_1_4";
 import Manage12 from "./pages/Manage12";
 import Manage13 from "./pages/Manage13";
+import CommunityWrite from "./pages/CommunityWrite";
 
 import {signIn} from './deletData/Auth'
 import PrivateRoute from './util/PrivateRoute'
@@ -79,6 +81,7 @@ function App() {
                 <PrivateRoute path="/team6_3" component={Team6_3}/>
                 <PrivateRoute path="/team7" component={Team7}/>
                 <PrivateRoute path="/Team8_1" component={Team8_1}/>
+                <PrivateRoute path="/Team9" component={Team9}/>
                 <PrivateRoute path="/Manage1_1" component={Manage1_1}/>
                 <PrivateRoute path="/Manage2_1" component={Manage2_1}/>
                 <PrivateRoute path="/Manage2_2" component={Manage2_2}/>
@@ -91,6 +94,7 @@ function App() {
                 <PrivateRoute path="/Manage11" component={Manage11}/>
                 <PrivateRoute path="/Manage12" component={Manage12}/>
                 <PrivateRoute path="/Manage13" component={Manage13}/>
+                <PrivateRoute path="/CommunityWrite" component={CommunityWrite}/>
                 <PrivateRoute path="/" component={Home}/>
               </Switch>
             :null}

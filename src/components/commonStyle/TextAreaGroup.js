@@ -12,6 +12,7 @@ const Label = styled.label`
   font-size: ${(props) => props.theme.fontSizes.s};
   color:  ${(props) => props.theme.colors.grey2};
   margin-bottom:5px;
+  font-weight: bold;
 `;
 
 const TextArea = styled.textarea`
