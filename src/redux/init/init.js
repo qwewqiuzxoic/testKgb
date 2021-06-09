@@ -1,10 +1,12 @@
+
+//로그인 초기상태
 export const authInit = {
     user:{},
     loading:false,
     error:{}
 }
 
-
+//게시판 초기상태
 export const boardInit = {
     boardList: [],
     loading: false,
@@ -12,27 +14,44 @@ export const boardInit = {
 
 }
 
-export const boardDetailInit= {
+//게시판 상세보기 초기상태
+export const boardDetailInit = {
     data: {},
     loading: false,
     error: {}
 }
 
+//게시판 등록 및 수정 초기상태
 export const boardPostInit = {
     loading:false,
     result:"",
     error:{}
 }
 
-export const monthScInit={
+//일정관련
+export const monthScInit = {
     data:[],
     loading: false,
     error:{}
 }
 
-export const dayScInit={
+//일정관련
+export const dayScInit = {
     data:[],
     loading: false,
+    error:{}
+}
+
+//작업일 변경요청
+export const workingDayInit= {
+    workingDayList:[],
+    loading:false,
+    error:{}
+}
+//작업일 변경요청 세부사항
+export const workingDayDetailInit= {
+    data:[],
+    loading:false,
     error:{}
 }
 export const orderIndividual = {

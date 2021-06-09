@@ -28,8 +28,6 @@ function Board({match}) {
     const code = match.params.boardTitle;
     const history = useHistory() 
   
-    
-    //const [code, setCode] = useState(match.params.boardTitle)
     const [ modalOpen, setModalOpen ] = useState(false);
 
     const openModal = () => {
@@ -55,12 +53,10 @@ function Board({match}) {
         ...boardName,
         teamNm:!boardName.teamNm
       })
-      console.log(boardName)
     }
     const dispatch = useDispatch();
   
     useEffect(() => {
-      
       if(boardCodeNm === 1){
         setBoardName({
           ...boardName,
