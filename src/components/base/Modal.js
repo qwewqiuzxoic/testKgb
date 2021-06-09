@@ -68,9 +68,9 @@ const Modal = ( props ) => {
 
 
 
-    const { open, close, header, subHeader, bg } = props;
+    const { open, close, header, subHeader, bg, boardName } = props;
 
-
+    console.log(boardName)
     
     return (
         <Wrapper className={ open ? 'openModal modal' : 'modal' }>

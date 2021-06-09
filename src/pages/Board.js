@@ -133,7 +133,7 @@ function Board({match}) {
                 <BoardListWrap check={boardName.check} teamCheck={boardName.teamNm}/>
             </ContentArea>
             <FloatingBtn bg="#009B90" icon="ico_add" onClick={ openModal }/>
-            <Modal open={ modalOpen } close={ closeModal } header="글쓰기">
+            <Modal open={ modalOpen } close={ closeModal } header="글쓰기" boardName={boardName.name}>
               <InputGroup id="write_title" title="제목" ph="제목을 입력해주세요"/>
               <InputGroup id="write_writer" title="작성자" ph="홍길동"/>
               <InputGroup id="write_pw" title="비밀번호" ph="비밀번호을 입력해주세요"/>              
