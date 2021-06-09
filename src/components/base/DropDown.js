@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Gutter, FlexBox } from '../commonStyle';
+import { modalCloase, modalOpen } from '../../redux/reducer/ModalReducer';
 
 const Row = styled.div`
     ${ Gutter('0 0 0 21px') };
@@ -41,6 +43,11 @@ function DropDown({menuItem, i,clickMenu}) {
     const toggleDropdown = (e) =>{
         setToggle(!toggle)
     }
+    const dispatch= useDispatch();
+    const openModalWrite = (type) => {
+        dispatch(modalOpen(type))
+    }
+ 
   return (
     <ul>
         <Row index={i}  onClick={(e) => toggleDropdown(e)}>
@@ -55,7 +62,16 @@ function DropDown({menuItem, i,clickMenu}) {
             {menuItem.subMenus.map(function(subMenu, k) {
                 if(toggle){
                     return (
-                        <Link to={subMenu.link} onClick={()=>clickMenu()}>
+                        subMenu.name =="건의함"? 
+                        <span onClick={() =>openModalWrite(1)} >
+                            <Li key={k}>{subMenu.name}</Li>
+                        </span>
+                        : subMenu.name =="비리제보"? 
+                        <span onClick={() =>openModalWrite(2)} >
+                            <Li key={k}>{subMenu.name}</Li>
+                        </span>
+                        :
+                        <Link to={subMenu.link} >
                             <Li key={k}>{subMenu.name}</Li>
                         </Link>
                     )

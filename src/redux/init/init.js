@@ -54,6 +54,12 @@ export const workingDayDetailInit= {
     loading:false,
     error:{}
 }
+//비리 건의하기 
+export const suggestionInit = {
+    loading:false,
+    result:"",
+    error:{}
+}
 export const orderIndividual = {
     data: {
         name: '',                                   //이름

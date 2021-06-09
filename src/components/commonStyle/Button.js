@@ -14,9 +14,9 @@ const Wrapper = styled.button`
     cursor:pointer;
 `;
 
-function Button({bg, bd, color, text, w, h, fs, mgt}) {
+function Button({bg, bd, color, text, w, h, fs, mgt,onclick}) {
   return (
-    <Wrapper bg={bg} bd={bd} color={color} text={text} width={w} height={h} fontSize={fs} mgt={mgt}>
+    <Wrapper onClick={onclick} bg={bg} bd={bd} color={color} text={text} width={w} height={h} fontSize={fs} mgt={mgt}>
         {text}
     </Wrapper>
   );

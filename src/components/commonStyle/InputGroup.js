@@ -30,8 +30,7 @@ const Input = styled.input`
     }
 `;
 
-function InputGroup({id, title, ph, textAlign, value}) {
-  const [inputValue, setInputValue] = useState(value);
+function InputGroup({id, title, ph, textAlign, value, setInputValue}) {
 
   const handleChange = e => {
     e.target.value === '' ? e.target.classList.remove('active'):e.target.classList.add('active');
@@ -41,7 +40,7 @@ function InputGroup({id, title, ph, textAlign, value}) {
   return (
     <Wrapper>
         <Label htmlFor={id}>{ title }</Label>
-        <Input type="text" id={id} placeholder={ph} textAlign={textAlign} onChange={handleChange}value={value}></Input>
+        <Input type="text" id={id} placeholder={ph} textAlign={textAlign} onChange={handleChange} value={value}></Input>
     </Wrapper>
   );
 }

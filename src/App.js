@@ -55,18 +55,28 @@ function App() {
   // })
 
   const user = useSelector(state=>state.loginReducer.user);
+  const open = useSelector(state=>state.ModalReducer.open);
   const [menu, setMenu] = useState(true);
   useEffect(() => {
       console.log(JSON.parse(localStorage.getItem('user')));
       return () => {
         }
   }, [user])
+  const [ modalOpenWrite, setModalOpenWrite ] = useState(false)
 
+  const openModalWrite = () => {
+      setModalOpenWrite(true);
+  }
+  const closeModalWrite = () => {
+      setModalOpenWrite(false);
+  }
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Router>
         <div>
+          {open?<CommunityWrite />:null}
+          
           <Top setMenu={setMenu} menu={menu}/>
             {menu ?
                <Switch>
