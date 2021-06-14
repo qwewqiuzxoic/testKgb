@@ -39,7 +39,7 @@ const Input = styled.input`
     }
 `;
 
-function InputGroup({id, title, ph, textAlign, value, btn, onClick}) {
+function InputGroup({id, title, ph, textAlign, value, btn, onclick}) {
   const [inputValue, setInputValue] = useState(value);
 
   const handleChange = e => {
@@ -52,7 +52,7 @@ function InputGroup({id, title, ph, textAlign, value, btn, onClick}) {
       {btn ? 
       <FlexArea>
         <Label htmlFor={id}>{ title }</Label>
-        <Button bd="#82898E" color="#82898E" text={btn} w="60px" h="25px" fontSize="10px" onClick={onClick} />
+        <Button bd="#82898E" color="#82898E" text={btn} w="60px" h="25px" fontSize="10px" onclick={onclick} />
       </FlexArea> : 
       <Label htmlFor={id}>{ title }</Label> }        
         <Input type="text" id={id} placeholder={ph} textAlign={textAlign} onChange={handleChange} value={value}></Input>
