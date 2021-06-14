@@ -39,10 +39,7 @@ const Input = styled.input`
     }
 `;
 
-  
-=======
-function InputGroup({id, title, ph, textAlign, value, setInputValue, btn, onClick}) {
-  const [inputValue, setInputValue] = useState(value);
+function InputGroup({id, title, ph, textAlign, value, setInputValue, btn, onclick}) {
   const handleChange = e => {
     e.target.value === '' ? e.target.classList.remove('active'):e.target.classList.add('active');
     setInputValue(e.target.value);
@@ -53,7 +50,7 @@ function InputGroup({id, title, ph, textAlign, value, setInputValue, btn, onClic
       {btn ? 
       <FlexArea>
         <Label htmlFor={id}>{ title }</Label>
-        <Button bd="#82898E" color="#82898E" text={btn} w="60px" h="25px" fontSize="10px" onClick={onClick} />
+        <Button bd="#82898E" color="#82898E" text={btn} w="60px" h="25px" fontSize="10px" onclick={onclick} />
       </FlexArea> : 
       <Label htmlFor={id}>{ title }</Label> }        
         <Input type="text" id={id} placeholder={ph} textAlign={textAlign} onChange={handleChange} value={value}></Input>

@@ -54,7 +54,7 @@ function SendMsg() {
   return (
       <Wrapper>
             <Modal open={ modalOpenWrite } close={ closeModalWrite } header="쪽지보내기">
-                <InputGroup id="write_title" title="받는사람" ph="제목을 입력해주세요" btn="주소록" onClick={openModalAddr}/>
+                <InputGroup id="write_title" title="받는사람" ph="제목을 입력해주세요" btn="주소록" onclick={openModalAddr}/>
                 <TextAreaGroup id="write_text" title="내용" ph="내용을 입력해주세요"/>
                 <InputFile id="msgFile" title="첨부파일"></InputFile>
                 <Button bg="#3397B9" color="#ffffff" text="등록하기" h="44px" fontSize="12px" mgt="30px"></Button> 
