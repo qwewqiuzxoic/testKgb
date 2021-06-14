@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { ChangeFont } from './';
-import { LabelStyle } from './';
+import { ChangeFont, LabelStyle, FlexBox } from './';
+import Button from './Button';
+
 
 
 const Wrapper = styled.div`
   margin-top:10px;
+`;
+const FlexArea = styled.label`
+  ${FlexBox()};
+  align-items: flex-end;
+  margin-bottom: 8px;
+  label{
+    margin-bottom:0!important;
+  }
 `;
 
 const Label = styled.label`
@@ -30,8 +39,10 @@ const Input = styled.input`
     }
 `;
 
-function InputGroup({id, title, ph, textAlign, value, setInputValue}) {
-
+  
+=======
+function InputGroup({id, title, ph, textAlign, value, setInputValue, btn, onClick}) {
+  const [inputValue, setInputValue] = useState(value);
   const handleChange = e => {
     e.target.value === '' ? e.target.classList.remove('active'):e.target.classList.add('active');
     setInputValue(e.target.value);
@@ -39,7 +50,12 @@ function InputGroup({id, title, ph, textAlign, value, setInputValue}) {
   
   return (
     <Wrapper>
+      {btn ? 
+      <FlexArea>
         <Label htmlFor={id}>{ title }</Label>
+        <Button bd="#82898E" color="#82898E" text={btn} w="60px" h="25px" fontSize="10px" onClick={onClick} />
+      </FlexArea> : 
+      <Label htmlFor={id}>{ title }</Label> }        
         <Input type="text" id={id} placeholder={ph} textAlign={textAlign} onChange={handleChange} value={value}></Input>
     </Wrapper>
   );
