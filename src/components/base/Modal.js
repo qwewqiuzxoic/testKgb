@@ -26,6 +26,7 @@ const ModalClose = styled.button`
     width:50px;
     height:50px;
     cursor: pointer;
+    z-index: 1;
     img{
         width: 18px;
         margin:0 auto;
@@ -34,13 +35,12 @@ const ModalClose = styled.button`
 const Section = styled.div`
     position:absolute;
     width: 100%;
-    height:calc(100% - 50px);
+    height: ${(props) => props.full ? props.full : 'calc(100% - 50px)'};
     bottom:0;
     margin:0 auto;
-    border-radius: 30px 30px 0 0;
+    border-radius: ${(props) => props.full ? '0' : '30px 30px 0 0'};
     background-color: ${(props) => props.bg ? props.bg : '#fff'};
     overflow: hidden;
-    }
 `
 const Header = styled.div`
     position: relative;
@@ -65,11 +65,7 @@ const Contents = styled.div`
 `
 
 const Modal = ( props ) => {
-
-
-
-    const { open, close, header, subHeader, bg, boardName } = props;
-
+    const { open, close, header, subHeader, bg, boardName, full } = props;
     console.log(boardName)
     
     return (
@@ -77,9 +73,12 @@ const Modal = ( props ) => {
             { open ? (
                 <>
                 <ModalClose className="close" onClick={close}>
+                    { full ? 
+                    <img src={process.env.PUBLIC_URL + `/images/btn_x_b.svg`}/> :
                     <img src={process.env.PUBLIC_URL + `/images/btn_x.svg`}/>
+                    }
                 </ModalClose>
-                <Section bg={bg}>
+                <Section bg={bg} full={full}>
                     <Header>
                         {header}
                         <span>{subHeader ? subHeader : ''}</span>

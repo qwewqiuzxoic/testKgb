@@ -31,6 +31,7 @@ import Manage11_1_4 from "./pages/Manage11_1_4";
 import Manage12 from "./pages/Manage12";
 import Manage13 from "./pages/Manage13";
 import CommunityWrite from "./pages/CommunityWrite";
+import SendMsg from "./pages/SendMsg";
 
 import {signIn} from './deletData/Auth'
 import PrivateRoute from './util/PrivateRoute'
@@ -95,6 +96,7 @@ function App() {
                 <PrivateRoute path="/Manage12" component={Manage12}/>
                 <PrivateRoute path="/Manage13" component={Manage13}/>
                 <PrivateRoute path="/CommunityWrite" component={CommunityWrite}/>
+                <PrivateRoute path="/SendMsg" component={SendMsg}/>
                 <PrivateRoute path="/" component={Home}/>
               </Switch>
             :null}
