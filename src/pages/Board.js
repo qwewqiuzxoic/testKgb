@@ -11,8 +11,8 @@ import Button from '../components/commonStyle/Button';
 import { useHistory } from 'react-router-dom'
 
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { getBoardList } from '../redux/thunkFn/borad.thunk';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBoardList, getBoardTopList } from '../redux/thunkFn/borad.thunk';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -27,9 +27,9 @@ const ContentArea = styled.div`
 function Board({match}) {
     const code = match.params.boardTitle;
     const history = useHistory() 
-  
+    const user = JSON.parse(localStorage.getItem('user'));
     const [ modalOpen, setModalOpen ] = useState(false);
-
+    const list = useSelector(state => state.boardTopReducer.boardList)
     const openModal = () => {
         setModalOpen(true);
     }
@@ -48,6 +48,7 @@ function Board({match}) {
       name1:"",
       name2:""
     })
+    const [count,setCount] = useState(1);
     const changeTeamNm = ()=>{
       setBoardName({
         ...boardName,
@@ -55,8 +56,27 @@ function Board({match}) {
       })
     }
     const dispatch = useDispatch();
+    const infiniteScroll = () => {
+      let scrollHeight = Math.max(
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight
+      );
+      let scrollTop = Math.max(
+        document.documentElement.scrollTop,
+        document.body.scrollTop
+      );
+      let clientHeight = document.documentElement.clientHeight;
   
+      if (scrollTop + clientHeight >= scrollHeight) {
+        setCount(count+1)
+        dispatch(getBoardList(user.brand,boardName.name,count))
+
+      }
+    };
     useEffect(() => {
+      window.addEventListener('scroll',function(e){
+        infiniteScroll()
+      })
       if(boardCodeNm === 1){
         setBoardName({
           ...boardName,
@@ -115,8 +135,13 @@ function Board({match}) {
         })    
       }
       if(boardName.name !== ""){
-        dispatch(getBoardList("YES2404",boardName.name))
+        dispatch(getBoardList(user.brand,boardName.name,count))
       }
+      if(boardName.title==="공지사항"){
+        dispatch(getBoardList(user.brand,boardName.name,count))
+        dispatch(getBoardTopList(user.brand,boardName.name))
+      }
+      console.log(list)
         return () => {
         }
     }, [boardName.name])
@@ -124,6 +149,13 @@ function Board({match}) {
   
   return (
       <Wrapper>
+          {list.map(item=>{
+            return(
+              <div>
+               { item.title}
+              </div>
+            )
+          })}
             <BoardTitle  title={boardName.title} subtit={boardName.subtit} check={boardName.check} boardSubName={boardSubName} changeTeamNm={changeTeamNm}/>
             <ContentArea>
                 <BoardListWrap check={boardName.check} teamCheck={boardName.teamNm}/>

@@ -30,17 +30,20 @@ const Input = styled.input`
     }
 `;
 
-function InputGroup({id, title, ph, textAlign, value, setInputValue}) {
-
+function InputGroup({id, title, ph, textAlign, value, setInputValue, setInputValue2}) {
   const handleChange = e => {
     e.target.value === '' ? e.target.classList.remove('active'):e.target.classList.add('active');
-    setInputValue(e.target.value);
+    if(setInputValue !== undefined){
+      setInputValue(e.target.value);
+    }else{
+      setInputValue2(e)
+    }
   }
   
   return (
     <Wrapper>
         <Label htmlFor={id}>{ title }</Label>
-        <Input type="text" id={id} placeholder={ph} textAlign={textAlign} onChange={handleChange} value={value}></Input>
+        <Input type="text" id={id} name={id} placeholder={ph} textAlign={textAlign} onChange={handleChange} value={value}></Input>
     </Wrapper>
   );
 }

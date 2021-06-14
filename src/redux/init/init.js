@@ -13,7 +13,13 @@ export const boardInit = {
     error: {}
 
 }
+//게시판 공지 초기상태
+export const boardTopInit = {
+    boardList: [],
+    loading: false,
+    error: {}
 
+}
 //게시판 상세보기 초기상태
 export const boardDetailInit = {
     data: {},
@@ -42,17 +48,40 @@ export const dayScInit = {
     error:{}
 }
 
-//작업일 변경요청
+//작업일 변경요청 --> 지원 대기 요청 으로 수정
 export const workingDayInit= {
     workingDayList:[],
     loading:false,
     error:{}
 }
-//작업일 변경요청 세부사항
+//작업일 변경요청 세부사항 -->지원 대기 요청 으로 수정
 export const workingDayDetailInit= {
     data:[],
     loading:false,
     error:{}
+}
+//지원대기 요청 폼 
+export const workingDayFormInit = {
+    data : {
+        biz_sn :"",                 //팀번호(로그인시쿠키값)
+        gbn :"",                    //지원구분
+        brand :"",                  //브랜드값
+        manName :"",                //성명
+        teamName :"",               //팀명
+        code_ton :"",               //차량
+        personNum :"",              //인원
+        phone :"",                  //전화번호
+        dayWork :"",                //이사일(YYYY-MM-DD)
+        startArea :"",              //출발지
+        arriveArea : "",            //도착지
+        memo :"",                   //메모
+        man_info_sn :"",            //개인번호(로그인시쿠키값)
+        userid :"",                 //작성자아이디(로그인시쿠키값)
+        username :"",               //작성자이름(로그인시쿠키값)
+    },
+    result:"",
+    error:"",
+    loading:false
 }
 //비리 건의하기 
 export const suggestionInit = {

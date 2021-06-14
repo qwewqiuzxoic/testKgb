@@ -1,4 +1,4 @@
-import React, {useState}  from 'react';
+import React, {useEffect, useState}  from 'react';
 import H1 from '../components/commonStyle/H1'
 import Button from '../components/commonStyle/Button'
 import GroupTitle from '../components/commonStyle/GroupTitle'
@@ -7,6 +7,10 @@ import styled from 'styled-components';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 import TeamInfo from '../components/team6_3/TeamInfo';
 import MovingInfo from '../components/team6_3/MovingInfo';
+import { useDispatch, useSelector } from 'react-redux';
+import { workingDayFormDataInput, workingDayFormDataLoginIput } from '../redux/actionFn/workingDay';
+import { postWorkingDayForm } from '../redux/thunkFn/workingDay.thunk';
+import { useHistory } from 'react-router-dom';
 
 
 const Wrapper = styled.div`
@@ -35,8 +39,36 @@ const Box = styled.div`
 `
 
 function Team6_3() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const {data,result} =  useSelector(state =>state.workingDayFormReducer);
+  console.log(JSON.parse(localStorage.getItem('user')));
 
+  const isEmptyObject = (obj) =>{
+    const objKey = Object.keys(obj);
+    const val = objKey.filter(key =>{
+      return obj[key]==="";
+    })
+    return val;
+  }
+  const onSubmit = () =>{
+    const postData = data;
+    const len =  isEmptyObject(data).length;
+    if(len>0){
+      return false;
+    }
+    dispatch(postWorkingDayForm(postData))
+  }
+  useEffect(() => {
+    const user =JSON.parse(localStorage.getItem('user'));
+    dispatch(workingDayFormDataLoginIput(user))
+    if(result=="저장에 성공 하였습니다."){
+      history.push("/Team6_1")
+    }
+    return () => {
+    }
 
+  }, [result])
   return (
     <>
       <Wrapper>
@@ -52,7 +84,7 @@ function Team6_3() {
             <MovingInfo/>
           </Section>
           <Section>
-            <Button bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/>
+            <Button bg="#3397B9" color="#ffffff" onclick={onSubmit} text="저장" height="44px" fontSize="12px" mgt="40px"/>
           </Section>
       </Wrapper>
     </>

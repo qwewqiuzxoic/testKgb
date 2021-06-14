@@ -50,9 +50,9 @@ const menuItems = [
             {name: '방문견적 및 개인오더 입력', link:'/'},
             {name: '우리팀 톡톡', link:'/board/2'}, 
             {name: '팀단체사진 등록', link:'/'}, 
-            {name: '지원요청/대기', link:'/'}, 
-            {name: '긴급연락망', link:'/'}, 
-            {name: '상조회', link:'/'}, 
+            {name: '지원요청/대기', link:'/Team6_1'}, 
+            {name: '긴급연락망', link:'/Team7'}, 
+            {name: '상조회', link:'/Team8_1'}, 
             {name: '권역 및 대표', link:'/'}, 
             {name: '담당 외주업체 ', link:'/'}
         ]
@@ -78,7 +78,7 @@ const menuItems = [
         subMenus: [
             {name: '공지사항', link:'/board/5'},
             {name: '자유게시판', link:'/board/1'},
-            {name: '작업일정변경요청', link:'/team6_1'},
+            {name: '작업일정변경요청', link:'/'},
             {name: '건의함', link:'/'},
             {name: '비리제보', link:'/'},
             {name: '쪽지', link:'/'},

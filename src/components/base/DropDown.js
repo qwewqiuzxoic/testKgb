@@ -47,7 +47,7 @@ function DropDown({menuItem, i,clickMenu}) {
     const openModalWrite = (type) => {
         dispatch(modalOpen(type))
     }
- 
+  
   return (
     <ul>
         <Row index={i}  onClick={(e) => toggleDropdown(e)}>
@@ -71,7 +71,7 @@ function DropDown({menuItem, i,clickMenu}) {
                             <Li key={k}>{subMenu.name}</Li>
                         </span>
                         :
-                        <Link to={subMenu.link} >
+                        <Link to={subMenu.link}  onClick={()=>clickMenu()} >
                             <Li key={k}>{subMenu.name}</Li>
                         </Link>
                     )

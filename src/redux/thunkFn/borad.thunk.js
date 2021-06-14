@@ -1,6 +1,6 @@
 import axios from 'axios'
-import {boardError, boardLoading, boardSuccess,boardDetailError, boardDetailLoading, boardDetailSuccess, boardPostLoading, boardPostError,boardPostSuccess} from '../actionFn/board'
-export const getBoardList = (brandName, boardName, length = 10) => dispatch  => {
+import {boardError, boardLoading, boardSuccess,boardDetailError, boardDetailLoading, boardDetailSuccess, boardPostLoading, boardPostError,boardPostSuccess, boardTopSuccess, boardTopLoading, boardTopError} from '../actionFn/board'
+export const getBoardList = (brandName, boardName,count, length = 10) => dispatch  => {
     dispatch(boardLoading())
     const url = '/BM/API/board/basic.asp';
         axios.post(url, {
@@ -8,7 +8,7 @@ export const getBoardList = (brandName, boardName, length = 10) => dispatch  => 
             "code_brand" : brandName,
             "is_notice" : 0,
             "board_cate" : "",
-            "page" : 1,
+            "page" : count,
             "pagesize" : length
         }).then(function (res) {
             dispatch(boardSuccess(res.data.list));
@@ -24,7 +24,31 @@ export const getBoardList = (brandName, boardName, length = 10) => dispatch  => 
 
     
 }
+//공지사항의 공지 같은 게시판 윗부분 따로 불러오는 로직
+export const getBoardTopList = (brandName, boardName, length = 5) => dispatch  => {
+    dispatch(boardTopLoading())
+    const url = '/BM/API/board/basic.asp';
+        axios.post(url, {
+            "code_board" : boardName,
+            "code_brand" : brandName,
+            "is_notice" : 1,
+            "board_cate" : "",
+            "page" : 1,
+            "pagesize" : length
+        }).then(function (res) {
+            dispatch(boardTopSuccess(res.data.list));
+             // response  
+             if(res.data.list.length === 0){
+                dispatch(boardTopSuccess(res.data.list));
+             }
+             console.log(res.data.list);
+        }).catch(function (error) {
+            console.log(error);
+            dispatch(boardTopError(error))
+        })
 
+    
+}
 export const getBoardDetail = (sn) => dispatch => {
     dispatch(boardDetailLoading())
     const url = '/BM/API/board/desc.asp';

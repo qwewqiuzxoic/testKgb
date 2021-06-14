@@ -1,5 +1,8 @@
 import axios from "axios";
-import { workingDayDetailError, workingDayDetailLoding, workingDayDetailSuccess, workingDayError, workingDayLoding, workingDaySuccess } from "../actionFn/workingDay";
+import { useSelector } from "react-redux";
+import { workingDayDetailError, workingDayDetailLoding, workingDayDetailSuccess, workingDayError, workingDayFormError, workingDayFormLoading, workingDayFormSuccess, workingDayLoding, workingDaySuccess } from "../actionFn/workingDay";
+import { WORKINGDAY_FORM_ERROR } from "../types/workingDay.type";
+import {useHistory} from "react-router-dom";
 
 export const getWorkingDayChange = () => dispatch  => {
     dispatch(workingDayLoding());
@@ -29,4 +32,16 @@ export const getWorkingDayDetailChange = (sn) => dispatch  => {
         }).catch(function (error) {
             dispatch(workingDayDetailError(error));
         })
+}
+
+export const postWorkingDayForm = (data) => dispatch =>{
+   
+    dispatch(workingDayFormLoading());
+    const url = '/BM/API/team/sup_proc.asp';
+    axios.post(url,data).then(function (res) {
+        dispatch(workingDayFormSuccess(res.data.message))
+    }).catch(function (error) {
+        dispatch(workingDayFormError(error));
+    })
+
 }

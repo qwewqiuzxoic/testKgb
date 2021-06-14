@@ -5,6 +5,10 @@ import Modal2 from '../components/team6_1/Modal2'
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getWorkingDayChange, getWorkingDayDetailChange } from '../redux/thunkFn/workingDay.thunk';
+import Modal from '../components/base/Modal';
+import FloatingBtn from '../components/commonStyle/FloatingBtn';
+import { Link } from 'react-router-dom';
+import Team6_3 from './Team6_3';
 
 
 const Wrapper = styled.div`
@@ -74,6 +78,8 @@ const ModalTit = styled.div`
 `;
 
 function Team6_1() {
+    const [ modalAddOpen, setModalAddOpen ] = useState(false);
+
     const [ modalOpen, setModalOpen ] = useState(false);
     const dispatch = useDispatch();
 
@@ -94,7 +100,7 @@ function Team6_1() {
         <>
       
         <Wrapper>
-            <Head title="팀 단체사진" subtit="KGB의 우리팀톡톡입니다" pb="90px"/>
+            <Head title="지원대기/요청" subtit="KGB의 지원대기/요청의 서브타이틀이 노출됩니다" pb="90px"/>
             {
             loading?
             <div>
@@ -132,6 +138,10 @@ function Team6_1() {
              </ContentArea>
         }
         <Modal2 modalOpen={modalOpen} closeModal={closeModal}/>
+        <Link to={"/Team6_3"}>
+            <FloatingBtn bg="#009B90" icon="ico_add" />
+
+        </Link>
         </Wrapper>
         </>
     );

@@ -2,9 +2,9 @@ import { combineReducers } from 'redux';
 import loginReducer from './reducer/loginReducer';
 import ModalReducer from './reducer/ModalReducer';
 import suggestionReducer from './reducer/suggestionReducer';
-import {boardReducer,boardDetailReducer, boardPostReducer} from './reducer/boradReducer';
+import {boardReducer,boardDetailReducer, boardPostReducer,boardTopReducer} from './reducer/boradReducer';
 import {dayScReducer, monthScReducer} from './reducer/scheduleReducer';
-import {workingDayReducer, workingDayDetailReducer} from './reducer/workingDayReducer'
+import {workingDayReducer, workingDayDetailReducer,workingDayFormReducer} from './reducer/workingDayReducer'
 const rootReducer = combineReducers({
     loginReducer,
     boardReducer,
@@ -15,6 +15,8 @@ const rootReducer = combineReducers({
     workingDayReducer,
     workingDayDetailReducer,
     ModalReducer,
-    suggestionReducer
+    suggestionReducer,
+    workingDayFormReducer,
+    boardTopReducer
 });
 export default rootReducer;

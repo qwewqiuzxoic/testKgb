@@ -62,14 +62,8 @@ function App() {
       return () => {
         }
   }, [user])
-  const [ modalOpenWrite, setModalOpenWrite ] = useState(false)
 
-  const openModalWrite = () => {
-      setModalOpenWrite(true);
-  }
-  const closeModalWrite = () => {
-      setModalOpenWrite(false);
-  }
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
