@@ -32,9 +32,7 @@ const TextArea = styled.textarea`
     }
 `;
 
-function TextAreaGroup({id, title, ph, value}) {
-  const [inputValue, setInputValue] = useState('');
-
+const TextAreaGroup = React.memo(function TextAreaGroup({id, title, ph, value, setInputValue}) {
   const handleChange = e => {
     e.target.value === '' ? e.target.classList.remove('active'):e.target.classList.add('active');
     setInputValue(e.target.value);
@@ -46,6 +44,6 @@ function TextAreaGroup({id, title, ph, value}) {
         <TextArea id={id} placeholder={ph} onChange={handleChange} value={value}></TextArea>
     </Wrapper>
   );
-}
+})
 
 export default TextAreaGroup;

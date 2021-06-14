@@ -1,6 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { modalCloase, modalOpen } from '../../redux/reducer/ModalReducer';
 import { FlexBox } from '../commonStyle';
 import WhiteBox from './WhiteBox';
 
@@ -132,6 +134,12 @@ const boxes2 = [
 ]
 
 function WhiteBoxes() {
+
+    const dispatch= useDispatch();
+    const openModalWrite = (type) => {
+        dispatch(modalOpen(type))
+    }
+ 
   return (
       <div>
             <Wrapper>
@@ -152,6 +160,11 @@ function WhiteBoxes() {
             </Wrapper>
             <Wrapper>
             {boxes2.map((box, index)=> (
+                box.title1 == "건의하기" ? 
+                <span onClick={()=>openModalWrite(1)} style={{display:"block",width:"31%"}}>
+                    <WhiteBox key={index} title1={box.title1}  title2={box.title2} icon={box.icon}>
+                    </WhiteBox>
+                </span>:
                 <Link to={box.link} style={{display:"block",width:"31%"}}>
                     <WhiteBox key={index} title1={box.title1}  title2={box.title2} icon={box.icon}>
                     </WhiteBox>

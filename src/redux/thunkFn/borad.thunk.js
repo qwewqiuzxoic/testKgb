@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {boardError, boardLoading, boardSuccess,boardDetailError, boardDetailLoading, boardDetailSuccess, boardPostLoading, boardPostError,boardPostSuccess} from '../actionFn/board'
-export const getBoardList = (brandName, boardName) => dispatch  => {
+export const getBoardList = (brandName, boardName, length = 10) => dispatch  => {
     dispatch(boardLoading())
     const url = '/BM/API/board/basic.asp';
         axios.post(url, {
@@ -9,7 +9,7 @@ export const getBoardList = (brandName, boardName) => dispatch  => {
             "is_notice" : 0,
             "board_cate" : "",
             "page" : 1,
-            "pagesize" : 10
+            "pagesize" : length
         }).then(function (res) {
             dispatch(boardSuccess(res.data.list));
              // response  

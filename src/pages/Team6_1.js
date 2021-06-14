@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from '../components/commonStyle/Head';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
-import Modal from '../components/base/Modal'
+import Modal2 from '../components/team6_1/Modal2'
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { getWorkingDayChange, getWorkingDayDetailChange } from '../redux/thunkFn/workingDay.thunk';
 
 
 const Wrapper = styled.div`
@@ -70,123 +72,66 @@ const ModalTit = styled.div`
   font-weight: bold;
   margin-bottom: 8px;
 `;
-const lists6_1 = [
-  {
-        state:'대기',
-        title: '서울71팀',
-        name: '윤상필',
-        weight: '1톤',
-        date1: '2020.11.24',
-        call: '010-1234-5678',
-        region: '전지역',
-        date2: '2019.11.24',
-        price: '1,210,000'
-  },
-  {
-        state:'대기',
-        title: '서울72팀',
-        name: '윤상필',
-        weight: '2톤',
-        date1: '2020.11.24',
-        call: '010-1234-5678',
-        region: '전지역',
-        date2: '2019.11.24',
-        price: '1,210,000'
-  },
-  {
-        state:'대기',
-        title: '서울73팀',
-        name: '윤상필',
-        weight: '3톤',
-        date1: '2020.11.24',
-        call: '010-1234-5678',
-        region: '전지역',
-        date2: '2019.11.24',
-        price: '1,210,000'
-  },
-]
 
 function Team6_1() {
     const [ modalOpen, setModalOpen ] = useState(false);
+    const dispatch = useDispatch();
 
-    const openModal = () => {
+    const openModal = (sn) => {
         setModalOpen(true);
+        dispatch(getWorkingDayDetailChange(sn))
     }
     const closeModal = () => {
         setModalOpen(false);
     }
-
+    const {loading,workingDayList} = useSelector(state => state.workingDayReducer);
+    useEffect(() => {
+        dispatch(getWorkingDayChange())
+        return () => {
+        }
+    }, [])
     return (
         <>
+      
         <Wrapper>
             <Head title="팀 단체사진" subtit="KGB의 우리팀톡톡입니다" pb="90px"/>
-            <ContentArea>
-            {lists6_1.map((list, index)=> (
-                <Box key={index} onClick={ openModal }>
-                    <Row>
-                        <Title>{list.title}</Title>
-                        <State color="#009944">{list.state}</State>
-                    </Row>
-                    <Row>
-                        <Name>{list.name}</Name>
-                        <Weight color="#009944">{list.weight}</Weight>
-                    </Row>
-                    <Row>
-                        <Dt>이사날짜</Dt>
-                        <Dd>{list.date1}</Dd>
-                    </Row>
-                    <Row>
-                        <Dt>연락처</Dt>
-                        <Dd>{list.call}</Dd>
-                    </Row>
-                    <Row>
-                        <Dt>전지역</Dt>
-                        <Dd>{list.region}</Dd>
-                    </Row>
-                    <Row>
-                        <Dt>등록일</Dt>
-                        <Dd>{list.date2}</Dd>
-                    </Row>
-                </Box>
-            ))}
-            </ContentArea>
-            <Modal open={ modalOpen } close={ closeModal } header="대기내용" subHeader="2020.01.01" bg="#FAFAFA">
-                <Box>
-                    <Section>
-                        <ModalTit>지원구분</ModalTit>
-                        <Row>
-                            <Dt>대기</Dt>
-                            <Dd>2020.01.01</Dd>
-                        </Row>
-                    </Section>
-                    <Section>
-                        <ModalTit>지원자</ModalTit>
-                        <Row>
-                            <Dt>[YES2404] 서울 73팀</Dt>
-                            <Dd>010-1234-5678</Dd>
-                        </Row>
-                    </Section>
-                    <Section>
-                        <ModalTit>지원내용</ModalTit>
-                        <Row>
-                            <Dt>이사날짜</Dt>
-                            <Dd>2021 .01 .01</Dd>
-                        </Row>
-                        <Row>
-                            <Dt>인원/차량</Dt>
-                            <Dd>1명 / 1톤</Dd>
-                        </Row>
-                        <Row>
-                            <Dt>이사지역</Dt>
-                            <Dd>전지역</Dd>
-                        </Row>
-                    </Section> 
-                    <Section>
-                        <ModalTit>메모내용</ModalTit>
-                        <p>지원대기입니다 지원대기입니다 지원대기입니다 지원대기입니다 지원대기입니다 지원대기입니다</p>
-                    </Section> 
-                </Box>
-            </Modal>      
+            {
+            loading?
+            <div>
+                로딩중    
+            </div> :
+             <ContentArea>
+             {workingDayList.map((list, index)=> (
+                 <Box key={index} onClick={ ()=>openModal(list.sn) }>
+                     <Row>
+                         <Title>{list.teamname}</Title>
+                         <State color="#009944">{list.code_worksupport}</State>
+                     </Row>
+                     <Row>
+                         <Name>{list.manname}</Name>
+                         <Weight color="#009944">{list.code_ton}</Weight>
+                     </Row>
+                     <Row>
+                         <Dt>이사날짜</Dt>
+                         <Dd>{list.daymove}</Dd>
+                     </Row>
+                     <Row>
+                         <Dt>연락처</Dt>
+                         <Dd>{list.phone}</Dd>
+                     </Row>
+                     <Row>
+                         <Dt>전지역</Dt>
+                         <Dd>{list.arrivearea}</Dd>
+                     </Row>
+                     <Row>
+                         <Dt>등록일</Dt>
+                         <Dd>{list.regdate}</Dd>
+                     </Row>
+                 </Box>
+             ))}
+             </ContentArea>
+        }
+        <Modal2 modalOpen={modalOpen} closeModal={closeModal}/>
         </Wrapper>
         </>
     );
