@@ -78,7 +78,7 @@ const menuItems = [
         subMenus: [
             {name: '공지사항', link:'/board/5'},
             {name: '자유게시판', link:'/board/1'},
-            {name: '작업일정변경요청', link:'/'},
+            {name: '작업일정변경요청', link:'/team6_1'},
             {name: '건의함', link:'/'},
             {name: '비리제보', link:'/'},
             {name: '쪽지', link:'/'},

@@ -65,9 +65,8 @@ const Contents = styled.div`
 `
 
 const Modal = ( props ) => {
-    const { open, close, header, subHeader, bg, boardName, full } = props;
-    console.log(boardName)
-    
+    const {  close, header, subHeader, bg, full, boardName } = props;
+    const open = typeof(props.open) ==="object" ?props.open.check: props.open
     return (
         <Wrapper className={ open ? 'openModal modal' : 'modal' }>
             { open ? (

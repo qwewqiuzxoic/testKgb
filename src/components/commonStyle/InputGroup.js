@@ -39,9 +39,8 @@ const Input = styled.input`
     }
 `;
 
-function InputGroup({id, title, ph, textAlign, value, btn, onclick}) {
+function InputGroup({id, title, ph, textAlign, value, setInputValue, btn, onClick}) {
   const [inputValue, setInputValue] = useState(value);
-
   const handleChange = e => {
     e.target.value === '' ? e.target.classList.remove('active'):e.target.classList.add('active');
     setInputValue(e.target.value);
