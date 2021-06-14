@@ -47,13 +47,14 @@ const menuItems = [
         name: '작업/대리점 관리',
         subMenus: [
             {name: '작업일정(월별)', link:'/Team1'},
-            {name: '방문견적 및 개인오더 입력', link:'/'},
+            {name: '방문견적 및 개인오더 입력', link:'/Team3_1'},
             {name: '우리팀 톡톡', link:'/board/2'}, 
-            {name: '팀단체사진 등록', link:'/'}, 
+
+            {name: '팀단체사진 등록', link:'/Team5'}, 
             {name: '지원요청/대기', link:'/Team6_1'}, 
             {name: '긴급연락망', link:'/Team7'}, 
             {name: '상조회', link:'/Team8_1'}, 
-            {name: '권역 및 대표', link:'/'}, 
+            {name: '권역 및 대표', link:'/Team9'}, 
             {name: '담당 외주업체 ', link:'/'}
         ]
     },
@@ -62,15 +63,15 @@ const menuItems = [
         subMenus: [
             {name: '칭찬글', link:'/board/3'}, 
             {name: '꾸중글', link:'/board/4'}, 
-            {name: '미계약 해피콜', link:'/'}, 
+            {name: '미계약 해피콜', link:'/Manage2_1'}, 
             {name: '계약 해피콜', link:'/'}, 
-            {name: 'A/S현황', link:'/'}, 
+            {name: 'A/S현황', link:'/Manage3_1'}, 
             {name: 'A/S처리노하우', link:'/'}, 
-            {name: '현장실사체크리스트', link:'/'}, 
+            {name: '현장실사체크리스트', link:'/Manage5_1'}, 
             {name: '대리점실사체크리스트', link:'/'}, 
             {name: '자가평가', link:'/Manage11'}, 
             {name: '월평가(경고현황)', link:'/'}, 
-            {name: '브랜드평가 사진제출', link:'/'}
+            {name: '브랜드평가 사진제출', link:'/Manage12'}
         ]
     },
     {
@@ -78,9 +79,9 @@ const menuItems = [
         subMenus: [
             {name: '공지사항', link:'/board/5'},
             {name: '자유게시판', link:'/board/1'},
-            {name: '작업일정변경요청', link:'/'},
-            {name: '건의함', link:'/'},
-            {name: '비리제보', link:'/'},
+            {name: '작업일정변경요청', link:'/team6_1'},
+            {name: '건의함', link:'/CommunityWrite'},
+            {name: '비리제보', link:'/CommunityWrite'},
             {name: '쪽지', link:'/'},
         ]
     },
@@ -93,10 +94,10 @@ const menuItems = [
             {name: '교육자료실(일반 / 영상)', link:'/'}, 
             {name: '이수대상 교육', link:'/'}, 
             {name: '교육평가', link:'/'}, 
-            {name: '실시간 화상교육', link:'/'}, 
-            {name: '교육출결체크', link:'/'}, 
+            {name: '실시간 화상교육', link:'/Manage9_1'}, 
+            {name: '교육출결체크', link:'/Manage10_1'}, 
             {name: '교육설문', link:'/manage13'}, 
-            {name: '매뉴얼 학습', link:'/'}, 
+            {name: '매뉴얼 학습', link:'/Manage6'}, 
             {name: '', link:'/'}
         ]
     },
