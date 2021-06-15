@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import BoardTitle from '../components/borad/BoardTitle';
 import CommentBox from '../components/borad/CommentBox';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
@@ -72,10 +72,39 @@ function BoardDetail({match}) {
   useEffect(() => {
       dispatch(getBoardDetail(sn))
   }, [])
-
-
-  return (
+  console.log(boardDetail)
+  const [openPass,setOpenPass] = useState(false);
+  const onclick= () => {
+    setOpenPass(true)
+  }
+  const [checkPass,setCheckPass] = useState("");
+  const [openModifyModal, setOpenModifyModal]=useState(false);
+  const onchange=(e)=>{
+    const {value} = e.target;
+    setCheckPass(value)
+  }
+  const confirmPass = ()=>{
+    if(checkPass === boardDetail.passwd){
+      alert("정답")
+      setOpenModifyModal(true);
+    } else{
+      alert("틀림")
+      setOpenModifyModal(false);
+    }
+  }
+  return ( 
     <Wrapper>
+      {
+        openPass?
+        <div>
+          <input onChange={(e)=>{onchange(e)}} value={checkPass}/>
+          <button onClick={confirmPass}>
+            aaaaa
+          </button>
+        </div>
+        :
+        null
+      }
         <BoardTitle/>
         <ContentArea>
           <ContentBox>
@@ -92,7 +121,7 @@ function BoardDetail({match}) {
             </Desc>
             </ContentBox>
             <ButtonArea>
-              <Button bg="#DFE5EA" color="#ACB6BC" text="수정" w="24%" h="44px" fs="12px"></Button>
+              <Button onclick={onclick} bg="#DFE5EA" color="#ACB6BC" text="수정" w="24%" h="44px" fs="12px"></Button>
               <Button bg="#DFE5EA" color="#ACB6BC" text="삭제" w="24%" h="44px" fs="12px"></Button>
               <Button bg="#3397B9" color="#ffffff" text="목록" w="49%" h="44px" fs="12px"></Button>
             </ButtonArea>

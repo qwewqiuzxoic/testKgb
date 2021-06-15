@@ -42,7 +42,6 @@ function Team6_3() {
   const dispatch = useDispatch();
   const history = useHistory();
   const {data,result} =  useSelector(state =>state.workingDayFormReducer);
-  console.log(JSON.parse(localStorage.getItem('user')));
 
   const isEmptyObject = (obj) =>{
     const objKey = Object.keys(obj);

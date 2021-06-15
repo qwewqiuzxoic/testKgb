@@ -59,7 +59,6 @@ export function workingDayDetailReducer(state = workingDayDetailInit,action){
 }
 
 export function workingDayFormReducer(state = workingDayFormInit,action){
-    console.log(action)
     switch(action.type){
         case WORKINGDAY_FORM_INPUT:
             return{

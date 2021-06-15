@@ -11,19 +11,20 @@ export const getBoardList = (brandName, boardName,count, length = 10) => dispatc
             "page" : count,
             "pagesize" : length
         }).then(function (res) {
-            dispatch(boardSuccess(res.data.list));
+            dispatch(boardSuccess(res.data.list,boardName));
              // response  
              if(res.data.list.length === 0){
-                dispatch(boardSuccess(res.data.list));
+                dispatch(boardSuccess(res.data.list,boardName));
              }
-             console.log(res.data.list);
         }).catch(function (error) {
-            console.log(error);
             dispatch(boardError(error))
         })
 
     
 }
+
+
+  
 //공지사항의 공지 같은 게시판 윗부분 따로 불러오는 로직
 export const getBoardTopList = (brandName, boardName, length = 5) => dispatch  => {
     dispatch(boardTopLoading())
@@ -63,23 +64,17 @@ export const getBoardDetail = (sn) => dispatch => {
         })
 
 }
-
-export const postRegisterBoard = (data) => dispatch =>{
+let axiosConfig = {
+    headers: {
+        'Content-Type': 'application/json;charset=euc-kr',
+        "Access-Control-Allow-Origin": "*",
+    }
+  };
+export const postRMDBoard = (data) => dispatch =>{
     dispatch(boardPostLoading());
     const url = '/BM/API/board/board_proc_basic.asp';
-    axios.post(url, {
-        "code_brand" : "",
-        "code_board" : "",
-        "board_cate" : "",
-        "title" : "",
-        "biz_sn" : "",
-        "password" : "",
-        "email" : "",
-        "contents" : "",
-        "userid" : "",
-        "username" : "",
-        "man_info_sn" : ""
-    }).then(function(res){
+    axios.post(url, data).then(function(res){
+        console.log(res)
         dispatch(boardPostSuccess(res.result));
     }).catch(function (error){
         dispatch(boardPostError(error))

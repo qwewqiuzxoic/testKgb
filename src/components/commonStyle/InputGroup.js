@@ -52,13 +52,22 @@ function InputGroup({id, title, ph, textAlign, value, setInputValue,setInputValu
   
   return (
     <Wrapper>
-      {btn ? 
+      <FlexArea>
+        <Label htmlFor={id}>{ title }</Label>
+        <Input type="text" id={id} name={id} placeholder={ph} textAlign={textAlign} onChange={handleChange} value={value}></Input>
+        <Button bd="#82898E" color="#82898E" text={btn} w="60px" h="25px" fontSize="10px" onclick={onclick} />
+      </FlexArea>
+      {/* {btn ? 
       <FlexArea>
         <Label htmlFor={id}>{ title }</Label>
         <Input type="text" id={id} name={id} placeholder={ph} textAlign={textAlign} onChange={handleChange} value={value}></Input>
         <Button bd="#82898E" color="#82898E" text={btn} w="60px" h="25px" fontSize="10px" onclick={onclick} />
       </FlexArea> : 
-      <Label htmlFor={id}>{ title }</Label> }        
+      <FlexArea>
+        <Label htmlFor={id}>{ title }</Label> 
+        <Input type="text" id={id} placeholder={ph} textAlign={textAlign} onChange={handleChange} value={value}></Input> 
+      </FlexArea>
+      }         */}
         {/* <Input type="text" id={id} placeholder={ph} textAlign={textAlign} onChange={handleChange} value={value}></Input> */}
     </Wrapper>
   );

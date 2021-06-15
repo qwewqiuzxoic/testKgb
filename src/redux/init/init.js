@@ -10,7 +10,8 @@ export const authInit = {
 export const boardInit = {
     boardList: [],
     loading: false,
-    error: {}
+    error: {},
+    title:""
 
 }
 //게시판 공지 초기상태
@@ -28,7 +29,33 @@ export const boardDetailInit = {
 }
 
 //게시판 등록 및 수정 초기상태
-export const boardPostInit = {
+export const boardPostFormInit = {
+    data:{
+        mode:"",
+        code_brand:"",
+        code_board:"",
+        board_cate:" ",
+        title:"",
+        biz_sn:"",
+        password:"",
+        email:"",
+        contents:"",
+        userid:"",
+        username:"",
+        man_info_sn:""
+    },
+    loading:false,
+    result:"",
+    error:{}
+}
+export const boardPostFormModifyInit = {
+    modify:{
+        "sn":"",
+        "title":"",
+        "password":"",
+        "email":"",
+        "contents":""
+    },
     loading:false,
     result:"",
     error:{}

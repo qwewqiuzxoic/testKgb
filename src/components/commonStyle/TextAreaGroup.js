@@ -32,16 +32,19 @@ const TextArea = styled.textarea`
     }
 `;
 
-const TextAreaGroup = React.memo(function TextAreaGroup({id, title, ph, value, setInputValue}) {
+const TextAreaGroup = React.memo(function TextAreaGroup({id, title, ph, value, setInputValue,setInputValue2}) {
   const handleChange = e => {
     e.target.value === '' ? e.target.classList.remove('active'):e.target.classList.add('active');
-    setInputValue(e.target.value);
-  }
+    if(setInputValue !== undefined){
+      setInputValue(e.target.value);
+    }else{
+      setInputValue2(e)
+    }  }
   
   return (
     <Wrapper>
         <Label htmlFor={id}>{ title }</Label>
-        <TextArea id={id} placeholder={ph} onChange={handleChange} value={value}></TextArea>
+        <TextArea id={id} name={id} placeholder={ph} onChange={handleChange} value={value}></TextArea>
     </Wrapper>
   );
 })

@@ -13,7 +13,6 @@ const Wrapper = styled.div`
 
 function BoardListWrap({check, teamCheck}) {
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user.teamname)
     const state = useSelector(state => state.boardReducer.boardList);
     const loading = useSelector(state => state.boardReducer.loading);
   if(!check){
