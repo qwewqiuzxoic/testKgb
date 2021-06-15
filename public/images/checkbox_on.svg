@@ -1,14 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
-  <g id="checkbox_on" transform="translate(-24 -2527)">
-    <g id="Rectangle_11" data-name="Rectangle 11" transform="translate(24 2527)" fill="#fff" stroke="#3397b9" stroke-width="1">
-      <rect width="36" height="36" rx="4" stroke="none"/>
-      <rect x="0.5" y="0.5" width="35" height="35" rx="3.5" fill="none"/>
-    </g>
-    <g id="Vector_Smart_Object_copy_2" data-name="Vector Smart Object copy 2">
-      <g id="Vector_Smart_Object_copy_2-2" data-name="Vector Smart Object copy 2" transform="translate(32 2537)">
-        <path id="패스_100" data-name="패스 100" d="M7.372,16,0,8.192,2.478,5.568l4.894,5.184L17.522,0,20,2.624Z" fill="none"/>
-      </g>
-      <path id="Color_Overlay" data-name="Color Overlay" d="M32,2545.192l2.478-2.624,4.893,5.184L49.523,2537,52,2539.625,39.371,2553Z" fill="#3397b9"/>
-    </g>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36" viewBox="0 0 36 36">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3397b9;
+      }
+    </style>
+  </defs>
+  <rect id="Rectangle_11_copy" data-name="Rectangle 11 copy" class="cls-1" width="36" height="36" rx="4" ry="4"/>
+  <image id="Vector_Smart_Object_copy_3" data-name="Vector Smart Object copy 3" x="8" y="10" width="20" height="16" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAA/klEQVQ4jaWToYpCURCGrywY3LBFg3DBsnXzJssGo7BZfADZ7nbxAcS6iN3NmgQNWywGjZrEsMVqWJRPDo5wHefcvXgHzgkzPx/MzD8BkPaVgDnw7DhpYUVgzTm2QJgGlgeWXMfiXtgTMFOwP+DtHlgOmCjYAajqGZYTwLLAUMGOQO2iuQg/pfgRA3sABtxGI6oLJBGNugHLAD0D1tRa942NFt6VsGPA2lYn7nv0bKwiopYB6/pGE7WB9tQe+DJgfRlBLNC9ArAyANH4luV4naATIbDxwEZim1hrWUl35L8KNhVD/2t8X+EF2AnMLczNONElxRVfgR+ZbbKzhOAEVdUa0JYlyF4AAAAASUVORK5CYII="/>
 </svg>
