@@ -92,11 +92,12 @@ function App() {
                 <PrivateRoute path="/Manage2_1" component={Manage2_1}/>
                 <PrivateRoute path="/Manage2_2" component={Manage2_2}/>
                 <PrivateRoute path="/Manage3_1" component={Manage3_1}/>
-                <PrivateRoute path="/Manage5_1" component={Manage5_1}/>
+                <PrivateRoute path="/Manage5_1/:page" component={Manage5_1}/>
                 <PrivateRoute path="/Manage6" component={Manage6}/>
                 <PrivateRoute path="/Manage9_1" component={Manage9_1}/>
                 <PrivateRoute path="/Manage10_1" component={Manage10_1}/>
                 <PrivateRoute path="/Manage11_1_4" component={Manage11_1_4}/>
+                <PrivateRoute path="/Manage11/:sn" component={Manage11}/>
                 <PrivateRoute path="/Manage11" component={Manage11}/>
                 <PrivateRoute path="/Manage12" component={Manage12}/>
                 <PrivateRoute path="/Manage13" component={Manage13}/>

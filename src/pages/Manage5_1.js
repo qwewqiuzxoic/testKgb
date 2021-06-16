@@ -1,4 +1,4 @@
-import React, {useState}from 'react';
+import React, {useEffect, useState}from 'react';
 import Head from '../components/commonStyle/Head';
 import Score from '../components/commonStyle/Score';
 import PopUp from '../components/base/PopUp'
@@ -6,6 +6,8 @@ import PopUpDesc from '../components/Manage5_1/PopUpDesc'
 
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPictureCheckDetail, getPictureCheckList } from '../redux/thunkFn/pictureCheck.thunk';
 
 
 const Wrapper = styled.div`
@@ -82,42 +84,61 @@ const ListManage2_1 = [
   {team:'서울1팀', name1: '이지현3', name2: '홍길동', date: '2020 .02 .28', score:'20', region:'지역이 노출됩니다', addr1: '서울 노원구 하계동 한신 동성아파트 1동 1201호', addr2:'서울 노원구 하계동 한신 동성아파트 1동 1202호'}, 
 ]
 
-function Manage5_1() {
+function Manage5_1({match}) {
+    const page = match.params.page;
   const [tab,setTab]= useState(0);
   const [ modalOpen, setModalOpen ] = useState(false);
 
-  const openModal = () => {
+  const openModal = (sn) => {
+      console.log(sn)
       setModalOpen(true);
+      dispatch(getPictureCheckDetail(page,sn));
   }
   const closeModal = () => {
       setModalOpen(false);
   }
+  const teamChange = (num,team) => {
+    setTab(num)
+    dispatch(getPictureCheckList(page,team))
+  }
+  const dispatch = useDispatch();
+  const {list} = useSelector(state => state.pictureCheckReducer);
+  useEffect(() => {
+      dispatch(getPictureCheckList(page,"Y"))
+      return () => {
+      }
+  }, [])
 
   return (
     <>
       <Wrapper>
         <Head title="현장실사체크 리스트" subtit="KGB의 현장실사체크 리스트입니다" pb="120px"/>
         <Tabs>
-          <TabName className={tab === 0 ? "selected": ""} onClick={()=>setTab(0)}>우리팀</TabName>
-          <TabName className={tab === 1 ? "selected": ""} onClick={()=>setTab(1)}>다른팀</TabName>
+          <TabName className={tab === 0 ? "selected": ""} onClick={()=>teamChange(0,"Y")}>우리팀</TabName>
+          <TabName className={tab === 1 ? "selected": ""} onClick={()=>teamChange(1,"N")}>다른팀</TabName>
         </Tabs>
         <ContentArea>
-            {ListManage2_1.map((list, index)=> (
-                <Box key={index} onClick={openModal}>
+            {list.map((item, index)=> (
+                <Box key={index} onClick={()=>openModal(item.sn)}>
                     <RowTitle>
-                        <Title>{list.team}</Title>
-                        <Date>{list.date}</Date>
+                        <Title>{item.teamname}</Title>
+                        <Date>{item.daymove}</Date>
                     </RowTitle>
-                    <Row>
-                        <Dt>고객명</Dt>
-                        <Dd>{list.name1}</Dd>
-                    </Row>
+                    {
+                        page === "1" ?
+                        <Row>
+                            <Dt>고객명</Dt>
+                            <Dd>{item.custname}</Dd>
+                        </Row>
+                        :null
+                    }
+                    
                     <Row>
                         <Dt>실사자</Dt>
-                        <Dd>{list.name2}</Dd>
+                        <Dd>{item.namechecker}</Dd>
                     </Row>
                     <Row>
-                        <Score score={list.score}></Score>
+                        <Score score={item.pointtotal}></Score>
                     </Row>
                 </Box>
             ))}

@@ -116,6 +116,58 @@ export const suggestionInit = {
     result:"",
     error:{}
 }
+
+//자가평가 리스트 
+export const selfTestInit = {
+    result:"",
+    loading:false,
+    error:"",
+    btn_flag:"",
+    list:[]
+}
+//자가평가 상세페이지 결과
+export const selfTestResultInit = {
+    result:"",
+    loading:false,
+    error:"",
+    content:"",
+    list:[]
+}
+//자가평가 질문지 받아오기
+export const selfTestQuestionInit={
+    result:"",
+    loading:false,
+    error:"",
+    list:[]
+}
+//자가평가 결과 보내기
+export const selfTestPostInit= {
+    result:"",
+    message:"",
+    loading:false,
+    error:""
+}
+
+
+//실사체크 리스트
+export const pictureCheckInit = {
+    result:"",
+    loading:false,
+    error:"",
+    list:[]
+}
+//실사체크 상세보기
+export const pictureCheckDetailInit = {
+    loading:false,
+    error:"",
+    data:{}
+}
+
+
+
+
+
+
 export const orderIndividual = {
     data: {
         name: '',                                   //이름
@@ -146,3 +198,5 @@ export const orderIndividual = {
     loading: false,
     error: {}
 }
+
+

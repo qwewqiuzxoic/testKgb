@@ -22,7 +22,7 @@ const TextBox = styled.div`
 
 function CommunityWrite() {
     
-    const {open, type} = useSelector(state=>state.ModalReducer);
+    const {open, data} = useSelector(state=>state.ModalReducer);
     const {result} = useSelector(state=>state.suggestionReducer);
     const dispatch = useDispatch()
     const [inputValue, setInputValue] = useState({
@@ -47,7 +47,7 @@ function CommunityWrite() {
     }
     
     const submitSug = () =>{
-        if(type === 1){
+        if(data === 1){
             dispatch(submitSuggestion(inputValue,"7500","비밀건의함"));
         }else{
             dispatch(submitSuggestion(inputValue,"오더장사","비리제보"));
@@ -61,13 +61,12 @@ function CommunityWrite() {
             alert("성공");
             closeModalWrite();
             dispatch(suggestionInit())
-
         }
     }, [result])
 
   return (
       <Wrapper>
-          {type === 1 ?
+          {data === 1 ?
           <Modal open={ open } close={ closeModalWrite } header="건의함 글쓰기">
           <InputGroup id="write_title" title="제목" ph="제목을 입력해주세요" value={inputValue.title} setInputValue={setTitle}/>
           <TextAreaGroup id="write_text" title="내용" ph="내용을 입력해주세요" value={inputValue.contents} setInputValue={setContents}/>
