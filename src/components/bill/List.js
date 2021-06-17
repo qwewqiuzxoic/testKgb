@@ -7,7 +7,7 @@ import Row from '../bill/Row';
 const Wrapper = styled.div`
     background: url(${process.env.PUBLIC_URL + '/images/bg_bill.png'}) no-repeat center;
     background-size: 100% 100%;
-    padding:12px 15px;
+    padding:12px 18px 12px 15px;
     margin: 0 15px 30px;
 `;
 const Section = styled.div`

@@ -5,7 +5,7 @@ import { FlexBox,  ChangeFont } from '../commonStyle';
 const Wrapper = styled.div`
     ${FlexBox()};
     align-items: center;
-    margin-bottom:4px;
+    margin:4px 0 8px;
 `;
 const Dt = styled.div`
     font-weight: bold;
