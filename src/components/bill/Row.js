@@ -9,6 +9,8 @@ const Wrapper = styled.div`
 `;
 const Dt = styled.div`
     font-weight: bold;
+    color: ${(props) => props.color ? props.color : '#404345'};
+    font-size:  ${(props) => props.fs ? props.fs : '12px'};
 `;
 const Dd = styled.div`
     ${ChangeFont(true, 200)};
@@ -17,11 +19,11 @@ const Dd = styled.div`
     font-weight:  ${(props) => props.fw ? props.fw : '200'};
 `;
 
-const Checkbox = ({ dt , dd, ddSize, ddColor, ddWeight }) => {
+const Checkbox = ({ dt, dtSize,  dtColor , dd, ddSize, ddColor, ddWeight }) => {
 
     return (
         <Wrapper>
-            <Dt>{dt}</Dt>
+            <Dt color={dtColor} fs={dtSize}>{dt}</Dt>
             <Dd color={ddColor} fs={ddSize} fw={ddWeight}>{dd}</Dd>
         </Wrapper>
     );

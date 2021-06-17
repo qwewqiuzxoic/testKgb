@@ -47,10 +47,10 @@ function Bill() {
           <TabName className={tab === 1 ? "selected": ""} onClick={()=>setTab(1)}>청구내역</TabName>
         </Tabs>
         <ContentArea>
-            {/* 청구서탭일 경우 */}
+            {/* 청구서탭일 경우 : List.js */}
             {/* <List></List> */}
 
-            {/* 청구내역탭일 경우 */}
+            {/* 청구내역탭일 경우 : Detail.js */}
             <Detail></Detail>
         </ContentArea>      
       </Wrapper>
