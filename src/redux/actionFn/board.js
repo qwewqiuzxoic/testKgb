@@ -1,4 +1,4 @@
-import {BOARD_FAIL, BOARD_LOADING, BOARD_SUCCESS, BOARD_DETAIL_FAIL, BOARD_DETAIL_LOADING, BOARD_DETAIL_SUCCESS,BOARD_POST_SUCCESS, BOARD_POST_ERROR, BOARD_POST_LOADING,BOARD_CONCAT_SUCCESS, BOARD_TOP_FAIL, BOARD_TOP_LOADING, BOARD_TOP_SUCCESS, BOARD_INIT, BOARD_POST_LOGIN_INPUT, BOARD_POST_INPUT} from '../types/board.type';
+import {BOARD_FAIL, BOARD_LOADING, BOARD_SUCCESS, BOARD_DETAIL_FAIL, BOARD_DETAIL_LOADING, BOARD_DETAIL_SUCCESS,BOARD_POST_SUCCESS, BOARD_POST_ERROR, BOARD_POST_LOADING,BOARD_CONCAT_SUCCESS, BOARD_TOP_FAIL, BOARD_TOP_LOADING, BOARD_TOP_SUCCESS, BOARD_INIT, BOARD_POST_LOGIN_INPUT, BOARD_POST_INPUT, BOARD_CONCAT_LOADING} from '../types/board.type';
 
 //게시판 정보
 export const boardSuccess = (data,title) =>{
@@ -8,10 +8,22 @@ export const boardSuccess = (data,title) =>{
         title
     }
 }
+export const boardConcatSuccess = (data,title) =>{
+    return{
+        type:BOARD_CONCAT_SUCCESS,
+        data,
+        title
+    }
+}
 
 export const boardLoading = ()=>{
     return {
         type:BOARD_LOADING
+    }
+}
+export const boardConcatLoading = ()=>{
+    return {
+        type:BOARD_CONCAT_LOADING
     }
 }
 export const boardError = (data) => {

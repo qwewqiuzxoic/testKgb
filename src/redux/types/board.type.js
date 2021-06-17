@@ -2,6 +2,7 @@ export const BOARD_SUCCESS = "BOARD_SUCCESS";
 export const BOARD_LOADING = "BOARD_LOADING";
 export const BOARD_FAIL = "BOARD_FAIL";
 export const BOARD_CONCAT_SUCCESS = "BOARD_CONCAT_SUCCESS";
+export const BOARD_CONCAT_LOADING = "BOARD_CONCAT_LOADING";
 export const BOARD_INIT = "BOARD_INIT";
 
 //공지사항 공지 

@@ -1,5 +1,5 @@
 import { boardInit,boardDetailInit, boardTopInit, boardPostFormInit } from '../init/init';
-import { BOARD_FAIL, BOARD_LOADING, BOARD_SUCCESS, BOARD_DETAIL_FAIL, BOARD_DETAIL_LOADING, BOARD_DETAIL_SUCCESS, BOARD_POST_LOADING, BOARD_POST_ERROR, BOARD_POST_SUCCESS, BOARD_TOP_FAIL, BOARD_TOP_LOADING, BOARD_TOP_SUCCESS, BOARD_INIT, BOARD_POST_INPUT, BOARD_POST_MODIFY_LOADING, BOARD_POST_MODIFY_ERROR, BOARD_POST_MODIFY_SUCCESS, BOARD_POST_MODIFY_INPUT, BOARD_POST_MODIFY_LOGIN_INPUT, BOARD_POST_LOGIN_INPUT } from '../types/board.type';
+import { BOARD_FAIL, BOARD_LOADING, BOARD_SUCCESS, BOARD_DETAIL_FAIL, BOARD_DETAIL_LOADING, BOARD_DETAIL_SUCCESS, BOARD_POST_LOADING, BOARD_POST_ERROR, BOARD_POST_SUCCESS, BOARD_TOP_FAIL, BOARD_TOP_LOADING, BOARD_TOP_SUCCESS, BOARD_INIT, BOARD_POST_INPUT, BOARD_POST_MODIFY_LOADING, BOARD_POST_MODIFY_ERROR, BOARD_POST_MODIFY_SUCCESS, BOARD_POST_MODIFY_INPUT, BOARD_POST_MODIFY_LOGIN_INPUT, BOARD_POST_LOGIN_INPUT, BOARD_CONCAT_SUCCESS, BOARD_CONCAT_LOADING } from '../types/board.type';
 
 
 export function boardReducer(state = boardInit, action) {
@@ -13,15 +13,28 @@ export function boardReducer(state = boardInit, action) {
         case BOARD_LOADING:
             return{
                 ...state,
-                loading:true
+                loading:true,
+                boardList:[],
             }
         
         case BOARD_SUCCESS:
             return{
                 ...state,
                 loading:false,
+                boardList:action.data,
+                title:action.title
+            }
+        case BOARD_CONCAT_SUCCESS:
+            return{
+                ...state,
+                loading:false,
                 boardList:state.boardList.concat(action.data),
                 title:action.title
+            }
+        case BOARD_CONCAT_LOADING:
+            return{
+                ...state,
+                loading:true,
             }
         case BOARD_INIT:
             return{

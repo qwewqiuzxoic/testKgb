@@ -9,6 +9,7 @@ import {workingDayReducer, workingDayDetailReducer,workingDayFormReducer} from '
 import {pictureCheckReducer,pictureCheckDetailReducer} from './reducer/pictureCheckReducer'
 import {happyCallListReducer,happyCallDetailReducer} from './reducer/happyCallReducer'
 import {warningListReducer,warningDetailReducer} from './reducer/warningReducer'
+import phoneListReducer from './reducer/phoneListReducer'
 
 
 
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
     happyCallListReducer,
     happyCallDetailReducer,
     warningListReducer,
-    warningDetailReducer
+    warningDetailReducer,
+    phoneListReducer
 });
 export default rootReducer;

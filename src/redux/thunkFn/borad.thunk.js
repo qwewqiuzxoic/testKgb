@@ -1,7 +1,11 @@
 import axios from 'axios'
-import {boardError, boardLoading, boardSuccess,boardDetailError, boardDetailLoading, boardDetailSuccess, boardPostLoading, boardPostError,boardPostSuccess, boardTopSuccess, boardTopLoading, boardTopError} from '../actionFn/board'
+import {boardError, boardLoading, boardSuccess,boardDetailError, boardDetailLoading, boardDetailSuccess, boardPostLoading, boardPostError,boardPostSuccess, boardTopSuccess, boardTopLoading, boardTopError, boardConcatLoading, boardConcatSuccess} from '../actionFn/board'
 export const getBoardList = (brandName, boardName,count, length = 10) => dispatch  => {
-    dispatch(boardLoading())
+    if(count === 1){
+        dispatch(boardLoading())
+    }else{
+        dispatch(boardConcatLoading())
+    }
     const url = '/BM/API/board/basic.asp';
         axios.post(url, {
             "code_board" : boardName,
@@ -11,16 +15,14 @@ export const getBoardList = (brandName, boardName,count, length = 10) => dispatc
             "page" : count,
             "pagesize" : length
         }).then(function (res) {
-            dispatch(boardSuccess(res.data.list,boardName));
-             // response  
-             if(res.data.list.length === 0){
-                dispatch(boardSuccess(res.data.list,boardName));
-             }
+            if(count === 1){
+                dispatch(boardSuccess(res.data.list,boardName))
+            }else{
+                dispatch(boardConcatSuccess(res.data.list,boardName))
+            }
         }).catch(function (error) {
             dispatch(boardError(error))
         })
-
-    
 }
 
 
@@ -70,12 +72,13 @@ let axiosConfig = {
         "Access-Control-Allow-Origin": "*",
     }
   };
-export const postRMDBoard = (data) => dispatch =>{
+export const postRMDBoard = (data,fn) => dispatch =>{
     dispatch(boardPostLoading());
     const url = '/BM/API/board/board_proc_basic.asp';
     axios.post(url, data).then(function(res){
         console.log(res)
         dispatch(boardPostSuccess(res.result));
+        if(fn !== undefined) fn()
     }).catch(function (error){
         dispatch(boardPostError(error))
     })

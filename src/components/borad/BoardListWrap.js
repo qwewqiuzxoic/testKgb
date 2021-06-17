@@ -15,6 +15,12 @@ function BoardListWrap({check, teamCheck}) {
     const user = JSON.parse(localStorage.getItem('user'));
     const state = useSelector(state => state.boardReducer.boardList);
     const loading = useSelector(state => state.boardReducer.loading);
+    useEffect(() => {
+      
+      return () => {
+        
+      }
+    }, [state])
   if(!check){
     return (
       <Wrapper>
@@ -27,7 +33,7 @@ function BoardListWrap({check, teamCheck}) {
   }else{
     return (
       <Wrapper>
-       {state.filter(data=>
+       {state && state.filter(data=>
           (data.tname === user.teamname) === teamCheck
         ).map((post, index)=> (
             <BoardList key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index} loginname={post.loginname} tname={post.tname} countview={post.countview} cnt={post.cnt}/>

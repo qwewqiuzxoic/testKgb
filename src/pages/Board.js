@@ -47,7 +47,13 @@ function Board({match}) {
       })
       return val;
     }
-   
+    const history = useHistory();
+
+    const callback = () =>{
+      dispatch(getBoardList(user.brand,boardName.name,1))
+      pageCount.current = 1;
+      closeModal();
+    }
     const onsubmit= ()=>{
       const data = boardData;
       const len =  isEmptyObject(data).length;
@@ -55,8 +61,8 @@ function Board({match}) {
       if(len>0){
         return false;
       }
-      console.log(data)
-      dispatch(postRMDBoard(data))
+      dispatch(postRMDBoard(data,callback));
+
     }
     const boardCodeNm = Number(code);
     const [boardName, setBoardName] = useState({

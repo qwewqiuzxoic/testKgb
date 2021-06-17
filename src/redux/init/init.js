@@ -208,6 +208,13 @@ export const warningDetailInit = {
     }
 }
 
+//권역 및 대표 긴급 연락망
+export const phoneListInit = {
+    loading:false,
+    error:"",
+    result:"",
+    list:[]
+}
 
 export const orderIndividual = {
     data: {
