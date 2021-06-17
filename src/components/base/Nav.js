@@ -82,7 +82,7 @@ const menuItems = [
             {name: '작업일정변경요청', link:'/team6_1'},
             {name: '건의함', link:'/CommunityWrite'},
             {name: '비리제보', link:'/CommunityWrite'},
-            {name: '쪽지', link:'/'},
+            {name: '쪽지', link:'/Msg'},
         ]
     },
     {
@@ -104,7 +104,7 @@ const menuItems = [
     {
         name: '본사업무',
         subMenus: [
-            {name: '청구서관리', link:'/'}, 
+            {name: '청구서관리', link:'/Bill'}, 
             {name: '일반자료실', link:'/'}, 
             {name: '자재주문', link:'/'}, 
             {name: '자재주문내역', link:'/'}, 
