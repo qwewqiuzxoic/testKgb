@@ -34,6 +34,7 @@ import CommunityWrite from "./pages/CommunityWrite";
 import Msg from "./pages/Msg";
 import Bill from "./pages/Bill";
 import SendMsg from "./pages/SendMsg";
+import Edu8_9 from "./pages/Edu8_9";
 
 import {signIn} from './deletData/Auth'
 import PrivateRoute from './util/PrivateRoute'
@@ -111,6 +112,7 @@ function App() {
                 <PrivateRoute path="/SendMsg" component={SendMsg}/>
                 <PrivateRoute path="/Msg" component={Msg}/>
                 <PrivateRoute path="/Bill" component={Bill}/>
+                <PrivateRoute path="/Edu8_9" component={Edu8_9}/>
                 <PrivateRoute path="/" component={Home}/>
               </Switch>
             :null}
