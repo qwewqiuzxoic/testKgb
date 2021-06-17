@@ -63,8 +63,8 @@ const menuItems = [
         subMenus: [
             {name: '칭찬글', link:'/board/3'}, 
             {name: '꾸중글', link:'/board/4'}, 
-            {name: '미계약 해피콜', link:'/Manage2_1'}, 
-            {name: '계약 해피콜', link:'/'}, 
+            {name: '미계약 해피콜', link:'/Manage2_1/2'}, 
+            {name: '계약 해피콜', link:'/Manage2_1/1'}, 
             {name: 'A/S현황', link:'/Manage3_1'}, 
             {name: 'A/S처리노하우', link:'/'}, 
             {name: '현장실사체크리스트', link:'/Manage5_1/1'}, 

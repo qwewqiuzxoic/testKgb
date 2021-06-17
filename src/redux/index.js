@@ -7,6 +7,8 @@ import {dayScReducer, monthScReducer} from './reducer/scheduleReducer';
 import {selfTestGetList,selfTestGetResult,selfTestGetQuestion,selfTestPost} from './reducer/selfTestReducer';
 import {workingDayReducer, workingDayDetailReducer,workingDayFormReducer} from './reducer/workingDayReducer'
 import {pictureCheckReducer,pictureCheckDetailReducer} from './reducer/pictureCheckReducer'
+import {happyCallListReducer,happyCallDetailReducer} from './reducer/happyCallReducer'
+
 
 
 const rootReducer = combineReducers({
@@ -28,6 +30,8 @@ const rootReducer = combineReducers({
     selfTestGetQuestion,
     selfTestPost,
     pictureCheckReducer,
-    pictureCheckDetailReducer
+    pictureCheckDetailReducer,
+    happyCallListReducer,
+    happyCallDetailReducer
 });
 export default rootReducer;

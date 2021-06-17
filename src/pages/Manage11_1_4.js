@@ -29,12 +29,10 @@ const GraphWrap = styled.div`
 
 `
 function Manage11_1_4() {
-    console.log(1)
     const dispatch = useDispatch();
     const {list, loading,btn_flag} = useSelector(state =>state.selfTestGetList)
     useEffect(() => {
         dispatch(getSelfTestList())
-        console.log(list)
         return () => {
             
         }

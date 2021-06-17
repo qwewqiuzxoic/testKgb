@@ -163,7 +163,26 @@ export const pictureCheckDetailInit = {
     data:{}
 }
 
-
+//미계약 계약 해피콜
+export const happyCallInit = {
+    loading:false,
+    error:"",
+    list:[],
+    result:""
+}
+export const happyCallDetailInit = {
+    loading:false,
+    error:"",
+    data:{
+        result:"",
+        message:"",
+        custname:"",
+        teamname:"",
+        daymove:"",
+        totalpoint:"",
+        list:[]
+    }
+}
 
 
 
