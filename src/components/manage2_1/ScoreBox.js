@@ -36,7 +36,6 @@ function ScoreBox({q, score, answer, text}) {
         <Answer score={score}>
             {answer[0] === "text" ? text===""?<div>답변이 없습니다</div>:<div>{text}</div>:
                 answer && answer.map(item=>
-                    
                     <span>
                         {item}
                     </span>

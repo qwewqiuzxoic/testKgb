@@ -34,7 +34,7 @@ function Board() {
 
   const boardList = useSelector(state => state.boardReducer.boardList);
   useEffect(() => {
-      dispatch(getBoardList("YES2404","공지사항",4))
+      dispatch(getBoardList("YES2404","공지사항",1,4))
   }, [])
 
   return (

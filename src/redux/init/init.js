@@ -184,7 +184,29 @@ export const happyCallDetailInit = {
     }
 }
 
-
+export const warningInit= {
+    loading:false,
+    error:"",
+    result:"",
+    list:[]
+}
+export const warningDetailInit = {
+    loading:false,
+    error:"",
+    data:{
+        result:"",
+        message:"",
+        title:"",
+        loginname:"",
+        loginid:"",
+        tname:"",
+        content:"",
+        regdate:"",
+        passwd:"",
+        email:"",
+        attfiles:[]
+    }
+}
 
 
 export const orderIndividual = {

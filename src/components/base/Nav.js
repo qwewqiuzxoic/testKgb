@@ -70,7 +70,7 @@ const menuItems = [
             {name: '현장실사체크리스트', link:'/Manage5_1/1'}, 
             {name: '대리점실사체크리스트', link:'/Manage5_1/2'}, 
             {name: '자가평가', link:'/Manage11_1_4'}, 
-            {name: '월평가(경고현황)', link:'/'}, 
+            {name: '월평가(경고현황)', link:'/Team8_1/1'}, 
             {name: '브랜드평가 사진제출', link:'/Manage12'}
         ]
     },

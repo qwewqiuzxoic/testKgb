@@ -32,7 +32,7 @@ const TextArea = styled.textarea`
     }
 `;
 
-const TextAreaGroup = React.memo(function TextAreaGroup({id, title, ph, value, setInputValue,setInputValue2}) {
+const TextAreaGroup = React.memo(function TextAreaGroup({id, title, ph, value, setInputValue,setInputValue2,disabled}) {
   const handleChange = e => {
     e.target.value === '' ? e.target.classList.remove('active'):e.target.classList.add('active');
     if(setInputValue !== undefined){
@@ -44,7 +44,7 @@ const TextAreaGroup = React.memo(function TextAreaGroup({id, title, ph, value, s
   return (
     <Wrapper>
         <Label htmlFor={id}>{ title }</Label>
-        <TextArea id={id} name={id} placeholder={ph} onChange={handleChange} value={value}></TextArea>
+        <TextArea id={id} name={id} placeholder={ph} onChange={handleChange} value={value} disabled={disabled}></TextArea>
     </Wrapper>
   );
 })

@@ -8,6 +8,7 @@ import {selfTestGetList,selfTestGetResult,selfTestGetQuestion,selfTestPost} from
 import {workingDayReducer, workingDayDetailReducer,workingDayFormReducer} from './reducer/workingDayReducer'
 import {pictureCheckReducer,pictureCheckDetailReducer} from './reducer/pictureCheckReducer'
 import {happyCallListReducer,happyCallDetailReducer} from './reducer/happyCallReducer'
+import {warningListReducer,warningDetailReducer} from './reducer/warningReducer'
 
 
 
@@ -32,6 +33,8 @@ const rootReducer = combineReducers({
     pictureCheckReducer,
     pictureCheckDetailReducer,
     happyCallListReducer,
-    happyCallDetailReducer
+    happyCallDetailReducer,
+    warningListReducer,
+    warningDetailReducer
 });
 export default rootReducer;
