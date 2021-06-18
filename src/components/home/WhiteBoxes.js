@@ -29,7 +29,7 @@ const boxes = [
         title1 : "교육참석내역",
         title2 : "Attendance in education",
         icon: "icon1_2",
-        link: "/"
+        link: "/Edu8_9"
     },
     {
         title1 : "교육출결체크",
@@ -53,7 +53,7 @@ const boxes = [
         title1 : "매뉴얼 학습",
         title2 : "Manual learning",
         icon: "icon1_6",
-        link: "/"
+        link: "/Manage6"
     }
 ]
 const boxes1 = [
@@ -61,37 +61,37 @@ const boxes1 = [
         title1 : "칭찬글",
         title2 : "Compliment",
         icon: "icon2_1",
-        link: "/"
+        link: "/board/3"
     },
     {
         title1 : "해피콜",
         title2 : "Happy Call",
         icon: "icon2_2",
-        link: "/"
+        link: "/Manage2_1/1"
     },
     {
         title1 : "현장실사결과",
         title2 : "Field Survey Results",
         icon: "icon2_3",
-        link: "/"
+        link: "/Manage5_1/1"
     },
     {
         title1 : "꾸중글",
         title2 : "Scolding",
         icon: "icon2_4",
-        link: "/"
+        link: "/board/4"
     },
     {
         title1 : "미계약해피콜",
         title2 : "Uncontracted Happy Call",
         icon: "icon2_5",
-        link: "/"
+        link: "/Manage2_1/2"
     },
     {
         title1 : "A/S현황",
         title2 : "A/S Status",
         icon: "icon2_6",
-        link: "/"
+        link: "/Manage3_1"
     }
 ]
 const boxes2 = [
@@ -99,25 +99,25 @@ const boxes2 = [
         title1 : "자유게시판",
         title2 : "Free Board",
         icon: "icon3_1",
-        link: "/"
+        link: "/board/1"
     },
     {
         title1 : "건의하기",
         title2 : "Make a suggestion",
         icon: "icon3_2",
-        link: "/"
+        link: "/boarddetail/159440"
     },
     {
         title1 : "쪽지함",
         title2 : "Inbox",
         icon: "icon3_3",
-        link: "/"
+        link: "/Msg"
     },
     {
         title1 : "청구서관리",
         title2 : "Bill management",
         icon: "icon3_4",
-        link: "/"
+        link: "/Bill"
     },
     {
         title1 : "자료실",
@@ -161,7 +161,7 @@ function WhiteBoxes() {
             <Wrapper>
             {boxes2.map((box, index)=> (
                 box.title1 == "건의하기" ? 
-                <span onClick={()=>openModalWrite(1)} style={{display:"block",width:"31%"}}>
+                <span onClick={()=>openModalWrite(1)} style={{display:"block",width:"31%", cursor:'pointer'}}>
                     <WhiteBox key={index} title1={box.title1}  title2={box.title2} icon={box.icon}>
                     </WhiteBox>
                 </span>:

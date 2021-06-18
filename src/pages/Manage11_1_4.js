@@ -42,11 +42,11 @@ function Manage11_1_4() {
             <Head title="자가평가" subtit="KGB의 자가평가글이 노출됩니다"/>
             {loading === true ? <div>logind</div>:
                 <ContentArea>
-                    {list.map(item=>{
+                    {list.map((item,i)=>{
                         return(
                             <Link to={`/Manage11/${item.sn}`}>
                             <EduBox title={item.manname} date={item.regdate}>
-                                <GraphWrap isRed={false}>
+                                <GraphWrap isRed={i% 2 ===0 ? true:false}>
                                     <Graph value={item.pointtotal} size="54" strokewidth="2"></Graph>
                                 </GraphWrap>
                             </EduBox>

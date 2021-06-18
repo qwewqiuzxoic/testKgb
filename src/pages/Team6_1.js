@@ -9,6 +9,8 @@ import Modal from '../components/base/Modal';
 import FloatingBtn from '../components/commonStyle/FloatingBtn';
 import { Link } from 'react-router-dom';
 import Team6_3 from './Team6_3';
+import Loading from '../components/commonStyle/Loading';
+
 
 
 const Wrapper = styled.div`
@@ -85,10 +87,14 @@ function Team6_1() {
 
     const openModal = (sn) => {
         setModalOpen(true);
-        dispatch(getWorkingDayDetailChange(sn))
+        dispatch(getWorkingDayDetailChange(sn));
+        document.body.style.overflow = 'hidden';
+
     }
     const closeModal = () => {
         setModalOpen(false);
+        document.body.style.overflow = 'unset';
+
     }
     const {loading,workingDayList} = useSelector(state => state.workingDayReducer);
     useEffect(() => {
@@ -103,9 +109,7 @@ function Team6_1() {
             <Head title="지원대기/요청" subtit="KGB의 지원대기/요청의 서브타이틀이 노출됩니다" pb="90px"/>
             {
             loading?
-            <div>
-                로딩중    
-            </div> :
+            <Loading/> :
              <ContentArea>
              {workingDayList.map((list, index)=> (
                  <Box key={index} onClick={ ()=>openModal(list.sn) }>
