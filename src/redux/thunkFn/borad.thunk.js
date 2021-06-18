@@ -55,6 +55,8 @@ export const getBoardTopList = (brandName, boardName, length = 5) => dispatch  =
 export const getBoardDetail = (sn) => dispatch => {
     dispatch(boardDetailLoading())
     const url = '/BM/API/board/desc.asp';
+    console.log(url)
+
         axios.post(url, {
             "sn": sn
         }).then(function (res) {
@@ -136,7 +138,22 @@ export const getEduBoardList = (brandName,boardName,count, length = 10) => dispa
         })
 }
 
+export const getEduBoardDetail = (sn) => dispatch => {
+    dispatch(boardDetailLoading())
+    const url = '/BM/API/edu/pds_common_view.asp';
+    console.log(url)
 
+        axios.post(url, {
+            "sn": sn
+        }).then(function (res) {
+            dispatch(boardDetailSuccess(res.data));
+             // response  
+        }).catch(function (error) {
+            console.log(error);
+            dispatch(boardDetailError(error))
+        })
+
+}
 
 export const getEduMovieBoardList = (brandName,boardName,count, length = 10) => dispatch  => {
     if(count === 1){
@@ -145,6 +162,7 @@ export const getEduMovieBoardList = (brandName,boardName,count, length = 10) => 
         dispatch(boardConcatLoading())
     }
     const url = '/BM/API/edu/pds_movie_list.asp';
+
         axios.post(url, {
             "code_brand" : brandName,
             "is_notice" : 0,
@@ -160,4 +178,19 @@ export const getEduMovieBoardList = (brandName,boardName,count, length = 10) => 
         }).catch(function (error) {
             dispatch(boardError(error))
         })
+}
+export const getEduMovieBoardDetail = (sn) => dispatch => {
+    dispatch(boardDetailLoading())
+    const url = '/BM/API/edu/pds_movie_view.asp';
+    console.log(url)
+        axios.post(url, {
+            "sn": sn
+        }).then(function (res) {
+            dispatch(boardDetailSuccess(res.data));
+             // response  
+        }).catch(function (error) {
+            console.log(error);
+            dispatch(boardDetailError(error))
+        })
+
 }

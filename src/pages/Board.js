@@ -246,7 +246,7 @@ function Board({match}) {
                 </div>
               )
             }):null}
-                <BoardListWrap check={boardName.check} teamCheck={boardName.teamNm} adu={boardName.adu}/>
+                <BoardListWrap check={boardName.check} teamCheck={boardName.teamNm} adu={boardName.adu} boardTeamNm={boardName.teamNm}/>
             </ContentArea>
             
             {

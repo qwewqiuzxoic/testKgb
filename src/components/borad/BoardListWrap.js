@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 
 `;
 
-function BoardListWrap({check, teamCheck,adu}) {
+function BoardListWrap({check, teamCheck,adu,boardTeamNm}) {
     const user = JSON.parse(localStorage.getItem('user'));
     const state = useSelector(state => state.boardReducer.boardList);
     const loading = useSelector(state => state.boardReducer.loading);
@@ -21,7 +21,8 @@ function BoardListWrap({check, teamCheck,adu}) {
       (data.tname === user.teamname) === teamCheck
     );
     useEffect(() => {
-      
+      console.log(boardTeamNm)
+
       return () => {
         
       }
@@ -29,7 +30,7 @@ function BoardListWrap({check, teamCheck,adu}) {
   return (
     <Wrapper>
       {list.map((post, index)=> (
-          <BoardList key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index} loginname={post.loginname} tname={post.tname} countview={post.countview} cnt={post.cnt} />
+          <BoardList key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index} loginname={post.loginname} tname={post.tname} countview={post.countview} cnt={post.cnt} adu={adu} typeCheck={boardTeamNm}/>
       ))}
       {loading ? <Loading/>:null}
 

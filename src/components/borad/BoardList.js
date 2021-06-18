@@ -47,12 +47,13 @@ const Date = styled.div`
 `;
 
 
-function BoardList({title, regdate, board_sn, index, loginname ,tname, cnt,countview}) {
+function BoardList({title, regdate, board_sn, index, loginname ,tname, cnt,countview,adu,typeCheck}) {
+   const type = typeCheck?1:2
    
   return (
     <Wrapper index={index}>
         <Title>
-          <Link to={`/boarddetail/${board_sn}`}>
+          <Link to={adu?`/boarddetail/${board_sn}/${type}`:`/boarddetail/${board_sn}`}>
             {title}
           </Link>
           <span> [11]</span>
