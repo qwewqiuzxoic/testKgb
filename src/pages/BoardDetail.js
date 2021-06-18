@@ -116,8 +116,8 @@ function BoardDetail({match}) {
               <Date>{boardDetail.regdate}</Date>
             </PostInfo>
             <Desc>
-              <img src={process.env.PUBLIC_URL + '/images/dummyImg.jpg'} alt="icon" />
-              <p>dfsdfsdf</p>
+              {/* <img src={process.env.PUBLIC_URL + '/images/dummyImg.jpg'} alt="icon" />
+              <p>dfsdfsdf</p> */}
             </Desc>
             </ContentBox>
             <ButtonArea>

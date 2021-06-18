@@ -216,6 +216,27 @@ export const phoneListInit = {
     list:[]
 }
 
+//교육참석내역 리스트
+export const eduAttendListInit = {
+    loading:false,
+    error:"",
+    result:"",
+    totTime:"",
+    totPoint:"",
+    nowPoint:"",
+    usePoint:"",
+    list1:[],
+    list2:[]
+}
+//점수 사용 하기
+export const eduPointUseInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:""
+}
+
+
 export const orderIndividual = {
     data: {
         name: '',                                   //이름

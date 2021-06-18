@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from '../components/commonStyle/Head';
 import TopBox from '../components/edu8_9/TopBox';
 import EduTable from '../components/edu8_9/EduTable';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { geteduAttendList } from '../redux/thunkFn/eduAttend.thunk';
 
 
 const Wrapper = styled.div`
@@ -16,6 +18,14 @@ const ContentArea = styled.div`
 
 
 function Edu8_9({match}) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(geteduAttendList())
+    
+    return () => {
+    }
+  }, [])
+
   return (
     <>
       <Wrapper>

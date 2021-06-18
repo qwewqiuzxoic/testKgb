@@ -110,3 +110,54 @@ export const postModifyBoard = (data) => dispatch =>{
     })
 
 }
+
+
+export const getEduBoardList = (brandName,boardName,count, length = 10) => dispatch  => {
+    if(count === 1){
+        dispatch(boardLoading())
+    }else{
+        dispatch(boardConcatLoading())
+    }
+    const url = '/BM/API/edu/pds_common_list.asp';
+        axios.post(url, {
+            "code_brand" : brandName,
+            "is_notice" : 1,
+            "page" : count,
+            "pagesize" : length
+        }).then(function (res) {
+            if(count === 1){
+                console.log(res.data.list)
+                dispatch(boardSuccess(res.data.list,boardName))
+            }else{ 
+                dispatch(boardConcatSuccess(res.data.list,boardName))
+            }
+        }).catch(function (error) {
+            dispatch(boardError(error))
+        })
+}
+
+
+
+export const getEduMovieBoardList = (brandName,boardName,count, length = 10) => dispatch  => {
+    if(count === 1){
+        dispatch(boardLoading())
+    }else{
+        dispatch(boardConcatLoading())
+    }
+    const url = '/BM/API/edu/pds_movie_list.asp';
+        axios.post(url, {
+            "code_brand" : brandName,
+            "is_notice" : 0,
+            "page" : count,
+            "pagesize" : length
+        }).then(function (res) {
+            if(count === 1){
+                console.log(res.data.list)
+                dispatch(boardSuccess(res.data.list,boardName))
+            }else{ 
+                dispatch(boardConcatSuccess(res.data.list,boardName))
+            }
+        }).catch(function (error) {
+            dispatch(boardError(error))
+        })
+}

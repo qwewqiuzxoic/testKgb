@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import Button from '../commonStyle/Button';
 import { Gutter, FlexBox, ChangeFont } from '../commonStyle';
 import Row from '../bill/Row';
+import { useDispatch, useSelector } from 'react-redux';
+import { usePointEvnet } from '../../redux/thunkFn/eduAttend.thunk';
 
 const Wrapper = styled.div`
     position:relative;
@@ -46,28 +48,55 @@ const Text = styled.label`
     font-size:10px;
 `;
 const TopBox = () => {
+    const dispatch = useDispatch();
+        // 현재점수 //총 점수 총이수시간 총 사용점수
+    const {nowPoint,totPoint,totTime,usePoint} = useSelector(state => state.eduAttendListReducer);
+    const {result,message,loading} = useSelector(state => state.usePointReducer);
+    const [point,setPoint] = useState("");
+    const changePoint = (e)=>{
+        setPoint(e.target.value)
+    }
+    const makeArr = () =>{
+        const len = Math.round(usePoint/10);
+        let arr = [];
+        for(let i=0;i<=len;i++){
+            let num = i*10;
+            arr.push(num);
+        }
+        return arr;
+    }
+    const usePointArr = makeArr();
+    const usePointFn = ()=>{
+        dispatch(usePointEvnet(point,nowPoint));
+    }
 
     return (
         <Wrapper>
-            <Row dt="맞춤교육 총 이수시간" dtSize="13px" dd="0시간" ddWeight='bold' ddColor='#82898E' ddWeight='bold'/>
+            <Row dt="맞춤교육 총 이수시간" dtSize="13px" dd={totPoint !== ""? `${totTime}시간`:0} ddWeight='bold' ddColor='#82898E' ddWeight='bold'/>
             <LineBox>
-                <Row dt="총 점수" dtColor="#ACB6BC" dd="0점" ddWeight='bold' ddColor='#82898E' ddWeight='bold'/>
-                <Row dt="총 사용점수" dtColor="#ACB6BC" dd="0점" ddWeight='bold' ddColor='#82898E' ddWeight='bold'/>
-                <Row dt="현재 점수" dtColor="#ACB6BC" dd="0점" ddWeight='bold' ddColor='#82898E' ddWeight='bold'/>
+                <Row dt="총 점수" dtColor="#ACB6BC" dd={totPoint !== ""? `${totPoint}점`:0} ddWeight='bold' ddColor='#82898E' ddWeight='bold'/>
+                <Row dt="총 사용점수" dtColor="#ACB6BC" dd={usePoint !== ""? `${usePoint}점`:0} ddWeight='bold' ddColor='#82898E' ddWeight='bold'/>
+                <Row dt="현재 점수" dtColor="#ACB6BC" dd={nowPoint !== ""? `${nowPoint}점`:0} ddWeight='bold' ddColor='#82898E' ddWeight='bold'/>
             </LineBox>
             <UseScoreWrap>
                 <Group>
                     <Label htmlFor="useScore">점수사용</Label>
-                    <select id="useScore">
-                        <option>0</option>
-                        <option>10</option>
-                        <option>20</option>
-                        <option>30</option>
-                        <option>40</option>
+                    <select id="useScore" onChange={(e)=>changePoint(e)}>
+                        {
+                            usePointArr && usePointArr.map(item =>
+                                    <option>
+                                        {item}
+                                    </option>
+                                )
+                        }
                     </select>
                 </Group>
-                <Button bg='#3397B9' color='#ffffff' text='점수 사용하기' w='90px' h='25px' fs='11px'/>
+                <Button onclick={usePointFn} bg='#3397B9' color='#ffffff' text='점수 사용하기' w='90px' h='25px' fs='11px'/>
             </UseScoreWrap>
+            {message !== "" && result === "fail" ?<div style={{"color":"red"}}>{message}</div>: null}
+            {message !== "" && result === "success" ?<div style={{"color":"green"}}>{message}</div>: null}
+            {message === "" && result === "" ?<br/>: null}
+
             <Text>- 점수는 사용한 시점의 분기 교육평가에만 적용되며,<br/>&nbsp;&nbsp;누적된 점수는 연도가 바꿀 시 초기화 됩니다.</Text>
         </Wrapper>
     );
