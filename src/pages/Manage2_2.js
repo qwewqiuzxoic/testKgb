@@ -3,7 +3,7 @@ import Head from '../components/commonStyle/Head';
 import Search from '../components/manage2_1/Search';
 import ScoreBox from '../components/manage2_1/ScoreBox';
 import Button from '../components/commonStyle/Button';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { FlexBox, Gutter, ChangeFont } from '../components/commonStyle';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHappyCallDetail } from '../redux/thunkFn/happyCall.thunk';
@@ -11,19 +11,23 @@ import QuestionBox from '../components/Manage11/QuestionBox';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
+    padding-bottom:50px;
 `;
 const Tabs = styled.div`
     position:absolute;
+    width:100%;
     ${Gutter()};
-    ${FlexBox('')};
+    ${FlexBox('left')};
     margin-top:-72px;
 `;
 const TabName = styled.div`
+    width:48%;
     ${ChangeFont(true)};
     color : rgba(255, 255, 255, .7);
     padding: 12px 18px;
     border-radius: 20px;
     cursor:pointer;
+    text-align:center;
     &.selected{
       background : rgba(255, 255, 255, .3);
       color: #FFFFFF;
@@ -76,13 +80,6 @@ const WhiteWrap = styled.div`
 
 `
 
-const ListManage2_1 = [
-    {team:'서울1팀', name: '이지현', date1: '2020 .02 .28', date2: '2020 .02 .08', score:'44'}, 
-    {team:'서울1팀', name: '이지현1', date1: '2020 .01 .28', date2: '2020 .01 .08', score:'55'}, 
-    {team:'서울1팀', name: '이지현2', date1: '2020 .03 .28', date2: '2020 .03 .08', score:'66'}, 
-    {team:'서울1팀', name: '이지현3', date1: '2020 .05 .28', date2: '2020 .05 .08', score:'20'}, 
-  ]
-
 function Manage2_2({match}) {
     const page = match.params.page;
     const sn = match.params.sn;
@@ -101,8 +98,7 @@ function Manage2_2({match}) {
 
   return (
     <>
-      <Wrapper>
-        
+      <Wrapper>    
         <Head title={title} subtit={subtit} pb="90px"/>
         <Tabs>
           <TabName className={tab === 0 ? "selected": ""} onClick={()=>setTab(0)}>우리팀</TabName>

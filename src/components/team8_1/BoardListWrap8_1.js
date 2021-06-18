@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../commonStyle';
 import { warningCallList } from '../../redux/thunkFn/warning.thunk';
-
+import Loading from '../commonStyle/Loading';
 
 const Wrapper = styled.div`
 
@@ -47,7 +47,7 @@ function BoardListWrap8_1({boardCode, onClick}) {
     }, [])
   return (
     <Wrapper>
-        {list.length ==0? <div>로딩중</div>:list.map((post, index)=> (
+        {list.length ==0? <Loading/>:list.map((post, index)=> (
             <BoardList8_1 key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index} onClick={()=>onClick(post.board_sn)}/>
         ))}
     </Wrapper>
