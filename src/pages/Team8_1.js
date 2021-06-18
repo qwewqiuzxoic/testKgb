@@ -15,6 +15,7 @@ import { getHappyCallDetail, warningCallList } from '../redux/thunkFn/warning.th
 
 const Wrapper = styled.div`
     background: #FAFAFA;
+    padding-bottom:40px;
 `;
 const ContentArea = styled.div`
     position:relative;
@@ -30,12 +31,11 @@ const Name = styled.div`
 `
 const Content = styled.div`
   width:100%;
-  height:260px;
+  min-height: ${(props) => props.scroll ? '130px' : '40px'}; 
   padding:15px;
-  text-align: ${(props) => props.textAlign ? props.textAlign : 'left'};
   background:#F3F7FB;
   border-radius: 4px;
-  overflow:scroll;
+  overflow: ${(props) => props.scroll ? 'scroll' : 'unset'};
 `;
 const InnerCont = styled.div`
 `;
@@ -54,16 +54,20 @@ function Team8_1({match}) {
 
     const openModalDetail = (sn) => {
         setModalOpenDetail(true);
-        dispatch(getHappyCallDetail(sn))
+        dispatch(getHappyCallDetail(sn));
+        document.body.style.overflow = 'hidden';
     }
     const closeModalDetail = () => {
         setModalOpenDetail(false);
+        document.body.style.overflow = 'unset';
     }
     const openModalWrite = () => {
         setModalOpenWrite(true);
+        document.body.style.overflow = 'hidden';
     }
     const closeModalWrite = () => {
         setModalOpenWrite(false);
+        document.body.style.overflow = 'unset';
     }
 
 
@@ -79,24 +83,24 @@ function Team8_1({match}) {
             }
             <Modal open={ modalOpenDetail } close={ closeModalDetail } header="상세내역">
               <InputGroup id="write_title" title="제목" value={data.title} disabled={true}/>
-              <InputGroup id="write_writer" title="팀명" value={data.tname} disabled={true}/>
               <InputGroup id="write_pw" title="작성자" value={data.loginname} disabled={true}/>              
               <InputGroup id="write_mail" title="작성일" value={data.regdate} disabled={true}/>
-              <Name>내용</Name>
+              <Name>파일 다운로드</Name>
               <Content>
-              <InnerCont dangerouslySetInnerHTML={ {__html: data.content} }>
-              </InnerCont>
-              </Content>
-              <div>
                 {
                   data.attfiles && data.attfiles.map(item =>
                       <div>
-                        <Name>파일 다운로드</Name>
                         <a href={item.file_url} download={item.file_url}>{item.file_name}</a>
                       </div>
                     )
                 }
-              </div>
+              </Content>
+              <Name>내용</Name>
+              <Content scroll={true}>
+                <InnerCont dangerouslySetInnerHTML={ {__html: data.content} }>
+                </InnerCont>
+              </Content>
+              
             </Modal>
             {/* <Modal open={ modalOpenWrite } close={ closeModalWrite } header="글쓰기">
               <InputGroup id="write_title" title="제목" ph="제목을 입력해주세요"/>
