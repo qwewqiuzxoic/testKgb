@@ -13,31 +13,35 @@ const Wrapper = styled.div`
 
 function BoardListWrap({check, teamCheck}) {
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user.teamname)
     const state = useSelector(state => state.boardReducer.boardList);
     const loading = useSelector(state => state.boardReducer.loading);
+    useEffect(() => {
+      
+      return () => {
+        
+      }
+    }, [state])
   if(!check){
     return (
       <Wrapper>
-        {loading ? <div>로딩중</div>:state.map((post, index)=> (
+        {state.map((post, index)=> (
             <BoardList key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index} loginname={post.loginname} tname={post.tname} countview={post.countview} cnt={post.cnt} />
         ))}
+        {loading ? <div style={{position:'fixed',top:"100px",width:"200px",height:"200px",background:"red",left:"200px"}}>로딩중</div>:null}
       </Wrapper>
     );
   }else{
     return (
       <Wrapper>
-        {loading ? <div>로딩중</div>:state.filter(data=>
+       {state && state.filter(data=>
           (data.tname === user.teamname) === teamCheck
         ).map((post, index)=> (
             <BoardList key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index} loginname={post.loginname} tname={post.tname} countview={post.countview} cnt={post.cnt}/>
         ))}
-      
+         {loading ? <div style={{position:'fixed',top:"100px",width:"200px",height:"200px",background:"red",left:"200px"}}>로딩중</div>:null}
     </Wrapper>
     );
   }
-   
-
 }
 
 export default BoardListWrap;

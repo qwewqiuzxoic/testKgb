@@ -5,6 +5,7 @@ import TextAreaGroup from '../commonStyle/TextAreaGroup';
 
 import styled from 'styled-components';
 import { compose } from 'redux';
+import { useSelector } from 'react-redux';
 
 const Wrapper = styled.div`
 `;
@@ -47,52 +48,62 @@ const Label = styled.div`
     margin-top: 10px;
 
 `
-function PopUpDesc({data}) {
-    const list = data;
-    console.log(list)
-  return (
-      <Wrapper>
-            <Header>
-                <img src={process.env.PUBLIC_URL + '/images/logo.svg'} alt="icon" />
-            </Header>
-            <Content>
-                <TopCont>
-                    <Row>
-                        <Dt>점검일</Dt>
-                        <Dd>{list[0].date}</Dd>
-                    </Row>
-                    <Row>
-                        <Dt>실사자</Dt>
-                        <Dd>{list[0].name1}</Dd>
-                    </Row>
-                    <Row>
-                        <Dt>고객명</Dt>
-                        <Dd>{list[0].name1}</Dd>
-                    </Row>
-                    <Row>
-                        <Dt>지역</Dt>
-                        <Dd>{list[0].region}</Dd>
-                    </Row>
-                    <Row>
-                        <Dt>출발지주소</Dt>
-                        <Dd>{list[0].addr1}</Dd>
-                    </Row>
-                    <Row>
-                        <Dt>도착지주소</Dt>
-                        <Dd>{list[0].addr2}</Dd>
-                    </Row>               
-                </TopCont>
-                <BottomCont>
-                <InputGroup id="check0" title="특기사항" value=" "/>
-                <InputGroup id="check1" title="지적사항" value=" "/>
-                <InputGroup id="check2" title="현장 실사의견" value=" "/>
-                    <Label>사진</Label>
-                    <img src={process.env.PUBLIC_URL + '/images/dummyImg.jpg'} alt="dummy" />
-                </BottomCont>
-            </Content>
-      </Wrapper>
-      
-  );
+function PopUpDesc() {
+
+    const {data,loading} = useSelector(state => state.pictureCheckDetailReducer)
+    console.log(data)
+  if(loading){
+      return (
+          <div>
+              로딩중
+          </div>
+      )
+  } else{
+    return (
+        <Wrapper>
+           <Header>
+                  <img src={process.env.PUBLIC_URL + '/images/logo.svg'} alt="icon" />
+              </Header>
+              <Content>
+                  <TopCont>
+                      <Row>
+                          <Dt>점검일</Dt>
+                          <Dd>{data.daymove}</Dd>
+                      </Row>
+                      <Row>
+                          <Dt>실사자</Dt>
+                          <Dd>{data.namechecker}</Dd>
+                      </Row>
+                      <Row>
+                          <Dt>고객명</Dt>
+                          <Dd>{data.custname}</Dd>
+                      </Row>
+                      <Row>
+                          <Dt>지역</Dt>
+                          <Dd>{data.region}</Dd>
+                      </Row>
+                      <Row>
+                          <Dt>출발지주소</Dt>
+                          <Dd>{data.staddr}</Dd>
+                      </Row>
+                      <Row>
+                          <Dt>도착지주소</Dt>
+                          <Dd>{data.edaddr}</Dd>
+                      </Row>               
+                  </TopCont>
+                  <BottomCont>
+                  <InputGroup id="check0" title="특기사항" value=" "/>
+                  <InputGroup id="check1" title="지적사항" value=" "/>
+                  <InputGroup id="check2" title="현장 실사의견" value=" "/>
+                      <Label>사진</Label>
+                      <img src={process.env.PUBLIC_URL + '/images/dummyImg.jpg'} alt="dummy" />
+                  </BottomCont>
+              </Content>
+        </Wrapper>
+        
+    );
+  }
+  
 }
 
 export default PopUpDesc;

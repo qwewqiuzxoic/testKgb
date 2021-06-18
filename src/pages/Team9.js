@@ -2,6 +2,9 @@ import React, {useState}from 'react';
 import Head from '../components/commonStyle/Head';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 import styled from 'styled-components';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPhoneList } from '../redux/thunkFn/phoneList.thunk';
 
 
 const Wrapper = styled.div`
@@ -84,11 +87,11 @@ const data = [
   {region: '서울남부(권역장)', agent:'KGB 강남대리점', name: '박정구5', call: '010-1234-4565'}, 
   {region: '서울동부(권역장)', agent:'KGB 강남대리점', name: '박정구6', call: '010-1234-4566'}, 
 ]
-const Row = ({region,agent, name, call}) => (
+const Row = ({region,agent, name, call,head}) => (
   <TableRow className="row">
     <div>{region}</div>
     <div>{agent}</div>
-    <div>{name}</div>
+    <div>{name}{head === "Y"?"(권역장)":null}</div>
     <div>{call}</div>  
   </TableRow>
 );
@@ -98,16 +101,27 @@ function Team9() {
   const [tableData, setTableData] = useState(data);
   const [tab,setTab]= useState(0);
   const rows = tableData.map( (rowData) => <Row {...rowData} />);
-
+  const dispatch = useDispatch();
+  const list = useSelector(state=>state.phoneListReducer.list)
+  const user = JSON.parse(localStorage.getItem('user'));       
+  const tabChange = (num,text) =>{
+    dispatch(getPhoneList(1,text));
+    setTab(num)
+  } 
+  useEffect(() => {
+    dispatch(getPhoneList(2,user.brand))
+    return () => {
+    }
+  }, [])
   return (
     <>
       <Wrapper>
         <Head title="권역 및 대표" subtit="KGB의 권역 및 대표입니다" pb="90px"/>
         <Tabs>
-          <TabName className={tab === 0 ? "selected": ""} onClick={()=>setTab(0)}>YCAP</TabName>
-          <TabName className={tab === 1 ? "selected": ""} onClick={()=>setTab(1)}>KGB이사</TabName>
-          <TabName className={tab === 2 ? "selected": ""} onClick={()=>setTab(2)}>YES2404</TabName>
-          <TabName className={tab === 3 ? "selected": ""} onClick={()=>setTab(3)}>YES2404</TabName>
+          <TabName className={tab === 0 ? "selected": ""} onClick={()=>tabChange(0,"YCAP")}>YCAP</TabName>
+          <TabName className={tab === 1 ? "selected": ""} onClick={()=>tabChange(1,"KGB이사")}>KGB이사</TabName>
+          <TabName className={tab === 2 ? "selected": ""} onClick={()=>tabChange(2,"YES2404")}>YES2404</TabName>
+          <TabName className={tab === 3 ? "selected": ""} onClick={()=>tabChange(3,"YES2404")}>YES2404</TabName>
         </Tabs>
         <ContentArea>
           <Table>
@@ -118,7 +132,11 @@ function Team9() {
               <div>전화번호</div>
             </TableHead>
             <TableBody>
-              {rows}
+              {
+                list && list.map((item,index)=>
+                  <Row region={item.code_areaname} agent={item.code_area} head={item.chk_head} name={item.manname} call={item.tel}></Row>
+                )
+              }
             </TableBody>
           </Table>
         </ContentArea>      

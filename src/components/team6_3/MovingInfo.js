@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { workingDayFormDataInput } from '../../redux/actionFn/workingDay';
 import { Gutter, ChangeFont, InputStyle, LabelStyle, SelectStyle} from '../commonStyle';
 import InputGroup from '../commonStyle/InputGroup';
 
@@ -19,13 +21,26 @@ const Input = styled.input`
 `;
 
 function MovingInfo() {
+
+  const dispatch = useDispatch();
+  const data =  useSelector(state =>state.workingDayFormReducer.data);
+  const setInputValue2 = (data) =>{
+    dispatch(workingDayFormDataInput(data))
+  }
+  useEffect(() => {
+    console.log(data)
+    return () => {
+      
+    }
+  }, [])
   return (
     <Wrapper>
         <Label htmlFor="date_moving">이사날짜</Label>
-        <Input type="text" id="date_moving" placeholder="날짜를 선택해주세요"  textAlign="center" onFocus={(e)=> {e.currentTarget.type = "date";e.currentTarget.focus();}} max="9999-12-31"></Input>
-        <InputGroup id="supportName" title="출발지 주소" value=" "/>
-        <InputGroup id="supportName" title="도착지 주소" value=" "/>
-        <InputGroup id="supportName" title="메모" value=" "/>
+        <Input type="text" id="dayWork" name="dayWork"
+        placeholder="날짜를 선택해주세요"  textAlign="center" value={data.dayWork} onFocus={(e)=> {e.currentTarget.type = "date";e.currentTarget.focus();}} onChange={(e)=>{setInputValue2(e)}} max="9999-12-31"></Input>
+        <InputGroup id="startArea" title="출발지 주소" value={data.startArea} setInputValue2={setInputValue2}/>
+        <InputGroup id="arriveArea" title="도착지 주소" value={data.arriveArea} setInputValue2={setInputValue2}/>
+        <InputGroup id="memo" title="메모" value={data.memo} setInputValue2={setInputValue2}/>
     </Wrapper>
   );
 }

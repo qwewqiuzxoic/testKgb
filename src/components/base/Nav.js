@@ -49,6 +49,7 @@ const menuItems = [
             {name: '작업일정(월별)', link:'/Team1'},
             {name: '방문견적 및 개인오더 입력', link:'/Team3_1'},
             {name: '우리팀 톡톡', link:'/board/2'}, 
+
             {name: '팀단체사진 등록', link:'/Team5'}, 
             {name: '지원요청/대기', link:'/Team6_1'}, 
             {name: '긴급연락망', link:'/Team7'}, 
@@ -62,14 +63,14 @@ const menuItems = [
         subMenus: [
             {name: '칭찬글', link:'/board/3'}, 
             {name: '꾸중글', link:'/board/4'}, 
-            {name: '미계약 해피콜', link:'/Manage2_1'}, 
-            {name: '계약 해피콜', link:'/'}, 
+            {name: '미계약 해피콜', link:'/Manage2_1/2'}, 
+            {name: '계약 해피콜', link:'/Manage2_1/1'}, 
             {name: 'A/S현황', link:'/Manage3_1'}, 
             {name: 'A/S처리노하우', link:'/'}, 
-            {name: '현장실사체크리스트', link:'/Manage5_1'}, 
-            {name: '대리점실사체크리스트', link:'/'}, 
-            {name: '자가평가', link:'/Manage11'}, 
-            {name: '월평가(경고현황)', link:'/'}, 
+            {name: '현장실사체크리스트', link:'/Manage5_1/1'}, 
+            {name: '대리점실사체크리스트', link:'/Manage5_1/2'}, 
+            {name: '자가평가', link:'/Manage11_1_4'}, 
+            {name: '월평가(경고현황)', link:'/Team8_1/1'}, 
             {name: '브랜드평가 사진제출', link:'/Manage12'}
         ]
     },

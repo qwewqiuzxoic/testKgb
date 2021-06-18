@@ -66,14 +66,8 @@ function App() {
       return () => {
         }
   }, [user])
-  const [ modalOpenWrite, setModalOpenWrite ] = useState(false)
 
-  const openModalWrite = () => {
-      setModalOpenWrite(true);
-  }
-  const closeModalWrite = () => {
-      setModalOpenWrite(false);
-  }
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -94,17 +88,18 @@ function App() {
                 <PrivateRoute path="/team6_1" component={Team6_1}/>
                 <PrivateRoute path="/team6_3" component={Team6_3}/>
                 <PrivateRoute path="/team7" component={Team7}/>
-                <PrivateRoute path="/Team8_1" component={Team8_1}/>
+                <PrivateRoute path="/Team8_1/:boardTitle" component={Team8_1}/>
                 <PrivateRoute path="/Team9" component={Team9}/>
                 <PrivateRoute path="/Manage1_1" component={Manage1_1}/>
-                <PrivateRoute path="/Manage2_1" component={Manage2_1}/>
-                <PrivateRoute path="/Manage2_2" component={Manage2_2}/>
+                <PrivateRoute path="/Manage2_1/:page" component={Manage2_1}/>
+                <PrivateRoute path="/Manage2_2/:page/:sn" component={Manage2_2}/>
                 <PrivateRoute path="/Manage3_1" component={Manage3_1}/>
-                <PrivateRoute path="/Manage5_1" component={Manage5_1}/>
+                <PrivateRoute path="/Manage5_1/:page" component={Manage5_1}/>
                 <PrivateRoute path="/Manage6" component={Manage6}/>
                 <PrivateRoute path="/Manage9_1" component={Manage9_1}/>
                 <PrivateRoute path="/Manage10_1" component={Manage10_1}/>
                 <PrivateRoute path="/Manage11_1_4" component={Manage11_1_4}/>
+                <PrivateRoute path="/Manage11/:sn" component={Manage11}/>
                 <PrivateRoute path="/Manage11" component={Manage11}/>
                 <PrivateRoute path="/Manage12" component={Manage12}/>
                 <PrivateRoute path="/Manage13" component={Manage13}/>

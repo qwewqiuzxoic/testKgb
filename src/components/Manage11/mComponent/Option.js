@@ -20,12 +20,12 @@ const Radio = styled.input`
     border:1px solid #009B90;
   }
 `;
-function Option({option, updateData,qIndex, check}) {
+function Option({option, updateData,qIndex, check,optionValue,disable}) {
   return (
     <Wrapper>
       {option.map((props,index)=>
       <>
-      <Radio type="radio" defaultChecked={index === check? true:false} id={`a${qIndex}_${index}`} name={`option${qIndex}`} onChange={()=>updateData(qIndex,index)} key={index}/>
+      <Radio disabled={disable} type="radio" defaultChecked={optionValue[index] === check? true:false} id={`a${qIndex}_${index}`} name={`option${qIndex}`} onChange={()=>updateData(qIndex,optionValue[index] )} key={index}/>
       <Box htmlFor={`a${qIndex}_${index}`} name={`option${qIndex}`} >
               {props}
       </Box>

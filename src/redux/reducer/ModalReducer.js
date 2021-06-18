@@ -28,7 +28,7 @@ export default function ModalReducer(state = initialState, action){
             return{
                 ...state,
                 open:true,
-                type:action.data
+                data:action.data
             }
         default : return state;
     }

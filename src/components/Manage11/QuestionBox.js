@@ -14,7 +14,7 @@ const Wrapper = styled.div`
     margin-bottom:12px;
 `;
 
-function QuestionBox({title, subTitle, question, option, updateData, qIndex,page,pageIndex,check}) {
+function QuestionBox({title, subTitle, question, option, updateData, qIndex,page,pageIndex,check, optionValue,disable}) {
     const upDate = updateData;
   if(page === qIndex){}
   return (
@@ -25,7 +25,8 @@ function QuestionBox({title, subTitle, question, option, updateData, qIndex,page
       <Wrapper>
         <Title title={title} subTitle={subTitle}/>
         <Question question={question}/>
-        <Option option={option} updateData={upDate} qIndex={qIndex} check={check}/>
+        <Option option={option} updateData={upDate} qIndex={qIndex} check={check} optionValue={optionValue}
+        disable={disable}/>
       </Wrapper>:
       null
       }

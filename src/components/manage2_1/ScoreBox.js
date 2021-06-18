@@ -17,7 +17,7 @@ const Answer = styled.div`
     color: #ACB6BC;
     span{
         display:inline-block;
-        width:27px;
+        width:auto;
         height:27px;
         border-radius:13.5px;
         text-align:center;
@@ -29,21 +29,18 @@ const Answer = styled.div`
     }
 `;
 
-function ScoreBox({q, score}) {
+function ScoreBox({q, score, answer, text}) {
   return (
     <Wrapper>
         <Question>{q}</Question>
         <Answer score={score}>
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>5</span>
-            <span>6</span>
-            <span>7</span>
-            <span>8</span>
-            <span>9</span>
-            <span>10</span>
+            {answer[0] === "text" ? text===""?<div>답변이 없습니다</div>:<div>{text}</div>:
+                answer && answer.map(item=>
+                    <span>
+                        {item}
+                    </span>
+                    )
+            }
         </Answer>
     </Wrapper>
   );

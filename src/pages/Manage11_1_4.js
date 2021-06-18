@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from '../components/commonStyle/Head';
 import EduBox from '../components/commonStyle/EduBox';
 import Graph from '../components/Manage11_1_4/Graph';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
+import FloatingBtn from '../components/commonStyle/FloatingBtn';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSelfTestList } from '../redux/thunkFn/selfTest.thunk';
 
 const Wrapper = styled.div`
     background:#FAFAFA;
@@ -25,22 +29,38 @@ const GraphWrap = styled.div`
 
 `
 function Manage11_1_4() {
-   
+    const dispatch = useDispatch();
+    const {list, loading,btn_flag} = useSelector(state =>state.selfTestGetList)
+    useEffect(() => {
+        dispatch(getSelfTestList())
+        return () => {
+            
+        }
+    }, [])
   return (
       <Wrapper>
             <Head title="자가평가" subtit="KGB의 자가평가글이 노출됩니다"/>
-            <ContentArea>
-                <EduBox title="홍길동" date="2020.02.28">
-                    <GraphWrap isRed={false}>
-                        <Graph value="50" size="54" strokewidth="2"></Graph>
-                    </GraphWrap>
-                </EduBox>
-                <EduBox title="홍길동" date="2020.02.28">
-                    <GraphWrap isRed={true}>
-                        <Graph value="70" size="54" strokewidth="2"></Graph>
-                    </GraphWrap>
-                </EduBox>
-            </ContentArea>
+            {loading === true ? <div>logind</div>:
+                <ContentArea>
+                    {list.map(item=>{
+                        return(
+                            <Link to={`/Manage11/${item.sn}`}>
+                            <EduBox title={item.manname} date={item.regdate}>
+                                <GraphWrap isRed={false}>
+                                    <Graph value={item.pointtotal} size="54" strokewidth="2"></Graph>
+                                </GraphWrap>
+                            </EduBox>
+                            </Link>
+                        )
+                    })}
+                </ContentArea>
+            }
+        
+            {btn_flag === "N"? null:<div>버튼</div>}
+            <Link to="/Manage11">
+                <FloatingBtn bg="#009B90" icon="ico_add" />
+            </Link>
+
       </Wrapper>
   );
 }
