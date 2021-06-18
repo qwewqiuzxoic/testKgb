@@ -20,8 +20,27 @@ const ContentArea = styled.div`
     position:relative;
   ${Gutter()};
   margin-top:-40px;
-  
 `;
+const Name = styled.div`
+  display:inline-block;
+  font-size: ${(props) => props.theme.fontSizes.s};
+  color:  ${(props) => props.theme.colors.grey2};
+  margin:10px 0 5px;
+  font-weight:bold;
+`
+const Content = styled.div`
+  width:100%;
+  height:260px;
+  padding:15px;
+  text-align: ${(props) => props.textAlign ? props.textAlign : 'left'};
+  background:#F3F7FB;
+  border-radius: 4px;
+  overflow:scroll;
+`;
+const InnerCont = styled.div`
+`;
+
+
 
 function Team8_1({match}) {
     const code = match.params.boardTitle;
@@ -63,8 +82,11 @@ function Team8_1({match}) {
               <InputGroup id="write_writer" title="팀명" value={data.tname} disabled={true}/>
               <InputGroup id="write_pw" title="작성자" value={data.loginname} disabled={true}/>              
               <InputGroup id="write_mail" title="작성일" value={data.regdate} disabled={true}/>
-              <div dangerouslySetInnerHTML={ {__html: data.content} }>
-              </div>
+              <Name>내용</Name>
+              <Content>
+              <InnerCont dangerouslySetInnerHTML={ {__html: data.content} }>
+              </InnerCont>
+              </Content>
             </Modal>
             {/* <Modal open={ modalOpenWrite } close={ closeModalWrite } header="글쓰기">
               <InputGroup id="write_title" title="제목" ph="제목을 입력해주세요"/>
