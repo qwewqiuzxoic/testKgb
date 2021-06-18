@@ -85,7 +85,8 @@ const ListManage2_1 = [
 ]
 
 function Manage5_1({match}) {
-    const page = match.params.page;
+  const page = match.params.page;
+  const [title,subtit] =  page === "1" ? ["현장실사체크 리스트","현장실사체크 리스트 입니다."] : ["대리점실사체크 리스트","대리점실사체크 리스트입니다"];  
   const [tab,setTab]= useState(0);
   const [ modalOpen, setModalOpen ] = useState(false);
 
@@ -112,7 +113,7 @@ function Manage5_1({match}) {
   return (
     <>
       <Wrapper>
-        <Head title="현장실사체크 리스트" subtit="KGB의 현장실사체크 리스트입니다" pb="120px"/>
+        <Head title={title} subtit={subtit} pb="120px"/>
         <Tabs>
           <TabName className={tab === 0 ? "selected": ""} onClick={()=>teamChange(0,"Y")}>우리팀</TabName>
           <TabName className={tab === 1 ? "selected": ""} onClick={()=>teamChange(1,"N")}>다른팀</TabName>
@@ -120,6 +121,7 @@ function Manage5_1({match}) {
         <ContentArea>
             {list.map((item, index)=> (
                 <Box key={index} onClick={()=>openModal(item.sn)}>
+          
                     <RowTitle>
                         <Title>{item.teamname}</Title>
                         <Date>{item.daymove}</Date>

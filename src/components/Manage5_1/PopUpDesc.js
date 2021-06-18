@@ -51,7 +51,6 @@ const Label = styled.div`
 function PopUpDesc() {
 
     const {data,loading} = useSelector(state => state.pictureCheckDetailReducer)
-    console.log(data)
   if(loading){
       return (
           <div>
@@ -92,9 +91,9 @@ function PopUpDesc() {
                       </Row>               
                   </TopCont>
                   <BottomCont>
-                  <InputGroup id="check0" title="특기사항" value=" "/>
-                  <InputGroup id="check1" title="지적사항" value=" "/>
-                  <InputGroup id="check2" title="현장 실사의견" value=" "/>
+                  <InputGroup id="check0" title="특기사항" value={data.MemoCheck} disabled={true}/>
+                  <InputGroup id="check1" title="지적사항" value={data.MemoPoint} disabled={true}/>
+                  <InputGroup id="check2" title="현장 실사의견" value={data.MemoSpecial} disabled={true}/>
                       <Label>사진</Label>
                       <img src={process.env.PUBLIC_URL + '/images/dummyImg.jpg'} alt="dummy" />
                   </BottomCont>

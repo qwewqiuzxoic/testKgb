@@ -55,7 +55,7 @@ function Team8_1({match}) {
                 <BoardListWrap8_1 boardCode={code} onClick={ openModalDetail }/>
             </ContentArea>
             {
-              code === "1" ?null:
+              code === "1" ? null:
               <FloatingBtn bg="#009B90" icon="ico_add" onClick={ openModalWrite }/>
             }
             <Modal open={ modalOpenDetail } close={ closeModalDetail } header="상세내역">
