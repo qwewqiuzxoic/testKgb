@@ -94,9 +94,11 @@ function Manage5_1({match}) {
       console.log(sn)
       setModalOpen(true);
       dispatch(getPictureCheckDetail(page,sn));
+      document.body.style.overflow = 'hidden';
   }
   const closeModal = () => {
       setModalOpen(false);
+      document.body.style.overflow = 'unset';
   }
   const teamChange = (num,team) => {
     setTab(num)

@@ -8,24 +8,22 @@ const Wrapper = styled.div`
 `;
 const Question = styled.div`
     font-size:${(props) => props.theme.fontSizes.s};
-    margin-bottom:4px;
+    margin-bottom:16px;
 `;
 const Answer = styled.div`
-    ${ChangeFont(true,200)}
-    ${FlexBox()};
-    font-size:${(props) => props.theme.fontSizes.s};
-    color: #ACB6BC;
     span{
-        display:inline-block;
-        width:auto;
-        height:27px;
-        border-radius:13.5px;
-        text-align:center;
-        line-height: 27px;;
+        display: block;
+  background: #F2F6F8;
+  color: #ACB6BC;
+  font-size:  ${(props) => props.theme.fontSizes.xs};
+  padding: 14px 15px;
+  margin-bottom: 8px;
+  border-radius: 4px;
     }
     span:nth-child(${(props) => props.score}) {
-        background: #3397B9;
-        color:#fff;
+    background: #fff;
+    color: #404345;
+    border:1px solid #009B90;
     }
 `;
 

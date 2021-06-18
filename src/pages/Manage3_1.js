@@ -13,16 +13,19 @@ const Wrapper = styled.div`
 `;
 const Tabs = styled.div`
     position:absolute;
+    width:100%;
     ${Gutter()};
-    ${FlexBox('')};
+    ${FlexBox('left')};
     margin-top:-102px;
 `;
 const TabName = styled.div`
+    width:48%;
     ${ChangeFont(true)};
     color : rgba(255, 255, 255, .7);
     padding: 12px 18px;
     border-radius: 20px;
     cursor:pointer;
+    text-align:center;
     &.selected{
       background : rgba(255, 255, 255, .3);
       color: #FFFFFF;

@@ -83,7 +83,7 @@ function Modal2({modalOpen,closeModal}) {
                 </Section> 
                 <Section>
                     <ModalTit>메모내용</ModalTit>
-                    <p>지원대기입니다 지원대기입니다 지원대기입니다 지원대기입니다 지원대기입니다 지원대기입니다</p>
+                    <p>{data.memo}</p>
                 </Section> 
             </Box>
         </Modal>    
