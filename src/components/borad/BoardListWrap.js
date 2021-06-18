@@ -5,9 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import styled from 'styled-components';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../commonStyle';
+import Loading from '../commonStyle/Loading';
 
 
 const Wrapper = styled.div`
+  position:relative;
 
 `;
 
@@ -29,7 +31,8 @@ function BoardListWrap({check, teamCheck,adu}) {
       {list.map((post, index)=> (
           <BoardList key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index} loginname={post.loginname} tname={post.tname} countview={post.countview} cnt={post.cnt} />
       ))}
-      {loading ? <div style={{position:'fixed',top:"100px",width:"200px",height:"200px",background:"red",left:"200px"}}>로딩중</div>:null}
+      {loading ? <Loading/>:null}
+
     </Wrapper>
   );
 

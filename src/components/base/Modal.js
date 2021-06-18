@@ -40,7 +40,9 @@ const Section = styled.div`
     margin:0 auto;
     border-radius: ${(props) => props.full ? '0' : '30px 30px 0 0'};
     background-color: ${(props) => props.bg ? props.bg : '#fff'};
-    overflow: hidden;
+    overflow: scroll;
+    padding-bottom:50px;
+
 `
 const Header = styled.div`
     position: relative;
