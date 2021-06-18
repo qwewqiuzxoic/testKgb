@@ -87,6 +87,16 @@ function Team8_1({match}) {
               <InnerCont dangerouslySetInnerHTML={ {__html: data.content} }>
               </InnerCont>
               </Content>
+              <div>
+                {
+                  data.attfiles && data.attfiles.map(item =>
+                      <div>
+                        <Name>파일 다운로드</Name>
+                        <a href={item.file_url} download={item.file_url}>{item.file_name}</a>
+                      </div>
+                    )
+                }
+              </div>
             </Modal>
             {/* <Modal open={ modalOpenWrite } close={ closeModalWrite } header="글쓰기">
               <InputGroup id="write_title" title="제목" ph="제목을 입력해주세요"/>

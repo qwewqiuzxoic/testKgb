@@ -48,6 +48,24 @@ const Label = styled.div`
     margin-top: 10px;
 
 `
+const Name = styled.div`
+  display:inline-block;
+  font-size: ${(props) => props.theme.fontSizes.s};
+  color:  ${(props) => props.theme.colors.grey2};
+  margin:10px 0 5px;
+  font-weight:bold;
+`
+const Contents = styled.div`
+  width:100%;
+  padding:15px;
+  text-align: ${(props) => props.textAlign ? props.textAlign : 'left'};
+  background:#F3F7FB;
+  border-radius: 4px;
+
+`;
+const InnerCont = styled.div`
+`;
+
 function PopUpDesc() {
 
     const {data,loading} = useSelector(state => state.pictureCheckDetailReducer)
@@ -91,11 +109,54 @@ function PopUpDesc() {
                       </Row>               
                   </TopCont>
                   <BottomCont>
-                  <InputGroup id="check0" title="특기사항" value={data.MemoCheck} disabled={true}/>
-                  <InputGroup id="check1" title="지적사항" value={data.MemoPoint} disabled={true}/>
-                  <InputGroup id="check2" title="현장 실사의견" value={data.MemoSpecial} disabled={true}/>
-                      <Label>사진</Label>
-                      <img src={process.env.PUBLIC_URL + '/images/dummyImg.jpg'} alt="dummy" />
+                  <Name>특기사항</Name>
+                    <Contents>
+                    <InnerCont dangerouslySetInnerHTML={ {__html: data.MemoCheck} }>
+                    </InnerCont>
+                  </Contents>
+                  <Name>지적사항</Name>
+                    <Contents>
+                    <InnerCont dangerouslySetInnerHTML={ {__html: data.MemoPoint} }>
+                    </InnerCont>
+                  </Contents>
+                  <Name>현장 실사의견</Name>
+                    <Contents>
+                    <InnerCont dangerouslySetInnerHTML={ {__html: data.MemoSpecial} }>
+                    </InnerCont>
+                  </Contents>
+                    {
+                        data.list && !data.Content ?  
+                        
+                            data.list.length === 0 ?
+                            <div>
+                                <Label>사진</Label>
+                                <div>사진없음</div>
+                            </div>
+                            :
+                            data.list.map(item=>
+                                <div>
+                                    <Label>사진</Label>
+                                    <img src={`http://mis.kgb.co.kr/BM/API/auth/file_binary.asp?fileSn=${item.img_bizcheck}&codeFile=체크리스트`}/>
+                                    <br />
+                                </div>
+                                
+                                )
+                        
+                        :
+                            data.Content.length === 0 ?
+                            <div>
+                                <Label>사진</Label>
+                                <div>사진없음</div>
+                            </div>
+                            :
+                            <div>
+                                <Label>사진</Label>
+                                <div dangerouslySetInnerHTML={ {__html: data.Content} }></div>
+                            </div>
+                    
+                    }
+                      {/* <Label>사진</Label>
+                      <img src={process.env.PUBLIC_URL + '/images/dummyImg.jpg'} alt="dummy" /> */}
                   </BottomCont>
               </Content>
         </Wrapper>
