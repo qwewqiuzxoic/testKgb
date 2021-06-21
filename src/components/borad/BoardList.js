@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../commonStyle';
 
 const Wrapper = styled.div`
-    background: ${(props) => props.theme.colors.white};
+    background: ${(props) => props.className === 'important' ? '#F3F7FB' : props.theme.colors.white};
     border-radius: ${(props) => props.index === 0 ? '4px 4px 0 0' : '0'};
     border-bottom:1px solid #DFE5EA;
     padding:15px;
@@ -21,6 +21,14 @@ const Title = styled.div`
 	/* height = line-height * line = 1.2em * 3 = 3.6em  */
 	line-height: 1.2em;
 	height: 2.4em;
+  &.important, &.notice{
+    display: static;
+    -webkit-line-clamp: 1; /* ellipsis line */
+    -webkit-box-orient: vertical;
+    line-height: 1.2em;
+    height: 1.2em;
+    margin-bottom:8px;
+  }
   span{
     color:#82898E;
     font-size:13px;
@@ -29,6 +37,7 @@ const Title = styled.div`
 const PostInfo = styled.div`
   ${FlexBox('left')}
   span{
+    display: ${(props) => props.className === 'important' || props.className === 'notice' ? 'none' : 'block'};
     content:'';
     width:1px;
     height:10px;
@@ -47,18 +56,21 @@ const Date = styled.div`
 `;
 
 
-function BoardList({title, regdate, board_sn, index, loginname ,tname, cnt,countview}) {
+function BoardList({title, regdate, board_sn, index, loginname ,tname, cnt,countview,adu,typeCheck, classname}) {
+   const type = typeCheck?1:2
    
   return (
-    <Wrapper index={index}>
-        <Title>
-          <Link to={`/boarddetail/${board_sn}`}>
+    <Wrapper index={index} className={classname}>
+        <Title className={classname}>
+          <Link to={adu?`/boarddetail/${board_sn}/${type}`:`/boarddetail/${board_sn}`}>
             {title}
           </Link>
           <span> [11]</span>
         </Title>
-        <PostInfo>
+        <PostInfo className={classname}>
+          { classname ? "" :
           <Writer>{loginname}</Writer>
+          }
           <span></span>
           <Date>{regdate}</Date>
         </PostInfo>
