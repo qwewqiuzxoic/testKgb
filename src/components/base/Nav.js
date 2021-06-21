@@ -88,10 +88,10 @@ const menuItems = [
     {
         name: '교육', 
         subMenus: [
-            {name: '교육공지 / 이용안내', link:'/'}, 
+            {name: '교육공지 / 이용안내', link:'/board/6'}, 
             {name: '교육일정 / 신청', link:'/'}, 
             {name: '교육참석내역', link:'/Edu8_9'}, 
-            {name: '교육자료실(일반 / 영상)', link:'/'}, 
+            {name: '교육자료실(일반 / 영상)', link:'/board/7'}, 
             {name: '이수대상 교육', link:'/'}, 
             {name: '교육평가', link:'/'}, 
             {name: '실시간 화상교육', link:'/Manage9_1'}, 

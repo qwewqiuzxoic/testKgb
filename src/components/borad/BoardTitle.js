@@ -39,7 +39,6 @@ const TabName = styled.div`
 `;
 
 function BoardTitle({title, subtit, check, boardSubName, changeTeamNm, tab,boardTeamNm}) {
-  console.log(boardTeamNm)
   return (
     <Wrapper>
       <TopBg>

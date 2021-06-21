@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom'
 
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBoardList, getBoardTopList, postRMDBoard } from '../redux/thunkFn/borad.thunk';
+import { getBoardList, getBoardTopList, getEduBoardList, getEduMovieBoardList, postRMDBoard } from '../redux/thunkFn/borad.thunk';
 import { boardInit, boardPostInput, boardPostLoginInput, boardPostModifyInput } from '../redux/actionFn/board';
 
 const Wrapper = styled.div`
@@ -77,7 +77,8 @@ function Board({match}) {
       subtit:"",
       check:false,
       teamNm:true,
-      add:false
+      add:false,
+      adu:false
     });
     
     const [boardSubName, setBoardSubName] = useState({
@@ -90,6 +91,17 @@ function Board({match}) {
         ...boardName,
         teamNm:check
       })
+      pageCount.current = 1;
+      if(boardName.adu && boardName.teamNm && boardName.check === true){
+        dispatch(getEduMovieBoardList(user.brand,boardName.name,pageCount.current))
+      } else if(boardName.adu && !boardName.teamNm){
+        dispatch(getEduBoardList(user.brand,boardName.name,pageCount.current))
+      }else if(boardName.check === true && !boardName.adu && boardName.teamNm){
+        dispatch(getBoardList(user.brand,boardName.name,pageCount.current))
+      }else if(boardName.check === true && !boardName.adu && !boardName.teamNm){
+        dispatch(getBoardList(user.brand,boardName.name,pageCount.current))
+      }
+
     }
     const dispatch = useDispatch();
     const infiniteScroll = () => {
@@ -124,7 +136,8 @@ function Board({match}) {
           subtit:"KGB의 자유게시판서비스입니다",
           check:false,
           teamNm:true,
-          add:true
+          add:true,
+          adu:false
         })
       }else if(boardCodeNm === 2){
         setBoardName({
@@ -134,7 +147,8 @@ function Board({match}) {
           subtit:"KGB의 우리팀 톡톡입니다",
           check:false,
           teamNm:true,
-          add:true
+          add:true,
+          adu:false
         })   
         
       }else if(boardCodeNm === 3){
@@ -145,7 +159,8 @@ function Board({match}) {
           subtit:"KGB의 칭찬글서비스입니다",
           check:true,
           teamNm:true,
-          add:false
+          add:false,
+          adu:false
         })    
         setBoardSubName({
           ...boardSubName,
@@ -160,7 +175,8 @@ function Board({match}) {
           subtit:"KGB의 꾸중글서비스입니다",
           check:true,
           teamNm:true,
-          add:false
+          add:false,
+          adu:false
         })    
         setBoardSubName({
           ...boardSubName,
@@ -175,19 +191,49 @@ function Board({match}) {
           subtit:"KGB의 공지사항입니다",
           check:false,
           teamNm:true,
-          add:false
+          add:false,
+          adu:false
         })    
+      }else if(boardCodeNm === 6){
+        setBoardName({
+          ...boardName,
+          name:"교육공지",
+          title:"교육공지/이용안내",
+          subtit:"KGB의 교육공지/이용안내입니다",
+          check:false,
+          teamNm:true,
+          add:false,
+          adu:false
+        })    
+      }else if(boardCodeNm === 7){
+        setBoardName({
+          ...boardName,
+          name:"교육자료실",
+          title:"교육자료실",
+          subtit:"KGB의 육자료실입니다",
+          check:true,
+          teamNm:true,
+          add:false,
+          adu:true
+        })    
+        setBoardSubName({
+          ...boardSubName,
+          name1:"일반교육자료",
+          name2:"영상교육자료"
+        }) 
       }
       if(boardTitle !== boardName.name){
         dispatch(boardInit())
         pageCount.current = 1;
       }
-      if(boardName.name==="소사장공지사항"){
+      if(boardName.name==="소사장공지사항" || boardName.name==="교육공지"){
         if(boardTitle===""){
           dispatch(getBoardList(user.brand,boardName.name,pageCount.current))
           dispatch(getBoardTopList(user.brand,boardName.name))
         }
         
+      } else if(boardName.name === "교육자료실"){
+        dispatch(getEduBoardList(user.brand,boardName.name,pageCount.current))
       } else if(boardName.name !== ""){
         dispatch(getBoardList(user.brand,boardName.name,pageCount.current))
       }
@@ -210,7 +256,6 @@ function Board({match}) {
             <BoardListWrap check={boardName.check} teamCheck={boardName.teamNm} adu={boardName.adu} boardTeamNm={boardName.teamNm} classname="notice"/> :
             <BoardListWrap check={boardName.check} teamCheck={boardName.teamNm} adu={boardName.adu} boardTeamNm={boardName.teamNm}/>
             }
-                
             </ContentArea>
             
             {

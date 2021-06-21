@@ -6,7 +6,7 @@ import Button from '../components/commonStyle/Button';
 
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBoardDetail } from '../redux/thunkFn/borad.thunk';
+import { getBoardDetail, getEduBoardDetail, getEduMovieBoardDetail, getEduMovieBoardList } from '../redux/thunkFn/borad.thunk';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -66,11 +66,21 @@ const ButtonArea = styled.div`
 function BoardDetail({match}) {
   const number = match.params.number;
   const sn = match.params.sn;
+  const type = match.params.type;
   const dispatch = useDispatch();
 
   const boardDetail = useSelector(state => state.boardDetailReducer.data);
   useEffect(() => {
+    console.log(type)
+    console.log(sn)
+    if(type === undefined){
       dispatch(getBoardDetail(sn))
+    }else if(type === "1"){
+      dispatch(getEduBoardDetail(sn))
+    }else if(type === "2"){
+      dispatch(getEduMovieBoardDetail(sn))
+    }
+      
   }, [])
   console.log(boardDetail)
   const [openPass,setOpenPass] = useState(false);
@@ -116,8 +126,8 @@ function BoardDetail({match}) {
               <Date>{boardDetail.regdate}</Date>
             </PostInfo>
             <Desc>
-              <img src={process.env.PUBLIC_URL + '/images/dummyImg.jpg'} alt="icon" />
-              <p>dfsdfsdf</p>
+              {/* <img src={process.env.PUBLIC_URL + '/images/dummyImg.jpg'} alt="icon" />
+              <p>dfsdfsdf</p> */}
             </Desc>
             </ContentBox>
             <ButtonArea>
