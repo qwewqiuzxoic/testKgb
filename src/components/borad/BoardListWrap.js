@@ -10,10 +10,10 @@ import Loading from '../commonStyle/Loading';
 
 const Wrapper = styled.div`
   position:relative;
-
 `;
 
-function BoardListWrap({check, teamCheck,adu,boardTeamNm}) {
+
+function BoardListWrap({check, teamCheck,adu,boardTeamNm, classname }) {
     const user = JSON.parse(localStorage.getItem('user'));
     const state = useSelector(state => state.boardReducer.boardList);
     const loading = useSelector(state => state.boardReducer.loading);
@@ -28,9 +28,10 @@ function BoardListWrap({check, teamCheck,adu,boardTeamNm}) {
       }
     }, [state])
   return (
-    <Wrapper>
+
+    <Wrapper className={classname}>
       {list.map((post, index)=> (
-          <BoardList key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index} loginname={post.loginname} tname={post.tname} countview={post.countview} cnt={post.cnt} adu={adu} typeCheck={boardTeamNm}/>
+          <BoardList key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index} loginname={post.loginname} tname={post.tname} countview={post.countview} cnt={post.cnt} adu={adu} typeCheck={boardTeamNm} classname={classname}/>
       ))}
       {loading ? <Loading/>:null}
 
