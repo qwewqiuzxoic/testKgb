@@ -236,6 +236,14 @@ export const eduPointUseInit = {
     message:""
 }
 
+export const eduSurveyListInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+    list:[]
+}
+
 //as 현황 리스트
 export const asInit = {
     loading:false,
@@ -265,6 +273,20 @@ export const asCommentInit = {
     result:"",
     message:""
 }
+
+export const billListInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+    list:[]
+}
+export const billDetailInit = {
+    loading:false,
+    error:"",
+    data:{}    
+}
+
 
 export const orderIndividual = {
     data: {

@@ -47,27 +47,16 @@ const BtnArea = styled.div`
     margin-top: -16px;
 `
 
-const ConfirmModal = ( props ) => {
-    const {  close, title, text } = props;
-    const open = typeof(props.open) ==="object" ? props.open.check: props.open
+const ConfirmModal = ( {open, text, onsubmit} ) => {
     return (
         <Wrapper className={ open ? 'openModal modal' : 'modal' }>
             { open ? (
                 <>
                 <Section>
                     <Header>
-                        {title}
+                        {text}
                     </Header>
-                    <Contents>
-                        {text.split("<br/>").map((line) => {
-                            return (
-                                <span>
-                                  {line}
-                                  <br />
-                                </span>
-                              );
-                            })}
-                    </Contents>
+                    
                     <BtnArea>
                         <Button onclick={onsubmit} bg="#3397B9" color="#ffffff" text="확인" height="44px" fontSize="12px" mgt="30px"></Button>  
                     </BtnArea>   

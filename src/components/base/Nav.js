@@ -105,7 +105,7 @@ const menuItems = [
         name: '본사업무',
         subMenus: [
             {name: '청구서관리', link:'/Bill'}, 
-            {name: '일반자료실', link:'/'}, 
+            {name: '일반자료실', link:'/board/9'}, 
             {name: '자재주문', link:'/'}, 
             {name: '자재주문내역', link:'/'}, 
             {name: '홈페이지연결', link:'/'}, 

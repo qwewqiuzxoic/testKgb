@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Gutter, ChangeFont, FlexBox } from '../commonStyle';
 import Row from '../bill/Row';
 import PayBox from '../bill/PayBox';
+import { useSelector } from 'react-redux';
 
 
 const Wrapper = styled.div`
@@ -64,42 +65,46 @@ const Total = styled.div`
     margin:4px 0 12px;
 `;
 const Detail = () => {
-
+    const data = useSelector(state => state.billDetailReducer.data);
+    console.log(data)
     return (
         <Wrapper>
             <Head>
                 <Subtit>내청구서</Subtit>
-                <Title>2021년 01월 청구서</Title>
+                <Title>{data.billtitle }</Title>
             </Head>
             <Bg>
                 <TopRow>
-                    <Team>서울 1팀<span>(홍길동)</span></Team>
-                    <Num>YESMAN NO : 2460</Num>
+                    <Team>{data.teamname}<span>{data.manname}</span></Team>
+                    {/* <Num>YESMAN NO : 2460</Num> */}
                 </TopRow>
                 <Section>
                     <Bold>청구금액</Bold>
-                    <Row dt="상표 사용료" dd="270,000원"/>
-                    <Row dt="전화착실료" dd="0원"/>
-                    <Row dt="교육비" dd="0원"/>
-                    <Row dt="연체료" dd="0원"/>
-                    <Row dt="위약금" dd="0원"/>
-                    <Row dt="기타" dd="0원"/>
+                    <Row dt="상표 사용료" dd={data.yesmanno}/>
+                    <Row dt="전화착실료" dd={data.moneytelarrival}/>
+                    <Row dt="교육비" dd={data.moneyedu}/>
+                    <Row dt="특별교육비" dd={data.moneysedu}/>
+                    <Row dt="연체료" dd={data.moneyadd}/>
+                    <Row dt="위약금" dd={data.moneypenalty}/>
+                    <Row dt="가입금" dd={data.moneyenterence}/>
+                    <Row dt="보증금" dd={data.moneypromise}/>
+                    <Row dt="전화권" dd={data.moneyteluse}/>
                 </Section>
                 <Section>
-                    <Row dt="합계" dd="270,000원"/>
-                    <Row dt="전월미수금" dd="0원"/>
-                    <Row dt="청구합계" dd="270,000원"/>
+                    <Row dt="합계" dd={data.moneytotal}/>
+                    <Row dt="전월미수금" dd={data.moneyunpaid}/>
+                    <Row dt="청구합계" dd={data.moneyreqtotal}/>
                 </Section>
                 <Section last="last">
                     <Total>총 청구금액</Total>
-                    <Row dt="입금액" dd="0원" ddWeight='bold' ddColor='#009B90'/>
-                    <Row dt="잔액" dd="270,000원" ddWeight='bold' ddColor='#009B90'/>
+                    <Row dt="입금액" dd={data.incommoney} ddWeight='bold' ddColor='#009B90'/>
+                    <Row dt="잔액" dd={data.reserverpay} ddWeight='bold' ddColor='#009B90'/>
                 </Section>
             </Bg>
             {/* 신용카드결제 부분입니다 */}
             <PayBox isCard={true}/>
             {/* 신용카드결제 부분입니다 */}
-            <PayBox isCard={false}/>
+            <PayBox isCard={false} bankname={data.bankname} contbrand={data.contbrand} bankaccount={data.bankaccount}/>
         </Wrapper>
     );
   };

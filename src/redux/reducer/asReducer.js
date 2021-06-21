@@ -132,6 +132,10 @@ export function postAsCommentReducer(state = asCommentInit,action){
                 result:"",
                 message:""
             }
+        case "AS_POST_COMMENT_INIT":
+            return{
+                ...asCommentInit
+            }
         default:
             return state;
     }

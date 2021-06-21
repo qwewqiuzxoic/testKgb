@@ -1,5 +1,5 @@
 import axios from "axios";
-import {  EduPointUseError, EduPointUseLoading, EduPointUseSuccess, getAduAttendListError, getAduAttendListLoading, getAduAttendListSuccess } from "../actionFn/eduAttend";
+import {  EduPointUseError, EduPointUseLoading, EduPointUseSuccess, eduSurveyError, eduSurveyLoading, eduSurveySuccess, getAduAttendListError, getAduAttendListLoading, getAduAttendListSuccess } from "../actionFn/eduAttend";
 
 const user = JSON.parse(localStorage.getItem('user'));       
 
@@ -31,4 +31,20 @@ export const usePointEvnet= (point=0,nowPoint) => dispatch => {
         }).catch(function (error) {
             dispatch(EduPointUseError(error))
         })
+}
+//교육설문 리스트
+export const getEduSurveyList = () => dispatch => {
+    dispatch(eduSurveyLoading());
+    const url = '/BM/API/edu/edu_survey_list.asp';
+        axios.post(url, {
+            man_info_sn : user.man_info_sn,
+            brand : user.brand
+        }).then(function (res) {
+            console.log(res)
+            dispatch(eduSurveySuccess(res.data));
+        }).catch(function (error) {
+            dispatch(eduSurveyError(error))
+        })
+
+
 }

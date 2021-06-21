@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from '../components/commonStyle/Head';
 import EduBox from '../components/commonStyle/EduBox';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { getEduSurveyList } from '../redux/thunkFn/eduAttend.thunk';
+import Loading from '../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
     background:#FAFAFA;
@@ -29,15 +32,34 @@ const BlueBtn = styled.div`
     color:#ffffff;
 `;
 function Manage13() {
+    const dispatch = useDispatch();
+    const {list,loading} = useSelector(state=>state.eduSurveyListReducer);
+    useEffect(() => {
+        dispatch(getEduSurveyList());
+        return () => {
+            
+        }
+    }, [])
    
   return (
       <Wrapper>
             <Head title="교육설문" subtit="KGB의 교육설문입니다"/>
             <ContentArea>
-                <EduBox title="교육설문" date="2020.02.28">
-                    <BlueBtn>설문</BlueBtn>
-                </EduBox>
+                {
+                    list && list.map((item,index) => 
+                    <EduBox title={item.title} date={item.edu_date}>
+                        {item.edu_time}
+                        {item.proc}
+                        {item.board_sn}
+                        {item.url}
+                        {item.proc === "Y" ? <BlueBtn>설문</BlueBtn> : <BlueBtn>설문 종료</BlueBtn>}
+                    </EduBox>
+                    )
+                }
             </ContentArea>
+            {
+                loading && <Loading></Loading>
+            }
       </Wrapper>
   );
 }

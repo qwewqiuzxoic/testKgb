@@ -232,12 +232,23 @@ function Board({match}) {
           add:true,
           adu:false
         })    
+      }else if(boardCodeNm === 9){
+        setBoardName({
+          ...boardName,
+          name:"자료실",
+          title:"일반자료실",
+          subtit:"KGB의 일반자료실입니다",
+          check:false,
+          teamNm:true,
+          add:false,
+          adu:false
+        })    
       }
       if(boardTitle !== boardName.name){
         dispatch(boardInit())
         pageCount.current = 1;
       }
-      if(boardName.name==="소사장공지사항" || boardName.name==="교육공지"){
+      if(boardName.name==="소사장공지사항" || boardName.name==="교육공지" || boardName.name==="자료실"){
         if(boardTitle===""){
           dispatch(getBoardList(user.brand,boardName.name,pageCount.current))
           dispatch(getBoardTopList(user.brand,boardName.name))
@@ -256,7 +267,7 @@ function Board({match}) {
       <Wrapper>
             <BoardTitle  title={boardName.title} subtit={boardName.subtit} check={boardName.check} boardSubName={boardSubName} changeTeamNm={changeTeamNm} boardTeamNm={boardName.teamNm}/>
             <ContentArea>
-            { boardName.name==="소사장공지사항" || boardName.name==="교육공지" ?list.map((item,index)=>{
+            { boardName.name==="소사장공지사항" || boardName.name==="교육공지" ||boardName.name==="자료실" ?list.map((item,index)=>{
               return (
                 <NoticeWrap>
                   <BoardList key={index} title={item.title} regdate={item.regdate} board_sn={item.board_sn} index={index} loginname={item.loginname} tname={item.tname} countview={item.countview} cnt={item.cnt} adu={item.adu} typeCheck={item.teamNm} classname="important"/>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GroupTitle from '../commonStyle/GroupTitle'
 import InputGroup from '../commonStyle/InputGroup'
 import Button from '../commonStyle/Button'
@@ -7,9 +7,10 @@ import CommentList from './CommentList'
 
 import styled from 'styled-components';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../commonStyle';
-import { useDispatch } from 'react-redux';
-import { postAsComment } from '../../redux/thunkFn/as.thunk';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getAsDetail, postAsComment } from '../../redux/thunkFn/as.thunk';
+import ConfirmModal from '../../components/base/ConfirmModal';
+import { postAsCommentInit } from '../../redux/actionFn/as';
 const Wrapper = styled.div`
   ${BottomBox()};
   ${Gutter()};
@@ -19,10 +20,16 @@ const Wrapper = styled.div`
 function CommentBox({title, subtit, showCheck, commentlist,sn}) {
   const [text,setText] = useState("");
   const dispatch = useDispatch();
+  const {result,message} = useSelector(state => state.postAsCommentReducer)
   const commentSubmit = () =>{
-    dispatch(postAsComment(text,sn))
-    console.log(text)
+    dispatch(postAsComment(text,sn));
   }
+  const confirmSubmit = () =>{
+    dispatch(getAsDetail(sn));
+    dispatch(postAsCommentInit());
+    setText("");
+  }
+
   return (
     <Wrapper>
        {showCheck &&
@@ -33,6 +40,9 @@ function CommentBox({title, subtit, showCheck, commentlist,sn}) {
        </div>
        }
         <CommentList list={commentlist}/>
+        {result ==="success"?<ConfirmModal open={true} text={message} onsubmit={confirmSubmit}></ConfirmModal>:null}
+
+        
     </Wrapper>
   );
 }

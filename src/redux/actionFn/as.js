@@ -1,4 +1,4 @@
-import { AS_GET_DETAIL_ERROR, AS_GET_DETAIL_LOADING, AS_GET_DETAIL_SUCCESS, AS_GET_LIST_CONCAT_ERROR, AS_GET_LIST_CONCAT_LOADING, AS_GET_LIST_CONCAT_SUCCESS, AS_GET_LIST_ERROR, AS_GET_LIST_LOADING, AS_GET_LIST_SUCCESS, AS_POST_COMMENT_ERROR, AS_POST_COMMENT_LOADING, AS_POST_COMMENT_SUCCESS } from "../types/as.type"
+import { AS_GET_DETAIL_ERROR, AS_GET_DETAIL_LOADING, AS_GET_DETAIL_SUCCESS, AS_GET_LIST_CONCAT_ERROR, AS_GET_LIST_CONCAT_LOADING, AS_GET_LIST_CONCAT_SUCCESS, AS_GET_LIST_ERROR, AS_GET_LIST_LOADING, AS_GET_LIST_SUCCESS, AS_POST_COMMENT_ERROR, AS_POST_COMMENT_INIT, AS_POST_COMMENT_LOADING, AS_POST_COMMENT_SUCCESS } from "../types/as.type"
 
 export const getAsListSuccess = (data) =>{
     return{
@@ -62,6 +62,7 @@ export const getAsDetailError = (data) =>{
     }
 }
 
+//댓글달기
 export const postAsCommentSuccess = (data) =>{
     return{
         type:AS_POST_COMMENT_SUCCESS,
@@ -79,5 +80,11 @@ export const postAsCommentError = (data) =>{
     return{
         type:AS_POST_COMMENT_ERROR,
         data
+    }   
+}
+
+export const postAsCommentInit = () =>{
+    return{
+        type:AS_POST_COMMENT_INIT
     }   
 }

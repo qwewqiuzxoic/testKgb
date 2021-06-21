@@ -14,21 +14,41 @@ const Section = styled.div`
     ${Gutter('10px 0')};
     ${(props) => props.last ? '' : 'border-bottom: 1px solid #DFE5EA'};
 `;
-const List = () => {
+const List = (props) => {
 
     return (
         <Wrapper>
             <Section>
-                <Row dt="고지일" dd="2019.01.01" ddSize="10px" ddColor="#ACB6BC"/>
+                <Row dt="고지일" dd={props.daybill} ddSize="10px" ddColor="#ACB6BC"/>
             </Section>
             <Section>
-                <Row dt="전월미수금" dd="0원"/>
-                <Row dt="가입분납금" dd="0원"/>
+                {
+                   props.moneyunpaid !=="0" && <Row dt="전월미수금" dd={props.moneyunpaid}/>
+                }
+                {
+                   props.moneyenterence !=="0" && <Row dt="가입금" dd={props.moneyenterence}/>
+
+                }
+                {
+                   props.moneypromise !=="0" && <Row dt="보증금" dd={props.moneypromise}/>
+                }
+                {
+                   props.moneymonthly !=="0" && <Row dt="이번달이용료" dd={props.moneymonthly}/>
+                }
+                {
+                   props.moneytelarrival !=="0" && <Row dt="전화착신료" dd={props.moneytelarrival}/>
+                }
+                {
+                   props.moneyteluse !=="0" && <Row dt="전화권" dd={props.moneyteluse}/>
+                }
                 <div>-</div>
-                <Row dt="연체료" dd="0원"/>
+                {
+                   props.moneyadd !=="0" && <Row dt="연체료" dd={props.moneyadd}/>
+                }
+                
             </Section>
             <Section last="last">
-                <Row dt="고지액" dd="0원" ddWeight='bold' ddColor='#009B90' />
+                <Row dt="합계" dd={props.moneytotal} ddWeight='bold' ddColor='#009B90' />
             </Section>
         </Wrapper>
     );
