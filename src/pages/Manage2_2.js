@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHappyCallDetail } from '../redux/thunkFn/happyCall.thunk';
 import QuestionBox from '../components/Manage11/QuestionBox';
+import Loading from '../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -87,7 +88,7 @@ function Manage2_2({match}) {
     const [title,subtit] =  page === "1" ? ["계약 해피콜","KGB의 계약 해피콜입니다"] : ["미계약 해피콜","KGB의 미계약 해피콜입니다"];  
     const [tab,setTab]= useState(0);
     const dispatch = useDispatch();
-    const {data,loadng} = useSelector(state=>state.happyCallDetailReducer);
+    const {data,loading} = useSelector(state=>state.happyCallDetailReducer);
     const {list} = useSelector(state=>state.happyCallDetailReducer.data);
     useEffect(() => {
         dispatch(getHappyCallDetail(page,sn))
@@ -100,11 +101,12 @@ function Manage2_2({match}) {
     <>
       <Wrapper>    
         <Head title={title} subtit={subtit} pb="90px"/>
-        <Tabs>
+        {/* <Tabs>
           <TabName className={tab === 0 ? "selected": ""} onClick={()=>setTab(0)}>우리팀</TabName>
           <TabName className={tab === 1 ? "selected": ""} onClick={()=>setTab(1)}>다른팀</TabName>
-        </Tabs>
+        </Tabs> */}
         <ContentArea>
+            {loading && <Loading></Loading>}
             <Search id="search1" ph="이사일/입력일 기준으로 월별검색해주세요"/>
                 {/* Manage2_1과 이부분만 다름 */}
                 <Box>

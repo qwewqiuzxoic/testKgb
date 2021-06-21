@@ -35,15 +35,14 @@ const Desc = styled.div`
     color:#82898E;
 `;
 
-function Comment({}) {
+function Comment({text}) {
   return (
     <Wrapper>
         <PostInfo>
-          <Writer>장재면</Writer>
-          <span></span>
-          <Date>2021 .01 .01 07:55:47</Date>
+          {/* <Writer>장재면</Writer> */}
+          {/* <Date>2021 .01 .01 07:55:47</Date> */}
         </PostInfo>
-        <Desc>60팀 장재면은 60팀장 5톤차량변경으로 다른팀으로 팀 이동을 요청합니다</Desc>
+        <Desc dangerouslySetInnerHTML={ {__html: text} }></Desc>
     </Wrapper>
   );
 }

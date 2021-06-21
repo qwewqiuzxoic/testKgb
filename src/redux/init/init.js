@@ -236,6 +236,35 @@ export const eduPointUseInit = {
     message:""
 }
 
+//as 현황 리스트
+export const asInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+    list:[]
+}
+
+//as 현황 상세보기
+export const asDetailInit= {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+    strLoginname:"",
+    regdate:"",
+    strContents:"",
+    asresult:"",
+    list:[]
+}
+
+//as 현황 댓글
+export const asCommentInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:""
+}
 
 export const orderIndividual = {
     data: {

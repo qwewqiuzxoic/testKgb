@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHappyCallList } from '../redux/thunkFn/happyCall.thunk';
 import { Link } from 'react-router-dom';
-
+import Loading from '../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -99,6 +99,9 @@ function Manage2_1({match}) {
           <TabName className={tab === 1 ? "selected": ""} onClick={()=>teamChange(1,"N")}>다른팀</TabName>
         </Tabs>
         <ContentArea>
+          {
+            loading && <Loading></Loading>
+          }
             {/* <Search id="search1" ph="이사일/입력일 기준으로 월별검색해주세요"/> */}
             {list.map((item, index)=> (
                 <Link to={`/Manage2_2/${page}/${item.sn}`}>

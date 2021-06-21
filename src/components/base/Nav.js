@@ -66,7 +66,7 @@ const menuItems = [
             {name: '미계약 해피콜', link:'/Manage2_1/2'}, 
             {name: '계약 해피콜', link:'/Manage2_1/1'}, 
             {name: 'A/S현황', link:'/Manage3_1'}, 
-            {name: 'A/S처리노하우', link:'/'}, 
+            {name: 'A/S처리노하우', link:'/board/8'}, 
             {name: '현장실사체크리스트', link:'/Manage5_1/1'}, 
             {name: '대리점실사체크리스트', link:'/Manage5_1/2'}, 
             {name: '자가평가', link:'/Manage11_1_4'}, 

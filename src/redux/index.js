@@ -11,6 +11,7 @@ import {happyCallListReducer,happyCallDetailReducer} from './reducer/happyCallRe
 import {warningListReducer,warningDetailReducer} from './reducer/warningReducer'
 import phoneListReducer from './reducer/phoneListReducer'
 import {eduAttendListReducer,usePointReducer} from './reducer/eduAttendReducer'
+import {getAsListReducer,getAsDetailReducer} from './reducer/asReducer'
 
 
 
@@ -40,6 +41,8 @@ const rootReducer = combineReducers({
     warningDetailReducer,
     phoneListReducer,
     eduAttendListReducer,
-    usePointReducer
+    usePointReducer,
+    getAsListReducer,
+    getAsDetailReducer
 });
 export default rootReducer;

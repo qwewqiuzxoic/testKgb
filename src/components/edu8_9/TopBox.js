@@ -5,6 +5,7 @@ import { Gutter, FlexBox, ChangeFont } from '../commonStyle';
 import Row from '../bill/Row';
 import { useDispatch, useSelector } from 'react-redux';
 import { usePointEvnet } from '../../redux/thunkFn/eduAttend.thunk';
+import Loading from '../../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
     position:relative;
@@ -93,6 +94,7 @@ const TopBox = () => {
                 </Group>
                 <Button onclick={usePointFn} bg='#3397B9' color='#ffffff' text='점수 사용하기' w='90px' h='25px' fs='11px'/>
             </UseScoreWrap>
+            {loading && <Loading></Loading>}
             {message !== "" && result === "fail" ?<div style={{"color":"red"}}>{message}</div>: null}
             {message !== "" && result === "success" ?<div style={{"color":"green"}}>{message}</div>: null}
             {message === "" && result === "" ?<br/>: null}

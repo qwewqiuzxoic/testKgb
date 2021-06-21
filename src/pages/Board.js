@@ -111,7 +111,6 @@ function Board({match}) {
   
       if (scrollTop + clientHeight >= scrollHeight) {
         pageCount.current += 1;
-        console.log(pageCount)
         dispatch(getBoardList(user.brand,boardName.name,pageCount.current))
 
       }
@@ -121,7 +120,7 @@ function Board({match}) {
     }
     const data =  useSelector(state =>state.boardPostReducer.data);
     useEffect(() => {
-      window.addEventListener('scroll',infiniteScroll)
+      window.addEventListener('scroll',infiniteScroll);
       if(boardCodeNm === 1){
         setBoardName({
           ...boardName,
@@ -215,6 +214,18 @@ function Board({match}) {
           name1:"일반교육자료",
           name2:"영상교육자료"
         }) 
+      }
+      else if(boardCodeNm === 8){
+        setBoardName({
+          ...boardName,
+          name:"A/S처리노하우",
+          title:"A/S처리노하우",
+          subtit:"KGB의 A/S처리노하우입니다",
+          check:false,
+          teamNm:true,
+          add:true,
+          adu:false
+        })    
       }
       if(boardTitle !== boardName.name){
         dispatch(boardInit())

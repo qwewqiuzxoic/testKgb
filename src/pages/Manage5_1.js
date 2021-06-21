@@ -8,6 +8,7 @@ import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyl
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPictureCheckDetail, getPictureCheckList } from '../redux/thunkFn/pictureCheck.thunk';
+import Loading from '../components/commonStyle/Loading';
 
 
 const Wrapper = styled.div`
@@ -105,7 +106,7 @@ function Manage5_1({match}) {
     dispatch(getPictureCheckList(page,team))
   }
   const dispatch = useDispatch();
-  const {list} = useSelector(state => state.pictureCheckReducer);
+  const {list,loading} = useSelector(state => state.pictureCheckReducer);
   useEffect(() => {
       dispatch(getPictureCheckList(page,"Y"))
       return () => {
@@ -147,6 +148,7 @@ function Manage5_1({match}) {
                 </Box>
             ))}
         </ContentArea>
+        {loading && <Loading></Loading>}
         <PopUp open={ modalOpen } close={ closeModal } btnX={true}>
             <PopUpDesc data={ListManage2_1}/>
         </PopUp>      

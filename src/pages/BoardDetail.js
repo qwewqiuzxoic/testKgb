@@ -7,6 +7,8 @@ import Button from '../components/commonStyle/Button';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBoardDetail, getEduBoardDetail, getEduMovieBoardDetail, getEduMovieBoardList } from '../redux/thunkFn/borad.thunk';
+import { getAsDetail } from '../redux/thunkFn/as.thunk';
+import Loading from '../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -62,6 +64,8 @@ const ButtonArea = styled.div`
   ${FlexBox()}
   margin:30px 0;
 `;
+const InnerCont = styled.div`
+`;
 
 function BoardDetail({match}) {
   const number = match.params.number;
@@ -70,19 +74,19 @@ function BoardDetail({match}) {
   const dispatch = useDispatch();
 
   const boardDetail = useSelector(state => state.boardDetailReducer.data);
+  const data = useSelector(state => state.getAsDetailReducer);
   useEffect(() => {
-    console.log(type)
-    console.log(sn)
     if(type === undefined){
-      dispatch(getBoardDetail(sn))
+      dispatch(getBoardDetail(sn));
     }else if(type === "1"){
-      dispatch(getEduBoardDetail(sn))
+      dispatch(getEduBoardDetail(sn));
     }else if(type === "2"){
-      dispatch(getEduMovieBoardDetail(sn))
+      dispatch(getEduMovieBoardDetail(sn));
+    }else if(type === "3" ||type === "4"){
+      dispatch(getAsDetail(sn));
     }
       
   }, [])
-  console.log(boardDetail)
   const [openPass,setOpenPass] = useState(false);
   const onclick= () => {
     setOpenPass(true)
@@ -102,43 +106,86 @@ function BoardDetail({match}) {
       setOpenModifyModal(false);
     }
   }
-  return ( 
-    <Wrapper>
-      {
-        openPass?
-        <div>
-          <input onChange={(e)=>{onchange(e)}} value={checkPass}/>
-          <button onClick={confirmPass}>
-            aaaaa
-          </button>
-        </div>
-        :
-        null
-      }
-        <BoardTitle/>
-        <ContentArea>
-          <ContentBox>
-            <Title>
-            {boardDetail.title}
-            </Title>
-            <PostInfo>
-              <Writer>{boardDetail.loginid}({boardDetail.tname})</Writer>
-              <Date>{boardDetail.regdate}</Date>
-            </PostInfo>
-            <Desc>
-              {/* <img src={process.env.PUBLIC_URL + '/images/dummyImg.jpg'} alt="icon" />
-              <p>dfsdfsdf</p> */}
-            </Desc>
-            </ContentBox>
-            <ButtonArea>
-              <Button onclick={onclick} bg="#DFE5EA" color="#ACB6BC" text="수정" w="24%" h="44px" fs="12px"></Button>
-              <Button bg="#DFE5EA" color="#ACB6BC" text="삭제" w="24%" h="44px" fs="12px"></Button>
-              <Button bg="#3397B9" color="#ffffff" text="목록" w="49%" h="44px" fs="12px"></Button>
-            </ButtonArea>
-        </ContentArea>
-        <CommentBox></CommentBox>
-    </Wrapper>
-  );
+
+  if( type === "3" ||type === "4" ) {
+      return (
+        <Wrapper>
+          {data.loading && <Loading></Loading>}
+          {
+            openPass?
+            <div>
+              <input onChange={(e)=>{onchange(e)}} value={checkPass}/>
+              <button onClick={confirmPass}>
+                aaaaa
+              </button>
+            </div>
+            :
+            null
+          }
+            <BoardTitle/>
+            <ContentArea>
+              <ContentBox>
+                {/* <Title>
+                {data.title}
+                </Title> */}
+                <PostInfo>
+                  <Writer>{data.strLoginname}({data.tname})</Writer>
+                  <Date>{data.regdate}</Date>
+                </PostInfo>
+                <Desc>
+                <InnerCont dangerouslySetInnerHTML={ {__html: data.strContents} }>
+                </InnerCont>
+                </Desc>
+                </ContentBox>
+                <ButtonArea>
+                  <Button onclick={onclick} bg="#DFE5EA" color="#ACB6BC" text="수정" w="24%" h="44px" fs="12px"></Button>
+                  <Button bg="#DFE5EA" color="#ACB6BC" text="삭제" w="24%" h="44px" fs="12px"></Button>
+                  <Button bg="#3397B9" color="#ffffff" text="목록" w="49%" h="44px" fs="12px"></Button>
+                </ButtonArea>
+            </ContentArea>
+            <CommentBox showCheck={type ==="3"? true:false} commentlist={data.list} sn={sn}></CommentBox>
+        </Wrapper>
+      );
+  } else {
+    return (
+      <Wrapper>
+        {
+          openPass?
+          <div>
+            <input onChange={(e)=>{onchange(e)}} value={checkPass}/>
+            <button onClick={confirmPass}>
+              aaaaa
+            </button>
+          </div>
+          :
+          null
+        }
+          <BoardTitle/>
+          <ContentArea>
+            <ContentBox>
+              <Title>
+              {boardDetail.title}
+              </Title>
+              <PostInfo>
+                <Writer>{boardDetail.loginid}({boardDetail.tname})</Writer>
+                <Date>{boardDetail.regdate}</Date>
+              </PostInfo>
+              <Desc>
+                {/* <img src={process.env.PUBLIC_URL + '/images/dummyImg.jpg'} alt="icon" />
+                <p>dfsdfsdf</p> */}
+              </Desc>
+              </ContentBox>
+              <ButtonArea>
+                <Button onclick={onclick} bg="#DFE5EA" color="#ACB6BC" text="수정" w="24%" h="44px" fs="12px"></Button>
+                <Button bg="#DFE5EA" color="#ACB6BC" text="삭제" w="24%" h="44px" fs="12px"></Button>
+                <Button bg="#3397B9" color="#ffffff" text="목록" w="49%" h="44px" fs="12px"></Button>
+              </ButtonArea>
+          </ContentArea>
+          <CommentBox></CommentBox>
+      </Wrapper>
+    );
+  }
+
 }
 
 export default BoardDetail;
