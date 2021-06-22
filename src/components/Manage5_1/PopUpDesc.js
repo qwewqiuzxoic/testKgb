@@ -6,6 +6,7 @@ import TextAreaGroup from '../commonStyle/TextAreaGroup';
 import styled from 'styled-components';
 import { compose } from 'redux';
 import { useSelector } from 'react-redux';
+import Loading from '../../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
 `;
@@ -71,9 +72,7 @@ function PopUpDesc() {
     const {data,loading} = useSelector(state => state.pictureCheckDetailReducer)
   if(loading){
       return (
-          <div>
-              로딩중
-          </div>
+        <Loading></Loading>
       )
   } else{
     return (

@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import Button from '../commonStyle/Button';
 import { Gutter, FlexBox, ChangeFont } from '../commonStyle';
 import { useSelector } from 'react-redux';
+import Loading from '../../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
     margin-top: 25px;
@@ -82,9 +83,7 @@ const TopBox = () => {
     const rows2 = list2.map( (rowData) => <Row1 {...rowData} />);
     if(loading){
       return (
-        <div>
-          로딩중
-        </div>
+        <Loading></Loading>
       )
     }else{
       return (

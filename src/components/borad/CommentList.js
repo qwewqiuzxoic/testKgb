@@ -20,15 +20,19 @@ const Title = styled.div`
         ${ChangeFont(true)}
     }
 `;
-function CommentList({}) {
+function CommentList({list}) {
   return (
     <Wrapper>
         <Title>
             <GroupTitle title="댓글"/>
-            <span>4</span>
+            {list && <span>{list.length}</span>}
         </Title>
+        {list && list.map((item,index) => 
+          <Comment key={index} text={item.as_content}>
+          </Comment>
+        )}
         {/* map합수로 comment들어가기? */}
-        <Comment/>
+        
     </Wrapper>
   );
 }

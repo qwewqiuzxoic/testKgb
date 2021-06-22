@@ -1,4 +1,4 @@
-import { eduAttendListInit, eduPointUseInit } from "../init/init";
+import { eduAttendListInit, eduPointUseInit, eduSurveyListInit } from "../init/init";
 
 
 export function eduAttendListReducer(state = eduAttendListInit, action) {
@@ -76,5 +76,41 @@ export function usePointReducer(state=eduPointUseInit,action){
                 message:""
             }
         default:return state
+    }
+}
+
+
+
+//교육 설문 리듀서
+export function eduSurveyListReducer(state = eduSurveyListInit, action){
+    switch(action.type){
+        case "EDUSURVEY_LIST_SUCCESS":
+            return{
+                ...state,
+                loading:false,
+                error:"",
+                result:action.data.result,
+                message:action.data.message,
+                list:action.data.list
+            }
+        case "EDUSURVEY_LIST_LOADING":
+            return{
+                ...state,
+                loading:true,
+                error:"",
+                result:"",
+                message:"",
+                list:[]
+            }
+        case "EDUSURVEY_LIST_ERROR":
+            return{
+                ...state,
+                loading:false,
+                error:"",
+                result:"",
+                message:"",
+                list:[]
+            }
+        default :return state;
     }
 }

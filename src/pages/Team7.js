@@ -98,17 +98,18 @@ const Row = ({num, name, call}) => (
 
 function Team7() {
   const [tableData, setTableData] = useState(data);
-  const [tab,setTab]= useState(0);
+  const [tab,setTab]= useState("");
   const rows = tableData.map( (rowData) => <Row {...rowData} />);
   const dispatch = useDispatch();
   const list = useSelector(state=>state.phoneListReducer.list)
   const user = JSON.parse(localStorage.getItem('user')); 
   const tabChange = (num,text) =>{
     dispatch(getPhoneList(1,text));
-    setTab(num)
+    setTab(text);
   } 
   useEffect(() => {
-    dispatch(getPhoneList(1,user.brand))
+    dispatch(getPhoneList(1,user.brand));
+    setTab(user.brand);
     return () => {
     }
   }, [])
@@ -118,10 +119,10 @@ function Team7() {
       <Wrapper>
         <Head title="긴급연락망" subtit="KGB의 긴급연락망입니다" pb="90px"/>
         <Tabs>
-          <TabName className={tab === 0 ? "selected": ""} onClick={()=>tabChange(0,"YCAP")}>YCAP</TabName>
-          <TabName className={tab === 1 ? "selected": ""} onClick={()=>tabChange(1,"KGB이사")}>KGB이사</TabName>
-          <TabName className={tab === 2 ? "selected": ""} onClick={()=>tabChange(2,"YES2404")}>YES2404</TabName>
-          <TabName className={tab === 3 ? "selected": ""} onClick={()=>tabChange(3,"YES2404")}>YES2404</TabName>
+          <TabName className={tab === "YCAP" ? "selected": ""} onClick={()=>tabChange(0,"YCAP")}>YCAP</TabName>
+          <TabName className={tab === "KGB이사" ? "selected": ""} onClick={()=>tabChange(1,"KGB이사")}>KGB이사</TabName>
+          <TabName className={tab === "YES2404" ? "selected": ""} onClick={()=>tabChange(2,"YES2404")}>YES2404</TabName>
+          <TabName className={tab === "YES24041" ? "selected": ""} onClick={()=>tabChange(3,"YES24041")}>YES2404</TabName>
         </Tabs>
         <ContentArea>
           <TableTitle title="가맹차주 (서울)" color = "#009B90"/>

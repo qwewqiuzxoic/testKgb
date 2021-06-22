@@ -12,6 +12,7 @@ import Button from '../components/commonStyle/Button';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHappyCallDetail, warningCallList } from '../redux/thunkFn/warning.thunk';
+import Loading from '../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -82,6 +83,8 @@ function Team8_1({match}) {
               <FloatingBtn bg="#009B90" icon="ico_add" onClick={ openModalWrite }/>
             }
             <Modal open={ modalOpenDetail } close={ closeModalDetail } header="상세내역">
+            {loading && <Loading></Loading>}
+
               <InputGroup id="write_title" title="제목" value={data.title} disabled={true}/>
               <InputGroup id="write_pw" title="작성자" value={data.loginname} disabled={true}/>              
               <InputGroup id="write_mail" title="작성일" value={data.regdate} disabled={true}/>

@@ -78,7 +78,7 @@ const Caution = styled.div`
 `;
 
 
-const PayBox = ({isCard}) => {
+const PayBox = ({isCard,bankname,contbrand,bankaccount}) => {
 
     return (
         <Wrapper>
@@ -97,9 +97,9 @@ const PayBox = ({isCard}) => {
             :
             <>
             <Title>현금 결제안내</Title>
-            <Row dt="결제계좌" dd="485-003506-01-100" ddWeight='bold'></Row>
-            <Row dt="은행" dd="기업은행" ddWeight='bold'></Row>
-            <Row dt="예금주" dd="KGB(주)" ddWeight='bold'></Row>
+            <Row dt="결제계좌" dd={bankaccount} ddWeight='bold'></Row>
+            <Row dt="은행" dd={bankname} ddWeight='bold'></Row>
+            <Row dt="예금주" dd={contbrand} ddWeight='bold'></Row>
             <Caution top='3px' left='0px'>현금 결제 전 꼭 확인해주세요 !</Caution>
             <InfoList>
                 <li>반드시 실명으로 입금해주시기 바랍니다.</li>

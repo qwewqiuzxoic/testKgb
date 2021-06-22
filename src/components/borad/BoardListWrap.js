@@ -21,7 +21,6 @@ function BoardListWrap({check, teamCheck,adu,boardTeamNm, classname }) {
       (data.tname === user.teamname) === teamCheck
     );
     useEffect(() => {
-      console.log(boardTeamNm)
 
       return () => {
         

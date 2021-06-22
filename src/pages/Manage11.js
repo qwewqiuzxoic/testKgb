@@ -9,6 +9,7 @@ import TextArea from '../components/Manage11/mComponent/TextArea';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSelfTestQuestion, getSelfTestResult, postSelfTest } from '../redux/thunkFn/selfTest.thunk';
 import { Link, useHistory } from 'react-router-dom';
+import Loading from '../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -103,7 +104,7 @@ function Manage11({match}) {
         dispatch(postSelfTest(data.reslut,data.text,callback))
     }
     const dispatch = useDispatch();
-    const list = useSelector(state=> sn!==undefined? state.selfTestGetResult.list:state.selfTestGetQuestion.list);
+    const {list,loading} = useSelector(state=> sn!==undefined? state.selfTestGetResult:state.selfTestGetQuestion);
    useEffect(() => {
        if(sn !== undefined){
             dispatch(getSelfTestResult(sn,callback));
@@ -118,6 +119,7 @@ function Manage11({match}) {
     <Wrapper>
         <Head title="자가평가" subtit="KGB의 자가평가글입니다"/>
         <ContentArea>
+            {loading && <Loading></Loading>}
             <Paging>진행률 : <PageNow>0{data.page}</PageNow><PageTotal>/05</PageTotal></Paging>
         {
             list.map((props, index)=>

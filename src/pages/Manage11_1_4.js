@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import FloatingBtn from '../components/commonStyle/FloatingBtn';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSelfTestList } from '../redux/thunkFn/selfTest.thunk';
+import Loading from '../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
     background:#FAFAFA;
@@ -40,7 +41,7 @@ function Manage11_1_4() {
   return (
       <Wrapper>
             <Head title="자가평가" subtit="KGB의 자가평가글이 노출됩니다"/>
-            {loading === true ? <div>logind</div>:
+            {loading === true ? <Loading></Loading>:
                 <ContentArea>
                     {list.map((item,i)=>{
                         return(
