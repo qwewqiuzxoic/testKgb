@@ -243,7 +243,14 @@ export const eduSurveyListInit = {
     message:"",
     list:[]
 }
-
+//교육 이수 리스트
+export const eduisuListInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+    list:[]
+}
 //as 현황 리스트
 export const asInit = {
     loading:false,
@@ -281,11 +288,57 @@ export const billListInit = {
     message:"",
     list:[]
 }
+
+//청구서
 export const billDetailInit = {
     loading:false,
     error:"",
     data:{}    
 }
+
+//받은쪽지함
+export const msgRcvListInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+    list:[]   
+}
+
+//보낸쪽지함
+export const msgSendListInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+    list:[]  
+}
+
+//쪽지 삭제
+export const msgDelInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+}
+
+//쪽지 주소록 검색
+export const msgSearchAddInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+    list:[]
+}
+
+//쪽지보내기
+export const msgPostInit={
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+}
+
 
 
 export const orderIndividual = {

@@ -6,12 +6,12 @@ const Wrapper = styled.div`
 
 `;
 
-const Checkbox = ({ isAllChecked, issue, checkedItemHandler }) => {
+const Checkbox = ({ isAllChecked, issue, checkedItemHandler,index }) => {
     const [bChecked, setChecked] = useState(false);
 
     const checkHandler = ({ target }) => {
         setChecked(!bChecked);
-        checkedItemHandler(issue.id, target.checked);
+        checkedItemHandler(issue.msg_sn, target.checked);
       };
     
       const allCheckHandler = () => setChecked(isAllChecked);
@@ -20,7 +20,7 @@ const Checkbox = ({ isAllChecked, issue, checkedItemHandler }) => {
 
     return (
       <Wrapper>
-        <CheckGroup id={issue.id} name={issue.id} onChange={(e) => checkHandler(e)} checked={bChecked}/>          
+        <CheckGroup id={`msg_${index}`} name={`msg_${index}`} onChange={(e) => checkHandler(e)} checked={bChecked}/>          
         {/* <input type="checkbox" checked={bChecked} onChange={(e) => checkHandler(e)} /> */}
       </Wrapper>
     );

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {  EduPointUseError, EduPointUseLoading, EduPointUseSuccess, eduSurveyError, eduSurveyLoading, eduSurveySuccess, getAduAttendListError, getAduAttendListLoading, getAduAttendListSuccess } from "../actionFn/eduAttend";
+import {  eduisuError, eduisuLoading, eduisuSuccess, EduPointUseError, EduPointUseLoading, EduPointUseSuccess, eduSurveyError, eduSurveyLoading, eduSurveySuccess, getAduAttendListError, getAduAttendListLoading, getAduAttendListSuccess } from "../actionFn/eduAttend";
 
 const user = JSON.parse(localStorage.getItem('user'));       
 
@@ -44,6 +44,22 @@ export const getEduSurveyList = () => dispatch => {
             dispatch(eduSurveySuccess(res.data));
         }).catch(function (error) {
             dispatch(eduSurveyError(error))
+        })
+
+
+}
+
+export const getEduisuList = () => dispatch => {
+    dispatch(eduisuLoading());
+    const url = '/BM/API/edu/edu_isu_list.asp';
+        axios.post(url, {
+            man_info_sn : user.man_info_sn,
+            brand : user.brand
+        }).then(function (res) {
+            console.log(res)
+            dispatch(eduisuSuccess(res.data));
+        }).catch(function (error) {
+            dispatch(eduisuError(error))
         })
 
 

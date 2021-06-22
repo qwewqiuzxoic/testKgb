@@ -21,22 +21,38 @@ const CheckLabel = styled.label`
 	cursor: pointer;
 `;
 
-function SelectLists() {
+function SelectLists({list, rcvList, addList}) {
 
   return (
+    
       <Wrapper>
-        <CheckBox type="checkbox" name="addr" id="id1"/>
-        <CheckLabel htmlFor="id1">
-          <span>서울북부지역 김길동 (서울2팀)</span>
-        </CheckLabel>
-        <CheckBox type="checkbox" name="addr" id="id2"/>
-        <CheckLabel htmlFor="id2">
-          <span>서울북부지역 김길동 (서울2팀)</span>
-        </CheckLabel>
-        <CheckBox type="checkbox" name="addr" id="id3"/>
-        <CheckLabel htmlFor="id3">
-          <span>서울북부지역 김길동 (서울2팀)</span>
-        </CheckLabel>
+        { list && list.map((item,index) => {
+          if(rcvList.indexOf(item.MAN_INFO_SN)>0){
+            return(
+            <div key={index}>
+            <CheckBox type="checkbox" name={`addr_${index}`} id={`addr_${index}`} onChange={(e)=>addList(item.UNAME,item.TNAME,item.MAN_INFO_SN,e)} checked={true} value={item.UNAME}/>
+            <CheckLabel htmlFor={`addr_${index}`}>
+              <span>{item.UNAME}({item.TNAME})</span>
+            </CheckLabel>
+          </div>
+            )
+          }else{
+            return(
+              <div key={index}>
+            <CheckBox type="checkbox" name={`addr_${index}`} id={`addr_${index}`} onChange={(e)=>addList(item.UNAME,item.TNAME,item.MAN_INFO_SN,e)} value={item.UNAME}/>
+            <CheckLabel htmlFor={`addr_${index}`}>
+              <span>{item.UNAME}({item.TNAME})</span>
+            </CheckLabel>
+          </div>
+            )
+          }
+          
+        }
+         
+          
+          )}
+        
+      
       </Wrapper>
       
   );

@@ -1,4 +1,4 @@
-import { eduAttendListInit, eduPointUseInit, eduSurveyListInit } from "../init/init";
+import { eduAttendListInit, eduisuListInit, eduPointUseInit, eduSurveyListInit } from "../init/init";
 
 
 export function eduAttendListReducer(state = eduAttendListInit, action) {
@@ -103,6 +103,39 @@ export function eduSurveyListReducer(state = eduSurveyListInit, action){
                 list:[]
             }
         case "EDUSURVEY_LIST_ERROR":
+            return{
+                ...state,
+                loading:false,
+                error:"",
+                result:"",
+                message:"",
+                list:[]
+            }
+        default :return state;
+    }
+}
+
+export function eduisuListReducer(state = eduisuListInit, action){
+    switch(action.type){
+        case "EDUISU_LIST_SUCCESS":
+            return{
+                ...state,
+                loading:false,
+                error:"",
+                result:action.data.result,
+                message:action.data.message,
+                list:action.data.list
+            }
+        case "EDUISU_LIST_LOADING":
+            return{
+                ...state,
+                loading:true,
+                error:"",
+                result:"",
+                message:"",
+                list:[]
+            }
+        case "EDUISU_LIST_ERROR":
             return{
                 ...state,
                 loading:false,

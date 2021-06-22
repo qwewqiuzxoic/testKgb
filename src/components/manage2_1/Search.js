@@ -34,11 +34,11 @@ const BtnSearch = styled.div`
     }
 `;
 
-function Search({id, ph}) {
+function Search({id, ph,value, onchange,onclick}) {
   return (
     <Wrapper>
-        <Input type="text" id={id} placeholder={ph}></Input>
-        <BtnSearch>
+        <Input type="text" id={id} placeholder={ph} value={value}onChange={(e)=>onchange(e.target.value)}></Input>
+        <BtnSearch onClick={onclick}>
             <img src={process.env.PUBLIC_URL + '/images/ico_search.svg'} alt="search" />
         </BtnSearch>
     </Wrapper>

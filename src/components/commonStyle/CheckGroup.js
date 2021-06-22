@@ -26,8 +26,7 @@ const CheckLabel = styled.label`
 `;
 
 function CheckGroup({id, name, label, onChange, checked}) {
-  
-  return (
+  return (  
     <Wrapper>
         <CheckBox type="checkbox" name={name} id={id} onChange={onChange} checked={checked}/>
         <CheckLabel htmlFor={id}>

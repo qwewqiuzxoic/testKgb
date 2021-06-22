@@ -10,9 +10,10 @@ import {pictureCheckReducer,pictureCheckDetailReducer} from './reducer/pictureCh
 import {happyCallListReducer,happyCallDetailReducer} from './reducer/happyCallReducer'
 import {warningListReducer,warningDetailReducer} from './reducer/warningReducer'
 import phoneListReducer from './reducer/phoneListReducer'
-import {eduAttendListReducer,usePointReducer, eduSurveyListReducer} from './reducer/eduAttendReducer'
+import {eduAttendListReducer,usePointReducer, eduSurveyListReducer,eduisuListReducer} from './reducer/eduAttendReducer'
 import {getAsListReducer,getAsDetailReducer,postAsCommentReducer} from './reducer/asReducer'
 import {billDetailReducer,billListReducer} from './reducer/billReducer'
+import { msgDelReducer, msgSendListReducer, msgRcvListReducer, msgAddReducer,msgSendReducer} from './reducer/msgReducer'
 
 
 
@@ -42,12 +43,18 @@ const rootReducer = combineReducers({
     warningDetailReducer,
     phoneListReducer,
     eduAttendListReducer,
+    eduisuListReducer,
     usePointReducer,
     getAsListReducer,
     getAsDetailReducer,
     postAsCommentReducer,
     billDetailReducer,
     billListReducer,
-    eduSurveyListReducer
+    eduSurveyListReducer,
+    msgDelReducer,
+    msgSendListReducer,
+    msgRcvListReducer,
+    msgAddReducer,
+    msgSendReducer
 });
 export default rootReducer;
