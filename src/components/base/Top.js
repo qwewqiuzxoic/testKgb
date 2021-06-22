@@ -33,6 +33,10 @@ function Top({setMenu,menu}) {
         return (
             <TopCom clickMenu={clickMenu}/>
         )
+    } else if(url === "/ProdDetail"){
+        return (
+            <TopCom clickMenu={clickMenu} bg='transparent'/>
+        )
     }else if(url === "/"){
         return (
             <TopHome clickMenu={clickMenu}/>

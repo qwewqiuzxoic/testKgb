@@ -8,7 +8,7 @@ import { Gutter, FlexBox } from '../../commonStyle';
 const Wrapper = styled.div`
     width: 100%;
     height: 50px;
-    background: ${(props) => props.theme.colors.primary};
+    background: ${(props) => props.bg ? props.bg : props.theme.colors.primary};
     ${ FlexBox() };
 `
 const IconBack = styled.div`
@@ -47,14 +47,14 @@ const IconMenu = styled.div`
     }
 `
 
-function TopCom({clickMenu}) {
+function TopCom({clickMenu, bg}) {
     let history = useHistory();
     function handleClick() {
         history.goBack();
       }
     
   return (
-    <Wrapper>
+    <Wrapper bg={bg}>
         <IconBack onClick={()=>handleClick()}>
             <img src={process.env.PUBLIC_URL + '/images/ico_back.svg'} alt="icon" />
         </IconBack>
