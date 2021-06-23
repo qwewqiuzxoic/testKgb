@@ -33,9 +33,9 @@ export const usePointEvnet= (point=0,nowPoint) => dispatch => {
         })
 }
 //교육설문 리스트
-export const getEduSurveyList = () => dispatch => {
+export const getEduSurveyList = (page) => dispatch => {
     dispatch(eduSurveyLoading());
-    const url = '/BM/API/edu/edu_survey_list.asp';
+    const url = page === "1"?'/BM/API/edu/edu_survey_list.asp':'/BM/API/edu/edu_isu_list.asp';
         axios.post(url, {
             man_info_sn : user.man_info_sn,
             brand : user.brand

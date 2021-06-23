@@ -49,15 +49,18 @@ const Price = styled.div`
 `;
 
 
-function Products({name, option}) {
+function Products({name, option,price,tPrice,setTPrice,index,FnSetBasket}) {
     const [number, setNumber] = useState(0);
     const increaseNumber = () => { // number의 값을 증가시키는 함수
         setNumber(number + 1);
+        setTPrice(tPrice+parseInt(price));
+        FnSetBasket(index,option ,name ,price, String(number+1));
       };
     
       const decreaseNumber = () => { // number의 값을 감소시키는 함수
         setNumber(number-1 > 0 ? number - 1: 0);
-
+        setTPrice(number-1 >= 0 ? tPrice-parseInt(price):tPrice);
+        FnSetBasket(index,option ,name ,price, String(number-1));
       };
       const handleInputChange = (e) => { 
         setNumber(parseInt(e.target.value))
@@ -65,14 +68,14 @@ function Products({name, option}) {
 
   return (
       <Wrapper>
-        <Name>{ name } / { option }</Name>
+        <Name>{ name } / { option }/{price}</Name>
         <Layout>
             <Qt>
                 <BtnQ onClick={decreaseNumber} isPlus={false}/>
                 <input type='number' value={number} onChange={(e)=>handleInputChange(e)}/>
                 <BtnQ onClick={increaseNumber} isPlus={true}/>
             </Qt>
-            <Price>{parseInt(35200 * number).toLocaleString()}<span>원</span></Price>
+            <Price>{parseInt(price * number).toLocaleString()}<span>원</span></Price>
             {/* 35200 : 제품 가격 */}
         </Layout>
       </Wrapper>

@@ -1,3 +1,11 @@
+//통합
+export const totalMes = {
+    loading:false,
+    message:"",
+    result:"",
+    error:""
+}
+
 
 //로그인 초기상태
 export const authInit = {
@@ -63,16 +71,20 @@ export const boardPostFormModifyInit = {
 
 //일정관련
 export const monthScInit = {
-    data:[],
+    list:[],
     loading: false,
-    error:{}
+    error:{},
+    result:"",
+    message:""
 }
 
 //일정관련
 export const dayScInit = {
-    data:[],
+    list:[],
     loading: false,
-    error:{}
+    error:{},
+    result:"",
+    message:""
 }
 
 //작업일 변경요청 --> 지원 대기 요청 으로 수정
@@ -251,6 +263,13 @@ export const eduisuListInit = {
     message:"",
     list:[]
 }
+//교육 신청  -->schedule
+export const eduSubmitInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+}
 //as 현황 리스트
 export const asInit = {
     loading:false,
@@ -338,6 +357,8 @@ export const msgPostInit={
     result:"",
     message:"",
 }
+
+
 
 
 

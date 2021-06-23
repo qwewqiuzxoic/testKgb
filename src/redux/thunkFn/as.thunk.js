@@ -63,5 +63,4 @@ export const postAsComment = (text,sn) => dispatch =>{
     }).catch(function (error){
         dispatch(postAsCommentError(error));
     })
-
 }

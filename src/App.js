@@ -84,7 +84,7 @@ function App() {
                 <PrivateRoute path="/board/:boardTitle" component={Board}/>
                 <PrivateRoute path="/boarddetail/:sn/:type" component={BoardDetail}/>
                 <PrivateRoute path="/boarddetail/:sn" component={BoardDetail}/>
-                <PrivateRoute path="/team1" component={Team1}/>
+                <PrivateRoute path="/team1/:page" component={Team1}/>
                 <PrivateRoute path="/team2_1" component={Team2_1}/>
                 <PrivateRoute path="/team3_1" component={Team3_1}/>
                 <PrivateRoute path="/team5" component={Team5}/>
@@ -105,14 +105,14 @@ function App() {
                 <PrivateRoute path="/Manage11/:sn" component={Manage11}/>
                 <PrivateRoute path="/Manage11" component={Manage11}/>
                 <PrivateRoute path="/Manage12" component={Manage12}/>
-                <PrivateRoute path="/Manage13" component={Manage13}/>
+                <PrivateRoute path="/Manage13/:page" component={Manage13}/>
                 <PrivateRoute path="/CommunityWrite" component={CommunityWrite}/>
                 <PrivateRoute path="/SendMsg" component={SendMsg}/>
                 <PrivateRoute path="/Msg" component={Msg}/>
                 <PrivateRoute path="/Bill" component={Bill}/>
                 <PrivateRoute path="/Edu8_9" component={Edu8_9}/>
                 <PrivateRoute path="/ProdLists" component={ProdLists}/>
-                <PrivateRoute path="/ProdDetail" component={ProdDetail}/>
+                <PrivateRoute path="/ProdDetail/:sn/:goods/:price" component={ProdDetail}/>
                 <PrivateRoute path="/" component={Home}/>
               </Switch>
             :null}

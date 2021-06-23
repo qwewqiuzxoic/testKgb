@@ -14,7 +14,10 @@ import {eduAttendListReducer,usePointReducer, eduSurveyListReducer,eduisuListRed
 import {getAsListReducer,getAsDetailReducer,postAsCommentReducer} from './reducer/asReducer'
 import {billDetailReducer,billListReducer} from './reducer/billReducer'
 import { msgDelReducer, msgSendListReducer, msgRcvListReducer, msgAddReducer,msgSendReducer} from './reducer/msgReducer'
+import { totalMesReducer,
+    totalListReducer} from './reducer/totalReducer'
 
+    
 
 
 const rootReducer = combineReducers({
@@ -55,6 +58,8 @@ const rootReducer = combineReducers({
     msgSendListReducer,
     msgRcvListReducer,
     msgAddReducer,
-    msgSendReducer
+    msgSendReducer,
+    totalMesReducer,
+    totalListReducer
 });
 export default rootReducer;

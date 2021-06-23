@@ -28,13 +28,14 @@ const Name = styled.div`
 `;
 
 
-function Products({name, img}) {
+function Products({name, img, price}) {
   return (
       <Wrapper>
         <ImgWrap>
-          <img src={ process.env.PUBLIC_URL + '/images/'+ img } alt="자재" />
+          <img src={ img } alt="자재" />
         </ImgWrap>
         <Name>{ name }</Name>
+        <Name>{ price }</Name>
       </Wrapper>
   );
 }

@@ -63,7 +63,6 @@ function Board({match}) {
     const onsubmit= ()=>{
       const data = boardData;
       const len =  isEmptyObject(data).length;
-      console.log(data)
       if(len>0){
         return false;
       }

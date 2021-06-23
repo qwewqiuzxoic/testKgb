@@ -31,11 +31,28 @@ const BlueBtn = styled.div`
     align-items: center;
     color:#ffffff;
 `;
-function Manage13() {
+function Manage13({match}) {
+    const page = match.params.page;
+    const [title,setTitle] = useState({
+        title:"",
+        subtitle:""
+    })
+ 
     const dispatch = useDispatch();
     const {list,loading} = useSelector(state=>state.eduSurveyListReducer);
     useEffect(() => {
-        dispatch(getEduSurveyList());
+        if(page === "1"){
+            setTitle({
+                title:"교육설문",
+                subtitle:"KGB의 교육설문입니다"       
+            })
+        } else if ( page === "2"){
+            setTitle({
+                title:"교육이수",
+                subtitle:"KGB의 교육이수입니다"       
+            })
+        }
+        dispatch(getEduSurveyList(page));
         return () => {
             
         }
@@ -43,7 +60,7 @@ function Manage13() {
    
   return (
       <Wrapper>
-            <Head title="교육설문" subtit="KGB의 교육설문입니다"/>
+            <Head title={title.title} subtit={title.subtitle}/>
             <ContentArea>
                 {
                     list && list.map((item,index) => 
@@ -51,8 +68,8 @@ function Manage13() {
                         {item.edu_time}
                         {item.proc}
                         {item.board_sn}
-                        {item.url}
-                        {item.proc === "Y" ? <BlueBtn>설문</BlueBtn> : <BlueBtn>설문 종료</BlueBtn>}
+                        {item.url ? item.url:item.movie}
+                        {item.proc === "Y" ? <BlueBtn>설문</BlueBtn> :( item.proc === "N" || item.proc === "")  && !item.movie ?<BlueBtn>설문 종료</BlueBtn> : item.movie && item.proc === "" ?<BlueBtn>0</BlueBtn>:<BlueBtn>{item.proc}</BlueBtn>}
                     </EduBox>
                     )
                 }
