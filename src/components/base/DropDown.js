@@ -30,7 +30,7 @@ const IconBox = styled.div`
 `
 const DropdownList = styled.div`
     background: #FBFBFB;
-
+    padding: ${(props) => props.toggle ? '8px 0' : ''};
 `
 const Li = styled.li`
     font-size:13px;
@@ -58,7 +58,7 @@ function DropDown({menuItem, i,clickMenu}) {
                 <img src={process.env.PUBLIC_URL + '/images/ico_down.png'} alt="메뉴열기"/> }
             </IconBox>
         </Row>
-        <DropdownList>                 
+        <DropdownList toggle={toggle}>                 
             {menuItem.subMenus.map(function(subMenu, k) {
                 if(toggle){
                     return (

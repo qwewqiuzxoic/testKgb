@@ -4,7 +4,6 @@ import moment from 'moment'
 import H1 from '../components/commonStyle/H1'
 import Labels from '../components/Team1/Labels'
 import Schedules from '../components/Team1/Schedules'
-
 import styled from 'styled-components';
 import '../styles/Calender.css'
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';

@@ -15,10 +15,10 @@ const CheckBox = styled.input`
 	}
 `;
 const CheckLabel = styled.label`
-    height:18px;
+  height:18px;
 	display: inline-block;
 	background: url(${process.env.PUBLIC_URL + '/images/checkbox_off.png'}) no-repeat center left;
-    background-size: 18px;
+  background-size: 18px;
 	cursor: pointer;
     span{
         padding-left:24px;
@@ -26,7 +26,6 @@ const CheckLabel = styled.label`
 `;
 
 function CheckGroup({id, name, label, onChange, checked}) {
-  
   return (
     <Wrapper>
         <CheckBox type="checkbox" name={name} id={id} onChange={onChange} checked={checked}/>

@@ -3,6 +3,7 @@ const fontSizes = {
     xs: '10px',
     s: '11px',
     m: '12px',
+    ml : '13px',
     l: '14px',
     xl: '16px',
     xxl: '19px',
