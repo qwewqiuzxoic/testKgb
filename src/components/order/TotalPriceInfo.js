@@ -26,37 +26,37 @@ const Dt = styled.div`
 const Dd = styled.div`
     ${ChangeFont(true, 200)};
 `
-function TotalPriceInfo() {
+function TotalPriceInfo({CostMove, CostOption, MoneyDiscount, CostTotal, MoneyPromise, MoneyRemain, Comment01_txt}) {
   return (
     <Wrapper>
         <Box>
             <Row>
                 <Dt>이사요금</Dt>
-                <Dd>1,040.000원</Dd>
+                <Dd>{CostMove}원</Dd>
             </Row>
             <Row>
                 <Dt>옵션요금</Dt>
-                <Dd>130,000원</Dd>
+                <Dd>{CostOption}원</Dd>
             </Row>
             <Row>
                 <Dt>추가할인</Dt>
-                <Dd>0원</Dd>
+                <Dd>{MoneyDiscount}원</Dd>
             </Row>
             <Row>
                 <Dt>합계</Dt>
-                <Dd>1,170,000원</Dd>
+                <Dd>{CostTotal}원</Dd>
             </Row>
             <Row>
                 <Dt>계약금</Dt>
-                <Dd>0원</Dd>
+                <Dd>{MoneyPromise}원</Dd>
             </Row>
             <Row>
                 <Dt>잔금</Dt>
-                <Dd>1,170,000원</Dd>
+                <Dd>{MoneyRemain}원</Dd>
             </Row>
             <Row>
                 <Dt>특이사항</Dt>
-                <Dd>기사님 차량에 동승하고 싶어요</Dd>
+                <Dd>{Comment01_txt}</Dd>
             </Row>
          </Box>
     </Wrapper>

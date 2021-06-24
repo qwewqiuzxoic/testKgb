@@ -93,6 +93,21 @@ export const UrlBody = (type, data) => {
                     "order_info_sn": data.order_info_sn
                 }
             }
+        case "add_option":
+            return{
+                url:"/BM/API/seller/get_add_option.asp",
+                body:{
+                    "brand":user.brand
+                }
+            }
+        case "item_detail_list":
+            return{
+                url: "/BM/API/seller/item_detail_list.asp",
+                body:{
+                    "brand":user.brand,
+                    "prod_name":data.prod_name
+                }
+            }
         default: return null;
     }
 }

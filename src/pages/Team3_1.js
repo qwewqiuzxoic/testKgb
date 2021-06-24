@@ -4,7 +4,7 @@ import Button from '../components/commonStyle/Button'
 import GroupTitle from '../components/commonStyle/GroupTitle'
 import DaumPostcode from "react-daum-postcode";
 import styled from 'styled-components';
-import { Gutter } from '../components/commonStyle';
+import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 import OrderAddress from '../components/order/OrderAddress';
 import OrderDate from '../components/order/OrderDate';
 import Customer from '../components/order/Customer';
@@ -15,12 +15,12 @@ import Ordercontract1 from '../components/order/Ordercontract1';
 import OrderCar from '../components/order/OrderCar';
 import TotalPriceInfo from '../components/order/TotalPriceInfo';
 import { useDispatch, useSelector } from 'react-redux';
-import { totalDataThunk } from '../redux/thunkFn/total.thunk';
+import { totalDataThunk, totalListThunk } from '../redux/thunkFn/total.thunk';
+import Team3_1_1 from './Team3_1_1';
 
 
 const Wrapper = styled.div`
     background: #FAFAFA;
-    padding-bottom:50px;
 `;
 const TopBg = styled.div`
     position:relative;
@@ -35,13 +35,123 @@ const TopBg = styled.div`
 const Section = styled.div`
     ${Gutter()};
 `;
+const ContentArea = styled.div`
+    position: relative;
+    ${Gutter()};
+`
+
+const Box = styled.div`
+`
+
+const selectOptions = ['이사형태1', '이사형태2']
+const init = {
+  man_info_sn:"",
+  userid:"",
+  manname:"",
+  brand:"",
+  biz_sn:"",
+  order_info_sn:"",
+  DayReceipt:"",
+  BrandInput:"",
+  BrandContract:"",
+  OrderMethod:"",
+  ReceiptName:"",
+  CustName:"",
+  StPhone:"",
+  mobile:"",
+  CustType:"",
+  CustState:"",
+  Motive:"",
+  Email:"" ,
+  DayMove:"",
+  CODE_MOVEDAY:"",
+  DayBox:"",
+  CODE_BOXDAY:"",
+  StAddr1:"",
+  StAddr2:"",
+  StAddr3:"",
+  StAddr4:"",
+  StBcode:"",
+  EdAddr1:"",
+  EdAddr2:"",
+  EdAddr3:"",
+  EdAddr4:"",
+  EdBcode:"",
+  MoveDistKm:"",
+  CboMoveRange:"",
+  KMIDEN:"",
+  StFloor:"",
+  StSadari:"",
+  StEL:"0",
+  Stgondora:"0",
+  StLoop:"0",
+  StTrdist:"0",
+  StStep:"0" ,
+  EdFloor:"5",
+  EdSadari:"0",
+  EdEL:"1",
+  EdGondora:"0",
+  EdLoop:"",
+  EdTrdist:"0",
+  EdStep:"" ,
+  CboContractBrand:"",
+  CboOrderStatus:"",
+  CostMove:"",
+  CostOption:"",
+  MoneyDiscount:"",
+  CostTotal:"",
+  MoneyPromise:"",
+  MoneyRemain:"",
+  CarTon10:"",
+  CarTon25:"",
+  CarTon50:"",
+  MoveCBM:"",
+  MoveDetCBM:"" ,
+  WeightCar:"",
+  CarCount:"" ,
+  ItemDetailStr:"",
+  AddOptmoneyStr:"",
+  BasicOptmoneyStr:"",
+  IsWorkAssign:"",
+  WorkTeamCode:"",
+  WorkTeamMemberCode:"",
+  WorkTeamName:"",
+  WorkOwnerCode:"",
+  WorkOwnerName:"",
+  WorkOwnerHp:"" ,
+  TosBrand:"",
+  TosTeamCode:"",
+  TosTeamMemberCode:"",
+  TosTeamName:"",
+  AirconchkVal:"",
+  CleanchkVal:""
+}
 
 function Team3_1({match}) {
 
+
+  const [orderSave, setOrderSave] = useState(init);
+  
+
+
+
+
+
+
+
+
+
+
+
   const sn = match.params.sn;
+  const [open,setOpen] = useState(false);
+  const onclick = () =>{
+    setOpen(true);
+    disaptch(totalListThunk("item_detail_list",{prod_name:"가구"}));
+  }
   const disaptch = useDispatch();
   const state = useSelector(state => state.totalDataReducer.data);
-
+  
   useEffect(() => {
     console.log(state.MoveDistKm)
     if(typeof(state.data==="string")){
@@ -51,9 +161,11 @@ function Team3_1({match}) {
     }else{
       disaptch(totalDataThunk("set_contract",{order_info_sn:""}));
     }
+    
     return () => {
     }
   }, [])
+
 
   return (
     <>
@@ -63,7 +175,7 @@ function Team3_1({match}) {
         </TopBg>
           <Section>
             <GroupTitle title="고객정보"/>
-            <Customer CustName={state.CustName} CustState={state.CustState} StPhone={state.StPhone} mobile={state.mobile}/>
+            <Customer CustName={state.CustName} MoveType={state.MoveType} StPhone={state.StPhone} mobile={state.mobile}/>
           </Section>
           <Section>
             <GroupTitle title="이사정보"/>
@@ -96,6 +208,7 @@ function Team3_1({match}) {
             Step={state.StStep}
             gondora={state.Stgondora}
             Trdist={state.StTrdist}
+            name="StAdd"
             />
             <br/>
             <OrderAddressOption title="도착지"
@@ -106,27 +219,44 @@ function Team3_1({match}) {
             Step={state.EdStep}
             gondora={state.Edgondora}
             Trdist={state.EdTrdist}
+            name="EdAdd"
             />
           </Section>
           <Section>
             <GroupTitle title="옵션 비용"/>
-            <OrderOptionCost/>
+            <OrderOptionCost AddOptmoneyStr={state.AddOptmoneyStr}/>
           </Section>
           <Section>
            <GroupTitle title="계약 정보"/>
-            <Ordercontract1/>
+            <Ordercontract1 CboOrderStatus={state.CboOrderStatus}/>
           </Section>
           <Section>
            <GroupTitle title="차량정보"/>
-            <OrderCar/>
+            <OrderCar CarTon10={state.CarTon10}
+            CarTon25={state.CarTon25}
+            CarTon50={state.CarTon50}
+            CarCount={state.CarCount}
+            MoveCBM={state.MoveCBM}
+            MoveDetCBM={state.MoveDetCBM}
+            onclick={onclick}
+            />
           </Section>
           <Section>
            <GroupTitle title="총 금액정보"/>
-            <TotalPriceInfo/>
+            <TotalPriceInfo CostMove={state.CostMove} 
+            CostOption={state.CostOption} 
+            MoneyDiscount={state.MoneyDiscount} 
+            CostTotal={state.CostTotal} 
+            MoneyPromise={state.MoneyPromise} 
+            MoneyRemain={state.MoneyRemain} 
+            Comment01_txt={state.Comment01_txt}
+            />
           </Section>
           <Section>
             <Button bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/>
           </Section>
+          {open && <Team3_1_1></Team3_1_1>}
+          
       </Wrapper>
     </>
   );

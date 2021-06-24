@@ -29,11 +29,11 @@ const Input = styled.input`
 
 
 
-function InputNum({id, label, last}) {
+function InputNum({id, label, last, value}) {
   return (
     <Wrapper last={last}>
         <Label htmlFor={id}>{label}</Label>
-        <Input type="number" id={id} placeholder="0"></Input>
+        <Input type="number" id={id} placeholder="0" value={value}></Input>
     </Wrapper>
   );
 }
