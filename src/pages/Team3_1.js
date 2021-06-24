@@ -98,7 +98,25 @@ function Team3_1({match}) {
           </Section>
           <Section>
            <GroupTitle title="작업정보 입력"/>
-            <OrderAddressOption/>
+            <OrderAddressOption title="출발지" 
+            EL={state.StEL}              
+            Floor={state.StFloor}
+            Loop={state.StLoop}
+            Sadari={state.StSadari}
+            Step={state.StStep}
+            gondora={state.Stgondora}
+            Trdist={state.StTrdist}
+            />
+            <br/>
+            <OrderAddressOption title="도착지"
+            EL={state.EdEL}              
+            Floor={state.EdFloor}
+            Loop={state.EdLoop}
+            Sadari={state.EdSadari}
+            Step={state.EdStep}
+            gondora={state.Edgondora}
+            Trdist={state.EdTrdist}
+            />
           </Section>
           <Section>
             <GroupTitle title="옵션 비용"/>

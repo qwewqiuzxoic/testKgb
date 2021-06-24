@@ -27,12 +27,12 @@ const Label = styled.label`
 const Input = styled.input`
   ${InputStyle()};
 `;
-function OrderAddressOption() {
+function OrderAddressOption({title}) {
   return (
     <Wrapper>
       <Group>
       <Label htmlFor="info_from">
-        출발지 주소
+        {title}
       </Label>
       <Input id="info_from" type="text" placeholder="이송거리(m)" textAlign="right"/>
       <Layout>

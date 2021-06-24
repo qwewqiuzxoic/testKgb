@@ -19,7 +19,7 @@ const Label = styled.label`
   ${LabelStyle()};
 `;
 
-function Ordercontract1() {
+function Ordercontract1({CboOrderStatus}) {
   return (
   <Wrapper> 
       <Label htmlFor="contractOption">
