@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from '../components/commonStyle/Head';
 import EduBox from '../components/commonStyle/EduBox';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { totalListThunk } from '../redux/thunkFn/total.thunk';
 
 const Wrapper = styled.div`
     background:#FAFAFA;
@@ -69,7 +71,17 @@ const BlueBtn = styled.div`
     }
 `;
 function Manage9_1() {
-   
+    const listRes = useSelector(state => state.totalListReducer);
+    const dispatch = useDispatch();
+    const [page,setPage] = useState({
+        page:1,
+        pageSize:5
+    });
+   useEffect(() => {
+        dispatch(totalListThunk("realtime_list",page));
+       return () => {
+       }
+   }, [])
   return (
       <Wrapper>
             <Head title="실시간 화상교육" subtit="KGB의 실시간화상교육입니다"/>
@@ -81,21 +93,16 @@ function Manage9_1() {
                     </Text>
                 </Guide>
                 <p>아래의 교육일정 중 수강하시고자 하시는 해당된 교육의<br/>우측 아이콘을 클릭하여 주시기 바랍니다.</p>
-                <EduBox title="이사서비스 매뉴얼" date="2020.02.28">
-                    <BlueBtn>
-                        <img src={process.env.PUBLIC_URL + '/images/ico_video.png'} alt="교육수강아이콘"/>
-                    </BlueBtn>
-                </EduBox>
-                <EduBox title="이사서비스 매뉴얼" date="2020.02.28">
-                    <BlueBtn>
-                        <img src={process.env.PUBLIC_URL + '/images/ico_video.png'} alt="교육수강아이콘"/>
-                    </BlueBtn>
-                </EduBox>
-                <EduBox title="이사서비스 매뉴얼" date="2020.02.28">
-                    <BlueBtn>
-                        <img src={process.env.PUBLIC_URL + '/images/ico_video.png'} alt="교육수강아이콘"/>
-                    </BlueBtn>
-                </EduBox>
+                {listRes.list && listRes.list.map((item,index) => 
+                    <EduBox title={item.title} date={item.edu_edate} date2={item.edu_sdate}>
+                        <BlueBtn>
+                            <img src={process.env.PUBLIC_URL + '/images/ico_video.png'} alt="교육수강아이콘"/>
+                        </BlueBtn>
+                    </EduBox>
+                )}
+                
+               
+               
             </ContentArea>
       </Wrapper>
       

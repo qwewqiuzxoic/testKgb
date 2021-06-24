@@ -43,60 +43,36 @@ const Date = styled.div`
 const MsgText = styled.div`
   color:#ACB6BC;
 `;
-const CheckboxList = () => {
-    const issues = [
-        {id:'msg1', from:'길동1', to:'홍길동1', date:'2021.01.01', text:'쪽지내용'},
-        {id:'msg2', from:'길동2', to:'홍길동2', date:'2021.01.01', text:'쪽지내용쪽지내용'},
-        {id:'msg3', from:'길동3', to:'홍길동3', date:'2021.01.01', text:'쪽지내용쪽지내용쪽지내용'},
-        {id:'msg4', from:'길동4', to:'홍길동4', date:'2021.01.01', text:'쪽지내용쪽지내용쪽지내용쪽지내용쪽지내용'},
-    ];
-    const [checkedItems, setCheckedItems] = useState(new Set());//check된 Checkbox의 id값이 들어감
-    const [isAllChecked, setIsAllChecked] = useState(false);
-    const [bChecked, setChecked] = useState(false)
+const CheckboxList = ({list,delSubmit,allCheckedHandler,checkedItemHandler,isAllChecked,checkedItems,bChecked,setChecked}) => {
+ 
 
-    const checkedItemHandler = (id, isChecked) => {
-        if (isChecked) {
-          checkedItems.add(id);
-          setCheckedItems(checkedItems);
-        } else if (!isChecked && checkedItems.has(id)) {
-          checkedItems.delete(id);
-          setCheckedItems(checkedItems);
-        }
-      };
-    
-    const allCheckedHandler = (isChecked) => {
-        if (isChecked) {
-          setCheckedItems(new Set(issues.map(({ id }) => id)));
-          setIsAllChecked(true);
-        } else {
-          checkedItems.clear();
-          setCheckedItems(setCheckedItems);
-          setIsAllChecked(false);
-        }
-      };
+
+   
     
     const checkHandler = ({ target }) => {
         setChecked(!bChecked);
         allCheckedHandler(target.checked);
     };
-
+    
+    
     return (
       <>
         <Header>
             <CheckGroup id='checkAll' name='checkAll' label='전체선택' onChange={(e) => checkHandler(e)} checked={bChecked} nmg={true}/>
-            <Delete>선택삭제</Delete>
+            <Delete onClick={()=>delSubmit(checkedItems)}>선택삭제</Delete>
         </Header>
-          {issues.map((issue, index) => (
+          {list.map((issue, index) => (
             <Box>
-                <Checkbox isAllChecked={isAllChecked} key={issue.id} issue={issue} checkedItemHandler={checkedItemHandler}
+                <Checkbox isAllChecked={isAllChecked} key={index} issue={issue} index={index} checkedItemHandler={checkedItemHandler}
                 />
                 <Message>
+                    {issue.title}
                     <MsgInfo>
-                        <Writer>{issue.to}</Writer>
-                        <Date>{issue.date}</Date>
+                        <Writer>{issue.send_date}</Writer>
+                        <Date>{issue.rcv_date}</Date>
                     </MsgInfo>
                     <MsgText>
-                        {issue.text}
+                        {issue.content}
                     </MsgText>
                 </Message>
             </Box>

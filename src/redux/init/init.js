@@ -1,3 +1,23 @@
+//통합
+export const totalMes = {
+    loading:false,
+    message:"",
+    result:"",
+    error:""
+}
+export const totalList = {
+    loading:false,
+    message:"",
+    result:"",
+    error:"",
+    list:[]
+}
+export const totalData = {
+    loading:false,
+    error:"",
+    data:{}
+}
+
 
 //로그인 초기상태
 export const authInit = {
@@ -63,16 +83,20 @@ export const boardPostFormModifyInit = {
 
 //일정관련
 export const monthScInit = {
-    data:[],
+    list:[],
     loading: false,
-    error:{}
+    error:{},
+    result:"",
+    message:""
 }
 
 //일정관련
 export const dayScInit = {
-    data:[],
+    list:[],
     loading: false,
-    error:{}
+    error:{},
+    result:"",
+    message:""
 }
 
 //작업일 변경요청 --> 지원 대기 요청 으로 수정
@@ -243,7 +267,21 @@ export const eduSurveyListInit = {
     message:"",
     list:[]
 }
-
+//교육 이수 리스트
+export const eduisuListInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+    list:[]
+}
+//교육 신청  -->schedule
+export const eduSubmitInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+}
 //as 현황 리스트
 export const asInit = {
     loading:false,
@@ -281,11 +319,59 @@ export const billListInit = {
     message:"",
     list:[]
 }
+
+//청구서
 export const billDetailInit = {
     loading:false,
     error:"",
     data:{}    
 }
+
+//받은쪽지함
+export const msgRcvListInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+    list:[]   
+}
+
+//보낸쪽지함
+export const msgSendListInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+    list:[]  
+}
+
+//쪽지 삭제
+export const msgDelInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+}
+
+//쪽지 주소록 검색
+export const msgSearchAddInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+    list:[]
+}
+
+//쪽지보내기
+export const msgPostInit={
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+}
+
+
+
 
 
 export const orderIndividual = {

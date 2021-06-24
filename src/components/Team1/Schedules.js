@@ -99,20 +99,29 @@ function Schedules({data}) {
  
   return (
     <Wrapper>
-        {data.map((schedule, index)=> (
+        {data && data.length === 0 ?<div>작업일정이 없습니다.</div>:null}
+        {data && data.map((schedule, index)=> (
             <Box key={index} className={`color${schedule.state}`}>
                 <Row>
-                    <Name><span className={`color${schedule.state}`}>[{schedule.state}]</span>{schedule.name}</Name>
+                    <Name><span className={`color${schedule.state}`}>[{schedule.title}]</span>{schedule.custname}</Name>
                     {/* <Call>{schedule.call}</Call> */}
-                    <Call>00000000</Call>
+                    <Call>{schedule.phone}</Call>
                 </Row>
                 <Row>
                     <Dt>작업일</Dt>
-                    <Dd>{schedule.date}</Dd>
+                    <Dd>{schedule.daymove}</Dd>
+                </Row>
+                <Row>
+                    <Dt>등록일</Dt>
+                    <Dd>{schedule.dayReg}</Dd>
+                </Row>
+                <Row>
+                    <Dt>타입</Dt>
+                    <Dd>{schedule.type}</Dd>
                 </Row>
                 <Row>
                     <Dt>총금액</Dt>
-                    <Dd>{schedule.price}</Dd>
+                    <Dd>{schedule.pay}</Dd>
                 </Row>
              </Box>
         ))}

@@ -99,13 +99,7 @@ export const postDeleteBoard = (data) =>dispatch =>{
 export const postModifyBoard = (data) => dispatch =>{
     dispatch(boardPostLoading());
     const url = '/BM/API/board/board_proc_basic.asp';
-    axios.post(url, {
-        "sn": "",
-        "title": "",
-        "password": "",
-        "email": "",
-        "contents": ""
-    }).then(function(res){
+    axios.post(url, data).then(function(res){
         dispatch(boardPostSuccess(res.result));
     }).catch(function (error){
         dispatch(boardPostError(error))

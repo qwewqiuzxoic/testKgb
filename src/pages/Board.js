@@ -63,7 +63,6 @@ function Board({match}) {
     const onsubmit= ()=>{
       const data = boardData;
       const len =  isEmptyObject(data).length;
-      console.log(data)
       if(len>0){
         return false;
       }
@@ -238,6 +237,18 @@ function Board({match}) {
           name:"자료실",
           title:"일반자료실",
           subtit:"KGB의 일반자료실입니다",
+          check:false,
+          teamNm:true,
+          add:false,
+          adu:false
+        })    
+      }
+      else if(boardCodeNm === 10){
+        setBoardName({
+          ...boardName,
+          name:"작업일정변경요청",
+          title:"작업일정변경요청",
+          subtit:"KGB의 작업일정변경요청입니다",
           check:false,
           teamNm:true,
           add:false,

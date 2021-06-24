@@ -10,10 +10,11 @@ const Wrapper = styled.div`
   background: #F3F7FB;
   border:none;
 `;
-function OrderDistance() {
+function OrderDistance({MoveDistKm}) {
+  console.log(MoveDistKm)
   return (
       <Wrapper>
-      161km
+      {MoveDistKm}km
     </Wrapper>
   );
 }

@@ -1,9 +1,15 @@
-import React  from 'react';
+import React, { useEffect }  from 'react';
 import Row from '../components/bill/Row';
 import Button from '../components/commonStyle/Button';
 import ProdOption from '../components/Prod/ProdOption';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { totalListThunk, totalMesThunk } from '../redux/thunkFn/total.thunk';
+import Loading from '../components/commonStyle/Loading';
+import ConfirmModal from '../components/base/ConfirmModal';
+import { totalMesInit } from '../redux/actionFn/total';
 
 const Wrapper = styled.div`
 `;
@@ -63,27 +69,97 @@ const options = [
     },
 ]
 
-function ProdDetail() {
+function arrayAdd (arr,idx,p) {
+    var array = [...arr];
+    array[idx] = p
+    return array
+}
+function arrayDelUndifinde(arr){
+  return arr.filter(
+    (element, i) => element !== undefined || element === 0
+  );
+}
+function ProdDetail({match}) {
+    const sn =  match.params.sn;
+    const name =  match.params.goods;
+    const price = match.params.price;
+    const [tPrice, setTPrice] = useState(0);
+    const [basket, setBasket] = useState({
+        gs_idx:[],
+        optionname:[],
+        price:[],
+        cnt:[]
+    })
+    const FnSetBasket = (idx,option ,name ,price, number) =>{
+        console.log(idx,option ,name ,price, number)
+        setBasket(basket => ({
+            ...basket,
+            gs_idx:arrayAdd(basket.gs_idx,idx,option),
+            optionname:arrayAdd(basket.optionname,idx,name),
+            price:arrayAdd(basket.price,idx,price),
+            cnt:arrayAdd(basket.cnt,idx,number),
+        }))
+    }
+    const listRes = useSelector(state =>state.totalListReducer);
+    const mesRes = useSelector(state =>state.totalMesReducer);
+    const dispatch = useDispatch();
+    const basketAdd = () =>{
+        const data = {
+            good_name:name,
+            photo_sn:sn,
+            gs_idx:arrayDelUndifinde(basket.gs_idx).join(","),
+            optionname:arrayDelUndifinde(basket.optionname).join(","),
+            price:arrayDelUndifinde(basket.price).join(","),
+            cnt:arrayDelUndifinde(basket.cnt).join(",")
+        }
+        if(data.gs_idx === ""){
+            return
+        }
+        dispatch(totalMesThunk("goods_basket_add",data));
+    }
+    const confirmSubmit = () =>{
+        dispatch(totalMesInit());
+        dispatch(totalListThunk("goos_view",{good_name:name,photo_sn:sn}));
+        setTPrice(0);
+        setBasket({
+            gs_idx:[],
+            optionname:[],
+            price:[],
+            cnt:[]
+        })
+    }
+    useEffect(() => {
+        dispatch(totalListThunk("goos_view",{good_name:name,photo_sn:sn}));
+        return () => {
+            
+        }
+    }, [])
+
     return (
         <Wrapper>
             <ImgArea>
-             <img src={process.env.PUBLIC_URL + '/images/dummy.jpg'} alt="자재사진"/>
+             <img src={listRes.goods_img ? listRes.goods_img : null} alt="자재사진"/>
             </ImgArea>
             <DetailBox>
-                <Name>상품명이 노출됩니다 상품명이 노출됩니다</Name>
-                <Price>35,200<span>원</span></Price>
+                <Name>{listRes.goods_name && listRes.goods_name}</Name>
+                <Price>{price}<span>원</span></Price>
                 <Row dt="상품재고확인" dtSize="13px" dd="294" ddColor="#404345" ddWeight="bold" ddSpan='개'/>
-                {options.map ((item, index)=> (
-                    <ProdOption name={item.name} option={item.option}></ProdOption>
+                {listRes.list && listRes.list.map ((item, index)=> (
+                    <ProdOption key={index} index={index} FnSetBasket={FnSetBasket} tPrice={tPrice} setTPrice={setTPrice} name={item.option_name} option={item.gs_idx} price={item.price}></ProdOption>
                 ))}
                 <TotalArea>
-                    <Row dt="총 결제금액"  dd="35,200" ddColor="#009B90" ddSize=" 18px" ddWeight="bold" ddSpan='원' spanSize="11px"/>
+                    <Row dt="총 결제금액"  dd={tPrice}ddColor="#009B90" ddSize=" 18px" ddWeight="bold" ddSpan='원' spanSize="11px"/>
                 </TotalArea>
                 <BtnArea>
-                    <Button onclick={onsubmit} bg="#404345" color="#ffffff" text="장바구니"  height="44px" fontSize="12px" mgt="30px"></Button>
-                    <Button onclick={onsubmit} bg="#3397B9" color="#ffffff" text="결제"  height="44px" fontSize="12px" mgt="30px"></Button>
+                    <Button onclick={basketAdd} bg="#404345" color="#ffffff" text="장바구니"  height="44px" fontSize="12px" mgt="30px"></Button>
+                    {/* <Button onclick={onsubmit} bg="#3397B9" color="#ffffff" text="결제"  height="44px" fontSize="12px" mgt="30px"></Button> */}
                 </BtnArea>
+
             </DetailBox>
+            {listRes.loading && <Loading></Loading>}
+
+            <ConfirmModal open={mesRes.result !== "success" ? false: true}text={mesRes.message} onsubmit={confirmSubmit}></ConfirmModal>
+
         </Wrapper>
   );
 }

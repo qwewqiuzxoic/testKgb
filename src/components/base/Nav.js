@@ -12,8 +12,8 @@ const menuItems = [
     {
         name: '작업/대리점 관리',
         subMenus: [
-            {name: '작업일정(월별)', link:'/Team1'},
-            {name: '방문견적 및 개인오더 입력', link:'/Team3_1'},
+            {name: '작업일정(월별)', link:'/Team1/1'},
+            {name: '방문견적 및 개인오더 입력', link:'/Team2_1'},
             {name: '우리팀 톡톡', link:'/board/2'}, 
 
             {name: '팀단체사진 등록', link:'/Team5'}, 
@@ -45,7 +45,7 @@ const menuItems = [
         subMenus: [
             {name: '공지사항', link:'/board/5'},
             {name: '자유게시판', link:'/board/1'},
-            {name: '작업일정변경요청', link:'/team6_1'},
+            {name: '작업일정변경요청', link:'/board/10'},
             {name: '건의함', link:'/CommunityWrite'},
             {name: '비리제보', link:'/CommunityWrite'},
             {name: '쪽지', link:'/Msg'},
@@ -55,14 +55,14 @@ const menuItems = [
         name: '교육', 
         subMenus: [
             {name: '교육공지 / 이용안내', link:'/board/6'}, 
-            {name: '교육일정 / 신청', link:'/'}, 
+            {name: '교육일정 / 신청', link:'/Team1/2'}, 
             {name: '교육참석내역', link:'/Edu8_9'}, 
             {name: '교육자료실(일반 / 영상)', link:'/board/7'}, 
-            {name: '이수대상 교육', link:'/'}, 
+            {name: '이수대상 교육', link:'/manage13/1'}, 
             {name: '교육평가', link:'/'}, 
             {name: '실시간 화상교육', link:'/Manage9_1'}, 
             {name: '교육출결체크', link:'/Manage10_1'}, 
-            {name: '교육설문', link:'/manage13'}, 
+            {name: '교육설문', link:'/manage13/1'}, 
             {name: '매뉴얼 학습', link:'/Manage6'}, 
             {name: '', link:'/'}
         ]

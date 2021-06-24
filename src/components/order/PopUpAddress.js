@@ -32,7 +32,7 @@ const Input = styled.input`
   }
 `;
 
-function PopUpAddress() {
+function PopUpAddress({Addr1,Addr2,Addr3,Addr4}) {
 const [address, setAddress] = useState({open:false, data:""});
   const openAddress = () => {
     setAddress({
@@ -51,7 +51,7 @@ const [address, setAddress] = useState({open:false, data:""});
   return (
     <Wrapper>
       <Layout>
-        <Input type="text" value={address.data} placeholder="기본주소"  readonly />
+        <Input type="text" value={address.data} placeholder="기본주소"  readonly  value={Addr1+" "+Addr2+" "+ Addr3}/>
         <Button type='button'  onClick={openAddress}>주소찾기</Button>
       </Layout>
       <div id='popupDom'>
@@ -59,7 +59,7 @@ const [address, setAddress] = useState({open:false, data:""});
             <FindAddress onClose={closeAddress} />
           )}
       </div>
-      <Input type="text" placeholder="상세주소를 입력해주세요"/>    
+      <Input type="text" placeholder="상세주소를 입력해주세요" value={Addr4}/>    
     </Wrapper>
   );
 }

@@ -51,18 +51,27 @@ function getToday(date){
     var year = date.getFullYear();
     var month = ("0" + (1 + date.getMonth())).slice(-2);
     var day = ("0" + date.getDate()).slice(-2);
-  
-    return year + "." + month + "." + day;
+    return year + "-" + month + "-" + day;
   }
-function checkDay(date){
-    console.log(getToday(date))
-}
 
-function Team1() {
+function checkDay(date){
+}
+function getMonth(){
+  var today = new Date();
+  var month = today.getMonth()+1;
+  return month<10 ?"0"+month:month;
+}
+function getYear(){
+  var today = new Date();
+  var year = today.getFullYear();
+  return year;
+}
+function Team1({match}) {
+    const page =  match.params.page;
     const [dateState, setDateState] = useState(new Date())
     const dispatch = useDispatch();
-    const monthSc = useSelector(state=>state.monthScReducer.data);
-    const daySc = useSelector(state=>state.dayScReducer.data);
+    const monthSc = useSelector(state=>state.monthScReducer.list);
+    const daySc = useSelector(state=>state.dayScReducer.list);
     const changeDate = (e) => {
         setDateState(e)
         dispatch(getDaySc(getToday(e)));
@@ -74,24 +83,42 @@ function Team1() {
       if(monthSc.length===0)
         return null;
       for(var i=0; monthSc.length>i; i++){
-        if(monthSc[i].date === day){
-            if(monthSc[i].state === 0){
+        if(monthSc[i].daymove === day && page === "1"){
+            if(monthSc[i].title.includes("계약") ){
                 text.push(<span className="state0"></span>)
-            }else if(monthSc[i].state === 1){
+            }
+            if(monthSc[i].title.includes("지명오더") ){
                 text.push(<span className="state1"></span>)
-            }else if(monthSc[i].state === 2){
+            }
+            if(monthSc[i].title.includes("기타1") ){
                 text.push(<span className="state2"></span>)
-            }else if(monthSc[i].state === 3){
+            }
+            if(monthSc[i].title.includes("기타2") ){
                 text.push(<span className="state3"></span>)
             }
+        }else if(monthSc[i].dayedu === day && page === "2"){
+          if(monthSc[i].edutype.includes("맞춤") ){
+            text.push(<span className="state0"></span>)
+          }
+          if(monthSc[i].edutype.includes("맞춤3") ){
+              text.push(<span className="state1"></span>)
+          }
+          if(monthSc[i].edutype.includes("맞춤2") ){
+              text.push(<span className="state2"></span>)
+          }
+          if(monthSc[i].edutype.includes("맞춤1") ){
+              text.push(<span className="state3"></span>)
+          }
         }
       }
       return (
         <div className="state_wrapper">{text}</div>
       );
   }
+  const month = getMonth();
+  const year = getYear();
   useEffect(() => {
-    dispatch(getMonthSc());
+    dispatch(getMonthSc(year,month));
     dispatch(getDaySc(tday));
     return () => {
       
