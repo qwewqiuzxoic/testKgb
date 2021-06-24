@@ -26,12 +26,12 @@ function Ordercontract1({CboOrderStatus}) {
       계약여부
       </Label>
       <Layout>
-          <RadioGroup id="radio1" name="radio1" label="지명 견적증"></RadioGroup>
-          <RadioGroup id="radio2" name="radio1" label="지명 미계약"></RadioGroup>
+          <RadioGroup id="contract1" name="contract" label="지명 견적증"></RadioGroup>
+          <RadioGroup id="contract2" name="contract" label="지명 미계약"></RadioGroup>
         </Layout>
         <Layout>
-          <RadioGroup id="radio3" name="radio1" label="지명 계약중"></RadioGroup>
-          <RadioGroup id="radio4" name="radio1" label="오더토스"></RadioGroup>
+          <RadioGroup id="contract3" name="contract" label="지명 계약중"></RadioGroup>
+          <RadioGroup id="contract4" name="contract" label="오더토스"></RadioGroup>
         </Layout>
   </Wrapper>
   );

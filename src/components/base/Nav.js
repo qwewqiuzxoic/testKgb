@@ -8,40 +8,6 @@ const Wrapper = styled.div`
     ${ Gutter() };
     
 `
-const Row = styled.div`
-    ${ Gutter('0 0 0 21px') };
-    ${FlexBox()};
-    align-items: center;
-    background: ${(props) => props.theme.colors.white};
-    height:50px;
-    line-height: 50px;
-    font-size:15px;
-    border-radius: ${(props) => props.index === 0 ? '30px 0 0 0' : '0'};
-    border-bottom: 1px solid #DFE5EA;
-    cursor:pointer;
-
-    img{
-        width:10px;
-        height:auto;
-    }
-`
-const IconBox = styled.div`
-    ${FlexBox('center')};
-    align-items: center;
-    width:50px;
-    height:50px;
-`
-const DropdownList = styled.div`
-    background: #FBFBFB;
-    ${ Gutter('8px 0') };
-
-`
-const Li = styled.li`
-    font-size:13px;
-    ${ Gutter('8px 21px') };
-    cursor:pointer;
-
-`
 const menuItems = [
     {
         name: '작업/대리점 관리',

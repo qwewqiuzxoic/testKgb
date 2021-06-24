@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Gutter, ChangeFont, InputStyle, LabelStyle, SelectStyle} from '../commonStyle';
+import { LabelStyle, SelectStyle} from '../commonStyle';
 import InputGroup from '../commonStyle/InputGroup';
 
 const ContentArea = styled.div`

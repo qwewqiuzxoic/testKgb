@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlexBox, ChangeFont, InputStyle, LabelStyle} from '../commonStyle';
-import CheckGroup from '../commonStyle/CheckGroup';
+import { FlexBox, InputStyle, LabelStyle} from '../commonStyle';
+import RadioGroup from '../commonStyle/RadioGroup';
 
 const Wrapper = styled.div`
 `;
@@ -44,14 +44,14 @@ function OrderAddressOption({title}) {
       <Label htmlFor="info_from">
       작업정보 옵션
       </Label>
-        <Layout>
-          <CheckGroup id="menu1" name="menu1" label="사다리차 이용"></CheckGroup>
-          <CheckGroup id="menu2" name="menu2" label="엘리베이터"></CheckGroup>
-        </Layout>
-        <Layout>
-          <CheckGroup id="menu3" name="menu3" label="곤도라 사용"></CheckGroup>
-          <CheckGroup id="menu4" name="menu4" label="로프 사용"></CheckGroup>
-        </Layout>
+      <Layout>
+        <RadioGroup id="workOption1" name="workOption" label="사다리차 이용"></RadioGroup>
+        <RadioGroup id="workOption2" name="workOption" label="엘리베이터"></RadioGroup>
+      </Layout>
+      <Layout>
+        <RadioGroup id="workOption3" name="workOption" label="곤도라 사용"></RadioGroup>
+        <RadioGroup id="workOption4" name="workOption" label="로프 사용"></RadioGroup>
+      </Layout>
       </Group>
     </Wrapper>
   );
