@@ -6,7 +6,8 @@ import CheckGroup from '../commonStyle/CheckGroup';
 import Checkbox from './Checkbox';
 
 const Header = styled.div`
-  ${FlexBox()}
+  ${FlexBox()};
+  align-items:center;
   margin-bottom: 10px;
 `;
 const Delete = styled.div`
@@ -82,7 +83,7 @@ const CheckboxList = () => {
     return (
       <>
         <Header>
-            <CheckGroup id='checkAll' name='checkAll' label='전체선택' onChange={(e) => checkHandler(e)} checked={bChecked}/>
+            <CheckGroup id='checkAll' name='checkAll' label='전체선택' onChange={(e) => checkHandler(e)} checked={bChecked} nmg={true}/>
             <Delete>선택삭제</Delete>
         </Header>
           {issues.map((issue, index) => (

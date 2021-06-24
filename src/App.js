@@ -37,6 +37,7 @@ import SendMsg from "./pages/SendMsg";
 import Edu8_9 from "./pages/Edu8_9";
 import ProdLists from "./pages/ProdLists";
 import ProdDetail from "./pages/ProdDetail";
+import Cart from "./pages/Cart";
 
 import {signIn} from './deletData/Auth'
 import PrivateRoute from './util/PrivateRoute'
@@ -113,6 +114,7 @@ function App() {
                 <PrivateRoute path="/Edu8_9" component={Edu8_9}/>
                 <PrivateRoute path="/ProdLists" component={ProdLists}/>
                 <PrivateRoute path="/ProdDetail" component={ProdDetail}/>
+                <PrivateRoute path="/Cart" component={Cart}/>
                 <PrivateRoute path="/" component={Home}/>
               </Switch>
             :null}

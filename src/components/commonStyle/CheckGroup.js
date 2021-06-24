@@ -4,20 +4,20 @@ import { ChangeFont } from './';
 
 
 const Wrapper = styled.div`
-  margin-top:10px;
+  margin-top: ${(props) => props.noMargin ? '' : '10px'};
 `;
 
 const CheckBox = styled.input`
 	display: none;
     &:checked + label {
-        background: url(${process.env.PUBLIC_URL + '/images/checkbox_on.png'}) no-repeat center left;
+        background: url(${(props) => props.isCircle ? process.env.PUBLIC_URL + '/images/radio_on.svg' : process.env.PUBLIC_URL + '/images/checkbox_on.png'}) no-repeat center left;
     background-size: 18px 18px;
 	}
 `;
 const CheckLabel = styled.label`
   height:18px;
 	display: inline-block;
-	background: url(${process.env.PUBLIC_URL + '/images/checkbox_off.png'}) no-repeat center left;
+  background: url(${(props) => props.isCircle ? process.env.PUBLIC_URL + '/images/radio_off.svg' : process.env.PUBLIC_URL + '/images/checkbox_off.png'}) no-repeat center left;
   background-size: 18px;
 	cursor: pointer;
     span{
@@ -25,11 +25,11 @@ const CheckLabel = styled.label`
     }
 `;
 
-function CheckGroup({id, name, label, onChange, checked}) {
+function CheckGroup({id, name, label, onChange, checked, nmg, isCircle}) {
   return (
-    <Wrapper>
-        <CheckBox type="checkbox" name={name} id={id} onChange={onChange} checked={checked}/>
-        <CheckLabel htmlFor={id}>
+    <Wrapper noMargin={nmg}>
+        <CheckBox type="checkbox" name={name} id={id} onChange={onChange} checked={checked} isCircle={isCircle}/>
+        <CheckLabel htmlFor={id} isCircle={isCircle}>
           <span>{label}</span>
         </CheckLabel>
     </Wrapper>
