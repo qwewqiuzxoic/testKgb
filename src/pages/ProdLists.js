@@ -16,30 +16,11 @@ const ContentArea = styled.div`
 const Layout = styled.div`
     ${FlexBox()};
     flex-wrap: wrap;
-    >div{
+    >a{
       width:48%;
     }
 `;
 
-
-const prods = [
-    {
-        name : "상품이름상품이름상품이름",
-        img: 'dummy.jpg'
-    },
-    {
-        name : "상품명상품명상품명",
-        img: 'dummy.jpg'
-    },
-    {
-      name : "상품이름상품이름상품이름",
-      img: 'dummy.jpg'
-  },
-  {
-      name : "상품명상품명상품명상품명상품명",
-      img: 'dummy.jpg'
-  },
-]
 function ProdLists() {
     const dispatch = useDispatch();
     const mesRes = useSelector(state =>state.totalMesReducer);
