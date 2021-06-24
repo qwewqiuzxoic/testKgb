@@ -21,9 +21,12 @@ const ImgWrap = styled.div`
     cursor:pointer;
   }
 `;
-const Name = styled.div`
+const TextWrap = styled.div`
   font-size: 13px;
-  padding:4px 6px 20px;
+  padding:4px 0 0 4px;
+  cursor:pointer;
+`;
+const Name = styled.div`
   cursor:pointer;
 `;
 
@@ -34,8 +37,10 @@ function Products({name, img, price}) {
         <ImgWrap>
           <img src={ img } alt="자재" />
         </ImgWrap>
-        <Name>{ name }</Name>
-        <Name>{ price }</Name>
+        <TextWrap>
+          <Name>{ name }</Name>
+          <Name>{ price }원</Name>
+        </TextWrap>
       </Wrapper>
   );
 }
