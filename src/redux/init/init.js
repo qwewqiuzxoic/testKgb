@@ -5,6 +5,18 @@ export const totalMes = {
     result:"",
     error:""
 }
+export const totalList = {
+    loading:false,
+    message:"",
+    result:"",
+    error:"",
+    list:[]
+}
+export const totalData = {
+    loading:false,
+    error:"",
+    data:{}
+}
 
 
 //로그인 초기상태

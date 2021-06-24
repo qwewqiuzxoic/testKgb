@@ -25,15 +25,15 @@ const Input = styled.input`
 `;
 
 
-function OrderDate() {
+function OrderDate({DayMove, DayBox}) {
   
 
   return (
     <Wrapper>
       <Label htmlFor="date_move">이사날짜</Label>
-      <Input type="text" id="date_move" placeholder="날짜를 선택해주세요"  textAlign="center" onFocus={(e)=> {e.currentTarget.type = "date";e.currentTarget.focus();}} max="9999-12-31"></Input>
+      <Input type="text" id="date_move" placeholder="날짜를 선택해주세요" value={DayMove}  textAlign="center" onFocus={(e)=> {e.currentTarget.type = "date";e.currentTarget.focus();}} max="9999-12-31"></Input>
       <Label htmlFor="date_packing">포장일 날짜</Label>
-      <Input type="text" id="date_packing" placeholder="날짜를 선택해주세요" textAlign="center"  onFocus={(e)=> {e.currentTarget.type = "date";e.currentTarget.focus();}} max="9999-12-31"></Input>
+      <Input type="text" id="date_packing" placeholder="날짜를 선택해주세요"  value={DayBox}textAlign="center"  onFocus={(e)=> {e.currentTarget.type = "date";e.currentTarget.focus();}} max="9999-12-31"></Input>
     </Wrapper>
   );
 }

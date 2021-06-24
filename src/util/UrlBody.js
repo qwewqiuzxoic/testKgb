@@ -76,6 +76,24 @@ export const UrlBody = (type, data) => {
                     pagesize : data.pageSize
                 }
             }
+        case "order_list":
+            return{
+                url:"/BM/API/seller/get_order_list.asp",
+                body:{
+                    "biz_sn":user.biz_sn,
+                    "brand":user.brand
+                }
+            }
+        case "set_contract":
+            return{
+                url:"/BM/API/seller/set_contract_new.asp",
+                body:{
+                    "biz_sn": user.biz_sn,
+                    "brand": user.brand,
+                    "order_info_sn": data.order_info_sn
+                }
+            }
         default: return null;
     }
 }
+

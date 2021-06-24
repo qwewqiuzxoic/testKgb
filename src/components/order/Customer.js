@@ -16,18 +16,17 @@ const Select = styled.select`
   ${SelectStyle()};
 `;
 
-function Customer() {
-
+function Customer({CustName,CustState ,StPhone, mobile}) {
   return (
     <div>
       <ContentArea>
-          <InputGroup id="customerName" title="고객명"/>
-          <InputGroup id="customerTel0" title="대표전화 (SMS)"/>
-          <InputGroup id="customerTel1" title="전화번호"/>
+          <InputGroup id="customerName" title="고객명" value={CustName}/>
+          <InputGroup id="customerTel0" title="대표전화 (SMS)" value={StPhone}/>
+          <InputGroup id="customerTel1" title="전화번호" value={mobile}/>
       </ContentArea>
       <Label htmlFor="select_m_type">이사형태</Label>
-      <Select id="select_m_type" name="이사형태" placeholder="이사형태를 선택해주세요">
-        <option value="">이사형태를 선택해주세요</option>
+      <Select id="select_m_type" name="이사형태" placeholder={CustState} value={CustState}>
+        <option value="일반">{CustState}</option>
         <option value="형태 1">형태 1</option>
         <option value="형태 2">형태 2</option>
         <option value="형태 3">형태 3</option>

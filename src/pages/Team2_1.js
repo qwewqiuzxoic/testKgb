@@ -5,6 +5,11 @@ import FloatingBtn from '../components/commonStyle/FloatingBtn'
 
 import styled from 'styled-components';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { totalListThunk } from '../redux/thunkFn/total.thunk';
+import Loading from '../components/commonStyle/Loading';
+import { Link } from 'react-router-dom';
 
 
 const Wrapper = styled.div`
@@ -97,6 +102,15 @@ const lists2_1 = [
 ]
 
 function Team2_1() {
+    const dispatch = useDispatch();
+    const data = useSelector(state =>state.totalListReducer);
+    const {list,loading} = data;
+    useEffect(() => {
+        dispatch(totalListThunk("order_list",{}));
+        return () => {
+        }
+    }, [])
+
   return (
     <>
       <Wrapper>
@@ -104,25 +118,28 @@ function Team2_1() {
             <H1 title="방문견적 입력" subtit="KGB의 견적 및 계약 내역서입니다"></H1>
         </TopBg>
         <ContentArea>
-        {lists2_1.map((list, index)=> (
-            <Box key={index}>
+        {loading && <Loading></Loading>}
+        {list && list.map((item, index)=> (
+            <Box key={item.ORDER_INFO_SN}>
                 <Row>
-                    <Name><span>[{list.state}] </span>{list.name}</Name>
-                    <Call>{list.call}</Call>
+                    <Name><span>[{item.ORDER_INFO_SN}] </span>{item.CNAME}</Name>
+                    <Call>{item.PHONE}</Call>
                 </Row>
                 <Row>
                     <Dt>이사일</Dt>
-                    <Dd>{list.date1}</Dd>
+                    <Dd>{item.DAYMOVE}</Dd>
                 </Row>
                 <Row>
                     <Dt>전체금액</Dt>
-                    <Dd>{list.price}</Dd>
+                    <Dd>{item.COSTTOTAL}</Dd>
                 </Row>
                 <Row>
                     <Dt>접수일</Dt>
-                    <Dd>{list.date2}</Dd>
+                    <Dd>{item.DAYRECEIPT}</Dd>
                 </Row>
-                <Button bg="#F2F6F8" color="#009B90" text="견적의뢰"></Button>
+                <Link to={`/Team3_1/${item.ORDER_INFO_SN}`}>
+                <Button bg="#F2F6F8" color="#009B90" text={item.CODE_ORDER}></Button>
+                </Link>
              </Box>
         ))}
         </ContentArea>

@@ -47,7 +47,7 @@ const menuItems = [
         name: '작업/대리점 관리',
         subMenus: [
             {name: '작업일정(월별)', link:'/Team1/1'},
-            {name: '방문견적 및 개인오더 입력', link:'/Team3_1'},
+            {name: '방문견적 및 개인오더 입력', link:'/Team2_1'},
             {name: '우리팀 톡톡', link:'/board/2'}, 
 
             {name: '팀단체사진 등록', link:'/Team5'}, 

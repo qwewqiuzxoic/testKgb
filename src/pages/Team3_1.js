@@ -1,4 +1,4 @@
-import React, {useState}  from 'react';
+import React, {useEffect, useState}  from 'react';
 import H1 from '../components/commonStyle/H1'
 import Button from '../components/commonStyle/Button'
 import GroupTitle from '../components/commonStyle/GroupTitle'
@@ -14,6 +14,8 @@ import OrderOptionCost from '../components/order/OrderOptionCost';
 import Ordercontract1 from '../components/order/Ordercontract1';
 import OrderCar from '../components/order/OrderCar';
 import TotalPriceInfo from '../components/order/TotalPriceInfo';
+import { useDispatch, useSelector } from 'react-redux';
+import { totalDataThunk } from '../redux/thunkFn/total.thunk';
 
 
 const Wrapper = styled.div`
@@ -43,7 +45,24 @@ const Box = styled.div`
 const selectOptions = ['이사형태1', '이사형태2']
 
 
-function Team3_1() {
+function Team3_1({match}) {
+
+  const sn = match.params.sn;
+  const disaptch = useDispatch();
+  const state = useSelector(state => state.totalDataReducer.data);
+
+  useEffect(() => {
+    console.log(state.MoveDistKm)
+    if(typeof(state.data==="string")){
+    }
+    if(sn !==undefined){
+      disaptch(totalDataThunk("set_contract",{order_info_sn:sn}));
+    }else{
+      disaptch(totalDataThunk("set_contract",{order_info_sn:""}));
+    }
+    return () => {
+    }
+  }, [])
 
 
   return (
@@ -54,19 +73,28 @@ function Team3_1() {
         </TopBg>
           <Section>
             <GroupTitle title="고객정보"/>
-            <Customer />
+            <Customer CustName={state.CustName} CustState={state.CustState} StPhone={state.StPhone} mobile={state.mobile}/>
           </Section>
           <Section>
             <GroupTitle title="이사정보"/>
-            <OrderDate/>
+            <OrderDate DayMove={state.DayMove} DayBox={state.DayBox} />
           </Section>
           <Section>
             <GroupTitle title="정보입력"/>
-            <OrderAddress/>
+            <OrderAddress 
+              StAddr1={state.StAddr1}
+              StAddr2={state.StAddr2}
+              StAddr3={state.StAddr3}
+              StAddr4={state.StAddr4}
+              EdAddr1={state.EdAddr1}
+              EdAddr2={state.EdAddr2}
+              EdAddr3={state.EdAddr3}
+              EdAddr4={state.EdAddr4}
+              />
           </Section>
           <Section>
            <GroupTitle title="운송거리 (km)"/>
-            <OrderDistance/>
+            <OrderDistance MoveDistKm={state.MoveDistKm}/>
           </Section>
           <Section>
            <GroupTitle title="작업정보 입력"/>

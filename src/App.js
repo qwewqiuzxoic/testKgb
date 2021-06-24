@@ -86,7 +86,8 @@ function App() {
                 <PrivateRoute path="/boarddetail/:sn" component={BoardDetail}/>
                 <PrivateRoute path="/team1/:page" component={Team1}/>
                 <PrivateRoute path="/team2_1" component={Team2_1}/>
-                <PrivateRoute path="/team3_1" component={Team3_1}/>
+                <PrivateRoute path="/team3_1/:sn" component={Team3_1}/>
+                <PrivateRoute path="/team3_1/" component={Team3_1}/>
                 <PrivateRoute path="/team5" component={Team5}/>
                 <PrivateRoute path="/team6_1" component={Team6_1}/>
                 <PrivateRoute path="/team6_3" component={Team6_3}/>
