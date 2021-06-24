@@ -1,11 +1,10 @@
 import React from 'react';
 import DaumPostcode from "react-daum-postcode";
 import styled from 'styled-components';
-import { FlexBox, ChangeFont } from '../commonStyle';
 
 const Wrapper = styled.div`
   button{
-  background:   ${(props) => props.theme.colors.white};;
+  background: ${(props) => props.theme.colors.white};;
   position:fixed;
   width:100%;
   height:50px;

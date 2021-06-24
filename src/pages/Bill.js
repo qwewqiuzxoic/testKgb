@@ -35,7 +35,7 @@ const ContentArea = styled.div`
     position:relative;
     margin-top:30px;
     ${Gutter()};
-// `;
+`;
 // billDetailReducer,
 //     billListReducer
 

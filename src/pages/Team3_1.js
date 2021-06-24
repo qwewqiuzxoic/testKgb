@@ -4,7 +4,7 @@ import Button from '../components/commonStyle/Button'
 import GroupTitle from '../components/commonStyle/GroupTitle'
 import DaumPostcode from "react-daum-postcode";
 import styled from 'styled-components';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { Gutter } from '../components/commonStyle';
 import OrderAddress from '../components/order/OrderAddress';
 import OrderDate from '../components/order/OrderDate';
 import Customer from '../components/order/Customer';
@@ -20,6 +20,7 @@ import { totalDataThunk } from '../redux/thunkFn/total.thunk';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
+    padding-bottom:50px;
 `;
 const TopBg = styled.div`
     position:relative;
@@ -34,16 +35,6 @@ const TopBg = styled.div`
 const Section = styled.div`
     ${Gutter()};
 `;
-const ContentArea = styled.div`
-    position: relative;
-    ${Gutter()};
-`
-
-const Box = styled.div`
-`
-
-const selectOptions = ['이사형태1', '이사형태2']
-
 
 function Team3_1({match}) {
 
@@ -63,7 +54,6 @@ function Team3_1({match}) {
     return () => {
     }
   }, [])
-
 
   return (
     <>

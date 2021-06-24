@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 const LabelBox = styled.div`
     background: ${(props) => props.bg};
     border-radius: 4px;
-    padding:8px;
+    padding:8px 4px;
     color: ${(props) => props.color};
     span{
         position:relative;
