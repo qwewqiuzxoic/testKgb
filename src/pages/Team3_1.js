@@ -15,7 +15,7 @@ import Ordercontract1 from '../components/order/Ordercontract1';
 import OrderCar from '../components/order/OrderCar';
 import TotalPriceInfo from '../components/order/TotalPriceInfo';
 import { useDispatch, useSelector } from 'react-redux';
-import { totalDataThunk, totalListThunk } from '../redux/thunkFn/total.thunk';
+import { totalAnDataThunck, totalDataThunk, totalListThunk } from '../redux/thunkFn/total.thunk';
 import Team3_1_1 from './Team3_1_1';
 
 
@@ -82,17 +82,17 @@ const init = {
   KMIDEN:"",
   StFloor:"",
   StSadari:"",
-  StEL:"0",
-  Stgondora:"0",
-  StLoop:"0",
-  StTrdist:"0",
-  StStep:"0" ,
-  EdFloor:"5",
-  EdSadari:"0",
-  EdEL:"1",
-  EdGondora:"0",
+  StEL:"",
+  Stgondora:"",
+  StLoop:"",
+  StTrdist:"",
+  StStep:"" ,
+  EdFloor:"",
+  EdSadari:"",
+  EdEL:"",
+  EdGondora:"",
   EdLoop:"",
-  EdTrdist:"0",
+  EdTrdist:"",
   EdStep:"" ,
   CboContractBrand:"",
   CboOrderStatus:"",
@@ -124,14 +124,66 @@ const init = {
   TosTeamMemberCode:"",
   TosTeamName:"",
   AirconchkVal:"",
-  CleanchkVal:""
+  CleanchkVal:"",
+  St_floor: "",
+  St_Sadari:  "",
+  St_EL:  "",
+  St_TrDist:  "",
+  St_Step:  "",
+  Ed_floor:  "",
+  Ed_Sadari:  "",
+  Ed_EL:  "",
+  Ed_TrDist:  "",
+  Ed_Step:  "",
+  ExecType: "211111000"
 }
 
 function Team3_1({match}) {
 
 
   const [orderSave, setOrderSave] = useState(init);
-  
+  const setInit = (data) =>{
+    console.log(data)
+    setOrderSave({
+      ...orderSave,
+      ...data
+    })
+  }
+  const getMovePay = () => {
+    console.log(orderSave);
+  }
+
+  const setAdd = (data,becode,type) =>{
+    let arr = data.split(" ");
+    if(type === "St"){
+      setOrderSave({
+        ...orderSave,
+        StAddr1:arr[0],
+        StAddr2:arr[1],
+        StAddr3:arr[2],
+        StBcode:becode,
+        ExecType: "211111000"
+      })
+
+    }else if(type === "Ed"){
+      setOrderSave({
+        ...orderSave,
+        EdAddr1:arr[0],
+        EdAddr2:arr[1],
+        EdAddr3:arr[2],
+        EdBcode:becode,
+        ExecType: "211111000"
+      })
+    
+
+    }
+  }
+  const setExecType = (type) =>{
+    setOrderSave({
+      ...orderSave,
+      ExecType:type
+    })
+  }
 
 
 
@@ -139,10 +191,9 @@ function Team3_1({match}) {
 
 
 
-
-
-
-
+  const onSaveSubmot = ()=>{
+    console.log(orderSave)
+  }
   const sn = match.params.sn;
   const [open,setOpen] = useState(false);
   const onclick = () =>{
@@ -151,22 +202,47 @@ function Team3_1({match}) {
   }
   const disaptch = useDispatch();
   const state = useSelector(state => state.totalDataReducer.data);
+  const anState = useSelector(state => state.totalDataAnReducer.data);
   
   useEffect(() => {
-    console.log(state.MoveDistKm)
-    if(typeof(state.data==="string")){
-    }
     if(sn !==undefined){
       disaptch(totalDataThunk("set_contract",{order_info_sn:sn}));
     }else{
       disaptch(totalDataThunk("set_contract",{order_info_sn:""}));
     }
-    
     return () => {
     }
   }, [])
 
+  useEffect(() => {
+    if(orderSave.BrandContract === ""){
+      setInit(state);
+    }
 
+    return () => {
+    }
+  }, [state])
+  useEffect(() => {
+    if(!anState.result){
+      console.log("An")
+      console.log(anState)
+      console.log("An")
+      setInit(anState);
+    }
+    setInit(anState);
+
+    return () => {
+    }
+  }, [anState])
+  //비용계산get_movepay
+  useEffect(() => {
+    console.log(orderSave)
+    if(orderSave.EdAddr1 !== "" && orderSave.StAddr1 !== ""){
+      disaptch(totalAnDataThunck("get_movepay",orderSave))
+    }
+    return () => {
+    }
+  }, [orderSave && orderSave.StAddr1 && orderSave.EdAddr1])
   return (
     <>
       <Wrapper>
@@ -192,6 +268,7 @@ function Team3_1({match}) {
               EdAddr2={state.EdAddr2}
               EdAddr3={state.EdAddr3}
               EdAddr4={state.EdAddr4}
+              setOrder={setAdd}
               />
           </Section>
           <Section>
@@ -253,7 +330,7 @@ function Team3_1({match}) {
             />
           </Section>
           <Section>
-            <Button bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/>
+            <Button onclick={onSaveSubmot} bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/>
           </Section>
           {open && <Team3_1_1></Team3_1_1>}
           

@@ -108,6 +108,35 @@ export const UrlBody = (type, data) => {
                     "prod_name":data.prod_name
                 }
             }
+        case "get_movepay":
+            return {
+                url: "/BM/API/seller/get_movepay_info.asp",
+                body:{
+                    "CboContractBrand" : user.brand,    //필
+                    "ExecType" : data.ExecType,                 //필
+                    "StAddr1" : data.StAddr1,
+                    "StAddr2" : data.StAddr2,
+                    "StAddr3" : data.StAddr3,
+                    "EdAddr1" : data.EdAddr1,
+                    "EdAddr2" : data.EdAddr2,
+                    "EdAddr3" : data.EdAddr3,
+                    "StBcode" : data.StBcode,
+                    "EdBcode" : data.EdBcode,
+                    "DayMove" : data.DayMove,                  //필
+                    "CODE_MOVEDAY" : data.CODE_MOVEDAY,        //필
+                    "WorkTeamCode" : user.biz_sn,       //필
+                    "St_floor" : data.St_floor,
+                    "St_Sadari":  data.St_Sadari,
+                    "St_EL":  data.St_EL,
+                    "St_TrDist":  data.St_TrDist,
+                    "St_Step":  data.St_Step,
+                    "Ed_floor":  data.Ed_floor,
+                    "Ed_Sadari":  data.Ed_Sadari,
+                    "Ed_EL":  data.Ed_EL,
+                    "Ed_TrDist":  data.Ed_TrDist,
+                    "Ed_Step":  data.Ed_Step
+                }
+            }
         default: return null;
     }
 }

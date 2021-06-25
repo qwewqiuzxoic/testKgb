@@ -17,6 +17,11 @@ export const totalData = {
     error:"",
     data:{}
 }
+export const totalAnData = {
+    loading:false,
+    error:"",
+    data:{}
+}
 
 
 //로그인 초기상태

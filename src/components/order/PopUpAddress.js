@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FindAddress from './FindAddress';
 import styled from 'styled-components';
 import { FlexBox, ChangeFont, InputStyle } from '../commonStyle';
@@ -32,26 +32,42 @@ const Input = styled.input`
   }
 `;
 
-function PopUpAddress({Addr1,Addr2,Addr3,Addr4}) {
+function PopUpAddress({Addr1,Addr2,Addr3,Addr4,setOrder,type}) {
 const [address, setAddress] = useState({open:false, data:""});
   const openAddress = () => {
     setAddress({
       ...address,
-      open:true,
-      data:""
+      open:true
     })
   }
-  const closeAddress = (data) => {
+  const closeAddress = (data,becode) => {
     setAddress({
       ...address,
       open:false,
       data:data
     })
+    setOrder(data,becode,type);
   }
+  useEffect(() => {
+    if(address.data === ""){
+      setAddress({
+        ...address,
+        data:Addr1 !== undefined ? Addr1+" "+Addr2+" "+ Addr3:""
+      })
+    }
+   
+    return () => {
+      setAddress({
+        ...address,
+        open:false,
+        data:""
+      })
+    }
+  }, [Addr1])
   return (
     <Wrapper>
       <Layout>
-        <Input type="text" value={address.data} placeholder="기본주소"  readonly  value={Addr1+" "+Addr2+" "+ Addr3}/>
+        <Input type="text" value={address.data} placeholder="기본주소"  readonly/>
         <Button type='button'  onClick={openAddress}>주소찾기</Button>
       </Layout>
       <div id='popupDom'>

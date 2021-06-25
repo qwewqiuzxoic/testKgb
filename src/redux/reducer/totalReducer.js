@@ -1,5 +1,5 @@
 import { totalListInit, totalMesInit } from "../actionFn/total";
-import { totalData } from "../init/init";
+import { totalAnData, totalData } from "../init/init";
 
 export function totalMesReducer(state = totalMesInit,action){
     switch(action.type){
@@ -100,6 +100,37 @@ export function totalDataReducer(state = totalData,action){
                 data:{}
             }
         case "API_DATA_INIT":
+            return totalData;
+        default:
+            return state;
+    }
+}
+
+
+export function totalDataAnReducer(state = totalAnData,action){
+    switch(action.type){
+        case "API_ANDATA_SUCCESS":
+            return{
+                ...state,
+                loading:false,
+                error:"",
+                data:action.data
+            }
+        case "API_ANDATA_LOADING":
+            return{
+                ...state,
+                loading:true,
+                error:"",
+                data:{}
+            }
+        case "API_ANDATA_ERROR":
+            return{
+                ...state,
+                loading:false,
+                error:action.data,
+                data:{}
+            }
+        case "API_ANDATA_INIT":
             return totalData;
         default:
             return state;
