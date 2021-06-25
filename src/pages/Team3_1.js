@@ -34,6 +34,7 @@ const TopBg = styled.div`
 `;
 const Section = styled.div`
     ${Gutter()};
+    display:${(props)=>props.open?'none':'block'};
 `;
 const ContentArea = styled.div`
     position: relative;
@@ -200,6 +201,9 @@ function Team3_1({match}) {
     setOpen(true);
     disaptch(totalListThunk("item_detail_list",{prod_name:"가구"}));
   }
+  const closeModal = () => {
+    setOpen(false);
+}
   const disaptch = useDispatch();
   const state = useSelector(state => state.totalDataReducer.data);
   const anState = useSelector(state => state.totalDataAnReducer.data);
@@ -249,15 +253,15 @@ function Team3_1({match}) {
         <TopBg>
             <H1 title="개인오더" subtit="KGB의 방문견적서 내역입니다"></H1>
         </TopBg>
-          <Section>
+          <Section open={open}>
             <GroupTitle title="고객정보"/>
             <Customer CustName={state.CustName} MoveType={state.MoveType} StPhone={state.StPhone} mobile={state.mobile}/>
           </Section>
-          <Section>
+          <Section open={open}>
             <GroupTitle title="이사정보"/>
             <OrderDate DayMove={state.DayMove} DayBox={state.DayBox} />
           </Section>
-          <Section>
+          <Section open={open}>
             <GroupTitle title="정보입력"/>
             <OrderAddress 
               StAddr1={state.StAddr1}
@@ -271,11 +275,11 @@ function Team3_1({match}) {
               setOrder={setAdd}
               />
           </Section>
-          <Section>
+          <Section open={open}>
            <GroupTitle title="운송거리 (km)"/>
             <OrderDistance MoveDistKm={state.MoveDistKm}/>
           </Section>
-          <Section>
+          <Section open={open}>
            <GroupTitle title="작업정보 입력"/>
             <OrderAddressOption title="출발지" 
             EL={state.StEL}              
@@ -299,15 +303,15 @@ function Team3_1({match}) {
             name="EdAdd"
             />
           </Section>
-          <Section>
+          <Section open={open}>
             <GroupTitle title="옵션 비용"/>
             <OrderOptionCost AddOptmoneyStr={state.AddOptmoneyStr}/>
           </Section>
-          <Section>
+          <Section open={open}>
            <GroupTitle title="계약 정보"/>
             <Ordercontract1 CboOrderStatus={state.CboOrderStatus}/>
           </Section>
-          <Section>
+          <Section open={open}>
            <GroupTitle title="차량정보"/>
             <OrderCar CarTon10={state.CarTon10}
             CarTon25={state.CarTon25}
@@ -318,7 +322,7 @@ function Team3_1({match}) {
             onclick={onclick}
             />
           </Section>
-          <Section>
+          <Section open={open}>
            <GroupTitle title="총 금액정보"/>
             <TotalPriceInfo CostMove={state.CostMove} 
             CostOption={state.CostOption} 
@@ -329,11 +333,10 @@ function Team3_1({match}) {
             Comment01_txt={state.Comment01_txt}
             />
           </Section>
-          <Section>
+          <Section open={open}>
             <Button onclick={onSaveSubmot} bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/>
           </Section>
-          {open && <Team3_1_1></Team3_1_1>}
-          
+          {open && <Team3_1_1 close={ closeModal }></Team3_1_1>}   
       </Wrapper>
     </>
   );

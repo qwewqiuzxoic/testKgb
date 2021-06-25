@@ -77,7 +77,7 @@ const OptionBox = styled.div`
 const Option = styled.div`
 `;
 
-function Team3_1_1() {
+function Team3_1_1({close}) {
     const [tab,setTab]= useState("가구");
     const state = useSelector(state => state.totalListReducer);
     const dispatch = useDispatch();
@@ -125,7 +125,7 @@ function Team3_1_1() {
             ))}
             </Selected>
         </Select>
-        <Button bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/>
+        <Button bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px" onclick={close}/>
         </ContentArea>
     </Wrapper>
   );
