@@ -14,7 +14,7 @@ const Label = styled.label`
   ${LabelStyle()};
 `;
 
-function OrderAddress({StAddr1,StAddr2,StAddr3,StAddr4,EdAddr1,EdAddr2,EdAddr3, EdAddr4}) {
+function OrderAddress({StAddr1,StAddr2,StAddr3,StAddr4,EdAddr1,EdAddr2,EdAddr3, EdAddr4, setOrder,getMovePay}) {
   const [address1, setAddress1] = useState({open:false, data:""});
   const openAddress1 = () => {
     setAddress1({
@@ -38,7 +38,7 @@ function OrderAddress({StAddr1,StAddr2,StAddr3,StAddr4,EdAddr1,EdAddr2,EdAddr3, 
       data:""
     })
   }
-  const closeAddress2 = (data) => {
+  const closeAddress2 = (data,becode,type) => {
     setAddress2({
       ...address2,
       open:false,
@@ -51,13 +51,13 @@ function OrderAddress({StAddr1,StAddr2,StAddr3,StAddr4,EdAddr1,EdAddr2,EdAddr3, 
       <Label htmlFor="addr_from">
         출발지 주소
       </Label>
-      <PopUpAddress Addr1={StAddr1} Addr2={StAddr2} Addr3={StAddr3} Addr4={StAddr4}/>
+      <PopUpAddress Addr1={StAddr1} Addr2={StAddr2} Addr3={StAddr3} Addr4={StAddr4} setOrder={setOrder} type="St" />
     </Layout>
     <Layout>
       <Label htmlFor="addr_to">
         도착지 주소
       </Label>
-      <PopUpAddress Addr1={EdAddr1} Addr2={EdAddr2} Addr3={EdAddr3} Addr4={EdAddr4}/>
+      <PopUpAddress Addr1={EdAddr1} Addr2={EdAddr2} Addr3={EdAddr3} Addr4={EdAddr4} setOrder={setOrder} type="Ed"/>
     </Layout>    
   </Wrapper>
   );

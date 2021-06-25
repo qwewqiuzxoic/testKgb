@@ -143,7 +143,9 @@ function Team2_1() {
              </Box>
         ))}
         </ContentArea>
+        <Link to={`/Team3_1/`}>
         <FloatingBtn bg="#009B90" icon="ico_add"/>       
+        </Link>
       </Wrapper>
     </>
   );

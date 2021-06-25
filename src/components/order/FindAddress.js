@@ -17,8 +17,10 @@ const Wrapper = styled.div`
 
 function FindAddress(props) {
     const handlePostCode = (data) => {
-        let fullAddress = data.address;
+        let fullAddress = data.jibunAddress;
         let extraAddress = ''; 
+        let bcode = data.bcode
+        console.log(data)
         
         if (data.addressType === 'R') {
           if (data.bname !== '') {
@@ -29,7 +31,7 @@ function FindAddress(props) {
           }
           fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
         }
-        props.onClose(fullAddress)
+        props.onClose(fullAddress,bcode);
     }
  
     const postCodeStyle = {
@@ -37,8 +39,8 @@ function FindAddress(props) {
         position: "fixed",
         top: "0",
         left: '0',
-        width: "100%",
-        height: "100%",
+        width: "50%",
+        height: "50%",
       };
  
     return(

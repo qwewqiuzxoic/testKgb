@@ -16,7 +16,7 @@ const Select = styled.select`
   ${SelectStyle()};
 `;
 
-function Customer({CustName,CustState ,StPhone, mobile}) {
+function Customer({CustName,MoveType ,StPhone, mobile}) {
   return (
     <div>
       <ContentArea>
@@ -25,8 +25,8 @@ function Customer({CustName,CustState ,StPhone, mobile}) {
           <InputGroup id="customerTel1" title="전화번호" value={mobile}/>
       </ContentArea>
       <Label htmlFor="select_m_type">이사형태</Label>
-      <Select id="select_m_type" name="이사형태" placeholder={CustState} value={CustState}>
-        <option value="일반">{CustState}</option>
+      <Select id="select_m_type" name="이사형태" placeholder={MoveType} value={MoveType}>
+        <option value="일반">{MoveType}</option>
         <option value="형태 1">형태 1</option>
         <option value="형태 2">형태 2</option>
         <option value="형태 3">형태 3</option>

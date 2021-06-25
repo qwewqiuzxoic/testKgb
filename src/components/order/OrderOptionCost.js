@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import styled from 'styled-components';
+import { totalListThunk } from '../../redux/thunkFn/total.thunk';
 import { FlexBox, ChangeFont, InputStyle, LabelStyle, SelectStyle} from '../commonStyle';
 import CheckGroup from '../commonStyle/CheckGroup';
 
@@ -52,12 +54,16 @@ const costOptions=[
   {value : "옵션5" , id: "costOption5", name:"costOption"},
   {value : "옵션6" , id: "costOption6", name:"costOption"},
 ]
+String.prototype.replaceAll = function(org, dest) {
+  return this.split(org).join(dest);
+}
+function OrderOptionCost({AddOptmoneyStr}) {
+  const addOptmoneyStr = AddOptmoneyStr ? AddOptmoneyStr.replaceAll(/[0-9]/g, "").replaceAll("|",",").replaceAll("-","").split(",") : [];
+  const [checkedInputs, setCheckedInputs] = useState([]);
 
-function OrderOptionCost() {
-  const [checkedInputs, setCheckedInputs] = useState([""]);
   //const [selectedValue,setSelectedValue]= useState("작업정보옵션을 선택해주세요");
   const [toggle,setToggle]=useState(false);
-
+  const [DList,setDList] = useState([]);
   const changeHandler = (checked, id) => {
     if (checked) {
       setCheckedInputs([...checkedInputs, id]);
@@ -69,8 +75,23 @@ function OrderOptionCost() {
 
   const handleClick = (e) => {
     setToggle(!toggle)
+    
   }
-
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.totalListReducer);
+  const {loading} = state;
+  useEffect(() => {
+    dispatch(totalListThunk("add_option",{},setDList));
+    return () => {
+    }
+  }, [dispatch])
+  useEffect(() => {
+    if(!loading){
+      setCheckedInputs(addOptmoneyStr);
+    }
+    return () => {
+    }
+  }, [state])
   return (
     <Wrapper>
       <Select onClick={handleClick} toggle={toggle}>
@@ -83,12 +104,12 @@ function OrderOptionCost() {
         </IconBox>
       </Select>
       <OptionBox toggle={toggle}>
-      {costOptions.map((opt, i) => (
-        <Option value={opt.value}  >
-          <CheckGroup  name={opt.name} id={opt.id} label={opt.value} onChange={(e)=>{
-          changeHandler(e.currentTarget.checked, opt.value)
+      {DList && DList.map((opt, i) => (
+        <Option value="옵션" >
+          <CheckGroup  name={`opt_${i}`} id={`opt_${i}`} label={opt.opt_text} onChange={(e)=>{
+          changeHandler(e.currentTarget.checked, opt.opt_text)
         }}
-        checked={checkedInputs.includes(opt.value) ? true : false}></CheckGroup>
+        checked={checkedInputs.includes(opt.opt_text) ? true : false}></CheckGroup>
         </Option>
       ))}
       </OptionBox>

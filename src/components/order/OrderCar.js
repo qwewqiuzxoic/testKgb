@@ -17,16 +17,16 @@ const BtnArea = styled.div`
   padding-bottom: 10px;
 `;
 
-function OrderCar() {
+function OrderCar({CarTon10, CarTon25, CarTon50, CarCount, MoveCBM, MoveDetCBM, onclick}) {
   return (
     <Wrapper>
-      <InputNum id="number_info1" label="1톤 (대)"></InputNum>
-      <InputNum id="number_info2" label="2.5톤 (대)"></InputNum>
-      <InputNum id="number_info3" label="5톤 (대)"></InputNum>
-      <InputNum id="number_info4" label="이사물량 (CBM))"></InputNum>
-      <InputNum id="number_info5" label="상세물량 (CBM)" last={true}></InputNum>
+      <InputNum id="number_info1" label="1톤 (대)" value={CarTon10}></InputNum>
+      <InputNum id="number_info2" label="2.5톤 (대)" value={CarTon25}></InputNum>
+      <InputNum id="number_info3" label="5톤 (대)" value={CarTon50}></InputNum>
+      <InputNum id="number_info4" label="이사물량 (CBM))" value={MoveCBM}></InputNum>
+      <InputNum id="number_info5" label="상세물량 (CBM)" value={MoveDetCBM} last={true}></InputNum>
       <BtnArea>
-        <Button bg="#F2F6F8"  color="#ACB6BC" text="상세물량 수정/입력" height="30px" fontSize="11px"/>
+        <Button bg="#F2F6F8" onclick={onclick} color="#ACB6BC" text="상세물량 수정/입력" height="30px" fontSize="11px"/>
       </BtnArea> 
     </Wrapper>
   );

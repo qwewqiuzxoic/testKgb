@@ -27,17 +27,17 @@ const Label = styled.label`
 const Input = styled.input`
   ${InputStyle()};
 `;
-function OrderAddressOption() {
+function OrderAddressOption({title,name ,EL, Floor, Loop, Sadari, Step, gondora,Trdist}) {
   return (
     <Wrapper>
       <Group>
       <Label htmlFor="info_from">
-        출발지 주소
+        {title}
       </Label>
-      <Input id="info_from" type="text" placeholder="이송거리(m)" textAlign="right"/>
+      <Input id={`name_${name}`} type="text" placeholder="이송거리(m)" textAlign="right" value={Trdist}/>
       <Layout>
-        <Input type="text" placeholder="층수" textAlign="right"/>
-        <Input type="text" placeholder="계단(층)" textAlign="right"/>
+        <Input type="text" placeholder="층수" textAlign="right" value={Floor}/>
+        <Input type="text" placeholder="계단(층)" textAlign="right" value={Step}/>
       </Layout>
       </Group>
       <Group>
@@ -45,12 +45,12 @@ function OrderAddressOption() {
       작업정보 옵션
       </Label>
       <Layout>
-        <RadioGroup id="workOption1" name="workOption" label="사다리차 이용"></RadioGroup>
-        <RadioGroup id="workOption2" name="workOption" label="엘리베이터"></RadioGroup>
+        <RadioGroup id="workOption1" name={name} label="사다리차 이용" checked={Sadari === "1"?true:false}></RadioGroup>
+        <RadioGroup id="workOption2" name={name}  label="엘리베이터" checked={EL === "1"?true:false}></RadioGroup>
       </Layout>
       <Layout>
-        <RadioGroup id="workOption3" name="workOption" label="곤도라 사용"></RadioGroup>
-        <RadioGroup id="workOption4" name="workOption" label="로프 사용"></RadioGroup>
+        <RadioGroup id="workOption3" name={name}  label="곤도라 사용" checked={gondora === "1"?true:false}></RadioGroup>
+        <RadioGroup id="workOption4" name={name}  label="로프 사용" checked={Loop === "1"?true:false}></RadioGroup>
       </Layout>
       </Group>
     </Wrapper>
