@@ -17,6 +17,7 @@ import TotalPriceInfo from '../components/order/TotalPriceInfo';
 import { useDispatch, useSelector } from 'react-redux';
 import { totalAnDataThunck, totalDataThunk, totalListThunk } from '../redux/thunkFn/total.thunk';
 import Team3_1_1 from './Team3_1_1';
+import Loading from '../components/commonStyle/Loading';
 
 
 const Wrapper = styled.div`
@@ -85,7 +86,7 @@ const init = {
   StEL:"",
   Stgondora:"",
   StLoop:"",
-  StTrdist:"",
+  StTrdist:"",   //이송거리
   StStep:"" ,
   EdFloor:"",
   EdSadari:"",
@@ -161,7 +162,7 @@ function Team3_1({match}) {
         StAddr1:arr[0],
         StAddr2:arr[1],
         StAddr3:arr[2],
-        StBcode:becode,
+        // StBcode:becode,
         ExecType: "211111000"
       })
 
@@ -171,25 +172,48 @@ function Team3_1({match}) {
         EdAddr1:arr[0],
         EdAddr2:arr[1],
         EdAddr3:arr[2],
-        EdBcode:becode,
+        // EdBcode:becode,
         ExecType: "211111000"
       })
-    
-
     }
   }
+
+  const radioChangeSt = (e) =>{
+    setOrderSave({
+      ...orderSave,
+      StSadari:"",
+      StEL:"",
+      Stgondora:"",
+      StLoop:"",
+      [e.target.value]:"1",
+
+    })
+  }
+  const radioChangeEd = (e) =>{
+    setOrderSave({
+      ...orderSave,
+      EdSadari:"",
+      EdEL:"",
+      EdGondora:"",
+      EdLoop:"",
+      [e.target.value]:"1",
+    })
+  }
+
+  const inputChange = (e) =>{
+    setOrderSave({
+      ...orderSave,
+      [e.target.name]:e.target.value
+    })
+  }
+    
+  
   const setExecType = (type) =>{
     setOrderSave({
       ...orderSave,
       ExecType:type
     })
   }
-
-
-
-
-
-
 
   const onSaveSubmot = ()=>{
     console.log(orderSave)
@@ -202,6 +226,7 @@ function Team3_1({match}) {
   }
   const disaptch = useDispatch();
   const state = useSelector(state => state.totalDataReducer.data);
+  const loading = useSelector(state => state.totalDataReducer.loading);
   const anState = useSelector(state => state.totalDataAnReducer.data);
   
   useEffect(() => {
@@ -216,21 +241,25 @@ function Team3_1({match}) {
 
   useEffect(() => {
     if(orderSave.BrandContract === ""){
-      setInit(state);
+       setInit({
+          ...orderSave,
+          ...state
+        });
     }
+       
 
     return () => {
     }
   }, [state])
+
+  // 견적내용 출력 시ㅣ 
   useEffect(() => {
-    if(!anState.result){
-      console.log("An")
-      console.log(anState)
-      console.log("An")
+    if(sn === undefined) {
       setInit(anState);
     }
-    setInit(anState);
-
+    if(!anState.result){
+      console.log(anState);
+    }
     return () => {
     }
   }, [anState])
@@ -238,13 +267,14 @@ function Team3_1({match}) {
   useEffect(() => {
     console.log(orderSave)
     if(orderSave.EdAddr1 !== "" && orderSave.StAddr1 !== ""){
-      disaptch(totalAnDataThunck("get_movepay",orderSave))
+      //disaptch(totalAnDataThunck("get_movepay",orderSave));
     }
     return () => {
     }
   }, [orderSave && orderSave.StAddr1 && orderSave.EdAddr1])
   return (
     <>
+      
       <Wrapper>
         <TopBg>
             <H1 title="개인오더" subtit="KGB의 방문견적서 내역입니다"></H1>
@@ -273,29 +303,33 @@ function Team3_1({match}) {
           </Section>
           <Section>
            <GroupTitle title="운송거리 (km)"/>
-            <OrderDistance MoveDistKm={state.MoveDistKm}/>
+            <OrderDistance MoveDistKm={orderSave.MoveDistKM}/>
           </Section>
           <Section>
            <GroupTitle title="작업정보 입력"/>
             <OrderAddressOption title="출발지" 
-            EL={state.StEL}              
-            Floor={state.StFloor}
-            Loop={state.StLoop}
-            Sadari={state.StSadari}
-            Step={state.StStep}
-            gondora={state.Stgondora}
-            Trdist={state.StTrdist}
+            EL={orderSave.StEL}              
+            Floor={orderSave.StFloor}
+            Loop={orderSave.StLoop}
+            Sadari={orderSave.StSadari}
+            Step={orderSave.StStep}
+            gondora={orderSave.Stgondora}
+            Trdist={orderSave.StTrdist}
+            radioChange={radioChangeSt}
+            inputChange={inputChange}
             name="StAdd"
             />
             <br/>
             <OrderAddressOption title="도착지"
-            EL={state.EdEL}              
-            Floor={state.EdFloor}
-            Loop={state.EdLoop}
-            Sadari={state.EdSadari}
-            Step={state.EdStep}
-            gondora={state.Edgondora}
-            Trdist={state.EdTrdist}
+            EL={orderSave.EdEL}              
+            Floor={orderSave.EdFloor}
+            Loop={orderSave.EdLoop}
+            Sadari={orderSave.EdSadari}
+            Step={orderSave.EdStep}
+            gondora={orderSave.Edgondora}
+            Trdist={orderSave.EdTrdist}
+            radioChange={radioChangeEd}
+            inputChange={inputChange}
             name="EdAdd"
             />
           </Section>
@@ -309,12 +343,12 @@ function Team3_1({match}) {
           </Section>
           <Section>
            <GroupTitle title="차량정보"/>
-            <OrderCar CarTon10={state.CarTon10}
-            CarTon25={state.CarTon25}
-            CarTon50={state.CarTon50}
-            CarCount={state.CarCount}
-            MoveCBM={state.MoveCBM}
-            MoveDetCBM={state.MoveDetCBM}
+            <OrderCar CarTon10={orderSave.CarTon10}
+            CarTon25={orderSave.CarTon25}
+            CarTon50={orderSave.CarTon50}
+            CarCount={orderSave.CarCount}
+            MoveCBM={orderSave.MoveCBM}
+            MoveDetCBM={orderSave.MoveDetCBM}
             onclick={onclick}
             />
           </Section>
@@ -333,7 +367,9 @@ function Team3_1({match}) {
             <Button onclick={onSaveSubmot} bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/>
           </Section>
           {open && <Team3_1_1></Team3_1_1>}
-          
+          {
+        loading && <Loading></Loading>
+      }
       </Wrapper>
     </>
   );
