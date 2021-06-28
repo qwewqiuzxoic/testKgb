@@ -264,7 +264,7 @@ function Team3_1({match}) {
 
 //이송거리/////////////////////////////////
   useEffect(() => {
-    if(orderSave.StTrdist !== 0 || orderSave.StTrdist !== ""){
+    if(orderSave.StTrdist !== "0" && orderSave.StTrdist !== ""){
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
     return () => {
@@ -272,68 +272,94 @@ function Team3_1({match}) {
   }, [orderSave && orderSave.StTrdist])
 
   useEffect(() => {
-    if(orderSave.EdTrdist  !== 0 || orderSave.EdTrdist !== ""){
+    if(orderSave.EdTrdist  !== "0" && orderSave.EdTrdist !== ""){
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
     return () => {
     }
   }, [orderSave &&  orderSave.EdTrdist])
+
+
+
 //층수////////////////////////////////////////////////////
   useEffect(() => {
-    if(orderSave.StFloor !== 0 || orderSave.StFloor !== ""){
+    if(orderSave.StFloor !== "0" && orderSave.StFloor !== ""){
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
     return () => {
     }
   }, [orderSave && orderSave.StFloor])
   useEffect(() => {
-    if(orderSave.EdFloor !== 0 || orderSave.EdFloor !== ""){
+    if(orderSave.EdFloor !== "0" && orderSave.EdFloor !== ""){
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
     return () => {
     }
   }, [orderSave &&  orderSave.EdFloor])
+
+
+
   //계단/////////////////////////////////////////////////////////////
   useEffect(() => {
-    if(orderSave.StStep !== 0 || orderSave.StStep !== ""){
+    if(orderSave.StStep !== "0" && orderSave.StStep !== ""){
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
     return () => {
     }
   }, [orderSave && orderSave.StStep])
   useEffect(() => {
-    if(orderSave.EdStep !== 0 || orderSave.EdStep !== ""){
+    if(orderSave.EdStep !== "0" && orderSave.EdStep !== ""){
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
     return () => {
     }
   }, [orderSave && orderSave.EdStep])
 
+
+
+
   //EL/////////////////////////////////
   useEffect(() => {
-    if(orderSave.StStep !== 0 || orderSave.StStep !== ""){
+    console.log(orderSave.StStep )
+
+    if(orderSave.StStep !== "0" || orderSave.StStep !== ""){
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
     return () => {
     }
   }, [orderSave && orderSave.StEL])
   useEffect(() => {
-    if(orderSave.EdEL !== 0 || orderSave.EdEL !== ""){
+    console.log(orderSave.EdEL)
+
+    if(orderSave.EdEL !== "0" || orderSave.EdEL !== ""){
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
     return () => {
     }
   }, [orderSave && orderSave.EdEL])
+
+
+
   //////사다리///////////////
   useEffect(() => {
-    if(orderSave.StSadari !== 0 || orderSave.StSadari !== ""){
+    console.log(orderSave.StSadari)
+
+    if(orderSave.StSadari !== "0" || orderSave.StSadari !== ""){
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
     return () => {
     }
   }, [orderSave && orderSave.StSadari])
   useEffect(() => {
-    if(orderSave.EdSadari !== 0 || orderSave.EdSadari !== ""){
+    console.log()
+    if(orderSave.EdSadari !== "0" || orderSave.EdSadari !== ""){
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+    return () => {
+    }
+  }, [orderSave && orderSave.EdSadari ])
+  useEffect(() => {
+    if(orderSave.EdSadari !== "0" && orderSave.EdSadari !== ""){
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
     return () => {
