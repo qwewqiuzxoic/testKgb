@@ -6,13 +6,12 @@ const Wrapper = styled.div`
 
 `;
 
-const Checkbox = ({ isAllChecked, issue, checkedItemHandler, isCircle, index }) => {
+const Checkbox = ({ isAllChecked, issue, checkedItemHandler, isCircle, index, gb_idx }) => {
     const [bChecked, setChecked] = useState(false);
 
     const checkHandler = ({ target }) => {
-      console.log(issue);
         setChecked(!bChecked);
-        checkedItemHandler(issue.msg_sn, target.checked);
+        checkedItemHandler(issue.gb_idx, target.checked);
       };
     
       const allCheckHandler = () => setChecked(isAllChecked);

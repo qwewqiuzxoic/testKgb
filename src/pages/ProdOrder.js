@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from '../components/commonStyle/Head';
 import Button from '../components/commonStyle/Button'
 import OrderBox from '../components/Prod/OrderBox'
 import { FlexBox, Gutter, InputStyle } from '../components/commonStyle';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { totalListThunk } from '../redux/thunkFn/total.thunk';
+import Loading from '../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
     background:#fafafa;
@@ -58,6 +61,15 @@ const order = {
     }
 
 function ProdOrder() {
+    const dispatch = useDispatch();
+    const state = useSelector(state=>state.totalListReducer);
+    const {list,loading} = state;
+    
+    useEffect(() => {
+        dispatch(totalListThunk("goods_order_list",{}));
+        return () => {
+        }
+    }, [])
 
   return (
       <Wrapper>
@@ -70,7 +82,15 @@ function ProdOrder() {
                 <Input type="text" id="date_order" placeholder="날짜를 선택해주세요"  textAlign="left"  onFocus={(e)=> {e.currentTarget.type = "date";e.currentTarget.focus();}} max="9999-12-31"></Input>
                 <Button bg="#3397B9" color="#ffffff" text="조회" w="60px" h="34px" fontSize="11px"/>
             </DateArea>
-            <OrderBox order={order}/>
+            {
+                !loading &&  list?.map((item, index) => 
+                <div>
+                    <OrderBox key={item.goo_idx} order={item}/>
+                    <br/>
+                </div>
+                )   
+            }
+            {loading && <Loading></Loading>}
         </ContentArea>  
       </Wrapper>
   );

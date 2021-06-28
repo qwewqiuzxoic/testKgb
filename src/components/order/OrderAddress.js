@@ -16,35 +16,7 @@ const Label = styled.label`
 
 function OrderAddress({StAddr1,StAddr2,StAddr3,StAddr4,EdAddr1,EdAddr2,EdAddr3, EdAddr4, setOrder,getMovePay}) {
   const [address1, setAddress1] = useState({open:false, data:""});
-  const openAddress1 = () => {
-    setAddress1({
-      ...address1,
-      open:true,
-      data:""
-    })
-  }
-  const closeAddress1 = (data) => {
-    setAddress1({
-      ...address1,
-      open:false,
-      data:data
-    })
-  }
-  const [address2, setAddress2] = useState({open:false, data:""});
-  const openAddress2 = () => {
-    setAddress2({
-      ...address2,
-      open:true,
-      data:""
-    })
-  }
-  const closeAddress2 = (data,becode,type) => {
-    setAddress2({
-      ...address2,
-      open:false,
-      data:data
-    })
-  }
+ 
   return (
     <Wrapper>
     <Layout>

@@ -144,7 +144,6 @@ function Team3_1({match}) {
 
   const [orderSave, setOrderSave] = useState(init);
   const setInit = (data) =>{
-    console.log(data)
     setOrderSave({
       ...orderSave,
       ...data
@@ -154,7 +153,7 @@ function Team3_1({match}) {
     console.log(orderSave);
   }
 
-  const setAdd = (data,becode,type) =>{
+  const setAdd = (data,type) =>{
     let arr = data.split(" ");
     if(type === "St"){
       setOrderSave({
@@ -162,17 +161,14 @@ function Team3_1({match}) {
         StAddr1:arr[0],
         StAddr2:arr[1],
         StAddr3:arr[2],
-        // StBcode:becode,
         ExecType: "211111000"
       })
-
     }else if(type === "Ed"){
       setOrderSave({
         ...orderSave,
         EdAddr1:arr[0],
         EdAddr2:arr[1],
         EdAddr3:arr[2],
-        // EdBcode:becode,
         ExecType: "211111000"
       })
     }
@@ -186,9 +182,10 @@ function Team3_1({match}) {
       Stgondora:"",
       StLoop:"",
       [e.target.value]:"1",
-
     })
   }
+
+  //작업옵션정보 이송거리 층수 등등 계산
   const radioChangeEd = (e) =>{
     setOrderSave({
       ...orderSave,
@@ -199,21 +196,15 @@ function Team3_1({match}) {
       [e.target.value]:"1",
     })
   }
-
+  //출발지 도착지 이송거리 층수 등등 계산
   const inputChange = (e) =>{
     setOrderSave({
       ...orderSave,
       [e.target.name]:e.target.value
     })
+    console.log(e.target.name,orderSave)
   }
-    
-  
-  const setExecType = (type) =>{
-    setOrderSave({
-      ...orderSave,
-      ExecType:type
-    })
-  }
+ 
 
   const onSaveSubmot = ()=>{
     console.log(orderSave)
@@ -224,11 +215,25 @@ function Team3_1({match}) {
     setOpen(true);
     disaptch(totalListThunk("item_detail_list",{prod_name:"가구"}));
   }
+
+  //상세물량
+  const onclick2 = (list) =>{
+    const wet = list.reduce((acc, b) =>{
+      return acc + parseFloat(b.itemCBM) 
+    },0);
+    setOrderSave({
+      ...orderSave,
+      MoveDetCBM:wet
+    })
+    setOpen(false);
+  }
   const disaptch = useDispatch();
   const state = useSelector(state => state.totalDataReducer.data);
   const loading = useSelector(state => state.totalDataReducer.loading);
   const anState = useSelector(state => state.totalDataAnReducer.data);
   
+
+  //기초 셋팅을 위한 호출     step1
   useEffect(() => {
     if(sn !==undefined){
       disaptch(totalDataThunk("set_contract",{order_info_sn:sn}));
@@ -238,45 +243,122 @@ function Team3_1({match}) {
     return () => {
     }
   }, [])
-
+ // 견적내용 출력 시 기초 세팅 step2
   useEffect(() => {
     if(orderSave.BrandContract === ""){
-       setInit({
-          ...orderSave,
-          ...state
-        });
+       setInit(state);
     }
-       
-
     return () => {
     }
   }, [state])
 
-  // 견적내용 출력 시ㅣ 
+
+  //주소 입력햇을경우 비용 계산
   useEffect(() => {
-    if(sn === undefined) {
-      setInit(anState);
-    }
-    if(!anState.result){
-      console.log(anState);
-    }
-    return () => {
-    }
-  }, [anState])
-  //비용계산get_movepay
-  useEffect(() => {
-    console.log(orderSave)
-    if(orderSave.EdAddr1 !== "" && orderSave.StAddr1 !== ""){
-      //disaptch(totalAnDataThunck("get_movepay",orderSave));
+    if(orderSave.EdAddr1 !== "" && orderSave.StAddr1 !== "" ){
+      disaptch(totalAnDataThunck("get_movepay",orderSave));
     }
     return () => {
     }
   }, [orderSave && orderSave.StAddr1 && orderSave.EdAddr1])
+
+//이송거리/////////////////////////////////
+  useEffect(() => {
+    if(orderSave.StTrdist !== 0 || orderSave.StTrdist !== ""){
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+    return () => {
+    }
+  }, [orderSave && orderSave.StTrdist])
+
+  useEffect(() => {
+    if(orderSave.EdTrdist  !== 0 || orderSave.EdTrdist !== ""){
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+    return () => {
+    }
+  }, [orderSave &&  orderSave.EdTrdist])
+//층수////////////////////////////////////////////////////
+  useEffect(() => {
+    if(orderSave.StFloor !== 0 || orderSave.StFloor !== ""){
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+    return () => {
+    }
+  }, [orderSave && orderSave.StFloor])
+  useEffect(() => {
+    if(orderSave.EdFloor !== 0 || orderSave.EdFloor !== ""){
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+    return () => {
+    }
+  }, [orderSave &&  orderSave.EdFloor])
+  //계단/////////////////////////////////////////////////////////////
+  useEffect(() => {
+    if(orderSave.StStep !== 0 || orderSave.StStep !== ""){
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+    return () => {
+    }
+  }, [orderSave && orderSave.StStep])
+  useEffect(() => {
+    if(orderSave.EdStep !== 0 || orderSave.EdStep !== ""){
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+    return () => {
+    }
+  }, [orderSave && orderSave.EdStep])
+
+  //EL/////////////////////////////////
+  useEffect(() => {
+    if(orderSave.StStep !== 0 || orderSave.StStep !== ""){
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+    return () => {
+    }
+  }, [orderSave && orderSave.StEL])
+  useEffect(() => {
+    if(orderSave.EdEL !== 0 || orderSave.EdEL !== ""){
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+    return () => {
+    }
+  }, [orderSave && orderSave.EdEL])
+  //////사다리///////////////
+  useEffect(() => {
+    if(orderSave.StSadari !== 0 || orderSave.StSadari !== ""){
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+    return () => {
+    }
+  }, [orderSave && orderSave.StSadari])
+  useEffect(() => {
+    if(orderSave.EdSadari !== 0 || orderSave.EdSadari !== ""){
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+    return () => {
+    }
+  }, [orderSave && orderSave.EdSadari])
+  
+  //비용계산get_movepay
+  useEffect(() => {
+    if(sn === undefined) {
+      setInit(anState);
+    }
+
+    return () => {
+    }
+  }, [anState])
+ 
+  
   return (
     <>
       
       <Wrapper>
-        <TopBg>
+        {
+          !open?
+            <div>
+              <TopBg>
             <H1 title="개인오더" subtit="KGB의 방문견적서 내역입니다"></H1>
         </TopBg>
           <Section>
@@ -326,7 +408,7 @@ function Team3_1({match}) {
             Loop={orderSave.EdLoop}
             Sadari={orderSave.EdSadari}
             Step={orderSave.EdStep}
-            gondora={orderSave.Edgondora}
+            gondora={orderSave.EdGondora}
             Trdist={orderSave.EdTrdist}
             radioChange={radioChangeEd}
             inputChange={inputChange}
@@ -366,7 +448,15 @@ function Team3_1({match}) {
           <Section>
             <Button onclick={onSaveSubmot} bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/>
           </Section>
-          {open && <Team3_1_1></Team3_1_1>}
+            </div>
+          
+          
+          :
+
+
+          <Team3_1_1 onclick2={onclick2}></Team3_1_1>
+        }
+        
           {
         loading && <Loading></Loading>
       }

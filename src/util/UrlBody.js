@@ -2,7 +2,6 @@ const user = JSON.parse(localStorage.getItem('user'));
 
 
 export const UrlBody = (type, data) => {
-    console.log(data)
     switch(type){
         case "goods_list":   // 자재주문 리스트
             return{
@@ -51,7 +50,7 @@ export const UrlBody = (type, data) => {
             return {
                 url: "/BM/API/seller/goods_del_proc.asp",
                 body:{
-                    "sn":""
+                    "gb_idx":data.gb_idx
                 }
             }
         case "goods_order":
@@ -125,18 +124,58 @@ export const UrlBody = (type, data) => {
                     "DayMove" : data.DayMove,                  //필
                     "CODE_MOVEDAY" : data.CODE_MOVEDAY,        //필
                     "WorkTeamCode" : user.biz_sn,       //필
-                    "St_floor" : data.St_floor,
-                    "St_Sadari":  data.St_Sadari,
-                    "St_EL":  data.St_EL,
-                    "St_TrDist":  data.St_TrDist,
-                    "St_Step":  data.St_Step,
-                    "Ed_floor":  data.Ed_floor,
-                    "Ed_Sadari":  data.Ed_Sadari,
-                    "Ed_EL":  data.Ed_EL,
-                    "Ed_TrDist":  data.Ed_TrDist,
-                    "Ed_Step":  data.Ed_Step
+                    "St_floor" : data.StFloor,
+                    "St_Sadari":  data.StSadari,
+                    "St_EL":  data.StEL,
+                    "St_TrDist":  data.StTrdist,
+                    "St_Step":  data.StStep,
+                    "Ed_floor":  data.EdFloor,
+                    "Ed_Sadari":  data.EdSadari,
+                    "Ed_EL":  data.EdEL,
+                    "Ed_TrDist":  data.EdTrdist,
+                    "Ed_Step":  data.EdStep,
+                    "cboMoveOptionVal":"",
+                    "MoveCBM":data.MoveCBM
                 }
             }
+        case "goods_order_list":  //자재 주문 리스트
+            return{
+                url:"/BM/API/seller/goods_order_list.asp",
+                body:{
+                    "brand":user.brand,
+                    "man_info_sn":user.man_info_sn,
+                    "userid":user.userid,
+                    "manname":user.name,
+                    "biz_sn":user.biz_sn,
+                    "teamname":user.teamname
+                }
+                    
+            }
+        case "basket_list":   //장바구니 리스트
+            return{
+                url:"/BM/API/seller/goods_basket_list.asp",
+                body:{
+                    "brand":user.brand,
+                    "man_info_sn":user.man_info_sn,
+                    "biz_sn":user.biz_sn,
+                }
+                    
+            }
+        case "order_proc":    //장바구니 주문
+            return{
+                url:"/BM/API/seller/goods_order_proc.asp",
+                body:{
+                    "brand":user.brand,
+                    "man_info_sn":user.man_info_sn,
+                    "userid":user.userid,
+                    "manname":user.name,
+                    "biz_sn":user.biz_sn,
+                    "teamname":user.teamname,
+                    "str_gb_idx":data.str_gb_idx,
+                    "tot_price":data.tot_price
+                }
+            }
+       
         default: return null;
     }
 }

@@ -20,7 +20,6 @@ function FindAddress(props) {
         let fullAddress = data.jibunAddress;
         let extraAddress = ''; 
         let bcode = data.bcode
-        console.log(data)
         
         if (data.addressType === 'R') {
           if (data.bname !== '') {
@@ -31,7 +30,7 @@ function FindAddress(props) {
           }
           fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
         }
-        props.onClose(fullAddress,bcode);
+        props.onClose(fullAddress);
     }
  
     const postCodeStyle = {

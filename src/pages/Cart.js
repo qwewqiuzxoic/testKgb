@@ -1,4 +1,4 @@
-import React, {useState}  from 'react';
+import React, {useEffect, useState}  from 'react';
 import Head from '../components/commonStyle/Head';
 import CartLists from '../components/Prod/CartLists';
 import Button from '../components/commonStyle/Button';
@@ -6,6 +6,11 @@ import PayBox from '../components/bill/PayBox';
 import Row from '../components/bill/Row';
 import { FlexBox, Gutter } from '../components/commonStyle';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { totalListThunk, totalMesThunk } from '../redux/thunkFn/total.thunk';
+import Loading from '../components/commonStyle/Loading';
+import ConfirmModal from '../components/base/ConfirmModal';
+import { totalMesInit } from '../redux/actionFn/total';
 
 const Wrapper = styled.div`
 `;
@@ -50,7 +55,7 @@ const Tabs = styled.div`
     margin-bottom:30px;
 `;
 const TabName = styled.div`
-    width:49%;
+    width:99%;
     height: 44px;
     line-height: 44px;
     border-radius:22px;
@@ -67,29 +72,7 @@ const TabName = styled.div`
   }
 `;
 
-const prods = [
-    {
-        id: 'prod1',
-        name : "상품이름상품이름상품이름",
-        option: 'S / 90',
-        qty: '1',
-        price: '35100',
-    },
-    {
-        id: 'prod2',
-        name : "상품이름상품이름상품이름상품이름",
-        option: 'M / 95',
-        qty: '1',
-        price: '35200',
-    },
-    {
-        id: 'prod3',
-        name : "상품이름상품이름상품이름",
-        option: 'L / 100',
-        qty: '1',
-        price: '35300',
-    },
-]
+
 
 const data = 
     {
@@ -101,36 +84,124 @@ const data =
 
 function Cart() {
     const [tab,setTab]= useState(0);
+    const dispatch = useDispatch();
+    const state = useSelector(state=>state.totalListReducer);
+    const {loading:mesLoading, message, result} = useSelector(state=>state.totalMesReducer);
+    const {list,loading} = state;
+    useEffect(() => {
+        dispatch(totalListThunk("basket_list",{}));
+        return () => {
+        }
+    }, [])
 
+    const [checkedProd, setCheckedProd] = useState(new Set());//check된 Checkbox의 id값이 들어감
+    const [isAllChecked, setIsAllChecked] = useState(true);
+    const [bChecked, setChecked] = useState(true);
+    const [ttPrice, setTtPirce] = useState(0);
+  
+    const checkedItemHandler = (gb_idx, isChecked) => {
+        var price = list.filter(item=>{
+            return item.gb_idx === gb_idx;
+        })[0].total_price;
+        console.log(price)
+        if (isChecked) {
+            checkedProd.add(gb_idx);
+            setCheckedProd(checkedProd);
+            setTtPirce(ttPrice+parseInt(price));
+        } else if (!isChecked && checkedProd.has(gb_idx)) {
+            checkedProd.delete(gb_idx);
+            setCheckedProd(checkedProd);
+            setTtPirce(ttPrice-parseInt(price));
+        }
+    };
+    
+    const allCheckedHandler = (isChecked) => {
+        if (isChecked) {
+            setCheckedProd(new Set(list.map(({ gb_idx }) => gb_idx)));
+            setIsAllChecked(true);
+            setTtPirce(parseInt(state.tot_price))
+        } else {
+            checkedProd.clear();
+            setCheckedProd(setCheckedProd);
+            setIsAllChecked(false);
+            setTtPirce(0)
+        }
+      };
+    
+    const checkHandler = ({ target }) => {
+            setChecked(!bChecked);
+            allCheckedHandler(target.checked);
+    };
+
+    //장바구니 삭제
+    // const basketDel = ()=> {
+    //     const arrS = Array.from(checkedProd).join(',');
+    //     console.log(arrS,checkedProd)
+    //     dispatch(totalMesThunk("goods_del",{sn:arrS}));
+
+    // }
+    const basketOrder = ()=> {
+        console.log(ttPrice)
+        //dispatch(totalMesThunk("order_proc",{str_gb_idx:state.str_gb_idx,tot_price:state.tot_price}));
+    }
+    const basketOrderSel = ()=> {
+        console.log(ttPrice)
+        const arrS = Array.from(checkedProd).join(',');
+        dispatch(totalMesThunk("order_proc",{str_gb_idx:arrS,tot_price:ttPrice}));
+    }
+
+    const confirmModal = () =>{
+        dispatch(totalMesInit());
+        dispatch(totalListThunk("basket_list",{}));
+    }
+
+
+    useEffect(() => {
+        if(list){
+            allCheckedHandler(true);
+            setChecked(true);
+
+            setTtPirce(parseInt(state.tot_price))
+        }
+        return () => {
+            
+        }
+    }, [list])
     return (
         <Wrapper>
-            <Head title="자재주문" subtit="KGB의 자재주문입니다"/>
+            <Head title="장바구니" subtit="KGB의 장바구니입니다"/>
             <ContentArea>
-                <CartLists prods={prods}/>
+                <CartLists list={list} checkedItemHandler={checkedItemHandler} allCheckedHandler={allCheckedHandler} checkHandler={checkHandler} bChecked={bChecked} isAllChecked={isAllChecked}/>
+                {loading && <Loading></Loading>}
+                {mesLoading && <Loading></Loading>}
+                <ConfirmModal open={result === undefined ? false : true}
+                    text={result ==="failed" || result ===undefined ? "실패하였습니다.": message}
+                    onsubmit={confirmModal}
+                ></ConfirmModal> 
+               
                 <BtnArea1>
-                    <Button onclick={onsubmit} bg="#404345" color="#ffffff" text="선택주문"  ht="44px" fontSize="12px" mgt="48px"></Button>
-                    <Button onclick={onsubmit} bg="#3397B9" color="#ffffff" text="선택삭제"  ht="44px" fontSize="12px" mgt="48px"></Button>
+                    <Button onclick={onsubmit} bg="#404345" color="#ffffff" text="선택주문"  ht="44px" fontSize="12px" mgt="48px" onclick={basketOrderSel}></Button>
+                    {/* <Button onclick={onsubmit} bg="#3397B9" color="#ffffff" text="선택삭제"  ht="44px" fontSize="12px" mgt="48px" onclick={basketDel}></Button> */}
                 </BtnArea1>
                 <TotalPrice>
                     <Border>
-                        <Row dt='상품금액' dd={`${parseInt(222000).toLocaleString()}원`} ddColor="#333333" ddWeight="bold"/>
-                        <Row dt='배송비' dd={`${parseInt(0).toLocaleString()}원`}  ddColor="#333333" ddWeight="bold"/>
+                        <Row dt='상품금액' dd={state.tot_price+"원"} ddColor="#333333" ddWeight="bold"/>
+                        <Row dt='배송비' dd={`0원`}  ddColor="#333333" ddWeight="bold"/>
                     </Border>
                     <Total>
-                        <Row dt='결제 예정금액' dtSize="15px" dd={`${parseInt(222000).toLocaleString()}원`} ddSize="14px" ddColor="#009B90" ddWeight="bold"/>
+                        <Row dt='결제 예정금액' dtSize="15px" dd={state.tot_price+"원"} ddSize="14px" ddColor="#009B90" ddWeight="bold"/>
                     </Total>
                 </TotalPrice>
                 </ContentArea>  
                 <PaySection>
                     <PayTitle>결제수단</PayTitle>
                     <Tabs>
-                        <TabName isCard={true} className={tab === 0 ? "selected": ""} onClick={()=>setTab(0)}><span>카드결제</span></TabName>
+                        {/* <TabName isCard={true} className={tab === 0 ? "selected": ""} onClick={()=>setTab(0)}><span>카드결제</span></TabName> */}
                         <TabName isCard={false}  className={tab === 1 ? "selected": ""} onClick={()=>setTab(1)}><span>현금결제</span></TabName>
                     </Tabs>
                     <PayBox isCard={false} bankname={data.bankname} contbrand={data.contbrand} bankaccount={data.bankaccount}/>
-                    <Button bg="#3397B9" color="#ffffff" text={`${parseInt(222000).toLocaleString()}원 주문하기`} h="44px" fs="13px" mgt="30px"></Button> 
+                    <Button bg="#3397B9" color="#ffffff" text="전체주문" h="44px" fs="13px" mgt="30px" onclick={basketOrder}></Button> 
                 </PaySection>
-
         </Wrapper>
     );
 }

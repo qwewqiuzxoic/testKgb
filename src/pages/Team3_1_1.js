@@ -77,7 +77,7 @@ const OptionBox = styled.div`
 const Option = styled.div`
 `;
 
-function Team3_1_1() {
+function Team3_1_1({onclick2}) {
     const [tab,setTab]= useState("가구");
     const state = useSelector(state => state.totalListReducer);
     const dispatch = useDispatch();
@@ -88,14 +88,40 @@ function Team3_1_1() {
         dispatch(totalListThunk("item_detail_list",{prod_name:text}));
         setTab(text);
     }
-    const changeHandler = (checked, id) => {
-        if (checked) {
-          setCheckedInputs([...checkedInputs, id]);
-        } else {
-          // 체크 해제
-          setCheckedInputs(checkedInputs.filter((el) => el !== id));
+    
+    const addCheckedInputs = (item) =>{
+      if(checkedInputs.includes(checkedInputs.find(t=>t.itemName === item.itemName))){
+        setCheckedInputs(checkedInputs.map((mitem)=>{
+          if(mitem.itemName === item.itemName){
+            return{
+              ...mitem,
+              cnt:mitem.cnt+1
+            }
+          } else {
+            return{
+              ...mitem
+            }
+          }
         }
+        ))
+      }else{
+        setCheckedInputs(checkedInputs.concat({...item,cnt:1})) 
       }
+    }
+     
+    const delCheckedInputs = (item) =>{
+      setCheckedInputs(checkedInputs.filter(f =>
+          f.itemName !== item.itemName
+        ))
+    }
+    // const changeHandler = (checked, id) => {
+    //     if (checked) {
+    //       setCheckedInputs([...checkedInputs, id]);
+    //     } else {
+    //       // 체크 해제
+    //       setCheckedInputs(checkedInputs.filter((el) => el !== id));
+    //     }
+    //   }
   return (
     <Wrapper>
         <Head title="견적 및 계약 리스트" subtit="KGB의 견적 및 계약 리스트입니다" pb="90px"/>
@@ -109,23 +135,29 @@ function Team3_1_1() {
         {loading && <Loading></Loading>}
         <OptionBox>
         {list && list.map((item,i) =>
-            <Option value="옵션" >
-            <CheckGroup  name={`detail_${i}`} id={`detail_${i}`} label={`${item.itemName} (${item.itemCBM}CBM)`} onChange={(e)=>{
-            changeHandler(e.currentTarget.checked, item.itemName)
-            }}
-            checked={checkedInputs.includes(item.itemName) ? true : false}></CheckGroup>
-            </Option>
+          <div onClick={()=>addCheckedInputs(item)}>
+            {item.itemName}
+          </div>
+            // <Option value="옵션" >
+            // <CheckGroup  name={`detail_${i}`} id={`detail_${i}`} label={`${item.itemName} (${item.itemCBM}CBM)`} onChange={(e)=>{
+            // changeHandler(e.currentTarget.checked, item.itemName)
+            // }}
+            // checked={checkedInputs.includes(item.itemName) ? true : false}></CheckGroup>
+            // </Option>
         )}
         </OptionBox>
         <Title>선택내역</Title>
         <Select>
             <Selected>
             {checkedInputs.map((selected, i) => (
-                <span>{selected}</span>
+                <span>
+                <span>{selected.itemName+" "+selected.cnt+"개"}</span>
+                <span onClick={()=>delCheckedInputs(selected)}>삭제</span>
+                </span>
             ))}
             </Selected>
         </Select>
-        <Button bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/>
+        <Button onclick={()=>onclick2(checkedInputs)} bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/>
         </ContentArea>
     </Wrapper>
   );
