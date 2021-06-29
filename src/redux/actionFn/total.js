@@ -1,4 +1,4 @@
-import { API_ANDATA_ERROR, API_ANDATA_INIT, API_ANDATA_LOADING, API_ANDATA_SUCCESS, API_DATA_ERROR, API_DATA_INIT, API_DATA_LOADING, API_DATA_SUCCESS, API_ERROR, API_INIT, API_LIST_ERROR, API_LIST_INIT, API_LIST_LOADING, API_LIST_SUCCESS, API_LOADING, API_SUCCESS } from "../types/total.type"
+import { API_ANDATA_ERROR, API_ANDATA_INIT, API_ANDATA_LOADING, API_ANDATA_SUCCESS, API_AN_ERROR, API_AN_INIT, API_AN_LOADING, API_AN_SUCCESS, API_DATA_ERROR, API_DATA_INIT, API_DATA_LOADING, API_DATA_SUCCESS, API_ERROR, API_INIT, API_LIST_ERROR, API_LIST_INIT, API_LIST_LOADING, API_LIST_SUCCESS, API_LOADING, API_SUCCESS } from "../types/total.type"
 
 export const totalMesSuccess = (data) =>{
     return{
@@ -23,6 +23,33 @@ export const totalMesError = (data) =>{
 export const totalMesInit = () =>{
     return{
         type:API_INIT
+    }   
+}
+
+
+export const totalAnMesSuccess = (data) =>{
+    return{
+        type:API_AN_SUCCESS,
+        data
+    }   
+}
+
+export const totalAnMesLoading = () =>{
+    return{
+        type:API_AN_LOADING
+    }   
+}
+
+export const totalAnMesError = (data) =>{
+    return{
+        type:API_AN_ERROR,
+        data
+    }   
+}
+
+export const totalAnMesInit = () =>{
+    return{
+        type:API_AN_INIT
     }   
 }
 

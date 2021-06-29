@@ -57,7 +57,7 @@ const costOptions=[
 String.prototype.replaceAll = function(org, dest) {
   return this.split(org).join(dest);
 }
-function OrderOptionCost({AddOptmoneyStr}) {
+function OrderOptionCost({AddOptmoneyStr,addOptionPrice}) {
   const addOptmoneyStr = AddOptmoneyStr ? AddOptmoneyStr.replaceAll(/[0-9]/g, "").replaceAll("|",",").replaceAll("-","").split(",") : [];
   const [checkedInputs, setCheckedInputs] = useState([]);
 
@@ -86,12 +86,19 @@ function OrderOptionCost({AddOptmoneyStr}) {
     }
   }, [dispatch])
   useEffect(() => {
-    if(!loading){
+    if(!loading && checkedInputs === []){
       setCheckedInputs(addOptmoneyStr);
     }
     return () => {
     }
   }, [state])
+  useEffect(() => {
+    addOptionPrice(checkedInputs);
+
+    return () => {
+      
+    }
+  }, [checkedInputs])
   return (
     <Wrapper>
       <Select onClick={handleClick} toggle={toggle}>
@@ -106,7 +113,7 @@ function OrderOptionCost({AddOptmoneyStr}) {
       <OptionBox toggle={toggle}>
       {DList && DList.map((opt, i) => (
         <Option value="옵션" >
-          <CheckGroup  name={`opt_${i}`} id={`opt_${i}`} label={opt.opt_text} onChange={(e)=>{
+          <CheckGroup  name={`opt_${i}`} id={`opt_${i}`} label={opt.opt_text}  onChange={(e)=>{
           changeHandler(e.currentTarget.checked, opt.opt_text)
         }}
         checked={checkedInputs.includes(opt.opt_text) ? true : false}></CheckGroup>

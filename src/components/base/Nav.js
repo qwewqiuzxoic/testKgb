@@ -19,7 +19,7 @@ const menuItems = [
             {name: '팀단체사진 등록', link:'/Team5'}, 
             {name: '지원요청/대기', link:'/Team6_1'}, 
             {name: '긴급연락망', link:'/Team7'}, 
-            {name: '상조회', link:'/Team8_1'}, 
+            {name: '상조회', link:'/Team8_1/2'}, 
             {name: '권역 및 대표', link:'/Team9'}, 
             {name: '담당 외주업체 ', link:'/'}
         ]

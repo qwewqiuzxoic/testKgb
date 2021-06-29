@@ -15,7 +15,7 @@ import {getAsListReducer,getAsDetailReducer,postAsCommentReducer} from './reduce
 import {billDetailReducer,billListReducer} from './reducer/billReducer'
 import { msgDelReducer, msgSendListReducer, msgRcvListReducer, msgAddReducer,msgSendReducer} from './reducer/msgReducer'
 import { totalMesReducer,
-    totalListReducer, totalDataReducer, totalDataAnReducer} from './reducer/totalReducer'
+    totalListReducer, totalDataReducer, totalDataAnReducer, totalAnMesReducer} from './reducer/totalReducer'
 
     
 
@@ -62,6 +62,7 @@ const rootReducer = combineReducers({
     totalMesReducer,
     totalListReducer,
     totalDataReducer,
-    totalDataAnReducer
+    totalDataAnReducer,
+    totalAnMesReducer
 });
 export default rootReducer;

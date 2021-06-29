@@ -16,16 +16,16 @@ const Select = styled.select`
   ${SelectStyle()};
 `;
 
-function Customer({CustName,MoveType ,StPhone, mobile}) {
+function Customer({CustName,MoveType ,StPhone, mobile, setOrderChange}) {
   return (
     <div>
       <ContentArea>
-          <InputGroup id="customerName" title="고객명" value={CustName}/>
-          <InputGroup id="customerTel0" title="대표전화 (SMS)" value={StPhone}/>
-          <InputGroup id="customerTel1" title="전화번호" value={mobile}/>
+          <InputGroup id="CustName" name="CustName" setInputValue2={setOrderChange} title="고객명" value={CustName}/>
+          <InputGroup id="StPhone" name="StPhone" setInputValue2={setOrderChange}title="대표전화 (SMS)" value={StPhone}/>
+          <InputGroup id="mobile" title="mobile" name="mobile" setInputValue2={setOrderChange} value={mobile}/>
       </ContentArea>
       <Label htmlFor="select_m_type">이사형태</Label>
-      <Select id="select_m_type" name="이사형태" placeholder={MoveType} value={MoveType}>
+      <Select id="MoveType" name="이사형태" name="MoveType" placeholder={MoveType} value={MoveType}>
         <option value="일반">{MoveType}</option>
         <option value="형태 1">형태 1</option>
         <option value="형태 2">형태 2</option>

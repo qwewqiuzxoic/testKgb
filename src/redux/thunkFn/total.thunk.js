@@ -1,19 +1,30 @@
 import axios from "axios";
 import { UrlBody } from "../../util/UrlBody";
-import { totalDataAnError, totalDataAnLoading, totalDataAnSuccess, totalDataError, totalDataLoading, totalDataSuccess, totalListError, totalListLoading, totalListSuccess, totalMesError, totalMesLoading, totalMesSuccess } from "../actionFn/total";
+import { totalAnMesError, totalAnMesLoading, totalAnMesSuccess, totalDataAnError, totalDataAnLoading, totalDataAnSuccess, totalDataError, totalDataLoading, totalDataSuccess, totalListError, totalListLoading, totalListSuccess, totalMesError, totalMesLoading, totalMesSuccess } from "../actionFn/total";
 String.prototype.replaceAll = function(org, dest) {
     return this.split(org).join(dest);
 }
-export const totalMesThunk= (type,data) => dispatch => {
+export const totalMesThunk= (type,data,header) => dispatch => {
     const {url,body} = UrlBody(type,data);
     console.log(url,body)
-    dispatch(totalMesLoading());
+    if(header !== undefined){
+        dispatch(totalMesLoading());
+        axios.post(url, body,header).then(function (res) {
+            console.log(res)
+            dispatch(totalMesSuccess(res.data));
+        }).catch(function (error) {
+            dispatch(totalMesError(error));
+        })
+    } else {
+        dispatch(totalMesLoading());
         axios.post(url, body).then(function (res) {
             console.log(res)
             dispatch(totalMesSuccess(res.data));
         }).catch(function (error) {
             dispatch(totalMesError(error));
         })
+    }
+    
 }
 
 export const totalListThunk= (type,data,fn) => dispatch => {
@@ -53,8 +64,25 @@ export const totalAnDataThunck = (type,data) => dispatch => {
     dispatch(totalDataAnLoading());
         axios.post(url, body).then(function (res) {
             console.log(res)
-            dispatch(totalDataAnSuccess(res.data));
+            if(typeof(res.data) === "string"){
+                dispatch(totalDataAnSuccess(JSON.parse(res.data.replaceAll("","-").replaceAll("","|"))))
+            } else{
+                dispatch(totalDataAnSuccess(res.data));
+            }
         }).catch(function (error) {
+            console.log(body,url)
             dispatch(totalDataAnError(error));
         })
 }
+
+export const totalMesAnThunk = (type,data) => dispatch => {
+    const {url,body} = UrlBody(type,data);
+    console.log(url,body)
+    dispatch(totalAnMesLoading());
+        axios.post(url, body).then(function (res) {
+            console.log(res)
+            dispatch(totalAnMesSuccess(res.data));
+        }).catch(function (error) {
+            dispatch(totalAnMesError(error));
+        })
+} 

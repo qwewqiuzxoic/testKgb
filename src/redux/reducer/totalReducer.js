@@ -33,6 +33,35 @@ export function totalMesReducer(state = totalMesInit,action){
             return state;
     }
 }
+export function totalAnMesReducer(state = totalMesInit,action){
+    switch(action.type){
+        case "API_AN_SUCCESS":
+            return{
+                ...state,
+                loading:false,
+                error:"",
+                data:action.data
+            }
+        case "API_AN_LOADING":
+            return{
+                ...state,
+                loading:true,
+                error:"",
+                data:{}
+            }
+        case "API_AN_ERROR":
+            return{
+                ...state,
+                loading:false,
+                error:action.data,
+                data:{}
+            }
+        case "API_AN_INIT":
+            return totalMesInit;
+        default:
+            return state;
+    }
+}
 
 
 export function totalListReducer(state = totalListInit,action){
