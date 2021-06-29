@@ -36,6 +36,7 @@ const TopBg = styled.div`
 `;
 const Section = styled.div`
     ${Gutter()};
+    display:${(props)=>props.open?'none':'block'};
 `;
 const ContentArea = styled.div`
     position: relative;
@@ -400,15 +401,15 @@ function Team3_1({match}) {
               <TopBg>
             <H1 title="개인오더" subtit="KGB의 방문견적서 내역입니다"></H1>
         </TopBg>
-          <Section>
+          <Section open={open}>
             <GroupTitle title="고객정보"/>
             <Customer CustName={orderSave.CustName} MoveType={orderSave.MoveType} StPhone={orderSave.StPhone} mobile={orderSave.mobile} setOrderChange={setOrderChange}/>
           </Section>
-          <Section>
+          <Section open={open}>
             <GroupTitle title="이사정보"/>
             <OrderDate DayMove={orderSave.DayMove} DayBox={orderSave.DayBox} setOrderChange={setOrderChange}/>
           </Section>
-          <Section>
+          <Section open={open}>
             <GroupTitle title="정보입력"/>
             <OrderAddress 
               StAddr1={orderSave.StAddr1}
@@ -422,11 +423,11 @@ function Team3_1({match}) {
               setAddressChange={setAddressChange}
               />
           </Section>
-          <Section>
+          <Section open={open}>
            <GroupTitle title="운송거리 (km)"/>
             <OrderDistance MoveDistKm={orderSave.MoveDistKM}/>
           </Section>
-          <Section>
+          <Section open={open}>
            <GroupTitle title="작업정보 입력"/>
             <OrderAddressOption title="출발지" 
             EL={orderSave.StEL}              
@@ -454,15 +455,15 @@ function Team3_1({match}) {
             name="EdAdd"
             />
           </Section>
-          <Section>
+          <Section open={open}>
             <GroupTitle title="옵션 비용"/>
             <OrderOptionCost AddOptmoneyStr={orderSave.AddOptmoneyStr} addOptionPrice={addOptionPrice}/>
           </Section>
-          <Section>
+          <Section open={open}>
            <GroupTitle title="계약 정보"/>
             <Ordercontract1 CboOrderStatus={orderSave.CboOrderStatus} conOrderSetState={conOrderSetState}/>
           </Section>
-          <Section>
+          <Section open={open}>
            <GroupTitle title="차량정보"/>
             <OrderCar CarTon10={orderSave.CarTon10}
             CarTon25={orderSave.CarTon25}
@@ -474,7 +475,7 @@ function Team3_1({match}) {
             setOpen={setOpen}
             />
           </Section>
-          <Section>
+          <Section open={open}>
            <GroupTitle title="총 금액정보"/>
             <TotalPriceInfo CostMove={orderSave.CostMove} 
             CostOption={orderSave.CostOption} 
@@ -487,6 +488,8 @@ function Team3_1({match}) {
           </Section>
           <Section>
             <Button bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px" onclick={subMit}/>
+          {/* <Section open={open}>
+            <Button onclick={onSaveSubmot} bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/> */}
           </Section>
             </div>
           
