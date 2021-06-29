@@ -5,10 +5,7 @@ import styled from 'styled-components';
 import { FlexBox, Gutter, SelectStyle, ChangeFont } from '../components/commonStyle';
 import Loading from '../components/commonStyle/Loading';
 import { totalListThunk } from '../redux/thunkFn/total.thunk';
-import CheckGroup from '../components/commonStyle/CheckGroup';
 import Button from '../components/commonStyle/Button'
-
-
 
 const Wrapper = styled.div`
     position: absolute;
@@ -53,17 +50,18 @@ const Select = styled.div`
 `;
 
 const Selected = styled.div`
-  span{
     display: inline-block;
     padding-bottom:8px;
     color: #3397B9;
     background: #fff;
     padding: 6px 4px;
-    margin-right:8px;
     margin-bottom:8px;
+    margin-right:8px;
     border:1px solid #3397B9;
-    border-radius:4px
-  }
+    border-radius:4px;
+    span{
+      vertical-align:middle;
+    }
 `
 const OptionBox = styled.div`
   max-height:248px;
@@ -75,6 +73,20 @@ const OptionBox = styled.div`
   padding-bottom:10px;
 `;
 const Option = styled.div`
+  padding: 4px 20px 4px 0;
+  cursor:pointer;
+  background: url(${process.env.PUBLIC_URL + '/images/ico_plus_grey.png'}) no-repeat right center;
+  background-size: 12px;
+
+`;
+const Delete = styled.span`
+  display: inline-block;
+  width:16px;
+  height:16px;
+  background: url(${process.env.PUBLIC_URL + '/images/ico_x.png'}) no-repeat center;
+  background-size: 10px;
+  margin-left:4px;
+  cursor:pointer;
 `;
 
 function Team3_1_1({close}) {
@@ -109,21 +121,25 @@ function Team3_1_1({close}) {
         {loading && <Loading></Loading>}
         <OptionBox>
         {list && list.map((item,i) =>
-            <Option value="옵션" >
-            <CheckGroup  name={`detail_${i}`} id={`detail_${i}`} label={`${item.itemName} (${item.itemCBM}CBM)`} onChange={(e)=>{
-            changeHandler(e.currentTarget.checked, item.itemName)
-            }}
-            checked={checkedInputs.includes(item.itemName) ? true : false}></CheckGroup>
-            </Option>
+          <Option onClick={()=>addCheckedInputs(item)}>
+            {item.itemName}
+          </Option>
+            // <Option value="옵션" >
+            // <CheckGroup  name={`detail_${i}`} id={`detail_${i}`} label={`${item.itemName} (${item.itemCBM}CBM)`} onChange={(e)=>{
+            // changeHandler(e.currentTarget.checked, item.itemName)
+            // }}
+            // checked={checkedInputs.includes(item.itemName) ? true : false}></CheckGroup>
+            // </Option>
         )}
         </OptionBox>
         <Title>선택내역</Title>
         <Select>
-            <Selected>
             {checkedInputs.map((selected, i) => (
-                <span>{selected}</span>
+                <Selected>
+                  <span>{selected.itemName+" "+selected.cnt+"개"}</span>
+                  <Delete onClick={()=>delCheckedInputs(selected)}></Delete>
+                </Selected>
             ))}
-            </Selected>
         </Select>
         <Button bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px" onclick={close}/>
         </ContentArea>
