@@ -39,6 +39,7 @@ const [address, setAddress] = useState({open:false, data:""});
       ...address,
       open:true
     })
+    setOrder("",type)
   }
   const closeAddress = (data,becode) => {
     setAddress({
@@ -46,7 +47,7 @@ const [address, setAddress] = useState({open:false, data:""});
       open:false,
       data:data
     })
-    setOrder(data,becode,type);
+    setOrder(data,type);
   }
   useEffect(() => {
     if(address.data === ""){

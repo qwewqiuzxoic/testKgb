@@ -89,7 +89,8 @@ const Delete = styled.span`
   cursor:pointer;
 `;
 
-function Team3_1_1({close}) {
+
+function Team3_1_1({onclick2}) {
     const [tab,setTab]= useState("가구");
     const state = useSelector(state => state.totalListReducer);
     const dispatch = useDispatch();
@@ -100,14 +101,40 @@ function Team3_1_1({close}) {
         dispatch(totalListThunk("item_detail_list",{prod_name:text}));
         setTab(text);
     }
-    const changeHandler = (checked, id) => {
-        if (checked) {
-          setCheckedInputs([...checkedInputs, id]);
-        } else {
-          // 체크 해제
-          setCheckedInputs(checkedInputs.filter((el) => el !== id));
+    
+    const addCheckedInputs = (item) =>{
+      if(checkedInputs.includes(checkedInputs.find(t=>t.itemName === item.itemName))){
+        setCheckedInputs(checkedInputs.map((mitem)=>{
+          if(mitem.itemName === item.itemName){
+            return{
+              ...mitem,
+              cnt:mitem.cnt+1
+            }
+          } else {
+            return{
+              ...mitem
+            }
+          }
         }
+        ))
+      }else{
+        setCheckedInputs(checkedInputs.concat({...item,cnt:1})) 
       }
+    }
+     
+    const delCheckedInputs = (item) =>{
+      setCheckedInputs(checkedInputs.filter(f =>
+          f.itemName !== item.itemName
+        ))
+    }
+    // const changeHandler = (checked, id) => {
+    //     if (checked) {
+    //       setCheckedInputs([...checkedInputs, id]);
+    //     } else {
+    //       // 체크 해제
+    //       setCheckedInputs(checkedInputs.filter((el) => el !== id));
+    //     }
+    //   }
   return (
     <Wrapper>
         <Head title="견적 및 계약 리스트" subtit="KGB의 견적 및 계약 리스트입니다" pb="90px"/>
@@ -141,7 +168,7 @@ function Team3_1_1({close}) {
                 </Selected>
             ))}
         </Select>
-        <Button bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px" onclick={close}/>
+        <Button onclick={()=>onclick2(checkedInputs)} bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/>
         </ContentArea>
     </Wrapper>
   );

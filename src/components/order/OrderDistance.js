@@ -11,7 +11,6 @@ const Wrapper = styled.div`
   border:none;
 `;
 function OrderDistance({MoveDistKm}) {
-  console.log(MoveDistKm)
   return (
       <Wrapper>
       {MoveDistKm}km

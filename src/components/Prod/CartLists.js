@@ -5,6 +5,9 @@ import Checkbox from '../msg/Checkbox';
 import Row from '../bill/Row';
 
 import styled from 'styled-components';
+import { set } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { totalMesThunk } from '../../redux/thunkFn/total.thunk';
 
 const Wrapper = styled.div`
     background: #FFFFFF;
@@ -72,67 +75,42 @@ const Total = styled.div`
 `;
 
 
-function CartLists({prods}) {
-    const [checkedProd, setCheckedProd] = useState(new Set());//check된 Checkbox의 id값이 들어감
-    const [isAllChecked, setIsAllChecked] = useState(false);
-    const [bChecked, setChecked] = useState(false)
-
-    const checkedItemHandler = (id, isChecked) => {
-        if (isChecked) {
-            checkedProd.add(id);
-            setCheckedProd(checkedProd);
-        } else if (!isChecked && checkedProd.has(id)) {
-            checkedProd.delete(id);
-            setCheckedProd(checkedProd);
-        }
-    };
+function CartLists({list, checkedItemHandler, allCheckedHandler, checkHandler, bChecked, isAllChecked}) {
+    const dispatch = useDispatch();
     
-    const allCheckedHandler = (isChecked) => {
-        if (isChecked) {
-            setCheckedProd(new Set(prods.map(({ id }) => id)));
-            setIsAllChecked(true);
-        } else {
-            checkedProd.clear();
-            setCheckedProd(setCheckedProd);
-            setIsAllChecked(false);
-        }
-      };
-    
-    const checkHandler = ({ target }) => {
-            setChecked(!bChecked);
-            allCheckedHandler(target.checked);
-    };
-
+    const basketDel = (gb_idx)=> {
+        dispatch(totalMesThunk("goods_del",{gb_idx:gb_idx}));
+    }
     return (
         <Wrapper>
             <Header>
                 <CheckGroup id='checkAllCart' name='checkAllCart' label='전체선택' onChange={(e) => checkHandler(e)} checked={bChecked} nmg={true} isCircle={true}/>
                 <Delete>선택삭제</Delete>
             </Header>
-            {prods.map((item, index) => (
+            {list && list.map((item, index) => (
             <Box>
                 <ItemBox>
-                    <Checkbox isAllChecked={isAllChecked} key={`item${index}`} issue={item} checkedItemHandler={checkedItemHandler} isCircle={true}
+                    <Checkbox isAllChecked={isAllChecked} key={`item_${index}`} issue={item} index={index} checkedItemHandler={checkedItemHandler} isCircle={true} gb_idx={item.gb_idx}
                     />
                     <ItemInfo>
                         <Layout>
                             <Title>자재주문</Title>
-                            <Btn>
+                            <Btn onClick={()=>basketDel(item.gb_idx)}>
                                 <img src={process.env.PUBLIC_URL + '/images/ico_x.png'} alt='삭제'/>
                             </Btn>
                         </Layout>
                         <Layout>
-                            <Name>{item.name}</Name>
-                            <Price>{parseInt(item.price).toLocaleString()}원</Price>
+                            <Name>{item.goods_name}</Name>
+                            <Price>{item.price}원</Price>
                         </Layout>
                         <OptionWrap>
-                            <Option><span>옵션:</span> {item.option}</Option>
-                            <Option><span>수량:</span> {item.qty}개</Option>
+                            <Option><span>옵션:</span> {item.option_name}</Option>
+                            <Option><span>수량:</span> {item.cnt}개</Option>
                         </OptionWrap>
                     </ItemInfo>
                 </ItemBox>
                 <Total>
-                    <Row dt='총 금액' dtSize="11px" dtColor="#82898E" dd={`${parseInt(item.price * item.qty).toLocaleString()}원`} ddColor="#404345" ddWeight="bold"/>
+                    <Row dt='총 금액' dtSize="11px" dtColor="#82898E" dd={item.total_price}ddColor="#404345" ddWeight="bold"/>
                 </Total>
             </Box>
           ))}

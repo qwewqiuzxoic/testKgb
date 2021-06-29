@@ -75,35 +75,28 @@ function OrderBox({order}) {
     <Wrapper>
         <Top>
             <Date>
-                <div><span>주문일: </span>{order.date1}</div>
-                <div><span>출고일: </span>{order.date2}</div>
+                <div><span>주문일: </span>{order.order_date}</div>
+                <div><span>주문번호: </span>{order.goo_idx}</div>
             </Date>
-            <Status color="#2F8DB7">{order.status}</Status>
+            <Status color="#2F8DB7">{order.order_proc}</Status>
         </Top>
-        <Product>
-            <Btn>
-                <img src={process.env.PUBLIC_URL + '/images/ico_x.png'} alt='삭제'/>
-            </Btn>
-            <Name>{order.name}</Name>
-            <OptionWrap>
-                <Option><span>옵션:</span> {order.option}</Option>
-                <Option><span>수량:</span> {order.qty}개</Option>
-            </OptionWrap>
-            <Price><span>판매금액 </span>{parseInt(order.price).toLocaleString()}원</Price>
-        </Product>
-        <Product>
-            <Btn>
-                <img src={process.env.PUBLIC_URL + '/images/ico_x.png'} alt='삭제'/>
-            </Btn>
-            <Name>{order.name}</Name>
-            <OptionWrap>
-                <Option><span>옵션:</span> {order.option}</Option>
-                <Option><span>수량:</span> {order.qty}개</Option>
-            </OptionWrap>
-            <Price><span>판매금액 </span>{parseInt(order.price).toLocaleString()}원</Price>
-        </Product>
+        {order && order.optlist.map((item, index)=>
+            <Product>
+                <Btn>
+                    <img src={process.env.PUBLIC_URL + '/images/ico_x.png'} alt='삭제'/>
+                </Btn>
+                <Name>{order.goods_name}</Name>
+                <OptionWrap>
+                    <Option><span>옵션:</span> {item.goods_option}</Option>
+                    <Option><span>수량:</span> {item.ea}개</Option>
+                </OptionWrap>
+                <Price><span>판매금액 </span>{item.price}원</Price>
+                <Price><span>총 판매금액 </span>{item.tot_price}원</Price>
+            </Product>
+        )}
+        
         <Total>
-            <Price isTotal={true}><span>총금액 </span>{parseInt(order.price).toLocaleString()}원</Price>
+            <Price isTotal={true}><span>총금액 </span>{order.total_price}원</Price>
         </Total>
     </Wrapper>
   );

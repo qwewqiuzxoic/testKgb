@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Children } from 'react';
 import styled from 'styled-components';
 import { ChangeFont } from './';
 
@@ -28,6 +29,7 @@ const CheckLabel = styled.label`
 function CheckGroup({id, name, label, onChange, checked, nmg, isCircle}) {
   return (
     <Wrapper noMargin={nmg}>
+    
         <CheckBox type="checkbox" name={name} id={id} onChange={onChange} checked={checked} isCircle={isCircle}/>
         <CheckLabel htmlFor={id} isCircle={isCircle}>
           <span>{label}</span>

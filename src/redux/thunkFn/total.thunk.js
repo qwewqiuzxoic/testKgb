@@ -6,7 +6,7 @@ String.prototype.replaceAll = function(org, dest) {
 }
 export const totalMesThunk= (type,data) => dispatch => {
     const {url,body} = UrlBody(type,data);
-
+    console.log(url,body)
     dispatch(totalMesLoading());
         axios.post(url, body).then(function (res) {
             console.log(res)
@@ -18,6 +18,7 @@ export const totalMesThunk= (type,data) => dispatch => {
 
 export const totalListThunk= (type,data,fn) => dispatch => {
     const {url,body} = UrlBody(type,data);
+    console.log(url,body)
     dispatch(totalListLoading());
         axios.post(url, body).then(function (res) {
             console.log(res)
