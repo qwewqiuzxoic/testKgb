@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useState,useRef, useEffect  } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { totalMesAnThunk } from '../../redux/thunkFn/total.thunk';
 import { ChangeFont, FlexBox, LabelStyle  } from '../commonStyle';
 
 const Wrapper = styled.div`
@@ -42,10 +45,18 @@ const Preview = styled.div`
     img{
     }
 `;
-
-function AddImg({title}) {
-    const [selectedFiles, setSelectedFiles] = useState([]);
-
+const user = JSON.parse(localStorage.getItem('user'));       
+const renderPhotos = (source,type) => {
+  return source[type] && source[type].map((photo) => {
+    return (
+    <Preview>
+        <img src={photo} alt="" key={photo} />
+    </Preview>
+    );
+  });
+};
+function AddImg({title, setName, type, selectedFiles, setSelectedFiles}) {
+    const dispatch = useDispatch(); //
     const handleImageChange = (e) => {
       // console.log(e.target.files[])
       if (e.target.files.length > 3) {
@@ -54,42 +65,48 @@ function AddImg({title}) {
         const filesArray = Array.from(e.target.files).map((file) =>
           URL.createObjectURL(file)
         );
-        console.log(selectedFiles);
-        selectedFiles.length >= 3? alert('최대 3장의 사진까지 업로드할 수 있습니다.') :
-        setSelectedFiles((prevImages) => prevImages.concat(filesArray));
+        // dispatch(totalMesAnThunk("file_save",{addFileSel:e.target.files[0]},{ "Content-Type": "multipart/form-data"}))
+        selectedFiles[type].length >= 3? alert('최대 3장의 사진까지 업로드할 수 있습니다.') :
+        setSelectedFiles({...selectedFiles,[type]:selectedFiles[type].concat(filesArray)});
         Array.from(e.target.files).map(
           (file) => URL.revokeObjectURL(file) 
         );          
       }
-    };
+      const formData = new FormData();
+      formData.append("addFileSel",  e.target.files[0]);
+      formData.append("tableName", "BRAND_PHOTO");
+      formData.append("tableSn", user.biz_sn);
+      formData.append("codeFile", "브랜드평가사진");
+ 
+      dispatch(totalMesAnThunk("file_save",formData, { "Content-Type": "multipart/form-data"}));
+      console.log(title)
+      setName(type);
+    }
+    
+    const onsubmit=(e)=>{
+      e.preventDefault();
+      
+    }
   
-    const renderPhotos = (source) => {
-      return source.map((photo) => {
-        return (
-        <Preview>
-            <img src={photo} alt="" key={photo} />
-        </Preview>
-        );
-      });
-    };
-
+    
     return (
         <Wrapper>
             <Name>{title}</Name>
             <Layout>
-            <Label htmlFor="uploadImg">
+            <Label htmlFor={`uploadImg_${type}`}>
                 <IconBox>
                     <img src={process.env.PUBLIC_URL + '/images/btn_addImg.png'} alt="upload" />
                 </IconBox>
                 <ImgLength>
-                <span>{selectedFiles.length}</span>/3
+                <span>{selectedFiles[type]?.length}</span>/3
                 </ImgLength>
             </Label>
-            <input multiple accept="image/*" id="uploadImg" type="file" style={{ display: 'none' }} onChange={handleImageChange}/>
-            {renderPhotos(selectedFiles)}
+            <form  onSubmit={onsubmit}>
+            <input multiple accept="image/*" encType="multipart/form-data" id={`uploadImg_${type}`} type="file" style={{ display: 'none' }} onChange={handleImageChange}/>
+            </form>
+            {renderPhotos(selectedFiles,type)}
             </Layout>
         </Wrapper>
     );
 }
-
 export default AddImg;

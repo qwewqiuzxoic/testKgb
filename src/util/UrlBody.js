@@ -263,20 +263,64 @@ export const UrlBody = (type, data) => {
                     "tot_price":data.tot_price
                 }
             }
-        case "team_photo":
+        case "team_photo":  //팀 사진 초기
             return{
                 url:"/BM/API/team/team_photo.asp",
                 body:{
                     "biz_sn":user.biz_sn 
                 }
             }
-        case "team_photo_proc":
+        case "team_photo_proc":   //팀 사진 저장
             return{
                 url:"http://mis.kgb.co.kr/BM/API/team/team_photo_proc.asp",
                 body:{
                     "biz_sn":user.biz_sn,
                     "del_chk":data.del_chk,
                     "addFileSel":data.addFileSel
+                }
+            }
+        case "file_save":   //브랜드평가 사진제출 업로드
+        console.log(data)
+            return{
+                url:"http://mis.kgb.co.kr/BM/API/common/file_save.asp",
+                body:data
+            }
+        case "brand_photo_proc":   //브랜드평가 사진제출 데이터 등록
+            return{
+                url:"/BM/API/seller/brand_photo_proc.asp",
+                body:{
+                    "brand":user.brand,
+                    "biz_sn":user.biz_sn,
+                    "man_info_sn":user.man_info_sn,
+                    "sn":data.sn,
+                    "img_car01":data.img_car01,
+                    "img_car02":data.img_car02,
+                    "img_car03":data.img_car03,
+                    "img_box01":data.img_box01,
+                    "img_box02":data.img_box02,
+                    "img_box03":data.img_box03,
+                    "img_cloth01":data.img_cloth01,
+                    "img_cloth02":data.img_cloth02,
+                    "img_cloth03":data.img_cloth03
+                }
+            }
+        case "brand_photo_detail":   //브랜드평가 사진제출 상세
+            return{
+                url:"/BM/API/seller/brand_photo_desc.asp",
+                body:{
+                    "brand":user.brand,
+                    "biz_sn":user.biz_sn,
+                    "man_info_sn":user.man_info_sn,
+                    "sn":data.sn
+                }
+            }
+        case "brand_photo_list":   //브랜드평가 사진 리스트
+            return{
+                url:"/BM/API/seller/brand_photo_list.asp",
+                body:{
+                    "brand":user.brand,
+                    "biz_sn":user.biz_sn,
+                    "man_info_sn":user.man_info_sn
                 }
             }
         case "clean_team": //담당가맹점
@@ -293,6 +337,7 @@ export const UrlBody = (type, data) => {
                 body:{
                 }
             }
+        
         default: return null;
     }
 }

@@ -25,15 +25,15 @@ const Images = styled.div`
 `;
 
 
-function ImgLists({title}) {
+function ImgLists({title, img1, img2, img3 }) {
 
     return (
         <Wrapper>
             <Name>{title}</Name>
             <Images>
-                <img src={process.env.PUBLIC_URL + '/images/dummy.jpg'} alt="브랜드평가사진" />                
-                <img src={process.env.PUBLIC_URL + '/images/dummy.jpg'} alt="브랜드평가사진" />                
-                <img src={process.env.PUBLIC_URL + '/images/dummy.jpg'} alt="브랜드평가사진" />                
+                <img src={img1} alt="브랜드평가사진" />                
+                <img src={img2} alt="브랜드평가사진" />                
+                <img src={img3} alt="브랜드평가사진" />                
             </Images>
         </Wrapper>
     );

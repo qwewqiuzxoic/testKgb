@@ -75,14 +75,25 @@ export const totalAnDataThunck = (type,data) => dispatch => {
         })
 }
 
-export const totalMesAnThunk = (type,data) => dispatch => {
+export const totalMesAnThunk = (type,data,header) => dispatch => {
     const {url,body} = UrlBody(type,data);
-    console.log(url,body)
-    dispatch(totalAnMesLoading());
+    console.log(url,body,header)
+    if(header !== undefined){
+        dispatch(totalAnMesLoading());
+        axios.post(url, body,header).then(function (res) {
+            console.log(res)
+            dispatch(totalAnMesSuccess(res.data));
+        }).catch(function (error) {
+            dispatch(totalAnMesError(error));
+        })
+    }else{
+        dispatch(totalAnMesLoading());
         axios.post(url, body).then(function (res) {
             console.log(res)
             dispatch(totalAnMesSuccess(res.data));
         }).catch(function (error) {
             dispatch(totalAnMesError(error));
         })
+    }
+    
 } 

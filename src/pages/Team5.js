@@ -67,7 +67,11 @@ function Board({match}) {
         let reader = new FileReader();
         let file = event.target.files[0];
         console.log(file)
-        dispatch(totalMesThunk("team_photo_proc",{del_chk:"",addFileSel:file}));
+        dispatch(totalMesThunk("team_photo_proc",{del_chk:"",addFileSel:file},{
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }));
         reader.onloadend = () => {
             setUploadImg({
             file : file,

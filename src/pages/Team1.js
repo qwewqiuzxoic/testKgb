@@ -118,8 +118,8 @@ function Team1({match}) {
   const month = getMonth();
   const year = getYear();
   useEffect(() => {
-    dispatch(getMonthSc(year,month));
-    dispatch(getDaySc(tday));
+    dispatch(getMonthSc(year,month,page));
+    dispatch(getDaySc(tday,page));
     return () => {
       
     }

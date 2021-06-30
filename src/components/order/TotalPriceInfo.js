@@ -26,29 +26,60 @@ const Dt = styled.div`
 const Dd = styled.div`
     ${ChangeFont(true, 200)};
 `
-function TotalPriceInfo({CostMove, CostOption, MoneyDiscount, CostTotal, MoneyPromise, MoneyRemain, Comment01_txt}) {
+function TotalPriceInfo({CostMove, CostOption, MoneyDiscount, CostTotal, MoneyPromise, MoneyRemain, Comment01_txt,setOrderChange}) {
   return (
     <Wrapper>
         <Box>
             <Row>
+                {/* 수정가능 */}
                 <Dt>이사요금</Dt>
-                <Dd>{CostMove}원</Dd>
+                <Dt>
+                    <input style={{width:"100px",textAlign:"right"}} type="text" value={CostMove} name="CostMove" onChange={(e)=>setOrderChange(e)}/>
+                    <span>
+                        원
+                    </span>
+                </Dt>
+                
             </Row>
             <Row>
+                {/* 수정가능 */}
                 <Dt>옵션요금</Dt>
-                <Dd>{CostOption}원</Dd>
+                <Dt>
+                    <input style={{width:"100px",textAlign:"right"}}type="text" value={CostOption} name="CostOption" onChange={(e)=>setOrderChange(e)}/>   
+                    {/* <Dd>{CostOption}원</Dd> */}
+                    <span>
+                        원
+                    </span>
+                </Dt>
+                
             </Row>
             <Row>
+                {/* 수정가능 */}
                 <Dt>추가할인</Dt>
-                <Dd>{MoneyDiscount}원</Dd>
+                <Dt>
+                    <input style={{width:"100px",textAlign:"right"}} type="text" value={MoneyDiscount} name="MoneyDiscount" onChange={(e)=>setOrderChange(e)}/> 
+                    {/* <Dd>{MoneyDiscount}원</Dd> */}
+                    <span>
+                        원
+                    </span>
+                </Dt>
+                
             </Row>
             <Row>
                 <Dt>합계</Dt>
                 <Dd>{CostTotal}원</Dd>
             </Row>
             <Row>
+                {/* 수정가능 */}
                 <Dt>계약금</Dt>
-                <Dd>{MoneyPromise}원</Dd>
+                <Dt>
+                    <input style={{width:"100px",textAlign:"right"}} type="text" value={MoneyPromise} name="MoneyPromise" onChange={(e)=>setOrderChange(e)}/> 
+                    {/* <Dd>{MoneyPromise}원</Dd> */}
+                    <span>
+                        원
+                    </span>
+                </Dt>
+                
             </Row>
             <Row>
                 <Dt>잔금</Dt>

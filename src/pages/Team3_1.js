@@ -192,7 +192,6 @@ function Team3_1({match}) {
 
   ////////////////////////*******날짜********/////////////////////////////////
   const setOrderChange = (e)=>{
-    console.log(e.target.name)
     setOrderSave({
       ...orderSave,
       [e.target.name]:e.target.value === "0"? 0 : e.target.value
@@ -386,6 +385,14 @@ function Team3_1({match}) {
     }
   },[AnData])
 
+  //합계 계산로직
+  useEffect(()=>{
+    setOrderSave({
+      ...orderSave,
+      CostTotal:parseInt(orderSave.CostMove) + parseInt(orderSave.CostOption) + parseInt(orderSave.MoneyDiscount),
+      MoneyRemain: parseInt(orderSave.CostMove) + parseInt(orderSave.CostOption) + parseInt(orderSave.MoneyDiscount) - parseInt(orderSave.MoneyPromise) 
+    })
+  },[orderSave.CostMove, orderSave.CostOption, orderSave.MoneyDiscount, orderSave.MoneyPromise])
   const subMit = () =>{
     console.log({...orderSave,order_info_sn:sn !== undefined ?sn:""})
    disaptch(totalMesThunk("save_contract",{...orderSave,order_info_sn:sn !== undefined ?sn:""}));
@@ -484,6 +491,7 @@ function Team3_1({match}) {
             MoneyPromise={orderSave.MoneyPromise} 
             MoneyRemain={orderSave.MoneyRemain} 
             Comment01_txt={orderSave.Comment01_txt}
+            setOrderChange={setOrderChange}
             />
           </Section>
           <Section>

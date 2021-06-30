@@ -47,18 +47,18 @@ const Date = styled.div`
 `;
 
 
-function ImgBoard() {
+function ImgBoard({setChangeStep, title, sn, list_img, regdate}) {
    
   return (
-    <Wrapper>
+    <Wrapper onClick={()=>setChangeStep(sn)}>
         <ImgArea>
-            <img src={process.env.PUBLIC_URL + '/images/dummy.jpg'} alt="icon" />
+            <img src={list_img} alt="icon" />
         </ImgArea>
         <Layout>
-            <Title>2021 .01월 제출사진입니다 제출사
-진입니다2021 .01월 제출사진입니다 제출사
-진입니다</Title>
-            <Date>2020 .02 .28</Date>
+            <Title>
+                {title}
+            </Title>
+            <Date>{regdate}</Date>
         </Layout>
     </Wrapper>
   );
