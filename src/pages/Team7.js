@@ -1,11 +1,10 @@
 import React, {useEffect, useState}from 'react';
 import Head from '../components/commonStyle/Head';
 import TableTitle from '../components/table/TableTitle';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { FlexBox, Gutter, ChangeFont } from '../components/commonStyle';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPhoneList } from '../redux/thunkFn/phoneList.thunk';
-
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -50,6 +49,12 @@ const TableHead = styled.div`
         flex: 1;
         height:41px;
         line-height: 41px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        &.tel{
+            flex-grow:1.5;
+        }
       }
 
 `;
@@ -63,7 +68,12 @@ const TableRow = styled.div`
         height:41px;
         line-height: 41px;
         border-bottom: 1px solid #DFE5EA;
-
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        &.tel{
+            flex-grow:1.5;
+        }
       }
       img{
         display: inline-block;
@@ -73,28 +83,21 @@ const TableRow = styled.div`
         margin-left: 6px;
         cursor: pointer;
       }
+      a{
+        ${ChangeFont(true)}
+      }
 `;
 const TableBody = styled.div`
 `;
 
-
-
-const data = [
-  {num: '1소장', name: '박정구', call: '010-1234-4561'}, 
-  {num: '2소장', name: '박정구2', call: '010-1234-4562'}, 
-  {num: '3소장', name: '박정구3', call: '010-1234-4543'}, 
-  {num: '4소장', name: '박정구4', call: '010-1234-4564'}, 
-  {num: '5소장', name: '박정구5', call: '010-1234-4565'}, 
-  {num: '6소장', name: '박정구6', call: '010-1234-4566'}, 
-]
+const data = [];
 const Row = ({num, name, call}) => (
   <TableRow className="row">
     <div>{num}</div>
     <div>{name}</div>
-    <div>{call}<img src={process.env.PUBLIC_URL + '/images/ico_btn_call.svg'} alt="call"/></div>  
+    <div className="tel"><a href={`tel:${call}`}>{call}<img src={process.env.PUBLIC_URL + '/images/ico_btn_call.svg'} alt="call"/></a></div>  
   </TableRow>
 );
-
 
 function Team7() {
   const [tableData, setTableData] = useState(data);
@@ -130,7 +133,7 @@ function Team7() {
             <TableHead>
               <div>번호</div>
               <div>이름</div>
-              <div>전화번호</div>
+              <div className="tel">전화번호</div>
             </TableHead>
             <TableBody>
             {
@@ -147,7 +150,7 @@ function Team7() {
             <TableHead>
               <div>번호</div>
               <div>이름</div>
-              <div>전화번호</div>
+              <div className="tel">전화번호</div>
             </TableHead>
             <TableBody>
             {
@@ -164,7 +167,7 @@ function Team7() {
             <TableHead>
               <div>번호</div>
               <div>이름</div>
-              <div>전화번호</div>
+              <div className="tel">전화번호</div>
             </TableHead>
             <TableBody>
             {

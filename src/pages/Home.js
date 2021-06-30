@@ -4,7 +4,6 @@ import GradientBoxes from '../components/home/GradientBoxes';
 import WhiteBoxes from '../components/home/WhiteBoxes';
 import SolidBoxes from '../components/home/SolidBoxes';
 import Board from '../components/home/Board';
-
 import styled from 'styled-components';
 
 const TopBg = styled.div`

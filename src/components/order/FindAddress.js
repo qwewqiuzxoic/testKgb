@@ -3,6 +3,8 @@ import DaumPostcode from "react-daum-postcode";
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
+  width:100%;
+  height:100%;
   button{
   background: ${(props) => props.theme.colors.white};;
   position:fixed;
@@ -38,8 +40,8 @@ function FindAddress(props) {
         position: "fixed",
         top: "0",
         left: '0',
-        width: "50%",
-        height: "50%",
+        width: "100%",
+        height: "100%",
       };
  
     return(

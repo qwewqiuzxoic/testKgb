@@ -25,6 +25,7 @@ import { useHistory } from 'react-router-dom';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
+    padding-bottom:50px;
 `;
 const TopBg = styled.div`
     position:relative;
