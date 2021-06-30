@@ -1,9 +1,15 @@
-const user = JSON.parse(localStorage.getItem('user'));       
+
+let user = JSON.parse(localStorage.getItem('user'))  ;       
 
 String.prototype.replaceAll = function(org, dest) {
     return this.split(org).join(dest);
 }
+
 export const UrlBody = (type, data) => {
+    if(user===null){
+        user = JSON.parse(localStorage.getItem('user'))  ;
+    }
+    
     switch(type){
         case "goods_list":   // 자재주문 리스트
             return{

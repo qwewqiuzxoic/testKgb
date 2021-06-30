@@ -13,7 +13,9 @@ function Top({setMenu,menu}) {
         setMenuState(!menuState);
         setMenu(!menu);
     }
-   
+    const clickMenu2 = () =>{
+        history.push('/Team3_1');
+    }
     const history = useHistory() 
     useEffect(() => {
        return history.listen((location) => { 
@@ -41,12 +43,12 @@ function Top({setMenu,menu}) {
         return (
             <TopHome clickMenu={clickMenu}/>
         )
-    }else{
+    }else {
         return(
             <TopCom clickMenu={clickMenu}/>
         )
+    
     }
-  
 }
 
 export default Top;

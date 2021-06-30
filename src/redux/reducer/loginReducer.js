@@ -16,6 +16,7 @@ export default function boardReducer(state = authInit, action) {
             }
         
         case LOGIN_SUCCESS:
+            localStorage.setItem('user', JSON.stringify(action.data));
             return{
                 ...state,
                 user:action.data
