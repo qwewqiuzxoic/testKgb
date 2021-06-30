@@ -1,6 +1,8 @@
 const user = JSON.parse(localStorage.getItem('user'));       
 
-
+String.prototype.replaceAll = function(org, dest) {
+    return this.split(org).join(dest);
+}
 export const UrlBody = (type, data) => {
     switch(type){
         case "goods_list":   // 자재주문 리스트
@@ -134,8 +136,94 @@ export const UrlBody = (type, data) => {
                     "Ed_EL":  data.EdEL,
                     "Ed_TrDist":  data.EdTrdist,
                     "Ed_Step":  data.EdStep,
-                    "cboMoveOptionVal":"",
+                    "cboMoveOptionVal":data.cboMoveOptionVal === undefined ? "" : data.cboMoveOptionVal,
                     "MoveCBM":data.MoveCBM
+                }
+            }
+        case "save_contract":
+            return{
+                url:"/BM/API/seller/save_contract.asp",
+                body:{
+                    "man_info_sn":user.man_info_sn
+                    ,"userid":user.userid
+                    ,"manname":user.name
+                    ,"brand": user.brand
+                    ,"biz_sn": user.biz_sn
+                    ,"order_info_sn": data.order_info_sn
+                    ,"DayReceipt": data.DayReceipt
+                    ,"BrandInput": data.BrandInput
+                    ,"BrandContract": data.BrandContract
+                    ,"OrderMethod": data.OrderMethod   
+                    ,"ReceiptName": data.ReceiptName  
+                    ,"CustName": data.CustName       
+                    ,"StPhone": data.StPhone        
+                    ,"mobile": data.mobile              
+                    ,"CustType": data.CustType 
+                    ,"CustState": data.CustState
+                    ,"Motive": data.Motive       
+                    ,"Email": data.Email     
+                    ,"DayMove": data.DayMove
+                    ,"CODE_MOVEDAY": data.CODE_MOVEDAY 
+                    ,"DayBox": data.DayBox           
+                    ,"CODE_BOXDAY": data.CODE_BOXDAY   
+                    ,"StAddr1": data.StAddr1
+                    ,"StAddr2": data.StAddr2  
+                    ,"StAddr3": data.StAddr3  
+                    ,"StAddr4": data.StAddr4  
+                    ,"StBcode": data.StBcode
+                    ,"EdAddr1": data.EdAddr1
+                    ,"EdAddr2": data.EdAddr2   
+                    ,"EdAddr3": data.EdAddr3   
+                    ,"EdAddr4": data.EdAddr4   
+                    ,"EdBcode": data.EdBcode   
+                    ,"MoveDistKm": data.MoveDistKm      
+                    ,"CboMoveRange": data.CboMoveRange
+                    ,"KMIDEN": data.KMIDEN
+                    ,"StFloor": data.StFloor        
+                    ,"StSadari": data.StSadari        
+                    ,"StEL": data.StEL                
+                    ,"Stgondora": data.Stgondora       
+                    ,"StLoop": data.StLoop              
+                    ,"StTrdist": data.StTrdist        
+                    ,"StStep": data.StStep      
+                    ,"EdFloor": data.EdFloor     
+                    ,"EdSadari": data.EdSadari        
+                    ,"EdEL": data.EdEL
+                    ,"EdGondora": data.EdGondora   
+                    ,"EdLoop": data.EdLoop           
+                    ,"EdTrdist": data.EdTrdist    
+                    ,"EdStep": data.EdStep          
+                    ,"CboContractBrand": data.CboContractBrand   
+                    ,"CboOrderStatus": data.CboOrderStatus     
+                    ,"CostMove": data.CostMove         
+                    ,"CostOption": data.CostOption      
+                    ,"MoneyDiscount": data.MoneyDiscount
+                    ,"CostTotal": data.CostTotal  
+                    ,"MoneyPromise": data.MoneyPromise   
+                    ,"MoneyRemain": data.MoneyRemain   
+                    ,"CarTon10": data.CarTon10    
+                    ,"CarTon25": data.CarTon25    
+                    ,"CarTon50": data.CarTon50    
+                    ,"MoveCBM": data.MoveCBM    
+                    ,"MoveDetCBM": data.MoveDetCBM   
+                    ,"WeightCar": data.WeightCar 
+                    ,"CarCount": data.CarCount    
+                    ,"ItemDetailStr": data.ItemDetailStr.replaceAll("-","").replaceAll("|","")
+                    ,"AddOptmoneyStr": data.AddOptmoneyStr.replaceAll("-","").replaceAll("|","")
+                    ,"BasicOptmoneyStr": data.BasicOptmoneyStr.replaceAll("-","").replaceAll("|","")
+                    ,"IsWorkAssign": data.IsWorkAssign            
+                    ,"WorkTeamCode": data.WorkTeamCode              
+                    ,"WorkTeamMemberCode": data.WorkTeamMemberCode  
+                    ,"WorkTeamName": data.WorkTeamName             
+                    ,"WorkOwnerCode": data.WorkOwnerCode        
+                    ,"WorkOwnerName": data.WorkOwnerName         
+                    ,"WorkOwnerHp": data.WorkOwnerHp             
+                    ,"TosBrand": data.TosBrand              
+                    ,"TosTeamCode": data.TosTeamCode      
+                    ,"TosTeamMemberCode": data.TosTeamMemberCode    
+                    ,"TosTeamName": data.TosTeamName              
+                    ,"AirconchkVal": data.AirconchkVal    
+                    ,"CleanchkVal": data.CleanchkVal
                 }
             }
         case "goods_order_list":  //자재 주문 리스트
@@ -175,7 +263,36 @@ export const UrlBody = (type, data) => {
                     "tot_price":data.tot_price
                 }
             }
-       
+        case "team_photo":
+            return{
+                url:"/BM/API/team/team_photo.asp",
+                body:{
+                    "biz_sn":user.biz_sn 
+                }
+            }
+        case "team_photo_proc":
+            return{
+                url:"http://mis.kgb.co.kr/BM/API/team/team_photo_proc.asp",
+                body:{
+                    "biz_sn":user.biz_sn,
+                    "del_chk":data.del_chk,
+                    "addFileSel":data.addFileSel
+                }
+            }
+        case "clean_team": //담당가맹점
+            return{
+                url:"/BM/API/team/air_clean_team.asp",
+                body:{
+                    "biz_sn":user.biz_sn,
+                    "brand":user.brand,
+                }
+            }
+        case "clean_area":  //[담당 지역]
+            return{
+                url:"/BM/API/team/air_clean_area.asp",
+                body:{
+                }
+            }
         default: return null;
     }
 }

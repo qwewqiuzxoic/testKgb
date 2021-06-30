@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Head from '../components/commonStyle/Head';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -90,7 +90,7 @@ const Delete = styled.span`
 `;
 
 
-function Team3_1_1({onclick2}) {
+function Team3_1_1({setClose}) {
     const [tab,setTab]= useState("가구");
     const state = useSelector(state => state.totalListReducer);
     const dispatch = useDispatch();
@@ -127,6 +127,13 @@ function Team3_1_1({onclick2}) {
           f.itemName !== item.itemName
         ))
     }
+    useEffect(() => {
+      dispatch(totalListThunk("item_detail_list",{prod_name:"가구"}));
+
+      return () => {
+        
+      }
+    }, [])
     // const changeHandler = (checked, id) => {
     //     if (checked) {
     //       setCheckedInputs([...checkedInputs, id]);
@@ -168,7 +175,7 @@ function Team3_1_1({onclick2}) {
                 </Selected>
             ))}
         </Select>
-        <Button onclick={()=>onclick2(checkedInputs)} bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/>
+        <Button onclick={()=>setClose(checkedInputs)} bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/>
         </ContentArea>
     </Wrapper>
   );

@@ -27,17 +27,17 @@ const Label = styled.label`
 const Input = styled.input`
   ${InputStyle()};
 `;
-function OrderAddressOption({title,name ,EL, Floor, Loop, Sadari, Step, gondora,Trdist, radioChange, inputChange}) {
+function OrderAddressOption({title,name ,EL, Floor, Loop, Sadari, Step, gondora,Trdist, radioChange, setOrderChange}) {
   return (
     <Wrapper>
       <Group>
       <Label htmlFor="info_from">
         {title}
       </Label>
-      <Input id={`name_${name}`} name={name === "StAdd" ? "StTrdist" : "EdTrdist"} type="number" placeholder="이송거리(m)" textAlign="right" value={Trdist} onChange={e=>inputChange(e)}/>
+      <Input id={`name_${name}`} name={name === "StAdd" ? "StTrdist" : "EdTrdist"} type="number" placeholder="이송거리(m)" textAlign="right" value={Trdist} onChange={e=>setOrderChange(e)}/>
       <Layout>
-        <Input type="number" name={name === "StAdd" ? "StFloor" : "EdFloor"} placeholder="층수" textAlign="right" value={Floor} onChange={e=>inputChange(e)}/>
-        <Input type="number" name={name === "StAdd" ? "StStep" : "EdStep"} placeholder="계단(층)" textAlign="right" value={Step} onChange={e=>inputChange(e)}/>
+        <Input type="number" name={name === "StAdd" ? "StFloor" : "EdFloor"} placeholder="층수" textAlign="right" value={Floor} onChange={e=>setOrderChange(e)}/>
+        <Input type="number" name={name === "StAdd" ? "StStep" : "EdStep"} placeholder="계단(층)" textAlign="right" value={Step} onChange={e=>setOrderChange(e)}/>
       </Layout>
       </Group>
       <Group>

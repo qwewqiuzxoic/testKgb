@@ -3,6 +3,10 @@ export const API_LOADING = "API_LOADING";
 export const API_ERROR = "API_ERROR";
 export const API_INIT = "API_INIT";
 
+export const API_AN_SUCCESS = "API_AN_SUCCESS";
+export const API_AN_LOADING = "API_AN_LOADING";
+export const API_AN_ERROR = "API_AN_ERROR";
+export const API_AN_INIT = "AP_ANI_INIT";
 
 export const API_LIST_SUCCESS = "API_LIST_SUCCESS";
 export const API_LIST_LOADING = "API_LIST_LOADING";

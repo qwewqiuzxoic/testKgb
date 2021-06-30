@@ -32,37 +32,31 @@ const Input = styled.input`
   }
 `;
 
-function PopUpAddress({Addr1,Addr2,Addr3,Addr4,setOrder,type}) {
-const [address, setAddress] = useState({open:false, data:""});
+function PopUpAddress({Addr1,Addr2,Addr3,Addr4,type, setAddressChange}) {
+const [address, setPAddress] = useState({open:false, data:""});
   const openAddress = () => {
-    setAddress({
+    setPAddress({
       ...address,
-      open:true
+      open:true,
+      data:""
     })
-    setOrder("",type)
   }
-  const closeAddress = (data,becode) => {
-    setAddress({
+  const closeAddress = (data) => {
+    setPAddress({
       ...address,
       open:false,
       data:data
     })
-    setOrder(data,type);
+    setAddressChange(data,type)
   }
+
   useEffect(() => {
-    if(address.data === ""){
-      setAddress({
-        ...address,
-        data:Addr1 !== undefined ? Addr1+" "+Addr2+" "+ Addr3:""
-      })
-    }
+    setPAddress({
+      ...address,
+      data:Addr1+" "+Addr2+" "+Addr3
+    })
    
     return () => {
-      setAddress({
-        ...address,
-        open:false,
-        data:""
-      })
     }
   }, [Addr1])
   return (

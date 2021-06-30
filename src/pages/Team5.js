@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from '../components/commonStyle/Head';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 
 
 import styled from 'styled-components';
+import { totalMesAnThunk, totalMesThunk } from '../redux/thunkFn/total.thunk';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -59,11 +61,13 @@ function Board({match}) {
         file : '',
         previewURL : ''
       });
+      const [img,setimg] = useState("");
     const handleFileOnChange = (event) => {
         event.preventDefault();
         let reader = new FileReader();
         let file = event.target.files[0];
-        console.log(reader, file)
+        console.log(file)
+        dispatch(totalMesThunk("team_photo_proc",{del_chk:"",addFileSel:file}));
         reader.onloadend = () => {
             setUploadImg({
             file : file,
@@ -73,10 +77,27 @@ function Board({match}) {
         reader.readAsDataURL(file);
       }
 
-      let profile_preview = null;
+      let profile_preview = <img className='profile_preview' src={img}></img>;
     if(uploadImg.file !== ''){
       profile_preview = <img className='profile_preview' src={uploadImg.previewURL}></img>
     }
+    const {data} = useSelector(state=>state.totalAnMesReducer);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(totalMesAnThunk("team_photo",{}));
+        return () => {
+            
+        }
+    }, [])
+    useEffect(() => {
+        if(data !== undefined && Object.keys(data).includes('imgurl')){
+            console.log(data.imgurl)
+            setimg(data.imgurl)
+        }
+        return () => {
+            
+        }
+    }, [data])
   return (
       <Wrapper>
             <Head title="팀 단체사진" subtit="KGB의 우리팀톡톡입니다" pb="90px"/>
@@ -92,7 +113,7 @@ function Board({match}) {
                             <img src={process.env.PUBLIC_URL + '/images/ico_upload.png'} alt="upload" />
                         </IconBox>
                     </label>
-                    <input accept="image/*" id="uploadFile" type="file" style={{ display: 'none' }} onChange={handleFileOnChange} />
+                    <input accept="multipart/form-data" id="uploadFile" type="file" style={{ display: 'none' }} onChange={handleFileOnChange} />
                 </UploadArea>
             </ContentArea>
             

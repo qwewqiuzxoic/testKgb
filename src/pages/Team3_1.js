@@ -15,9 +15,10 @@ import Ordercontract1 from '../components/order/Ordercontract1';
 import OrderCar from '../components/order/OrderCar';
 import TotalPriceInfo from '../components/order/TotalPriceInfo';
 import { useDispatch, useSelector } from 'react-redux';
-import { totalAnDataThunck, totalDataThunk, totalListThunk } from '../redux/thunkFn/total.thunk';
+import { totalAnDataThunck, totalDataThunk, totalListThunk, totalMesThunk } from '../redux/thunkFn/total.thunk';
 import Team3_1_1 from './Team3_1_1';
 import Loading from '../components/commonStyle/Loading';
+import { totalDataAnInit } from '../redux/actionFn/total';
 
 
 const Wrapper = styled.div`
@@ -137,247 +138,259 @@ const init = {
   Ed_EL:  "",
   Ed_TrDist:  "",
   Ed_Step:  "",
-  ExecType: "211111000"
+  ExecType: "211111000",
+  cboMoveOptionVal:""
 }
+function getToday(){
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = ("0" + (1 + date.getMonth())).slice(-2);
+  var day = ("0" + date.getDate()).slice(-2);
 
+  return year + "-" + month + "-" + day;
+}
 function Team3_1({match}) {
+  //모달띄우기
+  const [open,setOpen] =useState(false);
+  const setClose = (list) =>{
+    const wet = list.reduce((acc, b) =>{
+      return acc + parseFloat(b.itemCBM) 
+    },0);
+
+    const itemDetailStr = list.map(item=> `${item.itemNum}${item.itemType}${item.itemName}${item.itemCBM}${item.cnt}`).join("");
+    setOrderSave({
+      ...orderSave,
+      MoveDetCBM:wet,
+      ItemDetailStr:itemDetailStr
+    })
+
+    setOpen(false);
+  }
 
 
-  const [orderSave, setOrderSave] = useState(init);
-  const setInit = (data) =>{
+  //정보
+  const sn = match.params.sn;
+  const {data:firstData,loading:firstLoading} = useSelector(state => state.totalDataReducer);
+  const {data:AnData,loading:AnLoading} = useSelector(state => state.totalDataAnReducer);
+  const disaptch = useDispatch();
+
+  const [orderSave, setOrderSave] = useState(firstData);
+  const setInit = (data)=>{
     setOrderSave({
       ...orderSave,
       ...data
+      
     })
   }
-  const getMovePay = () => {
-    console.log(orderSave);
-  }
 
-  const setAdd = (data,type) =>{
+
+
+
+  /////////////////////////
+  //////비용 변경 로직들////
+  /////////////////////////
+
+  ////////////////////////*******날짜********/////////////////////////////////
+  const setOrderChange = (e)=>{
+    console.log(e.target.name)
+    setOrderSave({
+      ...orderSave,
+      [e.target.name]:e.target.value === "0"? 0 : e.target.value
+    })
+  }
+  ////////////////////////*******주소********/////////////////////////////////
+  const setAddressChange = (data, type) => {
     let arr = data.split(" ");
     if(type === "St"){
       setOrderSave({
         ...orderSave,
-        StAddr1:arr[0],
-        StAddr2:arr[1],
-        StAddr3:arr[2],
-        ExecType: "211111000"
+        StAddr1:arr[0] === undefined? "" : arr[0],
+        StAddr2:arr[1] === undefined? "" : arr[1],
+        StAddr3:arr[2] === undefined? "" : arr[2]
       })
     }else if(type === "Ed"){
       setOrderSave({
         ...orderSave,
-        EdAddr1:arr[0],
-        EdAddr2:arr[1],
-        EdAddr3:arr[2],
-        ExecType: "211111000"
+        EdAddr1:arr[0] === undefined? "" : arr[0],
+        EdAddr2:arr[1] === undefined? "" : arr[1],
+        EdAddr3:arr[2] === undefined? "" : arr[2]
       })
     }
   }
-
+  //사다리등등
   const radioChangeSt = (e) =>{
+    firstData.StSadari = "0"
+    firstData.StEL = "0"
     setOrderSave({
       ...orderSave,
-      StSadari:"",
-      StEL:"",
-      Stgondora:"",
-      StLoop:"",
+      StSadari:"0",
+      StEL:"0",
+      Stgondora:"0",
+      StLoop:"0",
       [e.target.value]:"1",
     })
   }
-
-  //작업옵션정보 이송거리 층수 등등 계산
   const radioChangeEd = (e) =>{
+    firstData.EdSadari = "0"
+    firstData.EdEL = "0"
+  
     setOrderSave({
       ...orderSave,
-      EdSadari:"",
-      EdEL:"",
-      EdGondora:"",
-      EdLoop:"",
+      EdSadari:"0",
+      EdEL:"0",
+      EdGondora:"0",
+      EdLoop:"0",
       [e.target.value]:"1",
     })
   }
-  //출발지 도착지 이송거리 층수 등등 계산
-  const inputChange = (e) =>{
+//옵션 추가 비용
+  const addOptionPrice = (list) =>{
+    console.log(list)
     setOrderSave({
       ...orderSave,
-      [e.target.name]:e.target.value
+      cboMoveOptionVal:list.join("^"),
+      AirconchkVal:list.includes("에어컨 분리") || list.includes("에어컨 설치") ? "1":"0",
+      CleanchkVal:list.includes("청소팀 배정") ? "1":"0",
     })
-    console.log(e.target.name,orderSave)
   }
- 
-
-  const onSaveSubmot = ()=>{
-    console.log(orderSave)
-  }
-  const sn = match.params.sn;
-  const [open,setOpen] = useState(false);
-  const onclick = () =>{
-    setOpen(true);
-    disaptch(totalListThunk("item_detail_list",{prod_name:"가구"}));
-  }
-
-  //상세물량
-  const onclick2 = (list) =>{
-    const wet = list.reduce((acc, b) =>{
-      return acc + parseFloat(b.itemCBM) 
-    },0);
+  //계약종류
+  const conOrderSetState = (e) =>{
     setOrderSave({
       ...orderSave,
-      MoveDetCBM:wet
+      CboOrderStatus:e.target.value
     })
-    setOpen(false);
-  }
-  const disaptch = useDispatch();
-  const state = useSelector(state => state.totalDataReducer.data);
-  const loading = useSelector(state => state.totalDataReducer.loading);
-  const anState = useSelector(state => state.totalDataAnReducer.data);
-  
+  } 
 
-  //기초 셋팅을 위한 호출     step1
+
+
+
   useEffect(() => {
-    if(sn !==undefined){
-      disaptch(totalDataThunk("set_contract",{order_info_sn:sn}));
-    }else{
-      disaptch(totalDataThunk("set_contract",{order_info_sn:""}));
-    }
-    return () => {
-    }
+    //첫 로딩되었을때
+      disaptch(totalDataThunk("set_contract",{order_info_sn:sn === undefined? "" : sn}));
   }, [])
- // 견적내용 출력 시 기초 세팅 step2
   useEffect(() => {
-    if(orderSave.BrandContract === ""){
-       setInit(state);
-    }
-    return () => {
-    }
-  }, [state])
-
-
-  //주소 입력햇을경우 비용 계산
-  useEffect(() => {
-    if(orderSave.EdAddr1 !== "" && orderSave.StAddr1 !== "" ){
-      disaptch(totalAnDataThunck("get_movepay",orderSave));
-    }
-    return () => {
-    }
-  }, [orderSave && orderSave.StAddr1 && orderSave.EdAddr1])
-
-//이송거리/////////////////////////////////
-  useEffect(() => {
-    if(orderSave.StTrdist !== "0" && orderSave.StTrdist !== ""){
-      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
-    }
-    return () => {
-    }
-  }, [orderSave && orderSave.StTrdist])
-
-  useEffect(() => {
-    if(orderSave.EdTrdist  !== "0" && orderSave.EdTrdist !== ""){
-      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
-    }
-    return () => {
-    }
-  }, [orderSave &&  orderSave.EdTrdist])
-
-
-
-//층수////////////////////////////////////////////////////
-  useEffect(() => {
-    if(orderSave.StFloor !== "0" && orderSave.StFloor !== ""){
-      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
-    }
-    return () => {
-    }
-  }, [orderSave && orderSave.StFloor])
-  useEffect(() => {
-    if(orderSave.EdFloor !== "0" && orderSave.EdFloor !== ""){
-      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
-    }
-    return () => {
-    }
-  }, [orderSave &&  orderSave.EdFloor])
-
-
-
-  //계단/////////////////////////////////////////////////////////////
-  useEffect(() => {
-    if(orderSave.StStep !== "0" && orderSave.StStep !== ""){
-      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
-    }
-    return () => {
-    }
-  }, [orderSave && orderSave.StStep])
-  useEffect(() => {
-    if(orderSave.EdStep !== "0" && orderSave.EdStep !== ""){
-      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
-    }
-    return () => {
-    }
-  }, [orderSave && orderSave.EdStep])
-
-
-
-
-  //EL/////////////////////////////////
-  useEffect(() => {
-    console.log(orderSave.StStep )
-
-    if(orderSave.StStep !== "0" || orderSave.StStep !== ""){
-      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
-    }
-    return () => {
-    }
-  }, [orderSave && orderSave.StEL])
-  useEffect(() => {
-    console.log(orderSave.EdEL)
-
-    if(orderSave.EdEL !== "0" || orderSave.EdEL !== ""){
-      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
-    }
-    return () => {
-    }
-  }, [orderSave && orderSave.EdEL])
-
-
-
-  //////사다리///////////////
-  useEffect(() => {
-    console.log(orderSave.StSadari)
-
-    if(orderSave.StSadari !== "0" || orderSave.StSadari !== ""){
-      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
-    }
-    return () => {
-    }
-  }, [orderSave && orderSave.StSadari])
-  useEffect(() => {
-    console.log()
-    if(orderSave.EdSadari !== "0" || orderSave.EdSadari !== ""){
-      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
-    }
-    return () => {
-    }
-  }, [orderSave && orderSave.EdSadari ])
-  useEffect(() => {
-    if(orderSave.EdSadari !== "0" && orderSave.EdSadari !== ""){
-      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
-    }
-    return () => {
-    }
-  }, [orderSave && orderSave.EdSadari])
+    //첫 로딩되고 firstState가 변경되엇을경우
+    setInit(firstData)
+  }, [firstData])
   
-  //비용계산get_movepay
+  //주소지가 변경되었을경우 (출발지,도착지)
   useEffect(() => {
-    if(sn === undefined) {
-      setInit(anState);
+    if(orderSave.StAddr1 !== firstData.StAddr1 || orderSave.EdAddr1 !== firstData.EdAddr1){
+      if( orderSave.StAddr1 !== "" && orderSave.EdAddr1 !== "" ){
+        console.log("주소지 변경 ================")
+        disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:211111000}));
+      }
     }
+  }, [orderSave.StAddr1])
+  useEffect(() => {
+    if(orderSave.StAddr1 !== firstData.StAddr1 || orderSave.EdAddr1 !== firstData.EdAddr1){
+      if( orderSave.StAddr1 !== "" && orderSave.EdAddr1 !== "" ){
+        console.log("주소지 변경 ================")
+        disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:211111000}));
+      }
+    }
+  }, [orderSave.EdAddr1])
 
-    return () => {
+
+  //이사날짜가 변경되었을경우 
+  useEffect(() => {
+    if(orderSave.DayMove !== firstData.DayMove){
+      console.log("이사일 변경")
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:211111000}));
     }
-  }, [anState])
- 
-  
+   
+  }, [orderSave.DayMove])
+
+  //출발지 정보입력이 변경되었을경우
+  useEffect(() => {
+    if(orderSave.StTrdist !== undefined && orderSave.StTrdist !== "0" && orderSave.StTrdist !== firstData.StTrdist){
+      console.log("출발지 이송거리 변경")
+      firstData.StTrdist = "0";
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+  }, [orderSave.StTrdist])
+  useEffect(() => {
+    if(orderSave.StFloor !== undefined && orderSave.StFloor !== "0" && orderSave.StFloor !== firstData.StFloor){
+      console.log("출발지 StFloor 변경")
+      firstData.StFloor = "0";
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+  }, [orderSave.StFloor])
+  useEffect(() => {
+    if(orderSave.StStep !== undefined && orderSave.StStep !== "0" && orderSave.StStep !== firstData.StStep){
+      console.log("출발지 StStep 변경")
+      firstData.StStep = "0";
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+  }, [orderSave.StStep])
+  //////////////////////////////////////////////////////////////
+  useEffect(() => {
+    if(orderSave.EdTrdist !== undefined && orderSave.EdTrdist !== "0" && orderSave.EdTrdist !== firstData.EdTrdist){
+      console.log("도착지 이송거리 변경")
+      firstData.EdTrdist = "0";
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+  }, [orderSave.EdTrdist])
+  useEffect(() => {
+    if(orderSave.EdFloor !== undefined && orderSave.EdFloor !== "0" && orderSave.EdFloor !== firstData.EdFloor){
+      console.log("도착지 EdFloor 변경")
+      firstData.StFloor = "0";
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+  }, [orderSave.EdFloor])
+  useEffect(() => {
+    if(orderSave.EdStep !== undefined && orderSave.EdStep !== "0" && orderSave.EdStep !== firstData.EdStep){
+      console.log("도착지 EdStep 변경")
+      firstData.EdStep = "0";
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+  }, [orderSave.EdStep])
+  //El 과 사다리 StSadari:"",StEL:"",
+  useEffect(() => {
+    if(orderSave.StSadari === "1" && orderSave.StSadari !== firstData.StSadari){
+      console.log("출발지 사다리 변경")
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+  }, [orderSave.StSadari])
+  useEffect(() => {
+    if(orderSave.StEL === "1" && orderSave.StEL !== firstData.StEL){
+      console.log("출발지 StEL 변경")
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+  }, [orderSave.StEL])
+
+  useEffect(() => {
+    if(orderSave.EdSadari === "1" && orderSave.EdSadari !== firstData.EdSadari){
+      console.log("도착지 사다리 변경")
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+  }, [orderSave.EdSadari])
+  useEffect(() => {
+    if(orderSave.EdEL === "1" && orderSave.EdEL !== firstData.EdEL){
+      console.log("도착지 StEL 변경")
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+  }, [orderSave.EdEL])
+  //옵션비용변경
+  useEffect(() => {
+    console.log(orderSave.cboMoveOptionVal)
+    if(orderSave.cboMoveOptionVal !== undefined){
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+  }, [orderSave.cboMoveOptionVal])
+  useEffect(()=>{
+    if(Object.keys(AnData).length !== 0){  
+      setInit(AnData);
+      console.log(AnData)
+      disaptch(totalDataAnInit());
+    }
+  },[AnData])
+
+  const subMit = () =>{
+    console.log({...orderSave,order_info_sn:sn !== undefined ?sn:""})
+   disaptch(totalMesThunk("save_contract",{...orderSave,order_info_sn:sn !== undefined ?sn:""}));
+
+  }
   return (
     <>
       
@@ -390,24 +403,24 @@ function Team3_1({match}) {
         </TopBg>
           <Section open={open}>
             <GroupTitle title="고객정보"/>
-            <Customer CustName={state.CustName} MoveType={state.MoveType} StPhone={state.StPhone} mobile={state.mobile}/>
+            <Customer CustName={orderSave.CustName} MoveType={orderSave.MoveType} StPhone={orderSave.StPhone} mobile={orderSave.mobile} setOrderChange={setOrderChange}/>
           </Section>
           <Section open={open}>
             <GroupTitle title="이사정보"/>
-            <OrderDate DayMove={state.DayMove} DayBox={state.DayBox} />
+            <OrderDate DayMove={orderSave.DayMove} DayBox={orderSave.DayBox} setOrderChange={setOrderChange}/>
           </Section>
           <Section open={open}>
             <GroupTitle title="정보입력"/>
             <OrderAddress 
-              StAddr1={state.StAddr1}
-              StAddr2={state.StAddr2}
-              StAddr3={state.StAddr3}
-              StAddr4={state.StAddr4}
-              EdAddr1={state.EdAddr1}
-              EdAddr2={state.EdAddr2}
-              EdAddr3={state.EdAddr3}
-              EdAddr4={state.EdAddr4}
-              setOrder={setAdd}
+              StAddr1={orderSave.StAddr1}
+              StAddr2={orderSave.StAddr2}
+              StAddr3={orderSave.StAddr3}
+              StAddr4={orderSave.StAddr4}
+              EdAddr1={orderSave.EdAddr1}
+              EdAddr2={orderSave.EdAddr2}
+              EdAddr3={orderSave.EdAddr3}
+              EdAddr4={orderSave.EdAddr4}
+              setAddressChange={setAddressChange}
               />
           </Section>
           <Section open={open}>
@@ -424,8 +437,8 @@ function Team3_1({match}) {
             Step={orderSave.StStep}
             gondora={orderSave.Stgondora}
             Trdist={orderSave.StTrdist}
+            setOrderChange={setOrderChange}
             radioChange={radioChangeSt}
-            inputChange={inputChange}
             name="StAdd"
             />
             <br/>
@@ -437,18 +450,18 @@ function Team3_1({match}) {
             Step={orderSave.EdStep}
             gondora={orderSave.EdGondora}
             Trdist={orderSave.EdTrdist}
+            setOrderChange={setOrderChange}
             radioChange={radioChangeEd}
-            inputChange={inputChange}
             name="EdAdd"
             />
           </Section>
           <Section open={open}>
             <GroupTitle title="옵션 비용"/>
-            <OrderOptionCost AddOptmoneyStr={state.AddOptmoneyStr}/>
+            <OrderOptionCost AddOptmoneyStr={orderSave.AddOptmoneyStr} addOptionPrice={addOptionPrice}/>
           </Section>
           <Section open={open}>
            <GroupTitle title="계약 정보"/>
-            <Ordercontract1 CboOrderStatus={state.CboOrderStatus}/>
+            <Ordercontract1 CboOrderStatus={orderSave.CboOrderStatus} conOrderSetState={conOrderSetState}/>
           </Section>
           <Section open={open}>
            <GroupTitle title="차량정보"/>
@@ -458,22 +471,25 @@ function Team3_1({match}) {
             CarCount={orderSave.CarCount}
             MoveCBM={orderSave.MoveCBM}
             MoveDetCBM={orderSave.MoveDetCBM}
-            onclick={onclick}
+            setOrderChange={setOrderChange}
+            setOpen={setOpen}
             />
           </Section>
           <Section open={open}>
            <GroupTitle title="총 금액정보"/>
-            <TotalPriceInfo CostMove={state.CostMove} 
-            CostOption={state.CostOption} 
-            MoneyDiscount={state.MoneyDiscount} 
-            CostTotal={state.CostTotal} 
-            MoneyPromise={state.MoneyPromise} 
-            MoneyRemain={state.MoneyRemain} 
-            Comment01_txt={state.Comment01_txt}
+            <TotalPriceInfo CostMove={orderSave.CostMove} 
+            CostOption={orderSave.CostOption} 
+            MoneyDiscount={orderSave.MoneyDiscount} 
+            CostTotal={orderSave.CostTotal} 
+            MoneyPromise={orderSave.MoneyPromise} 
+            MoneyRemain={orderSave.MoneyRemain} 
+            Comment01_txt={orderSave.Comment01_txt}
             />
           </Section>
-          <Section open={open}>
-            <Button onclick={onSaveSubmot} bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/>
+          <Section>
+            <Button bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px" onclick={subMit}/>
+          {/* <Section open={open}>
+            <Button onclick={onSaveSubmot} bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/> */}
           </Section>
             </div>
           
@@ -481,11 +497,11 @@ function Team3_1({match}) {
           :
 
 
-          <Team3_1_1 onclick2={onclick2}></Team3_1_1>
+          <Team3_1_1 setClose={setClose}></Team3_1_1>
         }
         
           {
-        loading && <Loading></Loading>
+        // loading && <Loading></Loading>
       }
       </Wrapper>
     </>

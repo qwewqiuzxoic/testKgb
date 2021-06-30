@@ -5,6 +5,11 @@ export const totalMes = {
     result:"",
     error:""
 }
+export const totalAnMes = {
+    loading:false,
+    error:"",
+    data:{}
+}
 export const totalList = {
     loading:false,
     message:"",
