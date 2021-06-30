@@ -25,6 +25,9 @@ function Manage12() {
         dispatch(totalAnDataThunck("brand_photo_detail",{sn:sn}));
         
     }
+    const setChange3 = ()=>{
+        setStep(1);
+    }
     const dispatch = useDispatch();
     const {list,loading} = useSelector(state=> state.totalListReducer); 
     useEffect(() => {
@@ -48,8 +51,8 @@ function Manage12() {
                 5_12_2_품질평가_브랜드평가_사진등록 : AddImgWrap
                 5_12_3_품질평가_브랜드평가_리스트 : ImgLists */}
                 {step === 1 && <ImgBoardWrap setChangeStep={setChangeStep} list={list} loading={loading}/>}
-                {step === 2 && <AddImgWrap/>}
-                {step === 3 && <ImgListsWrap/>}
+                {step === 2 && <AddImgWrap setChange3={setChange3}/>}
+                {step === 3 && <ImgListsWrap setChange3={setChange3}/>}
                 
                 {/* <AddImgWrap/> 
                 <ImgListsWrap/> */}

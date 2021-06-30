@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 const BtnWrap = styled.div`
 `;
 
-function ImgListsWrap() {
+function ImgListsWrap({setChange3}) {
   const {data,loaing} = useSelector(state=>state.totalDataAnReducer)
   return (
     <Wrapper>
@@ -20,7 +20,7 @@ function ImgListsWrap() {
         <ImgLists title="포장자재" img1={data.img_box01} img2={data.img_box02} img3={data.img_box03}/>
         <ImgLists title="유니폼" img1={data.img_cloth01} img2={data.img_cloth02} img3={data.img_cloth03}/>
         <BtnWrap>
-            <Button bg="#3397B9" color='#fff' text='목록' h='40px' fs='12px' mgt='20px'/>
+            <Button onclick={setChange3} bg="#3397B9" color='#fff' text='목록' h='40px' fs='12px' mgt='20px'/>
             </BtnWrap>
     </Wrapper>
   );

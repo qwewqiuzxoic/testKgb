@@ -74,7 +74,7 @@ function Team1({match}) {
     const daySc = useSelector(state=>state.dayScReducer.list);
     const changeDate = (e) => {
         setDateState(e)
-        dispatch(getDaySc(getToday(e)));
+        dispatch(getDaySc(getToday(e),page));
   }
   const tday = getToday(new Date());
   const checkDay = ({ date, view }) =>{

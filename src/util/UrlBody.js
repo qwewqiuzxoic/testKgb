@@ -273,11 +273,7 @@ export const UrlBody = (type, data) => {
         case "team_photo_proc":   //팀 사진 저장
             return{
                 url:"http://mis.kgb.co.kr/BM/API/team/team_photo_proc.asp",
-                body:{
-                    "biz_sn":user.biz_sn,
-                    "del_chk":data.del_chk,
-                    "addFileSel":data.addFileSel
-                }
+                body:data
             }
         case "file_save":   //브랜드평가 사진제출 업로드
         console.log(data)
