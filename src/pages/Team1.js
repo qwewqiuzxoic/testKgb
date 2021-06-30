@@ -68,12 +68,14 @@ function getYear(){
 }
 function Team1({match}) {
     const page =  match.params.page;
-    const [dateState, setDateState] = useState(new Date())
+    const [dateState, setDateState] = useState(new Date());
+    const [selectDay, setSelectDay] = useState("");
     const dispatch = useDispatch();
     const monthSc = useSelector(state=>state.monthScReducer.list);
     const daySc = useSelector(state=>state.dayScReducer.list);
     const changeDate = (e) => {
         setDateState(e)
+        setSelectDay(getToday(e))
         dispatch(getDaySc(getToday(e),page));
   }
   const tday = getToday(new Date());
@@ -100,15 +102,18 @@ function Team1({match}) {
           if(monthSc[i].edutype.includes("맞춤") ){
             text.push(<span className="state0"></span>)
           }
-          if(monthSc[i].edutype.includes("맞춤3") ){
+          if(monthSc[i].edutype.includes("정기") ){
               text.push(<span className="state1"></span>)
           }
-          if(monthSc[i].edutype.includes("맞춤2") ){
+          if(monthSc[i].edutype.includes("미교육") ){
               text.push(<span className="state2"></span>)
           }
-          if(monthSc[i].edutype.includes("맞춤1") ){
+          if(monthSc[i].edutype.includes("특별") ){
               text.push(<span className="state3"></span>)
           }
+          if(monthSc[i].edutype.includes("미교육") ){
+            text.push(<span className="state3"></span>)
+        }
         }
       }
       return (
@@ -137,7 +142,7 @@ function Team1({match}) {
             <p>{moment(dateState).format('dddd DD, MMMM')}</p>
             <span>{moment(dateState).format('YYYY-MM-DD')===moment(new Date()).format('YYYY-MM-DD') ? '오늘' : ''}</span>
           </SelectedDay>
-          <Schedules data={daySc}></Schedules>
+          <Schedules data={daySc} page={page} selectDay={selectDay}></Schedules>
         </ScheduleBox>
       </Wrapper>
     </div>

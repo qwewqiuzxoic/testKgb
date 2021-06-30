@@ -333,6 +333,16 @@ export const UrlBody = (type, data) => {
                 body:{
                 }
             }
+        case "edu_sch_request":
+            return{
+                url:"/BM/API/edu/edu_sch_request.asp",
+                body:{
+                    "mode":data.check === "1"?"CANCEL":"INSERT",
+                    "brand":user.brand,
+                    "sn":data.sn,
+                    "man_info_sn":user.man_info_sn
+                }
+            }
         
         default: return null;
     }
