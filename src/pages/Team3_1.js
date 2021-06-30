@@ -18,7 +18,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { totalAnDataThunck, totalDataThunk, totalListThunk, totalMesThunk } from '../redux/thunkFn/total.thunk';
 import Team3_1_1 from './Team3_1_1';
 import Loading from '../components/commonStyle/Loading';
-import { totalDataAnInit } from '../redux/actionFn/total';
+import { totalDataAnInit, totalMesInit } from '../redux/actionFn/total';
+import ConfirmModal from '../components/base/ConfirmModal';
+import { useHistory } from 'react-router-dom';
 
 
 const Wrapper = styled.div`
@@ -151,6 +153,8 @@ function getToday(){
   return year + "-" + month + "-" + day;
 }
 function Team3_1({match}) {
+  const {result,message} =  useSelector(state => state.totalMesReducer);
+
   //모달띄우기
   const [open,setOpen] =useState(false);
   const setClose = (list) =>{
@@ -193,7 +197,6 @@ function Team3_1({match}) {
 
   ////////////////////////*******날짜********/////////////////////////////////
   const setOrderChange = (e)=>{
-    console.log(e.target.name)
     setOrderSave({
       ...orderSave,
       [e.target.name]:e.target.value === "0"? 0 : e.target.value
@@ -387,11 +390,26 @@ function Team3_1({match}) {
     }
   },[AnData])
 
+  //합계 계산로직
+  useEffect(()=>{
+    setOrderSave({
+      ...orderSave,
+      CostTotal:parseInt(orderSave.CostMove) + parseInt(orderSave.CostOption) + parseInt(orderSave.MoneyDiscount),
+      MoneyRemain: parseInt(orderSave.CostMove) + parseInt(orderSave.CostOption) + parseInt(orderSave.MoneyDiscount) - parseInt(orderSave.MoneyPromise) 
+    })
+  },[orderSave.CostMove, orderSave.CostOption, orderSave.MoneyDiscount, orderSave.MoneyPromise])
   const subMit = () =>{
     console.log({...orderSave,order_info_sn:sn !== undefined ?sn:""})
    disaptch(totalMesThunk("save_contract",{...orderSave,order_info_sn:sn !== undefined ?sn:""}));
 
   }
+  let history = useHistory();
+
+  const confirmModal = () =>{
+    disaptch(totalMesInit());
+    history.push("/Team2_1");
+
+}
   return (
     <>
       
@@ -485,10 +503,11 @@ function Team3_1({match}) {
             MoneyPromise={orderSave.MoneyPromise} 
             MoneyRemain={orderSave.MoneyRemain} 
             Comment01_txt={orderSave.Comment01_txt}
+            setOrderChange={setOrderChange}
             />
           </Section>
           <Section>
-            <Button bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px" onclick={subMit}/>
+            <Button  bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px" onclick={subMit}/>
           {/* <Section open={open}>
             <Button onclick={onSaveSubmot} bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="40px"/> */}
           </Section>
@@ -504,6 +523,10 @@ function Team3_1({match}) {
           {
         // loading && <Loading></Loading>
       }
+      <ConfirmModal open={result === undefined ? false : true}
+                text={result ==="failed" || result ===undefined ? "실패하였습니다.": message}
+                onsubmit={confirmModal}
+            ></ConfirmModal> 
       </Wrapper>
     </>
   );
