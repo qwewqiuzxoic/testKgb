@@ -1,6 +1,6 @@
 import React , {useState} from 'react';
 import styled from 'styled-components';
-import { Gutter, FlexBox } from '../commonStyle';
+import { Gutter } from '../commonStyle';
 import DropDown from './DropDown';
 
 const Wrapper = styled.div`
@@ -21,7 +21,7 @@ const menuItems = [
             {name: '긴급연락망', link:'/Team7'}, 
             {name: '상조회', link:'/Team8_1/2'}, 
             {name: '권역 및 대표', link:'/Team9'}, 
-            {name: '담당 외주업체 ', link:'/'}
+            {name: '담당 외주업체 ', link:'/Team10'}
         ]
     },
     {

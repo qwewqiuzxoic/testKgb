@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Head from '../components/commonStyle/Head';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { FlexBox, Gutter, ChangeFont } from '../components/commonStyle';
 import Modal2 from '../components/team6_1/Modal2'
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,6 +15,7 @@ import Loading from '../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
+    padding-bottom:50px;
 `;
 const ContentArea = styled.div`
     position:relative;
@@ -106,7 +107,7 @@ function Team6_1() {
         <>
       
         <Wrapper>
-            <Head title="지원대기/요청" subtit="KGB의 지원대기/요청의 서브타이틀이 노출됩니다" pb="90px"/>
+            <Head title="지원대기/요청" subtit="KGB의 지원대기/요청입니다" pb="90px"/>
             {
             loading?
             <Loading/> :
@@ -144,7 +145,6 @@ function Team6_1() {
         <Modal2 modalOpen={modalOpen} closeModal={closeModal}/>
         <Link to={"/Team6_3"}>
             <FloatingBtn bg="#009B90" icon="ico_add" />
-
         </Link>
         </Wrapper>
         </>

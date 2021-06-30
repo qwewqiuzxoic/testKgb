@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import FindAddress from './FindAddress';
 import styled from 'styled-components';
-import { FlexBox, ChangeFont, InputStyle } from '../commonStyle';
+import { FlexBox, InputStyle } from '../commonStyle';
 
 
 const Wrapper = styled.div`

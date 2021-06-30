@@ -11,25 +11,6 @@ const Wrapper = styled.div`
     background: #FAFAFA;
     
 `;
-const Tabs = styled.div`
-    position:absolute;
-    ${Gutter()};
-    ${FlexBox('')};
-    margin-top:-72px;
-`;
-const TabName = styled.div`
-    ${ChangeFont(true)};
-    color : rgba(255, 255, 255, .7);
-    padding: 12px 18px;
-    border-radius: 20px;
-    cursor:pointer;
-    &.selected{
-      background : rgba(255, 255, 255, .3);
-      color: #FFFFFF;
-      font-weight: bold;
-      cursor: auto;
-  }
-`;
 const ContentArea = styled.div`
     position:relative;
     margin-top:30px;
@@ -101,21 +82,15 @@ const Row = ({region,agent, name, call,head}) => (
   </TableRow>
 );
 
-
-function Team9() {
+function Team10() {
   const [tableData, setTableData] = useState(data);
-  const [tab,setTab]= useState("");
   const rows = tableData.map( (rowData) => <Row {...rowData} />);
   const dispatch = useDispatch();
   const list = useSelector(state=>state.phoneListReducer.list)
   const user = JSON.parse(localStorage.getItem('user'));       
-  const tabChange = (num,text) =>{
-    dispatch(getPhoneList(1,text));
-    setTab(text);
-  } 
+
   useEffect(() => {
     dispatch(getPhoneList(2,user.brand));
-    setTab(user.brand);
 
     return () => {
     }
@@ -123,20 +98,14 @@ function Team9() {
   return (
     <>
       <Wrapper>
-        <Head title="권역 및 대표" subtit="KGB의 권역 및 대표입니다" pb="90px"/>
-        <Tabs>
-        <TabName className={tab === "YCAP" ? "selected": ""} onClick={()=>tabChange(0,"YCAP")}>YCAP</TabName>
-          <TabName className={tab === "KGB이사" ? "selected": ""} onClick={()=>tabChange(1,"KGB이사")}>KGB이사</TabName>
-          <TabName className={tab === "YES2404" ? "selected": ""} onClick={()=>tabChange(2,"YES2404")}>YES2404</TabName>
-          <TabName className={tab === "YES24041" ? "selected": ""} onClick={()=>tabChange(3,"YES24041")}>YES2404</TabName>
-        </Tabs>
+        <Head title="담당 외주업체" subtit="KGB의 담당 외주업체입니다" pb="56px"/>
         <ContentArea>
           <Table>
             <TableHead>
-              <div>권역</div>
-              <div>대리점명</div>
-              <div>대표자</div>
-              <div>전화번호</div>
+              <div>구분</div>
+              <div>담당자</div>
+              <div>업체명</div>
+              <div className="tel">전화번호</div>
             </TableHead>
             <TableBody>
               {
@@ -152,4 +121,4 @@ function Team9() {
   );
 }
 
-export default Team9;
+export default Team10;

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Head from '../components/commonStyle/Head';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
-
-
+import { FlexBox, Gutter } from '../components/commonStyle';
 import styled from 'styled-components';
 import { totalMesAnThunk, totalMesThunk } from '../redux/thunkFn/total.thunk';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +9,7 @@ import { totalMesInit } from '../redux/actionFn/total';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
+    padding-bottom:50px;
 `;
 const ContentArea = styled.div`
     position:relative;
@@ -141,7 +140,6 @@ function Board({match}) {
                 onsubmit={confirmModal}
             ></ConfirmModal> 
       </Wrapper>
-      
   );
 }
 

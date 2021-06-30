@@ -2,9 +2,8 @@ import React, {useState}  from 'react';
 import H1 from '../components/commonStyle/H1'
 import Button from '../components/commonStyle/Button'
 import FloatingBtn from '../components/commonStyle/FloatingBtn'
-
 import styled from 'styled-components';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { FlexBox, Gutter, ChangeFont } from '../components/commonStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { totalListThunk } from '../redux/thunkFn/total.thunk';
@@ -29,6 +28,7 @@ const TopBg = styled.div`
 const ContentArea = styled.div`
   ${Gutter()};
   margin-top:-40px;
+  padding-bottom:50px;
 `
 
 const Box = styled.div`

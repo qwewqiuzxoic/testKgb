@@ -1,10 +1,8 @@
 import React from 'react';
 import Modal from '../base/Modal';
 import styled from 'styled-components';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../commonStyle';
+import { FlexBox, Gutter, ChangeFont } from '../commonStyle';
 import { useSelector } from 'react-redux';
-
-
 
 const Box = styled.div`
     position:relative;
@@ -21,7 +19,6 @@ const Row = styled.div`
     margin-bottom:4px;
     
 `
-
 const Dt = styled.div`
     font-weight: bold;
     color:  ${(props) => props.theme.colors.grey2};
