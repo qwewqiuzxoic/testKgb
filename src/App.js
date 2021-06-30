@@ -17,6 +17,7 @@ import Team6_3 from './pages/Team6_3';
 import Team7 from './pages/Team7';
 import Team8_1 from './pages/Team8_1';
 import Team9 from './pages/Team9';
+import Team10 from './pages/Team10';
 import Board from "./pages/Board";
 import BoardDetail from "./pages/BoardDetail";
 import Manage1_1 from "./pages/Manage1_1";
@@ -96,6 +97,7 @@ function App() {
                 <PrivateRoute path="/team7" component={Team7}/>
                 <PrivateRoute path="/Team8_1/:boardTitle" component={Team8_1}/>
                 <PrivateRoute path="/Team9" component={Team9}/>
+                <PrivateRoute path="/Team10" component={Team10}/>
                 <PrivateRoute path="/Manage1_1" component={Manage1_1}/>
                 <PrivateRoute path="/Manage2_1/:page" component={Manage2_1}/>
                 <PrivateRoute path="/Manage2_2/:page/:sn" component={Manage2_2}/>

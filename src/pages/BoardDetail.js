@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import BoardTitle from '../components/borad/BoardTitle';
 import CommentBox from '../components/borad/CommentBox';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { FlexBox, Gutter, ChangeFont } from '../components/commonStyle';
 import Button from '../components/commonStyle/Button';
-
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBoardDetail, getEduBoardDetail, getEduMovieBoardDetail, getEduMovieBoardList, postModifyBoard } from '../redux/thunkFn/borad.thunk';
@@ -29,10 +28,10 @@ const ContentBox = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 13px;
+    font-size: ${(props) => props.theme.fontSizes.ml};
   span{
     color:#82898E;
-    font-size:13px;
+    font-size: ${(props) => props.theme.fontSizes.ml};
   }
 `;
 const PostInfo = styled.div`
@@ -213,8 +212,7 @@ function BoardDetail({match}) {
           <CommentBox></CommentBox>
           <Modal open={ modalOpen } close={ closeModal } header="비밀번호 확인" >
               <InputGroup id="title" title="비밀번호" ph="제목을 입력해주세요"  value={inputValue}setInputValue={setInputValue}/>
-              
-              <Button onclick={confirmPass} bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="30px"></Button>       
+              <Button onclick={confirmPass} bg="#3397B9" color="#ffffff" text="확인" height="44px" fontSize="12px" mgt="30px"></Button>       
             </Modal>
             <Modal open={ openModifyModal } close={ closeModal } header="글쓰기">
               <InputGroup id="title" title="제목" ph="제목을 입력해주세요" setInputValue2={setInputValue2} value={data.title}/>

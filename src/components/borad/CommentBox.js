@@ -6,17 +6,17 @@ import CommentList from './CommentList'
 
 
 import styled from 'styled-components';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../commonStyle';
+import { Gutter, BottomBox } from '../commonStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAsDetail, postAsComment } from '../../redux/thunkFn/as.thunk';
 import ConfirmModal from '../../components/base/ConfirmModal';
 import { postAsCommentInit } from '../../redux/actionFn/as';
+
 const Wrapper = styled.div`
   ${BottomBox()};
   ${Gutter()};
   padding-top:5px;
 `;
-
 function CommentBox({title, subtit, showCheck, commentlist,sn}) {
   const [text,setText] = useState("");
   const dispatch = useDispatch();

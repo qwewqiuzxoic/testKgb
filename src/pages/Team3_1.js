@@ -23,6 +23,7 @@ import { totalDataAnInit } from '../redux/actionFn/total';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
+    padding-bottom:50px;
 `;
 const TopBg = styled.div`
     position:relative;

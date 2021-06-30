@@ -34,7 +34,7 @@ const boxes = [
         title1 : "작업일정",
         title2 : "(월별)",
         bg: "linear-gradient(315deg, #54AD83 0%, #67CB68 100%) 0% 0% no-repeat",
-        link: "/Team1"
+        link: "/Team1/1"
     },
     {
         title1 : "견적/오더",

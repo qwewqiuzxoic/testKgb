@@ -25,11 +25,13 @@ const Slogan = styled.div`
 `;
 const MainBox = styled.div`
   width: ${(props) => props.width || "100%"};
+  min-height: 154px;
   background:  ${(props) => props.bg || "white"};
   box-shadow: ${(props) => props.shadow || "14px 14px 40px rgba(51, 51, 51, .1)"};
   border-radius: ${(props) => props.radius || "12px"};
   padding: ${(props) => props.padding || "14px 20px"};
   margin-bottom: ${(props) => props.mgb || "10px"};
+  margin-top: ${(props) => props.mgb || "10px"};
 `;
 
 const UserArea = styled.div`
@@ -124,7 +126,7 @@ const GreyText = styled.div`
 const NullBox = styled.div`
   ${ChangeFont(false, 700)};
   color:${(props) => props.theme.colors.grey3};
-
+  padding-top:8px;
 `
 function getToday(){
   var date = new Date();
