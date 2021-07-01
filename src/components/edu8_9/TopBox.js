@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Button from '../commonStyle/Button';
-import { Gutter, FlexBox, ChangeFont } from '../commonStyle';
+import { Gutter, FlexBox } from '../commonStyle';
 import Row from '../bill/Row';
 import { useDispatch, useSelector } from 'react-redux';
 import { usePointEvnet } from '../../redux/thunkFn/eduAttend.thunk';

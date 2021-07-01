@@ -1,14 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import BoardList8_1 from '../components/team8_1/BoardList8_1';
 import BoardListWrap8_1 from '../components/team8_1/BoardListWrap8_1';
 import BoardTitle from '../components/borad/BoardTitle';
 import FloatingBtn from '../components/commonStyle/FloatingBtn';
 import Modal from '../components/base/Modal'
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { Gutter } from '../components/commonStyle';
 import InputGroup from '../components/commonStyle/InputGroup';
-import TextAreaGroup from '../components/commonStyle/TextAreaGroup';
-import Button from '../components/commonStyle/Button';
-
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHappyCallDetail, warningCallList } from '../redux/thunkFn/warning.thunk';
