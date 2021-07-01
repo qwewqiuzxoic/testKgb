@@ -56,21 +56,20 @@ const Date = styled.div`
 `;
 
 
-function BoardList({title, regdate, board_sn, index, loginname ,tname, cnt,countview,adu,typeCheck, classname}) {
-   const type = typeCheck?1:2
+function BoardList({index,boardCode, board_sn, cnt, countview, loginname, regdate, title, tname, classname}) {
    
   return (
-    <Wrapper index={index} className={classname}>
-        <Title className={classname}>
-          <Link to={adu?`/boarddetail/${board_sn}/${type}`:`/boarddetail/${board_sn}`}>
-            {title}
+    <Wrapper index={index} className={classname && classname}>
+        <Title >
+          <Link to={`/boarddetail/${board_sn}/${boardCode}`}>
+          <span>{title}</span>
           </Link>
-          <span> </span>
         </Title>
-        <PostInfo className={classname}>
-          { classname ? "" :
-          <Writer>{loginname}</Writer>
-          }
+        <PostInfo >
+          <Writer>
+            {boardCode === "1" && tname}  
+            {loginname}
+          </Writer>
           <span></span>
           <Date>{regdate}</Date>
         </PostInfo>

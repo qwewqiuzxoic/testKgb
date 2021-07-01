@@ -12,6 +12,7 @@ import Modal from '../components/base/Modal';
 import InputGroup from '../components/commonStyle/InputGroup';
 import { boardPostInput } from '../redux/actionFn/board';
 import TextAreaGroup from '../components/commonStyle/TextAreaGroup';
+import { Link, useHistory } from 'react-router-dom';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -69,14 +70,25 @@ const ButtonArea = styled.div`
 `;
 const InnerCont = styled.div`
 `;
-
+//우리팀 톡톡 1
+//자유게시판 2
+//공지사항 3
+//칭찬글 4
+//꾸중글 5
 function BoardDetail({match}) {
-  const number = match.params.number;
+  const history = useHistory();
+
   const sn = match.params.sn;
   const type = match.params.type;
   const dispatch = useDispatch();
 
-  const boardDetail = useSelector(state => state.boardDetailReducer.data);
+  const boardDetail1 = useSelector(state => state.boardDetailReducer.data);
+  const boardDetail2 = useSelector(state => state.getAsDetailReducer);
+  const boardDetail = type === "asy"?boardDetail2:boardDetail1;
+  const loading1 = useSelector(state => state.boardDetailReducer.loading);
+  const loading2 = useSelector(state => state.getAsDetailReducer.loading);
+  const loading = type === "asy"?loading2:loading1;
+
   const data = useSelector(state => state.getAsDetailReducer);
 
   const [ modalOpen, setModalOpen ] = useState(false);
@@ -103,13 +115,14 @@ function BoardDetail({match}) {
     })
   }
   useEffect(() => {
-    if(type === undefined){
+    if(type === "1" || type === "2" || type === "3" || type === "4" || type === "5"|| type === "6" || type === "7"){
       dispatch(getBoardDetail(sn));
     }else if(type === "1"){
       dispatch(getEduBoardDetail(sn));
     }else if(type === "2"){
       dispatch(getEduMovieBoardDetail(sn));
-    }else if(type === "3" ||type === "4"){
+    }else if(type ==="asy"){
+      console.log(123)
       dispatch(getAsDetail(sn));
     }
       
@@ -131,85 +144,55 @@ function BoardDetail({match}) {
       setOpenModifyModal(false);
     }
   }
-  const onsubmit= () =>{
-    dispatch(postModifyBoard(modifyText));
-    console.log(modifyText);
+  const callback = () =>{
+    history.goBack();
   }
-  if( type === "3" || type === "4" ) {
-      return (
-        <Wrapper>
-          {data.loading && <Loading></Loading>}
+  const onsubmit= () =>{
+    dispatch(postModifyBoard(modifyText,callback));
+  }
+  const toBack = ()=>{
+    history.goBack();
+  }
+return(
+  <Wrapper>
           {
-            openPass?
+            loading ? <Loading/>:
             <div>
-              <input onChange={(e)=>{onchange(e)}} value={checkPass}/>
-              <button onClick={confirmPass}>
-                aaaaa
-              </button>
-            </div>
-            :
-            null
-          }
             <BoardTitle/>
-            <ContentArea>
-              <ContentBox>
-                {/* <Title>
-                {data.title}
-                </Title> */}
-                <PostInfo>
-                  <Writer>{data.strLoginname}({data.tname})</Writer>
-                  <Date>{data.regdate}</Date>
-                </PostInfo>
-                <Desc>
-                <InnerCont dangerouslySetInnerHTML={ {__html: data.strContents} }>
-                </InnerCont>
-                </Desc>
-                </ContentBox>
-                <ButtonArea>
-                  <Button onclick={onclick} bg="#DFE5EA" color="#ACB6BC" text="수정" w="24%" h="44px" fs="12px"></Button>
-                  <Button bg="#DFE5EA" color="#ACB6BC" text="삭제" w="24%" h="44px" fs="12px"></Button>
-                  <Button bg="#3397B9" color="#ffffff" text="목록" w="49%" h="44px" fs="12px"></Button>
-                </ButtonArea>
-            </ContentArea>
-            <CommentBox showCheck={type ==="3"? true:false} commentlist={data.list} sn={sn}></CommentBox>
-        </Wrapper>
-      );
-  } else {
-    return (
-      <Wrapper>
-        {
-          openPass?
-          <div>
-            <input onChange={(e)=>{onchange(e)}} value={checkPass}/>
-            <button onClick={confirmPass}>
-              aaaaa
-            </button>
-          </div>
-          :
-          null
-        }
-          <BoardTitle/>
           <ContentArea>
             <ContentBox>
               <Title>
               {boardDetail.title}
               </Title>
               <PostInfo>
-                <Writer>{boardDetail.loginid}({boardDetail.tname})</Writer>
+                <Writer>{boardDetail.loginid}{boardDetail.strLoginname}({boardDetail.tname})</Writer>
                 <Date>{boardDetail.regdate}</Date>
               </PostInfo>
               <Desc>
                 {/* <img src={process.env.PUBLIC_URL + '/images/dummyImg.jpg'} alt="icon" />
                 <p>dfsdfsdf</p> */}
+                {/* { type !== "5" && boardDetail.content} */}
+                <InnerCont dangerouslySetInnerHTML={ {__html: boardDetail.strContents} }>
+                </InnerCont>
+                <InnerCont dangerouslySetInnerHTML={ {__html: boardDetail.content} }>
+                </InnerCont>
+                {
+                  boardDetail.asresult && <div>진행상황 {boardDetail.asresult}</div>
+                }
               </Desc>
               </ContentBox>
               <ButtonArea>
-                <Button onclick={openModal} bg="#DFE5EA" color="#ACB6BC" text="수정" w="24%" h="44px" fs="12px"></Button>
-                <Button bg="#DFE5EA" color="#ACB6BC" text="삭제" w="24%" h="44px" fs="12px"></Button>
-                <Button bg="#3397B9" color="#ffffff" text="목록" w="49%" h="44px" fs="12px"></Button>
+                {
+                  type !== "1"?null:<Button onclick={openModal} bg="#DFE5EA" color="#ACB6BC" text="수정" w="24%" h="44px" fs="12px"></Button>
+                }
+                {
+                  type !== "1"?null:<Button bg="#DFE5EA" color="#ACB6BC" text="삭제" w="24%" h="44px" fs="12px"></Button>
+                }
+                
+                <Button onclick={toBack} bg="#3397B9" color="#ffffff" text="목록" w="49%" h="44px" fs="12px"></Button>
               </ButtonArea>
           </ContentArea>
-          <CommentBox></CommentBox>
+          <CommentBox list={boardDetail.list}></CommentBox>
           <Modal open={ modalOpen } close={ closeModal } header="비밀번호 확인" >
               <InputGroup id="title" title="비밀번호" ph="제목을 입력해주세요"  value={inputValue}setInputValue={setInputValue}/>
               <Button onclick={confirmPass} bg="#3397B9" color="#ffffff" text="확인" height="44px" fontSize="12px" mgt="30px"></Button>       
@@ -220,11 +203,12 @@ function BoardDetail({match}) {
               <InputGroup id="email" title="이메일" ph="이메일을 입력해주세요" setInputValue2={setInputValue2} value={data.email}/>
               <TextAreaGroup id="contents" title="내용" ph="내용을 입력해주세요" setInputValue2={setInputValue2} value={data.contents}/>
               <Button onclick={onsubmit} bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="30px"></Button>       
-            </Modal>
+            </Modal>    
+            </div>
+          }
+          
       </Wrapper>
-    );
-  }
-
+)
 }
 
 export default BoardDetail;

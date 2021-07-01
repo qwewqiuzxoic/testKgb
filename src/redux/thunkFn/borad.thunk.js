@@ -80,7 +80,7 @@ export const postRMDBoard = (data,fn) => dispatch =>{
     axios.post(url, data).then(function(res){
         console.log(res)
         dispatch(boardPostSuccess(res.result));
-        if(fn !== undefined) fn()
+        if(fn !== undefined) fn();
     }).catch(function (error){
         dispatch(boardPostError(error))
     })
@@ -96,11 +96,12 @@ export const postDeleteBoard = (data) =>dispatch =>{
         dispatch(boardPostError(error))
     })
 }
-export const postModifyBoard = (data) => dispatch =>{
+export const postModifyBoard = (data,fn) => dispatch =>{
     dispatch(boardPostLoading());
     const url = '/BM/API/board/board_proc_basic.asp';
     axios.post(url, data).then(function(res){
         dispatch(boardPostSuccess(res.result));
+        if(fn !== undefined) fn();
     }).catch(function (error){
         dispatch(boardPostError(error))
     })

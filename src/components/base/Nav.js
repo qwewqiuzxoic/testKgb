@@ -14,7 +14,7 @@ const menuItems = [
         subMenus: [
             {name: '작업일정(월별)', link:'/Team1/1'},
             {name: '방문견적 및 개인오더 입력', link:'/Team2_1'},
-            {name: '우리팀 톡톡', link:'/board/2'}, 
+            {name: '우리팀 톡톡', link:'/board/1'}, 
 
             {name: '팀단체사진 등록', link:'/Team5'}, 
             {name: '지원요청/대기', link:'/Team6_1'}, 
@@ -27,8 +27,8 @@ const menuItems = [
     {
         name: '품질 관리', 
         subMenus: [
-            {name: '칭찬글', link:'/board/3'}, 
-            {name: '꾸중글', link:'/board/4'}, 
+            {name: '칭찬글', link:'/board/2'}, 
+            {name: '꾸중글', link:'/board/3'}, 
             {name: '미계약 해피콜', link:'/Manage2_1/2'}, 
             {name: '계약 해피콜', link:'/Manage2_1/1'}, 
             {name: 'A/S현황', link:'/Manage3_1'}, 
@@ -44,7 +44,7 @@ const menuItems = [
         name: '커뮤니티',
         subMenus: [
             {name: '공지사항', link:'/board/5'},
-            {name: '자유게시판', link:'/board/1'},
+            {name: '자유게시판', link:'/board/4'},
             {name: '작업일정변경요청', link:'/board/10'},
             {name: '건의함', link:'/CommunityWrite'},
             {name: '비리제보', link:'/CommunityWrite'},

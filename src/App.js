@@ -40,6 +40,7 @@ import ProdLists from "./pages/ProdLists";
 import ProdDetail from "./pages/ProdDetail";
 import Cart from "./pages/Cart";
 import ProdOrder from "./pages/ProdOrder";
+import ComplimentBoard from "./pages/ComplimentBoard";
 
 import {signIn} from './deletData/Auth'
 import PrivateRoute from './util/PrivateRoute'
@@ -58,6 +59,13 @@ import Top from "./components/base/Top";
 import axios from "axios";
 import Manage11 from "./pages/Manage11";
 import ToktokBoard from "./pages/ToktokBoard";
+import FreeBoard from "./pages/FreeBoard";
+import NoticeBoard from "./pages/NoticeBoard";
+import EduNoticeBoard from "./pages/EduNoticeBoard";
+import EduReferenceBoard from "./pages/EduReferenceBoard";
+import ASTipBoard from "./pages/ASTipBoard";
+import ReferenceBoard from "./pages/ReferenceBoard";
+import WorkDayChangeBoard from "./pages/WorkDayChangeBoard";
 
 
 function App() {
@@ -73,9 +81,7 @@ function App() {
   useEffect(() => {
     if(user2 === null){
       localStorage.setItem('user', JSON.stringify(user));
-
     }
-      console.log(JSON.parse(localStorage.getItem('user')));
       return () => {
         }
   }, [userS])
@@ -92,7 +98,25 @@ function App() {
             {menu ?
                <Switch>
                 <Route path="/login" component={Login} />
-                <PrivateRoute path="/board" component={ToktokBoard}/>
+                {/* 톡톡 */}
+                <PrivateRoute path="/board/1" component={ToktokBoard}/>
+                {/* 칭찬 꾸중 */}
+                <PrivateRoute path="/board/2" component={ComplimentBoard}/>
+                <PrivateRoute path="/board/3" component={ComplimentBoard}/>
+                {/* 자유 */}
+                <PrivateRoute path="/board/4" component={FreeBoard}/>
+                {/* 공지 */}
+                <PrivateRoute path="/board/5" component={NoticeBoard}/> 
+                {/* 교육공지 */}
+                <PrivateRoute path="/board/6" component={EduNoticeBoard}/> 
+                {/* 교육자료실 */}
+                <PrivateRoute path="/board/7" component={EduReferenceBoard}/> 
+                {/* as처리노하우 */}
+                <PrivateRoute path="/board/8" component={ASTipBoard}/> 
+                {/* 일반자료실 */}
+                <PrivateRoute path="/board/9" component={ReferenceBoard}/> 
+                {/* 작업일변경요청 */}
+                <PrivateRoute path="/board/10" component={WorkDayChangeBoard}/> 
                 <PrivateRoute path="/board/:boardTitle" component={Board}/>
                 <PrivateRoute path="/boarddetail/:sn/:type" component={BoardDetail}/>
                 <PrivateRoute path="/boarddetail/:sn" component={BoardDetail}/>

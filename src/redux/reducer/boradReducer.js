@@ -87,6 +87,7 @@ export function boardDetailReducer(state = boardDetailInit, action) {
         case BOARD_DETAIL_SUCCESS:
             return{
                 ...state,
+                loading:false,
                 data:action.data
             }     
         default: 
