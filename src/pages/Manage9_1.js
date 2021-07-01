@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Head from '../components/commonStyle/Head';
 import EduBox from '../components/commonStyle/EduBox';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { FlexBox, Gutter } from '../components/commonStyle';
 
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +9,8 @@ import { totalListThunk } from '../redux/thunkFn/total.thunk';
 
 const Wrapper = styled.div`
     background:#FAFAFA;
+    padding-bottom:60px;
+    min-height:100vh;
 `;
 
 const ContentArea = styled.div`

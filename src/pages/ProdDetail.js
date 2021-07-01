@@ -2,7 +2,7 @@ import React, { useEffect }  from 'react';
 import Row from '../components/bill/Row';
 import Button from '../components/commonStyle/Button';
 import ProdOption from '../components/Prod/ProdOption';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { FlexBox, Gutter, ChangeFont } from '../components/commonStyle';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -52,9 +52,6 @@ const TotalArea = styled.div`
 `;
 const BtnArea = styled.div`
     ${FlexBox()};
-    >button{
-        width:49%;
-    }
 `;
 
 
@@ -142,16 +139,16 @@ function ProdDetail({match}) {
             </ImgArea>
             <DetailBox>
                 <Name>{listRes.goods_name && listRes.goods_name}</Name>
-                <Price>{price}<span>원</span></Price>
+                <Price>{parseInt(price).toLocaleString()}<span>원</span></Price>
                 <Row dt="상품재고확인" dtSize="13px" dd="294" ddColor="#404345" ddWeight="bold" ddSpan='개'/>
                 {listRes.list && listRes.list.map ((item, index)=> (
                     <ProdOption key={index} index={index} FnSetBasket={FnSetBasket} tPrice={tPrice} setTPrice={setTPrice} name={item.option_name} option={item.gs_idx} price={item.price}></ProdOption>
                 ))}
                 <TotalArea>
-                    <Row dt="총 결제금액"  dd={tPrice}ddColor="#009B90" ddSize=" 18px" ddWeight="bold" ddSpan='원' spanSize="11px"/>
+                    <Row dt="총 결제금액"  dd={parseInt(tPrice).toLocaleString()} ddColor="#009B90" ddSize=" 18px" ddWeight="bold" ddSpan='원' spanSize="11px"/>
                 </TotalArea>
                 <BtnArea>
-                    <Button onclick={basketAdd} bg="#404345" color="#ffffff" text="장바구니"  height="44px" fontSize="12px" mgt="30px"></Button>
+                    <Button onclick={basketAdd} bg="#404345" color="#ffffff" text="장바구니"  w="100%" h="44px" fs="12px" mgt="30px"></Button>
                     {/* <Button onclick={onsubmit} bg="#3397B9" color="#ffffff" text="결제"  height="44px" fontSize="12px" mgt="30px"></Button> */}
                 </BtnArea>
 

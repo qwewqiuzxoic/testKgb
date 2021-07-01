@@ -4,7 +4,7 @@ import Score from '../components/commonStyle/Score';
 import PopUp from '../components/base/PopUp'
 import PopUpDesc from '../components/Manage5_1/PopUpDesc'
 
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { FlexBox, Gutter, ChangeFont } from '../components/commonStyle';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPictureCheckDetail, getPictureCheckList } from '../redux/thunkFn/pictureCheck.thunk';
@@ -16,17 +16,20 @@ const Wrapper = styled.div`
 `;
 const Tabs = styled.div`
     position:absolute;
+    width:100%;
     ${Gutter()};
     ${FlexBox('')};
-    margin-top:-102px;
+    margin-top:-106px;
 `;
 const TabName = styled.div`
+    width:48%;
     ${ChangeFont(true)};
     color : rgba(255, 255, 255, .7);
     padding: 12px 18px;
     width:50%;
     border-radius: 20px;
     cursor:pointer;
+    text-align:center;
     &.selected{
       background : rgba(255, 255, 255, .3);
       color: #FFFFFF;
@@ -64,7 +67,7 @@ const RowTitle = styled.div`
 const Title = styled.div`
     font-weight: bold;
     margin-bottom:3px;
-    font-size:14px;
+    font-size: ${(props) => props.theme.fontSizes.l};
 `
 const Date = styled.div`
     ${ChangeFont(true)};
@@ -78,12 +81,7 @@ const Dd = styled.div`
     ${ChangeFont(true)};
 `
 
-const ListManage2_1 = [
-  {team:'서울1팀', name1: '이지현', name2: '홍길동', date: '2020 .02 .28', score:'44', region:'지역이 노출됩니다', addr1: '서울 노원구 하계동 한신 동성아파트 1동 1201호', addr2:'서울 노원구 하계동 한신 동성아파트 1동 1202호'}, 
-  {team:'서울1팀', name1: '이지현1', name2: '홍길동', date: '2020 .02 .28', score:'55', region:'지역이 노출됩니다', addr1: '서울 노원구 하계동 한신 동성아파트 1동 1201호', addr2:'서울 노원구 하계동 한신 동성아파트 1동 1202호'}, 
-  {team:'서울1팀', name1: '이지현2', name2: '홍길동', date: '2020 .02 .28', score:'66', region:'지역이 노출됩니다', addr1: '서울 노원구 하계동 한신 동성아파트 1동 1201호', addr2:'서울 노원구 하계동 한신 동성아파트 1동 1202호'}, 
-  {team:'서울1팀', name1: '이지현3', name2: '홍길동', date: '2020 .02 .28', score:'20', region:'지역이 노출됩니다', addr1: '서울 노원구 하계동 한신 동성아파트 1동 1201호', addr2:'서울 노원구 하계동 한신 동성아파트 1동 1202호'}, 
-]
+const ListManage2_1 = [];
 
 function Manage5_1({match}) {
   const page = match.params.page;

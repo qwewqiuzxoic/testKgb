@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Button from '../commonStyle/Button';
-import { Gutter, FlexBox, ChangeFont } from '../commonStyle';
+import { Gutter, FlexBox } from '../commonStyle';
 import Row from '../bill/Row';
 import { useDispatch, useSelector } from 'react-redux';
 import { usePointEvnet } from '../../redux/thunkFn/eduAttend.thunk';
@@ -28,8 +28,6 @@ const UseScoreWrap = styled.div`
     ${FlexBox()};   
     margin:15px 0;
     align-items: center;
-
-
 `;
 const Group = styled.div`
     select{
@@ -37,7 +35,6 @@ const Group = styled.div`
         padding : 5px 10px;
         border-radius: 4px;;
     }
-
 `;
 const Label = styled.label`
     color: #ACB6BC; 

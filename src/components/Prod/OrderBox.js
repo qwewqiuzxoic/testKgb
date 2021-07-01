@@ -1,12 +1,11 @@
 import React from 'react';
-import { FlexBox, ChangeFont, InputStyle } from '../commonStyle';
+import { FlexBox, ChangeFont } from '../commonStyle';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
     background:#fff;
     box-shadow: 3px 3px 4px #33333314;
 `;
-
 const Top = styled.div`
     ${FlexBox()};
     align-items:center;
@@ -44,7 +43,6 @@ const Name = styled.div`
 const OptionWrap = styled.div`
     ${FlexBox()};
     margin: 4px 0;
-
 `;
 const Option = styled.div`
     font-size:${(props) => props.theme.fontSizes.xs};
@@ -57,7 +55,6 @@ const Price = styled.div`
     border-bottom:1px solid rgba(221,221,221,.3);
     padding-bottom:15px;
     font-size:${(props) => props.isTotal ? "12px" : "11px"};
-
     span{
         color: #82898E;
     }
@@ -67,7 +64,6 @@ const Total = styled.div`
     >div{
         border-bottom:0;
     }
-
 `;
 function OrderBox({order}) {
 
@@ -90,13 +86,15 @@ function OrderBox({order}) {
                     <Option><span>옵션:</span> {item.goods_option}</Option>
                     <Option><span>수량:</span> {item.ea}개</Option>
                 </OptionWrap>
-                <Price><span>판매금액 </span>{item.price}원</Price>
-                <Price><span>총 판매금액 </span>{item.tot_price}원</Price>
+                <Price>
+                    <p><span>판매금액 </span>{parseInt(item.price).toLocaleString()}원</p>
+                    <p><span>총 판매금액 </span>{parseInt(item.tot_price).toLocaleString()}원</p>
+                </Price>
             </Product>
         )}
         
         <Total>
-            <Price isTotal={true}><span>총금액 </span>{order.total_price}원</Price>
+            <Price isTotal={true}><span>총금액 </span>{parseInt(order.total_price).toLocaleString()}원</Price>
         </Total>
     </Wrapper>
   );

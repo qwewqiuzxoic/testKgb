@@ -4,7 +4,7 @@ import BoardListWrap from '../components/borad/BoardListWrap';
 import BoardTitle from '../components/borad/BoardTitle';
 import FloatingBtn from '../components/commonStyle/FloatingBtn'
 import Modal from '../components/base/Modal'
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { Gutter } from '../components/commonStyle';
 import InputGroup from '../components/commonStyle/InputGroup';
 import TextAreaGroup from '../components/commonStyle/TextAreaGroup';
 import Button from '../components/commonStyle/Button';

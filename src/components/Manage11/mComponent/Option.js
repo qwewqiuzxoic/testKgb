@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../../commonStyle';
 const Wrapper = styled.div`
 `;
 const Box = styled.label`
@@ -11,6 +10,7 @@ const Box = styled.label`
   padding: 14px 15px;
   margin-bottom: 8px;
   border-radius: 4px;
+  cursor:pointer;
 `;
 const Radio = styled.input`
   display:none;

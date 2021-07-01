@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Head from '../components/commonStyle/Head';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { FlexBox, Gutter} from '../components/commonStyle';
 
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
     background:#FAFAFA;
     padding-bottom:60px;
+    min-height:100vh;
 `;
 
 const ContentArea = styled.div`
