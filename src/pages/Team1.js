@@ -60,8 +60,18 @@ function getMonth(){
   var month = today.getMonth()+1;
   return month<10 ?"0"+month:month;
 }
+function getMonth2(date){
+  var today = date;
+  var month = today.getMonth()+1;
+  return month<10 ?"0"+month:month;
+}
 function getYear(){
   var today = new Date();
+  var year = today.getFullYear();
+  return year;
+}
+function getYear2(date){
+  var today = date;
   var year = today.getFullYear();
   return year;
 }
@@ -133,6 +143,9 @@ function Team1({match}) {
   }
   const month = getMonth();
   const year = getYear();
+  const changeMonth = (v,e) =>{
+    dispatch(getMonthSc(getYear2(v),getMonth2(v),page));
+  }
   useEffect(() => {
     dispatch(getMonthSc(year,month,page));
     dispatch(getDaySc(tday,page));
@@ -145,7 +158,7 @@ function Team1({match}) {
       <Wrapper>
         <TopBg>
             <H1 title="작업일정 (월별)" subtit=""></H1>
-            <Calendar tileContent={checkDay} value={dateState} data="aa" onChange={changeDate} calendarType="US" locale="EN"/>
+            <Calendar tileContent={checkDay} value={dateState} data="aa" onClickMonth={(value,event)=>changeMonth(value,event)} onChange={changeDate} calendarType="US" locale="EN"/>
         </TopBg>
         <Labels isTaskPage={ page === "1" ? true : false }></Labels>
         <ScheduleBox>

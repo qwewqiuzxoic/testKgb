@@ -65,7 +65,7 @@ function BoardList({title, regdate, board_sn, index, loginname ,tname, cnt,count
           <Link to={adu?`/boarddetail/${board_sn}/${type}`:`/boarddetail/${board_sn}`}>
             {title}
           </Link>
-          <span> [11]</span>
+          <span> </span>
         </Title>
         <PostInfo className={classname}>
           { classname ? "" :

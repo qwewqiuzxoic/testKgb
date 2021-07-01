@@ -135,7 +135,7 @@ function BoardDetail({match}) {
     dispatch(postModifyBoard(modifyText));
     console.log(modifyText);
   }
-  if( type === "3" ||type === "4" ) {
+  if( type === "3" || type === "4" ) {
       return (
         <Wrapper>
           {data.loading && <Loading></Loading>}

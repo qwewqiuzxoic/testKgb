@@ -12,7 +12,7 @@ export const getAsList= (team, count, length = 10) => dispatch => {
             "pagesize" : length,
             "tabtype" : team,
         }).then(function (res) {
-            console.log(res)
+            console.log(res,team)
             dispatch(getAsListSuccess(res.data));
         }).catch(function (error) {
             dispatch(getAsListError(error));
