@@ -13,6 +13,7 @@ import Loading from '../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
+    padding-bottom:50px;
 `;
 const ContentArea = styled.div`
     ${Gutter()};

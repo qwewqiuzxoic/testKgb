@@ -4,13 +4,15 @@ import { FlexBox, Gutter } from '../commonStyle';
 
 const Wrapper = styled.div`
   ${Gutter()};
-  ${FlexBox()};
+  ${FlexBox('flex-start')};
+  flex-wrap: wrap;
   margin:20px auto;
 `;
 const LabelBox = styled.div`
     background: ${(props) => props.bg};
     border-radius: 4px;
-    padding:8px 4px;
+    padding:8px;
+    margin: 4px;
     color: ${(props) => props.color};
     span{
         position:relative;
@@ -30,44 +32,91 @@ const LabelBox = styled.div`
         background: ${(props) => props.color};
     }
 `;
-
-
 const labelTexts = [
     {
         bg: 'rgba(67, 201, 240, .2)',
         color: '#43C9F0',
-        text: '범례일정1'
+        text: '계약'
     },
     {
         bg: 'rgba(40, 241, 115, .2)',
         color: '#28F173',
-        text: '범례일정2'
+        text: '지명오더'
     },
     {
         bg: 'rgba(255, 192, 52, .2)',
         color: '#FFC034',
-        text: '범례일정3'
+        text: '견적의뢰'
     },
     {
         bg: 'rgba(238, 136, 62, .2)',
         color: '#EE883E',
-        text: '범례일정4'
+        text: '미계약'
     },
     {
         bg: 'rgba(255, 77, 85, .2)',
         color: '#FF4D55',
-        text: '범례일정5'
+        text: '중복견적'
+    },
+    {
+        bg: 'rgba(255, 77, 255, .2)',
+        color: '#ff4dff',
+        text: '취소'
+    },
+    {
+        bg: 'rgba(138, 43, 226, .2)',
+        color: '#8a2be2',
+        text: 'KGB토스'
+    },
+    {
+        bg: 'rgba(0, 0, 255, .2)',
+        color: '#0000ff',
+        text: '기타'
+    }
+]
+const labelTexts2 = [
+    {
+        bg: 'rgba(67, 201, 240, .2)',
+        color: '#43C9F0',
+        text: '맞춤'
+    },
+    {
+        bg: 'rgba(40, 241, 115, .2)',
+        color: '#28F173',
+        text: '정기'
+    },
+    {
+        bg: 'rgba(255, 192, 52, .2)',
+        color: '#FFC034',
+        text: '보충'
+    },
+    {
+        bg: 'rgba(238, 136, 62, .2)',
+        color: '#EE883E',
+        text: '특별'
+    },
+    {
+        bg: 'rgba(255, 77, 85, .2)',
+        color: '#FF4D55',
+        text: '미교육'
     }
 ]
 
-function Labels() {
+function Labels({isTaskPage}) {
   return (
     <Wrapper>
-        {labelTexts.map((label, index)=> (
-          <LabelBox key={index} color={label.color} bg={label.bg} text={label.text} >
-              <span>{label.text}</span>
-          </LabelBox>
-        ))}
+        {isTaskPage ? 
+        labelTexts.map((label, index)=> (
+            <LabelBox key={index} color={label.color} bg={label.bg} text={label.text} >
+                <span>{label.text}</span>
+            </LabelBox>
+         )) :
+        labelTexts2.map((label, index)=> (
+            <LabelBox key={index} color={label.color} bg={label.bg} text={label.text} >
+                <span>{label.text}</span>
+            </LabelBox>
+         ))
+        }
     </Wrapper>
   );
 }

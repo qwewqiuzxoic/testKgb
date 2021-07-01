@@ -28,8 +28,6 @@ const UseScoreWrap = styled.div`
     ${FlexBox()};   
     margin:15px 0;
     align-items: center;
-
-
 `;
 const Group = styled.div`
     select{
@@ -37,7 +35,6 @@ const Group = styled.div`
         padding : 5px 10px;
         border-radius: 4px;;
     }
-
 `;
 const Label = styled.label`
     color: #ACB6BC; 

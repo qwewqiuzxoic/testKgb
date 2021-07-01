@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ImgLists from './ImgLists';
 import styled from 'styled-components';
 import Button from '../commonStyle/Button';

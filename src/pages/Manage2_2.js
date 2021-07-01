@@ -7,7 +7,6 @@ import { FlexBox, Gutter, ChangeFont } from '../components/commonStyle';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHappyCallDetail } from '../redux/thunkFn/happyCall.thunk';
-import QuestionBox from '../components/Manage11/QuestionBox';
 import Loading from '../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
@@ -100,14 +99,14 @@ function Manage2_2({match}) {
   return (
     <>
       <Wrapper>    
-        <Head title={title} subtit={subtit} pb="90px"/>
+        <Head title={title} subtit={subtit} pb="56px"/>
         {/* <Tabs>
           <TabName className={tab === 0 ? "selected": ""} onClick={()=>setTab(0)}>우리팀</TabName>
           <TabName className={tab === 1 ? "selected": ""} onClick={()=>setTab(1)}>다른팀</TabName>
         </Tabs> */}
         <ContentArea>
             {loading && <Loading></Loading>}
-            <Search id="search1" ph="이사일/입력일 기준으로 월별검색해주세요"/>
+            {/* <Search id="search1" ph="이사일/입력일 기준으로 월별검색해주세요"/> */}
                 {/* Manage2_1과 이부분만 다름 */}
                 <Box>
                     <Row>

@@ -25,7 +25,6 @@ const TopBg = styled.div`
     background: ${(props) => props.theme.colors.primary};
     border-radius: 0 0 30px 30px;
     padding-bottom: 25px;
-
 `;
 const ScheduleBox = styled.div`
   ${BottomBox()};
@@ -102,11 +101,23 @@ function Team1({match}) {
             if(monthSc[i].title.includes("지명오더") ){
                 text.push(<span className="state1"></span>)
             }
-            if(monthSc[i].title.includes("기타1") ){
+            if(monthSc[i].title.includes("견적의뢰") ){
                 text.push(<span className="state2"></span>)
             }
-            if(monthSc[i].title.includes("기타2") ){
+            if(monthSc[i].title.includes("미계약") ){
                 text.push(<span className="state3"></span>)
+            }
+            if(monthSc[i].title.includes("중복견적") ){
+                text.push(<span className="state4"></span>)
+            }
+            if(monthSc[i].title.includes("취소") ){
+                text.push(<span className="state5"></span>)
+            }
+            if(monthSc[i].title.includes("KGB토스") ){
+                text.push(<span className="state6"></span>)
+            }
+            if(monthSc[i].title.includes("기타") ){
+                text.push(<span className="state7"></span>)
             }
         }else if(monthSc[i].dayedu === day && page === "2"){
           if(monthSc[i].edutype.includes("맞춤") ){
@@ -115,14 +126,14 @@ function Team1({match}) {
           if(monthSc[i].edutype.includes("정기") ){
               text.push(<span className="state1"></span>)
           }
-          if(monthSc[i].edutype.includes("미교육") ){
+          if(monthSc[i].edutype.includes("보충") ){
               text.push(<span className="state2"></span>)
           }
           if(monthSc[i].edutype.includes("특별") ){
               text.push(<span className="state3"></span>)
           }
           if(monthSc[i].edutype.includes("미교육") ){
-            text.push(<span className="state3"></span>)
+            text.push(<span className="state4"></span>)
         }
         }
       }
@@ -149,7 +160,7 @@ function Team1({match}) {
             <H1 title="작업일정 (월별)" subtit=""></H1>
             <Calendar tileContent={checkDay} value={dateState} data="aa" onClickMonth={(value,event)=>changeMonth(value,event)} onChange={changeDate} calendarType="US" locale="EN"/>
         </TopBg>
-        <Labels></Labels>
+        <Labels isTaskPage={ page === "1" ? true : false }></Labels>
         <ScheduleBox>
           <SelectedDay>
             <p>{moment(dateState).format('dddd DD, MMMM')}</p>

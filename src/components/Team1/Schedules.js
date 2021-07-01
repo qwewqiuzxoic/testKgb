@@ -17,7 +17,7 @@ const Box = styled.div`
     box-shadow: 4px 4px 20px #33333314;
     margin-bottom:15px;
     ${Gutter('14px 18px')};
-    &.color0:before{
+    &.colora:before{
         position:absolute;
         content:'';
         width:1.5px;
@@ -26,7 +26,7 @@ const Box = styled.div`
         left:0;
         background:#43C9F0;
     }
-    &.color1:before{
+    &.colorb:before{
         position:absolute;
         content:'';
         width:1.5px;
@@ -35,7 +35,7 @@ const Box = styled.div`
         left:0;
         background:#28F173;
     }
-    &.color2:before{
+    &.colorc:before{
         position:absolute;
         content:'';
         width:1.5px;
@@ -44,7 +44,7 @@ const Box = styled.div`
         left:0;
         background:#FFC034;
     }
-    &.color3:before{
+    &.colord:before{
         position:absolute;
         content:'';
         width:1.5px;
@@ -53,7 +53,7 @@ const Box = styled.div`
         left:0;
         background:#EE883E;
     }
-    &.color4:before{
+    &.colore:before{
         position:absolute;
         content:'';
         width:1.5px;
@@ -61,6 +61,33 @@ const Box = styled.div`
         top:0;
         left:0;
         background:#FF4D55;
+    }
+    &.colorf:before{
+        position:absolute;
+        content:'';
+        width:1.5px;
+        height:100%;
+        top:0;
+        left:0;
+        background:#ff4dff;
+    }
+    &.colorg:before{
+        position:absolute;
+        content:'';
+        width:1.5px;
+        height:100%;
+        top:0;
+        left:0;
+        background:#8a2be2;
+    }
+    &.colorh:before{
+        position:absolute;
+        content:'';
+        width:1.5px;
+        height:100%;
+        top:0;
+        left:0;
+        background:#0000ff;
     }
 `
 const Row = styled.div`
@@ -70,27 +97,34 @@ const Row = styled.div`
 `
 const Name = styled.div`
         font-weight: bold;
-    span.color0{
+    span.colora{
         color : #43C9F0;
     }
-    span.color1{
+    span.colorb{
         color : #28F173;
     }
-    span.color2{
+    span.colorc{
         color : #FFC034;
     }
-    span.color3{
+    span.colord{
         color : #EE883E;
     }
-    span.color4{
+    span.colore{
         color : #FF4D55;
+    }
+    span.colorf{
+        color : #ff4dff;
+    }
+    span.colorg{
+        color : #8a2be2;
+    }
+    span.colorh{
+        color : #0000ff;
     }
 `
 const Call = styled.div`
     ${ChangeFont(true, 200)};
     color: #82898E;
-
-
 `
 const Dt = styled.div`
     font-weight: bold;
@@ -119,14 +153,14 @@ function Schedules({data, page, selectDay}) {
             
         }
     }, [result])
-if(page === 1){
+if(page === "1"){
     return (
         <Wrapper>
             {data && data.length === 0 ?<div>작업일정이 없습니다.</div>:null}
             {data && data.map((schedule, index)=> (
-                <Box key={index} className={`color${schedule.state}`}>
+                <Box key={index} className={`color${schedule.type}`}>
                     <Row>
-                        <Name><span className={`color${schedule.state}`}>[{schedule.title}]</span>{schedule.custname}</Name>
+                        <Name><span className={`color${schedule.type}`}>[{schedule.title}] </span>{schedule.custname}</Name>
                         {/* <Call>{schedule.call}</Call> */}
                         <Call>{schedule.phone}</Call>
                     </Row>
@@ -137,10 +171,6 @@ if(page === 1){
                     <Row>
                         <Dt>등록일</Dt>
                         <Dd>{schedule.dayReg}</Dd>
-                    </Row>
-                    <Row>
-                        <Dt>타입</Dt>
-                        <Dd>{schedule.type}</Dd>
                     </Row>
                     <Row>
                         <Dt>총금액</Dt>
@@ -155,9 +185,9 @@ if(page === 1){
         <Wrapper>
             {data && data.length === 0 ?<div>교육일정 없습니다.</div>:null}
             {data && data.map((schedule, index)=> (
-                <Box key={index} className={`color${schedule.state}`}>
+                <Box key={index} className={`color${schedule.type}`}>
                     <Row>
-                        <Name><span className={`color${schedule.state}`}>[{schedule.title}]</span>{schedule.custname}</Name>
+                        <Name><span className={`color${schedule.type}`}>[{schedule.title}]</span>{schedule.custname}</Name>
                         {/* <Call>{schedule.call}</Call> */}
                         <Call>{schedule.phone}</Call>
                     </Row>
