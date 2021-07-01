@@ -1,9 +1,15 @@
-const user = JSON.parse(localStorage.getItem('user'));       
+
+let user = JSON.parse(localStorage.getItem('user'))  ;       
 
 String.prototype.replaceAll = function(org, dest) {
     return this.split(org).join(dest);
 }
+
 export const UrlBody = (type, data) => {
+    if(user===null){
+        user = JSON.parse(localStorage.getItem('user'))  ;
+    }
+    
     switch(type){
         case "goods_list":   // 자재주문 리스트
             return{
@@ -331,6 +337,16 @@ export const UrlBody = (type, data) => {
             return{
                 url:"/BM/API/team/air_clean_area.asp",
                 body:{
+                }
+            }
+        case "edu_sch_request":
+            return{
+                url:"/BM/API/edu/edu_sch_request.asp",
+                body:{
+                    "mode":data.check === "1"?"CANCEL":"INSERT",
+                    "brand":user.brand,
+                    "sn":data.sn,
+                    "man_info_sn":user.man_info_sn
                 }
             }
         

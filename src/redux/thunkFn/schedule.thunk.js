@@ -27,11 +27,20 @@ export const getDaySc = (date,page) => dispatch => {
     dispatch(dayScLoading());
     console.log(date)
     const url = page === "1"? '/BM/API/seller/task_list.asp':'/BM/API/edu/edu_sch_list.asp';
-    axios.post(url,{
+    const body = page === "1"?
+    {
         "brand": user.brand,
         "biz_sn" : user.biz_sn,
         "daymove" : date,
-    }).then(res =>{
+    }
+        :
+    {
+        "brand": user.brand,
+        "biz_sn" : user.biz_sn,
+        "man_info_sn":user.man_info_sn,
+        "dayedu" : date,
+    }
+    axios.post(url,body).then(res =>{
         dispatch(dayScGetdata(res.data))
     }).catch(function(error){
         dispatch(dayScError(error))
