@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Head from '../components/commonStyle/Head';
 import EduBox from '../components/commonStyle/EduBox';
 import Graph from '../components/Manage11_1_4/Graph';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { FlexBox, Gutter } from '../components/commonStyle';
 import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -34,8 +34,7 @@ function Manage11_1_4() {
     const {list, loading,btn_flag} = useSelector(state =>state.selfTestGetList)
     useEffect(() => {
         dispatch(getSelfTestList())
-        return () => {
-            
+        return () => {           
         }
     }, [])
   return (
@@ -55,8 +54,7 @@ function Manage11_1_4() {
                         )
                     })}
                 </ContentArea>
-            }
-        
+            }    
             {btn_flag === "N"? null:<div>버튼</div>}
             <Link to="/Manage11">
                 <FloatingBtn bg="#009B90" icon="ico_add" />

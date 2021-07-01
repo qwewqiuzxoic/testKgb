@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ChangeFont, FlexBox, LabelStyle  } from '../commonStyle';
+import { FlexBox, LabelStyle } from '../commonStyle';
 
 const Wrapper = styled.div`
     margin-bottom:19px;
     overflow: hidden;
 `;
-
 const Name = styled.div`
     ${LabelStyle()};
     margin-top:8px;
@@ -23,7 +22,6 @@ const Images = styled.div`
         margin-right:10px;
     }
 `;
-
 
 function ImgLists({title, img1, img2, img3 }) {
 

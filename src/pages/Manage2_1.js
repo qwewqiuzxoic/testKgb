@@ -2,7 +2,7 @@ import React, {useEffect, useState}from 'react';
 import Head from '../components/commonStyle/Head';
 import Score from '../components/commonStyle/Score';
 import Search from '../components/manage2_1/Search';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { FlexBox, Gutter, ChangeFont } from '../components/commonStyle';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHappyCallList } from '../redux/thunkFn/happyCall.thunk';
@@ -56,7 +56,7 @@ const Row = styled.div`
 const Title = styled.div`
     font-weight: bold;
     margin-bottom:3px;
-    font-size:14px;
+    font-size: ${(props) => props.theme.fontSizes.l};
 `
 const Dt = styled.div`
     font-weight: bold;
@@ -66,15 +66,7 @@ const Dd = styled.div`
     ${ChangeFont(true)};
 `
 
-const ListManage2_1 = [
-  {team:'서울1팀', name: '이지현', date1: '2020 .02 .28', date2: '2020 .02 .08', score:'44'}, 
-  {team:'서울1팀', name: '이지현1', date1: '2020 .01 .28', date2: '2020 .01 .08', score:'55'}, 
-  {team:'서울1팀', name: '이지현2', date1: '2020 .03 .28', date2: '2020 .03 .08', score:'66'}, 
-  {team:'서울1팀', name: '이지현3', date1: '2020 .05 .28', date2: '2020 .05 .08', score:'20'}, 
-]
-
 function Manage2_1({match}) {
-
   const page = match.params.page;
   console.log(page)
   const [title,subtit] =  page === "1" ? ["계약 해피콜","KGB의 계약 해피콜입니다"] : ["미계약 해피콜","KGB의 미계약 해피콜입니다"];

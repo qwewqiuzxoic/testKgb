@@ -202,6 +202,31 @@
     background: #FF4D55;
     margin:0 1.5px;
   }
+  .state_wrapper .state5{
+    display: inline-block;
+    width:3px;
+    height:3px;
+    border-radius:1.5px;
+    background: #ff4dff;
+    margin:0 1.5px;
+  }
+  .state_wrapper .state6{
+    display: inline-block;
+    width:3px;
+    height:3px;
+    border-radius:1.5px;
+    background: #8a2be2;
+    margin:0 1.5px;
+  }
+  .state_wrapper .state7{
+    display: inline-block;
+    width:3px;
+    height:3px;
+    border-radius:1.5px;
+    background: #0000ff;
+    margin:0 1.5px;
+  }
+
 
   .react-calendar__tile.react-calendar__year-view__months__month abbr{
      width: auto;
