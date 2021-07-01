@@ -57,6 +57,7 @@ import logger from 'redux-logger';
 import Top from "./components/base/Top";
 import axios from "axios";
 import Manage11 from "./pages/Manage11";
+import ToktokBoard from "./pages/ToktokBoard";
 
 
 function App() {
@@ -91,6 +92,7 @@ function App() {
             {menu ?
                <Switch>
                 <Route path="/login" component={Login} />
+                <PrivateRoute path="/board" component={ToktokBoard}/>
                 <PrivateRoute path="/board/:boardTitle" component={Board}/>
                 <PrivateRoute path="/boarddetail/:sn/:type" component={BoardDetail}/>
                 <PrivateRoute path="/boarddetail/:sn" component={BoardDetail}/>

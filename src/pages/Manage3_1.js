@@ -127,7 +127,7 @@ function Manege3_1() {
   const pageCount = useRef(1);
   const {list,loading} = useSelector(state =>state.getAsListReducer);
   const tabChange = (num,team)=>{
-    pageCount.current  = 1;
+    pageCount.current = 1;
     setTab(num);
     setTeam(team);
     dispatch(getAsList(team,1));

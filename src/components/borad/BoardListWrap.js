@@ -13,24 +13,33 @@ const Wrapper = styled.div`
 `;
 
 
-function BoardListWrap({check, teamCheck,adu,boardTeamNm, classname }) {
+function BoardListWrap({boardCode}) {
     const user = JSON.parse(localStorage.getItem('user'));
-    const state = useSelector(state => state.boardReducer.boardList);
+    const list = useSelector(state => state.boardReducer.boardList);
     const loading = useSelector(state => state.boardReducer.loading);
-    const list = !check ? state: adu?state: state.filter(data=>
-      (data.tname === user.teamname) === teamCheck
-    );
+    // const list = !check ? state: adu?state: state.filter(data=>
+    //   (data.tname === user.teamname) === teamCheck
+    // );
     useEffect(() => {
 
       return () => {
         
       }
-    }, [state])
+    }, [list])
   return (
 
-    <Wrapper className={classname}>
+    <Wrapper >
       {list.map((post, index)=> (
-          <BoardList key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index} loginname={post.loginname} tname={post.tname} countview={post.countview} cnt={post.cnt} adu={adu} typeCheck={boardTeamNm} classname={classname}/>
+          <BoardList key={index}
+          board_sn={post.board_sn}
+          cnt={post.cnt}
+          countview={post.countview}
+          loginname={post.loginname}
+          regdate={post.regdate}
+          title={post.title}
+          tname={post.tname}
+          boardCode={boardCode}
+          />
       ))}
       {loading ? <Loading/>:null}
 
