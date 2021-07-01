@@ -1,5 +1,4 @@
 import React  from 'react';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../commonStyle';
 import styled from 'styled-components';
 
 
@@ -39,7 +38,7 @@ function Products({name, img, price}) {
         </ImgWrap>
         <TextWrap>
           <Name>{ name }</Name>
-          <Name>{ price }원</Name>
+          <Name>{ parseInt(price).toLocaleString() }원</Name>
         </TextWrap>
       </Wrapper>
   );

@@ -1,5 +1,5 @@
 import React, { useState }  from 'react';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../commonStyle';
+import { FlexBox, ChangeFont } from '../commonStyle';
 import styled from 'styled-components';
 
 

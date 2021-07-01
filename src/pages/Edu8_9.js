@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import Head from '../components/commonStyle/Head';
 import TopBox from '../components/edu8_9/TopBox';
 import EduTable from '../components/edu8_9/EduTable';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
+import { Gutter } from '../components/commonStyle';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { geteduAttendList } from '../redux/thunkFn/eduAttend.thunk';
 
 
 const Wrapper = styled.div`
+  padding-bottom:50px;
 `;
 const ContentArea = styled.div`
     position:relative;

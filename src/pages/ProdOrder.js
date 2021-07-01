@@ -29,8 +29,6 @@ const Select = styled.select`
     background: #FFFFFF;
     border: 1px solid  ${(props) => props.theme.colors.grey1};
     border-radius: 4px;
-
-    
 `;
 const Option = styled.option`
 
@@ -39,8 +37,7 @@ const Input = styled.input`
     ${InputStyle('center')};
     height:34px;
     font-size:11px;
-    margin-right:8px;
-        
+    margin-right:8px;     
     &:focus, &:active, &.active{
         border: 1px solid #3397B9;
         color: #3397B9;
@@ -50,15 +47,6 @@ const Input = styled.input`
         font-weight:200;
     }
 `;
-const order = {
-        date1:'2021 .01 .01',
-        date2:'2021 .01 .02',
-        status:'결제완료',
-        name:'상품명상품명상품명',
-        option:'S / 90',
-        qty:'1',
-        price:'28000',
-    }
 
 function ProdOrder() {
     const dispatch = useDispatch();

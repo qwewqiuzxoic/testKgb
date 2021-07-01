@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import Button from '../commonStyle/Button';
 import { totalMesInit } from '../../redux/actionFn/total';
 import { getDaySc } from '../../redux/thunkFn/schedule.thunk';
 import { totalMesThunk } from '../../redux/thunkFn/total.thunk';
@@ -92,8 +93,7 @@ const Box = styled.div`
 `
 const Row = styled.div`
     ${FlexBox()}
-    margin-bottom:4px;
-    
+    margin-bottom:4px;  
 `
 const Name = styled.div`
         font-weight: bold;
@@ -134,7 +134,9 @@ const Dt = styled.div`
 const Dd = styled.div`
     ${ChangeFont(true, 200)};
 `
+const BtnEdu = styled.div`
 
+`
 function Schedules({data, page, selectDay}) {
 
     const dispatch = useDispatch();
@@ -153,6 +155,22 @@ function Schedules({data, page, selectDay}) {
             
         }
     }, [result])
+    const renderSwitch = (param) => {
+        switch(param) {
+            case '맞춤':
+                return 'colora';
+            case '정기':
+                return 'colorb';   
+            case '보충':
+                return 'colorc';
+            case '특별':
+                return 'colord';
+            case '미교육':
+                return 'colore'; 
+            default:
+                return 'colora';
+        }
+      }
 if(page === "1"){
     return (
         <Wrapper>
@@ -185,9 +203,9 @@ if(page === "1"){
         <Wrapper>
             {data && data.length === 0 ?<div>교육일정 없습니다.</div>:null}
             {data && data.map((schedule, index)=> (
-                <Box key={index} className={`color${schedule.type}`}>
+                <Box key={index} className={renderSwitch(schedule.type)}>
                     <Row>
-                        <Name><span className={`color${schedule.type}`}>[{schedule.title}]</span>{schedule.custname}</Name>
+                        <Name><span className={renderSwitch(schedule.type)}>[{schedule.title}] </span>{schedule.custname}</Name>
                         {/* <Call>{schedule.call}</Call> */}
                         <Call>{schedule.phone}</Call>
                     </Row>
@@ -205,9 +223,9 @@ if(page === "1"){
                     </Row>
                     
                         {schedule.req_check === "1" ? 
-                        <div onClick={()=>{eduCheck("1",schedule.sn)}}>신청취소</div>
+                        <Button onclick={()=>{eduCheck("1",schedule.sn)}} bg='#F2F6F8' color='#009B90' text='신청취소' w='100%' h='25px' fs='11px'>신청취소</Button>
                         :
-                        <div onClick={()=>{eduCheck("0",schedule.sn)}}>신청</div> }
+                        <Button onclick={()=>{eduCheck("0",schedule.sn)}} bg='#009B90' color='#ffffff' text='신청' w='100%' h='25px' fs='11px'>신청</Button> }
                     
                  </Box>
             ))}

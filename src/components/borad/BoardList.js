@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FlexBox, Gutter, BottomBox, ChangeFont } from '../commonStyle';
+import { FlexBox, ChangeFont } from '../commonStyle';
 
 const Wrapper = styled.div`
     background: ${(props) => props.className === 'important' ? '#F3F7FB' : props.theme.colors.white};

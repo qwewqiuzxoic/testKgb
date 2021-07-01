@@ -63,8 +63,7 @@ const menuItems = [
             {name: '실시간 화상교육', link:'/Manage9_1'}, 
             {name: '교육출결체크', link:'/Manage10_1'}, 
             {name: '교육설문', link:'/manage13/1'}, 
-            {name: '매뉴얼 학습', link:'/Manage6'}, 
-            {name: '', link:'/'}
+            {name: '매뉴얼 학습', link:'/Manage6'},
         ]
     },
     {
