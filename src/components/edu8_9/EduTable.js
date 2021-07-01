@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
-import styled, { css } from 'styled-components';
-import Button from '../commonStyle/Button';
-import { Gutter, FlexBox, ChangeFont } from '../commonStyle';
+import styled from 'styled-components';
+import { ChangeFont } from '../commonStyle';
 import { useSelector } from 'react-redux';
 import Loading from '../../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
-    margin-top: 25px;
 `;
 const Title = styled.div`
     font-weight: bold;
+    margin-top: 25px;
 `;
 const Table = styled.div`
     display: flex;
@@ -26,8 +25,13 @@ const TableHead = styled.div`
         flex: 1;
         height:41px;
         line-height: 41px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        &.num{
+          flex-grow:0.5;
+        }
       }
-
 `;
 const TableRow = styled.div`
       display: flex;
@@ -39,7 +43,12 @@ const TableRow = styled.div`
         height:41px;
         line-height: 41px;
         border-bottom: 1px solid #DFE5EA;
-
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        &.num{
+          flex-grow:0.5;
+        }
       }
       img{
         display: inline-block;
@@ -54,15 +63,10 @@ const TableBody = styled.div`
     color:#82898E;
 `;
 
-const data = [
-    {no: '10', edu_type:'정기교육1', date: '2021 .01 .01', round: '123'}, 
-    {no: '9', type:'정기교육2', date: '2021 .01 .01', round: '123'}, 
-    {no: '8', type:'정기교육3', date: '2021 .01 .01', round: '123'}, 
-    {no: '7', type:'정기교육4', date: '2021 .01 .01', round: '123'}, 
-  ]
+const data = [];
   const Row2 = ({num, edu_type, edu_date, count}) => (
     <TableRow className="row">
-      <div>{num}</div>
+      <div className='num'>{num}</div>
       <div>{edu_type}</div>
       <div>{edu_date}</div>
       <div>{count}</div>  
@@ -70,7 +74,7 @@ const data = [
   );
   const Row1 = ({num, use_date, point_type, point}) => (
     <TableRow className="row">
-      <div>{num}</div>
+      <div className='num'>{num}</div>
       <div>{use_date}</div>
       <div>{point_type}</div>
       <div>{point}</div>  
@@ -91,7 +95,7 @@ const TopBox = () => {
             <Title>교육이수 내역</Title>
             <Table>
                 <TableHead>
-                <div>번호</div>
+                <div className='num'>번호</div>
                 <div>교육종류</div>
                 <div>교육일자</div>
                 <div>회차</div>
@@ -103,7 +107,7 @@ const TopBox = () => {
             <Title>점수 획득/사용내역</Title>
             <Table>
                 <TableHead>
-                <div>번호</div>
+                <div className='num'>번호</div>
                 <div>사용일자</div>
                 <div>획득/사용내역</div>
                 <div>획득/사용점수</div>
@@ -115,7 +119,6 @@ const TopBox = () => {
         </Wrapper>
       );
     }
-
   };
 
 export default TopBox;

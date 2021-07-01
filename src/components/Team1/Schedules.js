@@ -119,7 +119,7 @@ function Schedules({data, page, selectDay}) {
             
         }
     }, [result])
-if(page === 1){
+if(page === "1"){
     return (
         <Wrapper>
             {data && data.length === 0 ?<div>작업일정이 없습니다.</div>:null}
