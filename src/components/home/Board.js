@@ -30,11 +30,12 @@ const Date = styled.div`
 
 
 function Board() {
+  const user = JSON.parse(localStorage.getItem('user'));
   const dispatch = useDispatch();
 
   const boardList = useSelector(state => state.boardReducer.boardList);
   useEffect(() => {
-      dispatch(getBoardList("YES2404","공지사항",1,4))
+      dispatch(getBoardList(user.brand,"소사장공지사항",1,4))
   }, [])
 
   return (
