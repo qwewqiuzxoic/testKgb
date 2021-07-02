@@ -9,7 +9,8 @@ const Wrapper = styled.div`
     margin: 45px auto 40px;
 `
 
-const SolidBox = styled.div`
+const SolidBox = styled.a`
+  display:block;
   ${FlexBox('space-between', 'column')};
   height:140px;
   width: ${(props) => props.width};
@@ -42,9 +43,6 @@ const ImgArea = styled.div`
       width:auto;
   }
 `
-
-
-
 function SolidBoxes() {
   const user = JSON.parse(localStorage.getItem('user'));
   console.log(user.brand_tel)
@@ -54,22 +52,20 @@ function SolidBoxes() {
         desc : "담당자 연결을 도와드립니다",
         bg: "#009B90",
         img: 'ico_call.png',
-        num: user.brand_tel
+        num: true,
     },
     {
         title : "홈페이지 바로가기",
         desc : "홈페이지로 바로 이동하실 수 있습니다",
         bg: "#2F8DB7",
         img: 'ico_page.png',
-        num: ""
     },
 ]
-
 
   return (
     <Wrapper>
       {boxes.map((box, index)=> (
-          <SolidBox key={index} title={box.title}  desc={box.desc} bg={box.bg} width="48%" padding="16px 20px" >
+          <SolidBox key={index} title={box.title}  desc={box.desc} bg={box.bg} width="48%" padding="16px 20px" href={ box.num ? `tel:${user.brand_tel}` : '#'}>
             <TextArea>
               <p>{box.title}</p>
               <span>{box.desc}</span>
