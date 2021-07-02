@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 export const getMonthSc = (year,month,page) => dispatch => {
-    const user = useSelector(state=>state.loginReducer.data);
+    const user = JSON.parse(localStorage.getItem('user'));       
     dispatch(monthScLoading());
     const url = page === "1" ?'/BM/API/seller/task_month.asp':'/BM/API/edu/edu_sch_month.asp';
     axios.post(url,{
@@ -24,7 +24,7 @@ export const getMonthSc = (year,month,page) => dispatch => {
 }
 
 export const getDaySc = (date,page) => dispatch => {
-    const user = useSelector(state=>state.loginReducer.data);
+    const user = JSON.parse(localStorage.getItem('user'));       
     dispatch(dayScLoading());
     const url = page === "1"? '/BM/API/seller/task_list.asp':'/BM/API/edu/edu_sch_list.asp';
     const body = page === "1"?
