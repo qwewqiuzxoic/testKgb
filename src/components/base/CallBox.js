@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { Gutter, FlexBox, ChangeFont } from '../commonStyle';
 
 
-const Wrapper = styled.div`
+const Wrapper = styled.a`
+    display: block;
     ${Gutter('10px 15px')}
     width: 49%;
     background: #FFFFFF;
@@ -28,11 +29,14 @@ const IconBox = styled.div`
     margin-right: 8px;
 `
 const Number = styled.div`
+    ${ChangeFont(true,300)};
+    color:#ACB6BC;
 `
 
 function CallBox({name, num, color}) {
   return (
-    <Wrapper>
+    <Wrapper href="tel:010">
+        {/* 위에 담당자 전화번호 넣어주세요 */}
         <Name color={color}>{name}</Name>
         <CallArea>
             <IconBox color={color}>

@@ -13,6 +13,7 @@ const Row = styled.div`
     height:50px;
     line-height: 50px;
     font-size:15px;
+    font-weight:bold;
     border-radius: ${(props) => props.index === 0 ? '30px 0 0 0' : '0'};
     border-bottom: 1px solid #DFE5EA;
     cursor:pointer;
