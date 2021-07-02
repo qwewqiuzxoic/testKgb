@@ -1,10 +1,11 @@
 import axios from "axios";
 import { getSelfTestListError, getSelfTestListLoading, getSelfTestListSuccess, getSelfTestQuestionError, getSelfTestQuestionLoading, getSelfTestQuestionSuccess, getSelfTestResultError, getSelfTestResultLoading, getSelfTestResultSuccess, postSelfTestError, postSelfTestLoading, postSelfTestSuccess } from "../actionFn/selfTest";
 
-const user = JSON.parse(localStorage.getItem('user'));       
 
 
 export const getSelfTestList = () => dispatch  => {
+const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(getSelfTestListLoading())
     const url = '/BM/API/team/selftest_list.asp';
         axios.post(url, {
@@ -26,6 +27,8 @@ export const getSelfTestList = () => dispatch  => {
 
 
 export const getSelfTestResult = (sn) => dispatch =>{
+const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(getSelfTestResultLoading())
     const url = '/BM/API/team/selftest_desc.asp';
         axios.post(url, {
@@ -39,6 +42,8 @@ export const getSelfTestResult = (sn) => dispatch =>{
         return "aa"
 }
 export const getSelfTestQuestion=()=>dispatch =>{
+const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(getSelfTestQuestionLoading())
     const url = '/BM/API/team/selftest_input.asp';
         axios.post(url, {
@@ -52,6 +57,8 @@ export const getSelfTestQuestion=()=>dispatch =>{
 }
 
 export const postSelfTest=(data,text,fn)=>dispatch =>{
+const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(postSelfTestLoading())
     const url = '/BM/API/team/selftest_proc.asp';
         axios.post(url, {

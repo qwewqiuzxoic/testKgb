@@ -55,6 +55,8 @@ const SnsArea = styled.div`
 `
 
 function Menu({clickMenu}) {
+  const user = JSON.parse(localStorage.getItem('user'))  ;
+
   return (
     <Wrapper>
       <TopBox>
@@ -69,11 +71,11 @@ function Menu({clickMenu}) {
       </TopBox>
       <Nav clickMenu={clickMenu}></Nav>
       <BottomBox>
-          <CallBox name ="KGB포장이사 담당자" num="010-1234-5645" color="#009B90"/>
-          <CallBox name ="자재 담당자" num="010-1234-5645" color="#3397B9"/>
+          <CallBox name ="KGB포장이사 담당자" num={user.brand_tel} color="#009B90"/>
+          <CallBox name ="자재 담당자" num={user.goods_tel} color="#3397B9"/>
       </BottomBox>
       <SnsArea>
-            <SnsLinks/>
+            <SnsLinks user={user}/>
       </SnsArea>
     </Wrapper>
   );

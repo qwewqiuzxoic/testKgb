@@ -2,9 +2,10 @@ import axios from "axios";
 import { getWarningSuccess, getWarningLoading, getWarningError, getWarningDetailLoading, getWarningDetailSuccess, getWarningDetailError, getWarningConcatSuccess, getWarningConcatloading} from "../actionFn/warning";
 
 
-const user = JSON.parse(localStorage.getItem('user'));       
 
 export const warningCallList = (page=1) => dispatch  => {
+const user = JSON.parse(localStorage.getItem('user'));       
+
     if(page === 1){
         dispatch(getWarningLoading())
     } else {
@@ -30,6 +31,8 @@ export const warningCallList = (page=1) => dispatch  => {
 }
 
 export const getHappyCallDetail= (sn) => dispatch => {
+const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(getWarningDetailLoading())
     const url = '/BM/API/team/warning_desc.asp';
         axios.post(url, {

@@ -2,9 +2,10 @@ import axios from "axios";
 import { getHappyCallDetailError, getHappyCallDetailLoading, getHappyCallDetailSuccess, getHappyCallError, getHappyCallLoading, getHappyCallSuccess } from "../actionFn/happyCall";
 
 
-const user = JSON.parse(localStorage.getItem('user'));       
 
 export const getHappyCallList = (kind,teamType) => dispatch  => {
+const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(getHappyCallLoading())
     const url = kind === "1" ?'/BM/API/team/biz_happycall_list.asp' :'/BM/API/team/biz_nonhappycall_list.asp';
         axios.post(url, {
@@ -20,6 +21,8 @@ export const getHappyCallList = (kind,teamType) => dispatch  => {
 }
 
 export const getHappyCallDetail= (kind,sn) => dispatch => {
+const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(getHappyCallDetailLoading())
     const url = kind === "1" ?'/BM/API/team/biz_happycall_desc.asp' :'/BM/API/team/biz_nonhappycall_desc.asp';
         axios.post(url, {

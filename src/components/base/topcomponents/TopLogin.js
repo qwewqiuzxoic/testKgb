@@ -42,7 +42,6 @@ function TopLogin({clickMenu}) {
           로그인
       </PageName>
       <IconMenu onClick={()=>{clickMenu()}}>
-        <img src={process.env.PUBLIC_URL + '/images/ico_menu.svg'} alt="KGB" />
       </IconMenu>
     </Wrapper>
   );

@@ -1,9 +1,10 @@
 import axios from "axios";
 import {  eduisuError, eduisuLoading, eduisuSuccess, EduPointUseError, EduPointUseLoading, EduPointUseSuccess, eduSurveyError, eduSurveyLoading, eduSurveySuccess, getAduAttendListError, getAduAttendListLoading, getAduAttendListSuccess } from "../actionFn/eduAttend";
 
-const user = JSON.parse(localStorage.getItem('user'));       
 
 export const geteduAttendList= () => dispatch => {
+    const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(getAduAttendListLoading())
     const url = '/BM/API/edu/edu_status.asp';
         axios.post(url, {
@@ -18,6 +19,8 @@ export const geteduAttendList= () => dispatch => {
 }
 
 export const usePointEvnet= (point=0,nowPoint) => dispatch => {
+    const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(EduPointUseLoading())
     const url = '/BM/API/edu/edu_status_proc.asp';
         axios.post(url, {
@@ -34,6 +37,8 @@ export const usePointEvnet= (point=0,nowPoint) => dispatch => {
 }
 //교육설문 리스트
 export const getEduSurveyList = (page) => dispatch => {
+    const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(eduSurveyLoading());
     const url = page === "1"?'/BM/API/edu/edu_survey_list.asp':'/BM/API/edu/edu_isu_list.asp';
         axios.post(url, {
@@ -50,6 +55,8 @@ export const getEduSurveyList = (page) => dispatch => {
 }
 
 export const getEduisuList = () => dispatch => {
+    const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(eduisuLoading());
     const url = '/BM/API/edu/edu_isu_list.asp';
         axios.post(url, {

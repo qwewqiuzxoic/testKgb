@@ -27,7 +27,7 @@ function Top({setMenu,menu}) {
         return(
             <Menu clickMenu={clickMenu}/>
         )
-    } else if(url === "/Login"){
+    } else if(url === "/Login" || url === "/login"){
         return (
             <TopLogin clickMenu={clickMenu}/>
         )

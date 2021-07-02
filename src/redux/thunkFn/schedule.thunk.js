@@ -1,12 +1,13 @@
 import axios from "axios";
 import { dayScError, dayScGetdata, dayScLoading, monthScError, monthScGetdata, monthScLoading } from "../actionFn/schedule";
 
-const user = JSON.parse(localStorage.getItem('user'));       
 
 
 
 
 export const getMonthSc = (year,month,page) => dispatch => {
+const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(monthScLoading());
     const url = page === "1" ?'/BM/API/seller/task_month.asp':'/BM/API/edu/edu_sch_month.asp';
 
@@ -24,8 +25,9 @@ export const getMonthSc = (year,month,page) => dispatch => {
 }
 
 export const getDaySc = (date,page) => dispatch => {
+const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(dayScLoading());
-    console.log(date)
     const url = page === "1"? '/BM/API/seller/task_list.asp':'/BM/API/edu/edu_sch_list.asp';
     const body = page === "1"?
     {
@@ -48,6 +50,8 @@ export const getDaySc = (date,page) => dispatch => {
 }
 
 export const getMainDaySc = () => dispatch => {
+const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(dayScLoading());
     const url ='/BM/API/main/main_schedule.asp';
     axios.post(url,{
@@ -61,6 +65,8 @@ export const getMainDaySc = () => dispatch => {
 }
 
 export const postEduSubmit = (sn) => dispatch =>{
+const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(dayScLoading());
     const url ='/BM/API/edu/edu_sch_request.asp';
     axios.post(url,{
