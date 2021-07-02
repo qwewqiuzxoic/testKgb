@@ -40,14 +40,16 @@ const [address, setPAddress] = useState({open:false, data:""});
       open:true,
       data:""
     })
+    document.body.style.overflow = 'hidden';
   }
   const closeAddress = (data) => {
+    document.body.style.overflow = 'unset';
     setPAddress({
       ...address,
       open:false,
       data:data
     })
-    setAddressChange(data,type)
+    setAddressChange(data,type);
   }
 
   useEffect(() => {

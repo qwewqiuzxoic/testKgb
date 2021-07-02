@@ -21,7 +21,8 @@ const Wrapper = styled.div`
     background: #FAFAFA;
 `;
 const Tabs = styled.div`
-    ${FlexBox('')};
+    ${FlexBox('flex-start')};
+    flex-wrap: wrap;
     margin-top:17px;
     margin-bottom:20px;
 `;
