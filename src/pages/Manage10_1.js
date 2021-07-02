@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from '../components/commonStyle/Head';
 import EduBox from '../components/commonStyle/EduBox';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../components/commonStyle/Loading';
+import { totalListThunk } from '../redux/thunkFn/total.thunk';
 
 const Wrapper = styled.div`
     background:#FAFAFA;
@@ -39,16 +42,28 @@ const GreyBtn = styled.div`
     margin-left: 5px;
 `;
 function Manage10_1() {
-   
+    const dispatch = useDispatch();
+    const {loading,list} = useSelector(state=>state.totalListReducer);
+    useEffect(() => {
+        dispatch(totalListThunk("edu_att_list",{}))
+        return () => {
+        }
+    }, [])
   return (
       <Wrapper>
             <Head title="교육출결체크 QR코드" subtit="KGB의 매뉴얼학습입니다"/>
-            <ContentArea>
-                <EduBox title="이사서비스 매뉴얼" date="2020.02.28">
-                    <BlueBtn>입실</BlueBtn>
-                    <GreyBtn>퇴실</GreyBtn>
-                </EduBox>
-            </ContentArea>
+            {
+               list && list.map((item,index)=>
+               <ContentArea key={index}>
+                    <EduBox title="이사서비스 매뉴얼" date="2020.02.28">
+                        <BlueBtn>입실</BlueBtn>
+                        <GreyBtn>퇴실</GreyBtn>
+                    </EduBox>
+                </ContentArea>
+               )
+            }
+           
+            {loading && <Loading></Loading>}
       </Wrapper>
   );
 }

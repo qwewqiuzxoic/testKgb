@@ -38,15 +38,15 @@ const TabName = styled.div`
   }
 `;
 
-function BoardTitle({title, subtit, check, boardSubName, changeTeamNm, tab,boardTeamNm}) {
+function BoardTitle({title, subtit, check, boardSubName, changeTeamNm, tab,boardTeamNm, tabCheck, tabName, changeTab}) {
   return (
     <Wrapper>
       <TopBg>
         <H1 title={title} subtit={subtit}></H1>
-        {check ? 
+        {tabCheck ? 
         <Tabs>
-          <TabName className={boardTeamNm===true ? "selected":""} onClick={()=>changeTeamNm(true)}>{boardSubName.name1}</TabName>
-          <TabName className={boardTeamNm===false ? "selected":""} onClick={()=>changeTeamNm(false)}>{boardSubName.name2}</TabName>
+          <TabName className={tab===1 ? "selected":""} onClick={()=>changeTab(1)}>{tabName[0]}</TabName>
+          <TabName className={tab===2 ? "selected":""} onClick={()=>changeTab(2)}>{tabName[1]}</TabName>
         </Tabs>
         :
         null

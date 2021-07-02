@@ -349,6 +349,14 @@ export const UrlBody = (type, data) => {
                     "man_info_sn":user.man_info_sn
                 }
             }
+        case "edu_att_list":
+            return{
+                url:"/BM/API/edu/edu_att_list.asp",
+                body:{
+                    "brand":user.brand,
+                    "man_info_sn":user.man_info_sn
+                }
+            }
         
         default: return null;
     }

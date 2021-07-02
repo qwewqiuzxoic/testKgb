@@ -167,7 +167,7 @@ function Manege3_1() {
             loading && <Loading></Loading>
           }
         {list.map((item, index)=> (
-          <Link to={team === "Y" ? `/boarddetail/${item.sn}/3` : `/boarddetail/${item.sn}/4`}>
+          <Link to={team === "Y" ? `/boarddetail/${item.sn}/asy` : `/boarddetail/${item.sn}/asy`}>
             <Box key={index}>
                 <Row>
                     <Team>[{item.teamname}]</Team>

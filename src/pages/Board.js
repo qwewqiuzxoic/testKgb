@@ -67,7 +67,6 @@ function Board({match}) {
         return false;
       }
       dispatch(postRMDBoard(data,callback));
-
     }
     const boardCodeNm = Number(code);
     const [boardName, setBoardName] = useState({

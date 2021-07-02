@@ -32,7 +32,7 @@ const NoticeWrap = styled.div`
 `;
 let user = JSON.parse(localStorage.getItem('user'));   
 
-function ToktokBoard() {
+function WorkDayChangeBoard() {
   if(user===null){
       user = JSON.parse(localStorage.getItem('user'));
   }   
@@ -44,14 +44,14 @@ function ToktokBoard() {
     const boardData =  useSelector(state => state.boardPostReducer.data)
     const [ modalOpen, setModalOpen ] = useState(false);
     const openModal = () => {
-        dispatch(boardPostLoginInput(user,"우리팀톡톡","INS"))
+        dispatch(boardPostLoginInput(user,"작업일정변경요청","INS"))
         setModalOpen(true);
     }
     const closeModal = () => {
         setModalOpen(false);
     }
     const callback = () =>{
-        dispatch(getBoardList(user.brand,"우리팀톡톡",1))
+        dispatch(getBoardList(user.brand,"작업일정변경요청",1))
         pageCount.current = 1;
         closeModal();
       }
@@ -75,7 +75,7 @@ function ToktokBoard() {
     const dispatch = useDispatch();
     const list = useSelector(state => state.boardTopReducer.boardList);
     useEffect(() => {
-        dispatch(getBoardList(user.brand,"우리팀톡톡",pageCount.current))
+        dispatch(getBoardList(user.brand,"작업일정변경요청",pageCount.current))
         return () => {
         }
     }, [])
@@ -93,7 +93,7 @@ function ToktokBoard() {
   
       if (scrollTop + clientHeight >= scrollHeight) {
         pageCount.current += 1;
-        dispatch(getBoardList(user.brand,"우리팀톡톡",pageCount.current))
+        dispatch(getBoardList(user.brand,"작업일정변경요청",pageCount.current))
 
       }
     };
@@ -111,7 +111,7 @@ function ToktokBoard() {
     //꾸중글 5
   return (
     <Wrapper>
-            <BoardTitle title="우리팀 톡톡"subtit="우리팀 톡톡 게시판입니다" check={false}/>
+            <BoardTitle title="작업일정변경요청"subtit="작업일정변경요청 게시판입니다" check={false}/>
             <ContentArea>
             {/* <NoticeWrap>
             <BoardList />
@@ -133,4 +133,4 @@ function ToktokBoard() {
   );
 }
 
-export default ToktokBoard;
+export default WorkDayChangeBoard;

@@ -32,7 +32,7 @@ const NoticeWrap = styled.div`
 `;
 let user = JSON.parse(localStorage.getItem('user'));   
 
-function ToktokBoard() {
+function ReferenceBoard() {
   if(user===null){
       user = JSON.parse(localStorage.getItem('user'));
   }   
@@ -44,14 +44,14 @@ function ToktokBoard() {
     const boardData =  useSelector(state => state.boardPostReducer.data)
     const [ modalOpen, setModalOpen ] = useState(false);
     const openModal = () => {
-        dispatch(boardPostLoginInput(user,"우리팀톡톡","INS"))
+        dispatch(boardPostLoginInput(user,"자료실","INS"))
         setModalOpen(true);
     }
     const closeModal = () => {
         setModalOpen(false);
     }
     const callback = () =>{
-        dispatch(getBoardList(user.brand,"우리팀톡톡",1))
+        dispatch(getBoardList(user.brand,"자료실",1))
         pageCount.current = 1;
         closeModal();
       }
@@ -75,7 +75,9 @@ function ToktokBoard() {
     const dispatch = useDispatch();
     const list = useSelector(state => state.boardTopReducer.boardList);
     useEffect(() => {
-        dispatch(getBoardList(user.brand,"우리팀톡톡",pageCount.current))
+        dispatch(getBoardList(user.brand,"자료실",pageCount.current))
+        dispatch(getBoardTopList(user.brand,"자료실"))
+
         return () => {
         }
     }, [])
@@ -93,7 +95,7 @@ function ToktokBoard() {
   
       if (scrollTop + clientHeight >= scrollHeight) {
         pageCount.current += 1;
-        dispatch(getBoardList(user.brand,"우리팀톡톡",pageCount.current))
+        dispatch(getBoardList(user.brand,"자료실",pageCount.current))
 
       }
     };
@@ -111,16 +113,21 @@ function ToktokBoard() {
     //꾸중글 5
   return (
     <Wrapper>
-            <BoardTitle title="우리팀 톡톡"subtit="우리팀 톡톡 게시판입니다" check={false}/>
+            <BoardTitle title="일반자료실"subtit="일반자료실 게시판입니다" check={false}/>
             <ContentArea>
-            {/* <NoticeWrap>
-            <BoardList />
-            </NoticeWrap> */}
-            {/* <BoardListWrap/>  */}
-            <BoardListWrap boardCode="1"/>
+            <NoticeWrap>
+
+            { list.map((item,index)=>{
+              return (
+                  <BoardList key={index} title={item.title} regdate={item.regdate} board_sn={item.board_sn} index={index} loginname={item.loginname} tname={item.tname} countview={item.countview} cnt={item.cnt} adu={item.adu} typeCheck={item.teamNm} classname="important" boardCode="5"/>
+              )
+            })} 
+            </NoticeWrap>
+
+            <BoardListWrap boardCode="5"/>
             </ContentArea>
             
-            <FloatingBtn bg="#009B90" icon="ico_add" onClick={ openModal }/>
+            {/* <FloatingBtn bg="#009B90" icon="ico_add" onClick={ openModal }/> */}
             <Modal open={ modalOpen } close={ closeModal } header="글쓰기" >
               <InputGroup id="title" title="제목" ph="제목을 입력해주세요" setInputValue2={setInputValue2} value={data.title}/>
               <InputGroup id="username" title="작성자"  setInputValue2={setInputValue2} value={data.username}/>
@@ -133,4 +140,4 @@ function ToktokBoard() {
   );
 }
 
-export default ToktokBoard;
+export default ReferenceBoard;

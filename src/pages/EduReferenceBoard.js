@@ -32,10 +32,15 @@ const NoticeWrap = styled.div`
 `;
 let user = JSON.parse(localStorage.getItem('user'));   
 
-function ToktokBoard() {
+function EduReferenceBoard() {
   if(user===null){
       user = JSON.parse(localStorage.getItem('user'));
   }   
+  const [tab, setTab] = useState(1);
+  const tabChagne = (num) =>{
+      setTab(num);
+  }
+  const name = tab === 1 ? "교육자료실":"영상자료실";
     const setInputValue2 = (data) =>{
         dispatch(boardPostInput(data))
       }
@@ -44,14 +49,14 @@ function ToktokBoard() {
     const boardData =  useSelector(state => state.boardPostReducer.data)
     const [ modalOpen, setModalOpen ] = useState(false);
     const openModal = () => {
-        dispatch(boardPostLoginInput(user,"우리팀톡톡","INS"))
+        dispatch(boardPostLoginInput(user,name,"INS"))
         setModalOpen(true);
     }
     const closeModal = () => {
         setModalOpen(false);
     }
     const callback = () =>{
-        dispatch(getBoardList(user.brand,"우리팀톡톡",1))
+        dispatch(getBoardList(user.brand,name,1))
         pageCount.current = 1;
         closeModal();
       }
@@ -73,12 +78,16 @@ function ToktokBoard() {
     // dispatch(getBoardList(user.brand,boardName.name,pageCount.current))
 
     const dispatch = useDispatch();
-    const list = useSelector(state => state.boardTopReducer.boardList);
+    // const list = useSelector(state => state.boardTopReducer.boardList);
     useEffect(() => {
-        dispatch(getBoardList(user.brand,"우리팀톡톡",pageCount.current))
+        if(tab === 1){
+        dispatch(getEduBoardList(user.brand,name,pageCount.current))
+        } else{
+        dispatch(getEduMovieBoardList(user.brand,name,pageCount.current))
+        }
         return () => {
         }
-    }, [])
+    }, [tab])
 
     const infiniteScroll = () => {
       let scrollHeight = Math.max(
@@ -93,8 +102,7 @@ function ToktokBoard() {
   
       if (scrollTop + clientHeight >= scrollHeight) {
         pageCount.current += 1;
-        dispatch(getBoardList(user.brand,"우리팀톡톡",pageCount.current))
-
+        dispatch(getEduBoardList(user.brand,name,pageCount.current))
       }
     };
   useEffect(() => {
@@ -102,8 +110,8 @@ function ToktokBoard() {
 
       return () => window.removeEventListener('scroll', infiniteScroll)
   }, [])
-
-
+ 
+  
     //우리팀 톡톡 1
     //자유게시판 2
     //공지사항 3
@@ -111,16 +119,15 @@ function ToktokBoard() {
     //꾸중글 5
   return (
     <Wrapper>
-            <BoardTitle title="우리팀 톡톡"subtit="우리팀 톡톡 게시판입니다" check={false}/>
+            <BoardTitle title="자료실"subtit="자료실 게시판입니다" 
+            check={false} tabCheck={true} tabName={["일반자료실","영상자료실"]} tab={tab} changeTab={tabChagne}/>
             <ContentArea>
-            {/* <NoticeWrap>
-            <BoardList />
-            </NoticeWrap> */}
-            {/* <BoardListWrap/>  */}
-            <BoardListWrap boardCode="1"/>
+           
+
+            <BoardListWrap boardCode="7"/>
             </ContentArea>
             
-            <FloatingBtn bg="#009B90" icon="ico_add" onClick={ openModal }/>
+            {/* <FloatingBtn bg="#009B90" icon="ico_add" onClick={ openModal }/> */}
             <Modal open={ modalOpen } close={ closeModal } header="글쓰기" >
               <InputGroup id="title" title="제목" ph="제목을 입력해주세요" setInputValue2={setInputValue2} value={data.title}/>
               <InputGroup id="username" title="작성자"  setInputValue2={setInputValue2} value={data.username}/>
@@ -133,4 +140,4 @@ function ToktokBoard() {
   );
 }
 
-export default ToktokBoard;
+export default EduReferenceBoard;
