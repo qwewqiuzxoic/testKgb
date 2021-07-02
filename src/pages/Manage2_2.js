@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHappyCallDetail } from '../redux/thunkFn/happyCall.thunk';
 import Loading from '../components/commonStyle/Loading';
+import { useHistory } from 'react-router-dom'
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -83,7 +84,8 @@ const WhiteWrap = styled.div`
 function Manage2_2({match}) {
     const page = match.params.page;
     const sn = match.params.sn;
-    console.log(match.params)
+    const history = useHistory();
+
     const [title,subtit] =  page === "1" ? ["계약 해피콜","KGB의 계약 해피콜입니다"] : ["미계약 해피콜","KGB의 미계약 해피콜입니다"];  
     const [tab,setTab]= useState(0);
     const dispatch = useDispatch();
@@ -95,7 +97,9 @@ function Manage2_2({match}) {
             console.log(list)
         }
     }, [])
-
+    const onclick = ()=>{
+        history.goBack()
+    }
   return (
     <>
       <Wrapper>    
@@ -136,7 +140,7 @@ function Manage2_2({match}) {
                     )
                 }
                 </WhiteWrap>
-                <Button bg="#3397B9" color="#ffffff" text="확인" height="44px" fontSize="12px" mgt="30px"></Button>
+                <Button onclick={onclick} bg="#3397B9" color="#ffffff" text="확인" height="44px" fontSize="12px" mgt="30px"></Button>
                 {/* Manage2_1과 이부분만 다름 */}
         </ContentArea>      
       </Wrapper>

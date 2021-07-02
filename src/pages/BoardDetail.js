@@ -125,23 +125,16 @@ function BoardDetail({match}) {
 // 일반자료실 9
 // 작업일변경요청 10
   useEffect(() => {
-    // if(type === "1" || type === "2" || type === "3" || type === "4" || type === "5"|| type === "6" || type === "7"){
-    //   console.log(111111)
+    if(type === "1" || type === "2" || type === "3" || type === "4" || type === "5"|| type === "6" || type === "7" || type === "8" || type === "9" || type === "10"){
+      dispatch(getBoardDetail(sn));
+    }else if(type === "1"){
+      dispatch(getEduBoardDetail(sn));
+    }else if(type === "2"){
 
-    //   dispatch(getBoardDetail(sn));
-    // }else if(type === "1"){
-    //   console.log(2222222222)
-
-    //   dispatch(getEduBoardDetail(sn));
-    // }else if(type === "2"){
-    //   console.log(333333333)
-
-    //   dispatch(getEduMovieBoardDetail(sn));
-    // }else if(type ==="8"){
-    //   console.log(123)
-    //   dispatch(getAsDetail(sn));
-    // }
-    dispatch(getBoardDetail(sn));
+      dispatch(getEduMovieBoardDetail(sn));
+    }else if(type === "asy"){
+      dispatch(getAsDetail(sn));
+    }
 
       
   }, [])

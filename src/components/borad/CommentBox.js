@@ -29,22 +29,23 @@ function CommentBox({title, subtit, showCheck, commentlist,sn,type, list}) {
     if(text === ""){
       return;
     }
-    if(type === "8"){
-      dispatch(postAsComment(text,sn));
+    if(type === "asy"){
+      dispatch(totalMesThunk("as_comment_proc",{sn:sn,contents:text}));
     }else{
       dispatch(totalMesThunk("comment_proc",{sn:sn,contents:text}));
     }
 
   }
+  console.log(result, result2)
+ 
   const confirmSubmit = () =>{
-    if(type === "8"){
+    if(type === "asy"){
       dispatch(getAsDetail(sn));
-      dispatch(postAsCommentInit());
+      dispatch(totalMesInit());
     }else{
       dispatch(getBoardDetail(sn)); 
       dispatch(totalMesInit());
     }
-
     
     setText("");
   }
@@ -62,7 +63,7 @@ function CommentBox({title, subtit, showCheck, commentlist,sn,type, list}) {
        
        } */}
         <CommentList list={commentlist}/>
-        {result ==="success" || result2==="success"?<ConfirmModal open={true} text={message || message2} onsubmit={confirmSubmit}></ConfirmModal>:null}
+        {result2==="success"?<ConfirmModal open={true} text={message || message2} onsubmit={confirmSubmit}></ConfirmModal>:null}
 
         
     </Wrapper>
