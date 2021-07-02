@@ -10,6 +10,7 @@ import { totalMesInit } from '../redux/actionFn/total';
 const Wrapper = styled.div`
     background: #FAFAFA;
     padding-bottom:50px;
+    min-height:100vh;
 `;
 const ContentArea = styled.div`
     position:relative;
@@ -20,15 +21,16 @@ const ImgBox = styled.div`
     background: ${(props) => props.theme.colors.white};
     border-radius: 4px 4px 0 0;
     padding:20px 15px 30px 15px;
-    min-height: 500px;
 `;
 const UploadArea = styled.div`
     ${FlexBox()};
     border-top: 1px solid #DFE5EA;
     border-bottom: 1px solid #DFE5EA;
+    form{
+        width: calc(100% - 80px);
+    }
     label{
         ${FlexBox()};
-        width: calc(100% - 80px);
         background: #fff;
         span{
             color:#ACB6BC;
@@ -89,9 +91,9 @@ function Board({match}) {
         reader.readAsDataURL(file);
       }
 
-      let profile_preview = <img className='profile_preview' src={img}></img>;
+      let profile_preview = <img className='profile_preview' src={img}/>;
     if(uploadImg.file !== ''){
-      profile_preview = <img className='profile_preview' src={uploadImg.previewURL}></img>
+      profile_preview = <img className='profile_preview' src={uploadImg.previewURL}/>
     }
     const {data} = useSelector(state=>state.totalAnMesReducer);
     const dispatch = useDispatch();
@@ -120,7 +122,7 @@ function Board({match}) {
             <Head title="팀 단체사진" subtit="KGB의 우리팀톡톡입니다" pb="90px"/>
             <ContentArea>
                 <ImgBox>
-                {profile_preview}         
+                {uploadImg.file ? profile_preview : "첨부파일을 등록해주세요"}         
                 </ImgBox>
                 <UploadArea>
                     <LeftTitle>첨부파일</LeftTitle>
