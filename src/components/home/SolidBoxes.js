@@ -43,22 +43,29 @@ const ImgArea = styled.div`
   }
 `
 
-const boxes = [
+
+
+function SolidBoxes() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user.brand_tel)
+  const boxes = [
     {
         title : "담당자 연결",
         desc : "담당자 연결을 도와드립니다",
         bg: "#009B90",
-        img: 'ico_call.png'
+        img: 'ico_call.png',
+        num: user.brand_tel
     },
     {
         title : "홈페이지 바로가기",
         desc : "홈페이지로 바로 이동하실 수 있습니다",
         bg: "#2F8DB7",
-        img: 'ico_page.png'
+        img: 'ico_page.png',
+        num: ""
     },
 ]
 
-function SolidBoxes() {
+
   return (
     <Wrapper>
       {boxes.map((box, index)=> (

@@ -117,7 +117,7 @@ function ASTipBoard() {
             <BoardList />
             </NoticeWrap> */}
             {/* <BoardListWrap/>  */}
-            <BoardListWrap boardCode="4"/>
+            <BoardListWrap boardCode="8"/>
             </ContentArea>
             
             <FloatingBtn bg="#009B90" icon="ico_add" onClick={ openModal }/>
