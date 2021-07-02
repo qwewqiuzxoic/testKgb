@@ -35,12 +35,12 @@ const Desc = styled.div`
     color:#82898E;
 `;
 
-function Comment({text}) {
+function Comment({text,regdate,regloginid}) {
   return (
     <Wrapper>
         <PostInfo>
-          {/* <Writer>장재면</Writer> */}
-          {/* <Date>2021 .01 .01 07:55:47</Date> */}
+          <Writer>{regloginid}</Writer>
+          <Date>{regdate}</Date>
         </PostInfo>
         <Desc dangerouslySetInnerHTML={ {__html: text} }></Desc>
     </Wrapper>

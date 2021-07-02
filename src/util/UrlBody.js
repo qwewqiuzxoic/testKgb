@@ -357,6 +357,17 @@ export const UrlBody = (type, data) => {
                     "man_info_sn":user.man_info_sn
                 }
             }
+        case "comment_proc":
+            return{
+                url:"/BM/API/board/comment_proc_basic.asp",
+                body:{
+                    "sn":data.sn,
+                    "contents":data.contents,
+                    "man_info_sn":user.man_info_sn,
+                    "userid":user.userid,
+                    "manname":user.name
+                }
+            }
         
         default: return null;
     }

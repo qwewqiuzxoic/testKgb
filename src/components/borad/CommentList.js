@@ -28,8 +28,20 @@ function CommentList({list}) {
             {list && <span>{list.length}</span>}
         </Title>
         {list && list.map((item,index) => 
-          <Comment key={index} text={item.as_content}>
-          </Comment>
+        <div>
+          { item.as_content &&
+            <Comment key={index} text={item.as_content} regdate={item.regdate} regloginid={item.regloginid}>
+            </Comment>
+          }
+          {
+            item.content && 
+            <Comment key={index} text={item.content} regdate={item.regdate} regloginid={item.regloginid}>
+            </Comment>
+          }
+         
+        </div>
+         
+          
         )}
         {/* map합수로 comment들어가기? */}
         

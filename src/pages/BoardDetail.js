@@ -87,7 +87,7 @@ function BoardDetail({match}) {
   const boardDetail = type === "asy"?boardDetail2:boardDetail1;
   const loading1 = useSelector(state => state.boardDetailReducer.loading);
   const loading2 = useSelector(state => state.getAsDetailReducer.loading);
-  const loading = type === "asy"?loading2:loading1;
+  const loading = type === "asy" ? loading2:loading1;
 
   const data = useSelector(state => state.getAsDetailReducer);
 
@@ -114,17 +114,35 @@ function BoardDetail({match}) {
       [data.target.name]:data.target.value
     })
   }
+// 우리팀 톡톡 1
+// 칭찬 2
+// 꾸중 3
+// 자유 4
+// 공지 5
+// 교육공지 6
+// 교육자료실 7
+// as처리노하우 8
+// 일반자료실 9
+// 작업일변경요청 10
   useEffect(() => {
-    if(type === "1" || type === "2" || type === "3" || type === "4" || type === "5"|| type === "6" || type === "7"){
-      dispatch(getBoardDetail(sn));
-    }else if(type === "1"){
-      dispatch(getEduBoardDetail(sn));
-    }else if(type === "2"){
-      dispatch(getEduMovieBoardDetail(sn));
-    }else if(type ==="asy"){
-      console.log(123)
-      dispatch(getAsDetail(sn));
-    }
+    // if(type === "1" || type === "2" || type === "3" || type === "4" || type === "5"|| type === "6" || type === "7"){
+    //   console.log(111111)
+
+    //   dispatch(getBoardDetail(sn));
+    // }else if(type === "1"){
+    //   console.log(2222222222)
+
+    //   dispatch(getEduBoardDetail(sn));
+    // }else if(type === "2"){
+    //   console.log(333333333)
+
+    //   dispatch(getEduMovieBoardDetail(sn));
+    // }else if(type ==="8"){
+    //   console.log(123)
+    //   dispatch(getAsDetail(sn));
+    // }
+    dispatch(getBoardDetail(sn));
+
       
   }, [])
   const [openPass,setOpenPass] = useState(false);
@@ -192,7 +210,7 @@ return(
                 <Button onclick={toBack} bg="#3397B9" color="#ffffff" text="목록" w="49%" h="44px" fs="12px"></Button>
               </ButtonArea>
           </ContentArea>
-          <CommentBox list={boardDetail.list}></CommentBox>
+          <CommentBox list={boardDetail.list} sn={sn} type={type} commentlist={boardDetail.list}></CommentBox>
           <Modal open={ modalOpen } close={ closeModal } header="비밀번호 확인" >
               <InputGroup id="title" title="비밀번호" ph="제목을 입력해주세요"  value={inputValue}setInputValue={setInputValue}/>
               <Button onclick={confirmPass} bg="#3397B9" color="#ffffff" text="확인" height="44px" fontSize="12px" mgt="30px"></Button>       
