@@ -2,7 +2,7 @@ import { LOGIN_FAIL, LOGIN_SUCCESS, LOGIN_LOADING } from '../types/auth.type'
 import { authInit } from '../init/init'
 
 
-export default function boardReducer(state = authInit, action) {
+export default function loginReducer(state = authInit, action) {
     switch (action.type) {
         case LOGIN_FAIL:
             return{

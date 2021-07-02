@@ -19,7 +19,6 @@ function Top({setMenu,menu}) {
     const history = useHistory() 
     useEffect(() => {
        return history.listen((location) => { 
-          console.log( location) 
           setUrl(location.pathname);
        }) 
     },[history]) 

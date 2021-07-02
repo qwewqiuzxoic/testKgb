@@ -1,16 +1,15 @@
 import axios from "axios";
 import { dayScError, dayScGetdata, dayScLoading, monthScError, monthScGetdata, monthScLoading } from "../actionFn/schedule";
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
 
 
 export const getMonthSc = (year,month,page) => dispatch => {
-const user = JSON.parse(localStorage.getItem('user'));       
-
+    const user = useSelector(state=>state.loginReducer.data);
     dispatch(monthScLoading());
     const url = page === "1" ?'/BM/API/seller/task_month.asp':'/BM/API/edu/edu_sch_month.asp';
-
     axios.post(url,{
         "brand": user.brand,
         "biz_sn" : user.biz_sn,
@@ -25,8 +24,7 @@ const user = JSON.parse(localStorage.getItem('user'));
 }
 
 export const getDaySc = (date,page) => dispatch => {
-const user = JSON.parse(localStorage.getItem('user'));       
-
+    const user = useSelector(state=>state.loginReducer.data);
     dispatch(dayScLoading());
     const url = page === "1"? '/BM/API/seller/task_list.asp':'/BM/API/edu/edu_sch_list.asp';
     const body = page === "1"?
