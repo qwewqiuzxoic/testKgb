@@ -77,8 +77,8 @@ function DropDown({menuItem, i,clickMenu}) {
                             <Li key={k}>{subMenu.name}</Li>
                         </a>
                         :
-                        <Link to={subMenu.link}  onClick={()=>clickMenu()} >
-                            <Li key={k}>{subMenu.name}</Li>
+                        <Link key={k} to={subMenu.link}  onClick={()=>clickMenu()} >
+                            <Li >{subMenu.name}</Li>
                         </Link>
                     )
                 }else{

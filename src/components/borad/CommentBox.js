@@ -14,6 +14,7 @@ import { postAsCommentInit } from '../../redux/actionFn/as';
 import { totalMesThunk } from '../../redux/thunkFn/total.thunk';
 import { getBoardDetail } from '../../redux/thunkFn/borad.thunk';
 import { totalMesInit } from '../../redux/actionFn/total';
+import Loading from '../commonStyle/Loading';
 
 const Wrapper = styled.div`
   ${BottomBox()};
@@ -23,8 +24,8 @@ const Wrapper = styled.div`
 function CommentBox({title, subtit, showCheck, commentlist,sn,type, list}) {
   const [text,setText] = useState("");
   const dispatch = useDispatch();
-  const {result,message} = useSelector(state => state.postAsCommentReducer)
-  const {result:result2,message:message2} = useSelector(state => state.totalMesReducer);
+  const {result,message,loading} = useSelector(state => state.postAsCommentReducer)
+  const {result:result2,message:message2,loading:loading2} = useSelector(state => state.totalMesReducer);
   const commentSubmit = () =>{
     if(text === ""){
       return;
@@ -36,7 +37,6 @@ function CommentBox({title, subtit, showCheck, commentlist,sn,type, list}) {
     }
 
   }
-  console.log(result, result2)
  
   const confirmSubmit = () =>{
     if(type === "asy"){
@@ -64,7 +64,12 @@ function CommentBox({title, subtit, showCheck, commentlist,sn,type, list}) {
        } */}
         <CommentList list={commentlist}/>
         {result2==="success"?<ConfirmModal open={true} text={message || message2} onsubmit={confirmSubmit}></ConfirmModal>:null}
-
+       {
+         loading && <Loading></Loading>
+       }
+       {
+         loading2 && <Loading></Loading>
+       }
         
     </Wrapper>
   );

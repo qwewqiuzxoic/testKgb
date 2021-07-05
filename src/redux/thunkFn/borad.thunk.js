@@ -97,6 +97,7 @@ export const postDeleteBoard = (data) =>dispatch =>{
     })
 }
 export const postModifyBoard = (data,fn) => dispatch =>{
+    console.log(data)
     dispatch(boardPostLoading());
     const url = '/BM/API/board/board_proc_basic.asp';
     axios.post(url, data).then(function(res){

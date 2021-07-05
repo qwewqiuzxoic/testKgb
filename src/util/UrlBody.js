@@ -379,7 +379,14 @@ export const UrlBody = (type, data) => {
                     "name":user.name
                 }
             }    
-        
+        case "del_board_proc_basic":
+            return{
+                url:"/BM/API/board/board_proc_basic.asp",
+                body:{
+                    "mode":"DP",
+                    sn:data.sn
+                }
+            }
         default: return null;
     }
 }

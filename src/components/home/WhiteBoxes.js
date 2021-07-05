@@ -61,7 +61,7 @@ const boxes1 = [
         title1 : "칭찬글",
         title2 : "Compliment",
         icon: "icon2_1",
-        link: "/board/3"
+        link: "/board/2"
     },
     {
         title1 : "해피콜",
@@ -79,7 +79,7 @@ const boxes1 = [
         title1 : "꾸중글",
         title2 : "Scolding",
         icon: "icon2_4",
-        link: "/board/4"
+        link: "/board/3"
     },
     {
         title1 : "미계약해피콜",
@@ -99,7 +99,7 @@ const boxes2 = [
         title1 : "자유게시판",
         title2 : "Free Board",
         icon: "icon3_1",
-        link: "/board/1"
+        link: "/board/4"
     },
     {
         title1 : "건의하기",
@@ -123,13 +123,13 @@ const boxes2 = [
         title1 : "자료실",
         title2 : "Reference Room",
         icon: "icon3_5",
-        link: "/"
+        link: "/board/9"
     },
     {
         title1 : "자재주문",
         title2 : "Material order",
         icon: "icon3_6",
-        link: "/"
+        link: "/ProdLists"
     }
 ]
 

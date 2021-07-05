@@ -82,7 +82,7 @@ function OrderBox({order}) {
         order && OrderList.map((item, index)=>
             <Product>
                 <Btn>
-                    <img src={process.env.PUBLIC_URL + '/images/ico_x.png'} alt='삭제'/>
+                    {/* <img src={process.env.PUBLIC_URL + '/images/ico_x.png'} alt='삭제'/> */}
                 </Btn>
                 <Name>{item.goods_name}</Name>
                 <OptionWrap>
