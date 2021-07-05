@@ -16,11 +16,12 @@ const Tabs = styled.div`
     ${Gutter()};
     ${FlexBox('')};
     margin-top:-72px;
+    align-items: center;
 `;
 const TabName = styled.div`
     ${ChangeFont(true)};
     color : rgba(255, 255, 255, .7);
-    padding: 12px 18px;
+    padding: 12px 16px;
     border-radius: 20px;
     cursor:pointer;
     &.selected{

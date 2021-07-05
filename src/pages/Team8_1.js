@@ -41,7 +41,7 @@ const InnerCont = styled.div`
 
 function Team8_1({match}) {
     const code = match.params.boardTitle;
-    const [title, subtitle] = code === "1" ?["월 평가(경고현황)","월 평가 목록입니다."]:["수정","수정"]
+    const [title, subtitle] = code === "1" ?["월 평가(경고현황)","월 평가 목록입니다."]:["상조회","KGB의 상조회입니다"]
     console.log(code)
     const [ modalOpenDetail, setModalOpenDetail ] = useState(false);
     const [ modalOpenWrite, setModalOpenWrite ] = useState(false);

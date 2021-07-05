@@ -27,18 +27,17 @@ const Product = styled.div`
     padding: 10px 15px 0;
    
 `;
-const Btn = styled.div`
-    text-align:right;
-    padding:4px;
-    img{
-        display: inline-block;
-        width:9px;
-        height: auto;
-        cursor:pointer;
-    }
-`;
+// const Btn = styled.div`
+//     text-align:right;
+//     padding:4px;
+//     img{
+//         display: inline-block;
+//         width:9px;
+//         height: auto;
+//         cursor:pointer;
+//     }
+// `;
 const Name = styled.div`
-    margin-top: -10px;
 `;
 const OptionWrap = styled.div`
     ${FlexBox()};
@@ -81,9 +80,9 @@ function OrderBox({order}) {
         {
         order && OrderList.map((item, index)=>
             <Product>
-                <Btn>
+                {/* <Btn>
                     <img src={process.env.PUBLIC_URL + '/images/ico_x.png'} alt='삭제'/>
-                </Btn>
+                </Btn> */}
                 <Name>{item.goods_name}</Name>
                 <OptionWrap>
                     <Option><span>옵션:</span> {item.goods_option}</Option>

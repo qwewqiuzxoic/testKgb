@@ -60,6 +60,7 @@ const Date = styled.div`
 `;
 const Desc = styled.div`
   padding: 10px 0;
+  overflow:scroll;
   img{
     margin-bottom:10px;
   }
