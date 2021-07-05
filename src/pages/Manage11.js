@@ -75,7 +75,7 @@ function Manage11({match}) {
             return 
         }
         if(!data.questionCount.includes(index)){
-            console.log(123123)
+            //console.log(123123)
             setData({
                 ...data,
                 questionCount:data.questionCount.push(index)
@@ -131,12 +131,15 @@ function Manage11({match}) {
                 )
         }
         {data.page === 5? <TextArea setText={setText} text={data.text}/> : null}
-        <BtnArea>
+        {!loading &&
+            <BtnArea>
             {data.page === 1 ? null :<BtnWrap onClick={decreaseIndex} className="mgr"><Button bg="#F2F6F8" color='#404345' text='이전' h='40px' fs='12px' mgt='30px'/></BtnWrap>}
             {data.page === 5 ? null :<BtnWrap onClick={increaseIndex}><Button bg="#3397B9" color='#fff' text='다음' h='40px' fs='12px' mgt='30px'/></BtnWrap>}
             {data.page === 5 && sn === undefined?<BtnWrap onClick={submitData}><Button bg="#3397B9" color='#fff' text='제출하기' h='40px' fs='12px' mgt='30px'/></BtnWrap> :
              null}
-        </BtnArea>
+            </BtnArea>
+        }
+        
      </ContentArea>
     </Wrapper>
   );

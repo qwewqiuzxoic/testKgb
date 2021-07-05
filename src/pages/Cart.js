@@ -141,7 +141,7 @@ function Cart() {
 
     // }
     const basketOrder = ()=> {
-        //dispatch(totalMesThunk("order_proc",{str_gb_idx:state.str_gb_idx,tot_price:state.tot_price}));
+        dispatch(totalMesThunk("order_proc",{str_gb_idx:state.str_gb_idx,tot_price:state.tot_price}));
     }
     const basketOrderSel = ()=> {
         const arrS = Array.from(checkedProd).join(',');
@@ -178,7 +178,7 @@ function Cart() {
                 ></ConfirmModal> 
                
                 <BtnArea1>
-                    <Button onclick={onsubmit} bg="#404345" color="#ffffff" text="선택주문"  ht="44px" fontSize="12px" mgt="48px" onclick={basketOrderSel}></Button>
+                    <Button  bg="#404345" color="#ffffff" text="선택주문"  ht="44px" fontSize="12px" mgt="48px" onclick={basketOrderSel}></Button>
                     {/* <Button onclick={onsubmit} bg="#3397B9" color="#ffffff" text="선택삭제"  ht="44px" fontSize="12px" mgt="48px" onclick={basketDel}></Button> */}
                 </BtnArea1>
                 <TotalPrice>

@@ -73,6 +73,7 @@ const menuItems = [
             {name: '일반자료실', link:'/board/9'}, 
             {name: '자재주문', link:'/ProdLists'}, 
             {name: '자재주문내역', link:'/ProdOrder'}, 
+            {name: '장바구니', link:'/Cart'}, 
             {name: '홈페이지연결', link:'/'}, 
             {name: '담당자연결', link:'/'}
         ]
