@@ -85,7 +85,7 @@ function CartLists({list, checkedItemHandler, allCheckedHandler, checkHandler, b
         <Wrapper>
             <Header>
                 <CheckGroup id='checkAllCart' name='checkAllCart' label='전체선택' onChange={(e) => checkHandler(e)} checked={bChecked} nmg={true} isCircle={true}/>
-                <Delete>선택삭제</Delete>
+                {/* <Delete>선택삭제</Delete> */}
             </Header>
             {list && list.map((item, index) => (
             <Box>
