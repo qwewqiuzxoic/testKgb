@@ -23,7 +23,7 @@ const boxes = [
         title1 : "교육일정/신청",
         title2 : "schedule / application",
         icon: "icon1_1",
-        link: "/Team1"
+        link: "/Team1/2"
     },
     {
         title1 : "교육참석내역",
@@ -35,19 +35,19 @@ const boxes = [
         title1 : "교육출결체크",
         title2 : "attendance check",
         icon: "icon1_3",
-        link: "/"
+        link: "/Manage10_1"
     },
     {
         title1 : "이수대상 교육",
         title2 : "Education for completion",
         icon: "icon1_4",
-        link: "/"
+        link: "/manage13/2"
     },
     {
         title1 : "교육자료실",
         title2 : "Education Resource Room",
         icon: "icon1_5",
-        link: "/"
+        link: "/board/7"
     },
     {
         title1 : "매뉴얼 학습",

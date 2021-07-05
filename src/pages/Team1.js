@@ -157,7 +157,7 @@ function Team1({match}) {
     <div>
       <Wrapper>
         <TopBg>
-            <H1 title="작업일정 (월별)" subtit=""></H1>
+            <H1 title={ page === "1" ? "작업일정 (월별)" : "교육일정/신청" } subtit=""></H1>
             <Calendar tileContent={checkDay} value={dateState} data="aa" onClickMonth={(value,event)=>changeMonth(value,event)} onChange={changeDate} calendarType="US" locale="EN"/>
         </TopBg>
         <Labels isTaskPage={ page === "1" ? true : false }></Labels>
