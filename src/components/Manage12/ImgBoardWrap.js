@@ -15,7 +15,7 @@ function ImgBoardWrap({setChangeStep, list, loading}) {
       {/* map함수들어가기 */}
       {
         list && list.map(item=>
-          <ImgBoard key={item.sn} setChangeStep={setChangeStep} title={item.title} sn={item.sn} list_img={item.img_list} regdate={item.regdate}/>
+          <ImgBoard key={item.sn} setChangeStep={setChangeStep} title={item.title} sn={item.sn} list_img={item.list_img} regdate={item.regdate}/>
           )
       }
       {loading && <Loading></Loading>}
