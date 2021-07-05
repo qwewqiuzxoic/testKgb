@@ -8,7 +8,7 @@ export const getMsgRcvList= () => dispatch => {
         axios.post(url, {
             "man_info_sn": user.man_info_sn
         }).then(function (res) {
-            console.log(res)
+            //console.log(res)
             dispatch(getMsgRcvListSuccess(res.data));
         }).catch(function (error) {
             dispatch(getMsgRcvListError(error));
@@ -22,7 +22,7 @@ export const getMsgSendList= () => dispatch => {
         axios.post(url, {
             "man_info_sn": user.man_info_sn
         }).then(function (res) {
-            console.log(res)
+            //console.log(res)
             dispatch(getMsgSendListSuccess(res.data));
         }).catch(function (error) {
             dispatch(getMsgSendListError(error));
@@ -36,7 +36,7 @@ export const postMsgDel= (list, kind) => dispatch => {
         axios.post(url, {
             "del_msg_sn": list
         }).then(function (res) {
-            console.log(res)
+            //console.log(res)
             dispatch(getMsgDelSuccess(res.data));
         }).catch(function (error) {
             dispatch(getMsgDelError(error));
@@ -50,7 +50,7 @@ export const getMsgAddList = (text) => dispatch =>{
         axios.post(url, {
             "sch_text": text
         }).then(function (res) {
-            console.log(res)
+            //console.log(res)
             dispatch(getMsgAddSuccess(res.data));
         }).catch(function (error) {
             dispatch(getMsgAddError(error));
@@ -63,7 +63,7 @@ export const getMsgAddOfficeList = (brand) => dispatch =>{
         axios.post(url, {
             "brand": brand
         }).then(function (res) {
-            console.log(res)
+            //console.log(res)
             dispatch(getMsgAddSuccess(res.data));
         }).catch(function (error) {
             dispatch(getMsgAddError(error));
@@ -80,7 +80,7 @@ export const postSendMsg = (text,list) => dispatch =>{
             "man_info_sn" : user.man_info_sn,
             "manname" : user.teamname,
         }).then(function (res) {
-            console.log(res)
+            //console.log(res)
             dispatch(postMsgSendSuccess(res.data));
         }).catch(function (error) {
             dispatch(postMsgSendError(error));

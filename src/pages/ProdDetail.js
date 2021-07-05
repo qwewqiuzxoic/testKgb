@@ -88,7 +88,7 @@ function ProdDetail({match}) {
         cnt:[]
     })
     const FnSetBasket = (idx,option ,name ,price, number) =>{
-        console.log(idx,option ,name ,price, number)
+        //console.log(idx,option ,name ,price, number)
         setBasket(basket => ({
             ...basket,
             gs_idx:arrayAdd(basket.gs_idx,idx,option),

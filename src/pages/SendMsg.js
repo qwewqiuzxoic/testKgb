@@ -73,7 +73,7 @@ function SendMsg({changeTab}) {
     const [searText,setSearText] = useState("");
     const searchClick=()=>{
         dispatch(getMsgAddList(searText));
-        console.log(searText)
+        //console.log(searText)
     }
     const [rcvList, setrcvList]=useState([]);
     const [rcvListName, setrcvListName]=useState([]);

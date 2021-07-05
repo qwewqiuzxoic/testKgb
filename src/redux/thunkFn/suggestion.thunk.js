@@ -23,14 +23,14 @@ const user = JSON.parse(localStorage.getItem('user'));
             "password" : "0",
             "email" : "0"
         }).then(function (res) {
-            console.log(data,cate,board)
+            //console.log(data,cate,board)
 
             dispatch(suggestionSuccess(res.data.result));
            
             //console.log(JSON.parse(localStorage.getItem('user')));
              // response  
         }).catch(function (error) {
-            console.log(error);
+            //console.log(error);
             dispatch(suggestionError(error))
         })
 }

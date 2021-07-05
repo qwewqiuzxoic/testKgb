@@ -65,7 +65,7 @@ function ProdOrder() {
     }
     const searchDay = () =>{
         setNList(list.filter(item => item.order_date === orderDay));
-        console.log(orderDay);
+        //console.log(orderDay);
     }
   return (
       <Wrapper>

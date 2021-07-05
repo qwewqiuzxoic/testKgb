@@ -94,7 +94,7 @@ function Manage2_2({match}) {
     useEffect(() => {
         dispatch(getHappyCallDetail(page,sn))
         return () => {
-            console.log(list)
+            //console.log(list)
         }
     }, [])
     const onclick = ()=>{

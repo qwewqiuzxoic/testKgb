@@ -90,7 +90,7 @@ function Manage5_1({match}) {
   const [ modalOpen, setModalOpen ] = useState(false);
 
   const openModal = (sn) => {
-      console.log(sn)
+      //console.log(sn)
       setModalOpen(true);
       dispatch(getPictureCheckDetail(page,sn));
       document.body.style.overflow = 'hidden';
