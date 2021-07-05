@@ -28,7 +28,7 @@ function MovingInfo() {
     dispatch(workingDayFormDataInput(data))
   }
   useEffect(() => {
-    console.log(data)
+    //console.log(data)
     return () => {
       
     }

@@ -28,7 +28,7 @@ const user = JSON.parse(localStorage.getItem('user'));
         axios.post(url, {
             sn:sn
         }).then(function (res) {
-            console.log(res)
+            //console.log(res)
             dispatch(getHappyCallDetailSuccess(res.data));
         }).catch(function (error) {
             dispatch(getHappyCallDetailError(error))

@@ -68,7 +68,6 @@ const Dd = styled.div`
 
 function Manage2_1({match}) {
   const page = match.params.page;
-  console.log(page)
   const [title,subtit] =  page === "1" ? ["계약 해피콜","KGB의 계약 해피콜입니다"] : ["미계약 해피콜","KGB의 미계약 해피콜입니다"];
   const [tab,setTab]= useState(0);
   const teamChange = (num,team) => {

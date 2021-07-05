@@ -61,7 +61,7 @@ export const workingDayFormError = (data) => {
 }
 
 export const workingDayFormDataInput = (data) => {
-    console.log(data)
+    //console.log(data)
     const {value, name} = data.target;
     return {
         type:WORKINGDAY_FORM_INPUT,

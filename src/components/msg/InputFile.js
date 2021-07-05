@@ -56,7 +56,7 @@ function InputFile({id, title}) {
         event.preventDefault();
         let reader = new FileReader();
         let file = event.target.files[0];
-        console.log(reader, file)
+        //console.log(reader, file)
         reader.onloadend = () => {
           setUploadFile({
             file : file,

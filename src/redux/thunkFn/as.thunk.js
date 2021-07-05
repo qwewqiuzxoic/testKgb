@@ -12,7 +12,7 @@ export const getAsList= (team, count, length = 10) => dispatch => {
             "pagesize" : length,
             "tabtype" : team,
         }).then(function (res) {
-            console.log(res,team)
+            //console.log(res,team)
             dispatch(getAsListSuccess(res.data));
         }).catch(function (error) {
             dispatch(getAsListError(error));
@@ -29,7 +29,7 @@ export const getAsListConcat= (team, count, length = 10) => dispatch => {
             "pagesize" : length,
             "tabtype" : team,
         }).then(function (res) {
-            console.log(res)
+            //console.log(res)
             dispatch(getAsListConcatSuccess(res.data));
         }).catch(function (error) {
             dispatch(getAsListConcatError(error));
@@ -42,7 +42,7 @@ export const getAsDetail =(sn) => dispatch => {
         axios.post(url, {
             "sn":sn
         }).then(function (res) {
-            console.log(res)
+            //console.log(res)
             dispatch(getAsDetailSuccess(res.data));
         }).catch(function (error) {
             dispatch(getAsDetailError(error));

@@ -66,10 +66,18 @@ function Manage13({match}) {
                     list && list.map((item,index) => 
                     <EduBox title={item.title} date={item.edu_date}>
                         {item.edu_time}
-                        {item.proc}
-                        {item.board_sn}
-                        {item.url ? item.url:item.movie}
-                        {item.proc === "Y" ? <BlueBtn>설문</BlueBtn> :( item.proc === "N" || item.proc === "")  && !item.movie ?<BlueBtn>설문 종료</BlueBtn> : item.movie && item.proc === "" ?<BlueBtn>0</BlueBtn>:<BlueBtn>{item.proc}</BlueBtn>}
+                        {/* {item.proc} */}
+                        {/* {item.board_sn} */}
+                        {/* {item.url ? item.url:item.movie} */}
+                        {item.proc === "Y" ? <BlueBtn>설문</BlueBtn> :( item.proc === "N" || item.proc === "")  && !item.movie ?<BlueBtn>설문 종료</BlueBtn> : item.movie && item.proc === "" ?
+                        <a target="_blank" href={item.movie}>
+                        <BlueBtn>0</BlueBtn>
+                        </a>
+                        :
+                        <a target="_blank" href={item.movie}>
+                        <BlueBtn>{item.proc}</BlueBtn>
+                        </a>
+                        }
                     </EduBox>
                     )
                 }

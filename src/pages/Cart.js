@@ -141,11 +141,9 @@ function Cart() {
 
     // }
     const basketOrder = ()=> {
-        console.log(ttPrice)
         //dispatch(totalMesThunk("order_proc",{str_gb_idx:state.str_gb_idx,tot_price:state.tot_price}));
     }
     const basketOrderSel = ()=> {
-        console.log(ttPrice)
         const arrS = Array.from(checkedProd).join(',');
         dispatch(totalMesThunk("order_proc",{str_gb_idx:arrS,tot_price:ttPrice}));
     }

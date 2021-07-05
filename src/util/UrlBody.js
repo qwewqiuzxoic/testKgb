@@ -282,7 +282,6 @@ export const UrlBody = (type, data) => {
                 body:data
             }
         case "file_save":   //브랜드평가 사진제출 업로드
-        console.log(data)
             return{
                 url:"http://mis.kgb.co.kr/BM/API/common/file_save.asp",
                 body:data
