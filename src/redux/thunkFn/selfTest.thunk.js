@@ -14,11 +14,11 @@ const user = JSON.parse(localStorage.getItem('user'));
             "page":"1",
             "pagesize":"20"
         }).then(function (res) {
-            console.log(res)
+            //console.log(res)
 
             dispatch(getSelfTestListSuccess(res.data));
            
-            //console.log(JSON.parse(localStorage.getItem('user')));
+            ////console.log(JSON.parse(localStorage.getItem('user')));
              // response  
         }).catch(function (error) {
             dispatch(getSelfTestListError(error))
@@ -49,7 +49,7 @@ const user = JSON.parse(localStorage.getItem('user'));
         axios.post(url, {
             "brand" : user.brand
         }).then(function (res) {
-            console.log(res)
+            //console.log(res)
             dispatch(getSelfTestQuestionSuccess(res.data));
         }).catch(function (error) {
             dispatch(getSelfTestQuestionError(error))

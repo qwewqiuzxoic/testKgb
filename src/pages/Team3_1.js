@@ -249,7 +249,7 @@ function Team3_1({match}) {
   }
 //옵션 추가 비용
   const addOptionPrice = (list) =>{
-    console.log(list)
+    //console.log(list)
     setOrderSave({
       ...orderSave,
       cboMoveOptionVal:list.join("^"),
@@ -281,7 +281,7 @@ function Team3_1({match}) {
   useEffect(() => {
     if(orderSave.StAddr1 !== firstData.StAddr1 || orderSave.EdAddr1 !== firstData.EdAddr1){
       if( orderSave.StAddr1 !== "" && orderSave.EdAddr1 !== "" ){
-        console.log("주소지 변경 ================")
+        //console.log("주소지 변경 ================")
         disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:211111000}));
       }
     }
@@ -289,7 +289,7 @@ function Team3_1({match}) {
   useEffect(() => {
     if(orderSave.StAddr1 !== firstData.StAddr1 || orderSave.EdAddr1 !== firstData.EdAddr1){
       if( orderSave.StAddr1 !== "" && orderSave.EdAddr1 !== "" ){
-        console.log("주소지 변경 ================")
+        //console.log("주소지 변경 ================")
         disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:211111000}));
       }
     }
@@ -299,7 +299,7 @@ function Team3_1({match}) {
   //이사날짜가 변경되었을경우 
   useEffect(() => {
     if(orderSave.DayMove !== firstData.DayMove){
-      console.log("이사일 변경")
+      //console.log("이사일 변경")
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:211111000}));
     }
    

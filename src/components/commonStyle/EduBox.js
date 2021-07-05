@@ -37,7 +37,7 @@ function EduBox(props) {
       <Layout>
         <Title>{props.title}</Title>
         <Date>{props.date}</Date>
-        <Date>{props.date2 !== undefined ?  "~"+props.date2:"aa" }</Date>
+        <Date>{props.date2 !== undefined ?  "~"+props.date2:"" }</Date>
       </Layout>
       <PropsArea>
         {props.children}

@@ -49,7 +49,10 @@ const [address, setPAddress] = useState({open:false, data:""});
       open:false,
       data:data
     })
-    setAddressChange(data,type);
+    console.log(data)
+    if(data !== undefined){
+      setAddressChange(data,type);
+    }
   }
 
   useEffect(() => {
