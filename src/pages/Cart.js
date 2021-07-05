@@ -183,11 +183,11 @@ function Cart() {
                 </BtnArea1>
                 <TotalPrice>
                     <Border>
-                        <Row dt='상품금액' dd={state.tot_price+"원"} ddColor="#333333" ddWeight="bold"/>
+                        <Row dt='상품금액' dd={state.tot_price? parseInt(state.tot_price).toLocaleString() : '-'+"원"} ddColor="#333333" ddWeight="bold"/>
                         <Row dt='배송비' dd={`0원`}  ddColor="#333333" ddWeight="bold"/>
                     </Border>
                     <Total>
-                        <Row dt='결제 예정금액' dtSize="15px" dd={state.tot_price+"원"} ddSize="14px" ddColor="#009B90" ddWeight="bold"/>
+                        <Row dt='결제 예정금액' dtSize="15px" dd={state.tot_price? parseInt(state.tot_price).toLocaleString() : '-'+"원"} ddSize="14px" ddColor="#009B90" ddWeight="bold"/>
                     </Total>
                 </TotalPrice>
                 </ContentArea>  
