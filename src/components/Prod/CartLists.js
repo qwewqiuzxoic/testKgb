@@ -101,7 +101,7 @@ function CartLists({list, checkedItemHandler, allCheckedHandler, checkHandler, b
                         </Layout>
                         <Layout>
                             <Name>{item.goods_name}</Name>
-                            <Price>{item.price}원</Price>
+                            <Price>{parseInt(item.price).toLocaleString()}원</Price>
                         </Layout>
                         <OptionWrap>
                             <Option><span>옵션:</span> {item.option_name}</Option>
@@ -110,7 +110,7 @@ function CartLists({list, checkedItemHandler, allCheckedHandler, checkHandler, b
                     </ItemInfo>
                 </ItemBox>
                 <Total>
-                    <Row dt='총 금액' dtSize="11px" dtColor="#82898E" dd={item.total_price}ddColor="#404345" ddWeight="bold"/>
+                    <Row dt='총 금액' dtSize="11px" dtColor="#82898E" dd={parseInt(item.total_price).toLocaleString()}ddColor="#404345" ddWeight="bold"/>
                 </Total>
             </Box>
           ))}
