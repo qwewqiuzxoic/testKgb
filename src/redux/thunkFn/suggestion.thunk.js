@@ -1,10 +1,11 @@
 import axios from "axios";
 import { suggestionDayLoding, suggestionError, suggestionInit, suggestionSuccess } from "../actionFn/suggestion";
 
-const user = JSON.parse(localStorage.getItem('user'));       
 
 
 export const submitSuggestion = (data,cate,board) => dispatch  => {
+const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(suggestionDayLoding())
     const url = '/BM/API/board/board_proc_basic.asp';
         axios.post(url, {

@@ -19,7 +19,6 @@ function Top({setMenu,menu}) {
     const history = useHistory() 
     useEffect(() => {
        return history.listen((location) => { 
-          console.log( location) 
           setUrl(location.pathname);
        }) 
     },[history]) 
@@ -27,7 +26,7 @@ function Top({setMenu,menu}) {
         return(
             <Menu clickMenu={clickMenu}/>
         )
-    } else if(url === "/Login"){
+    } else if(url === "/Login" || url === "/login"){
         return (
             <TopLogin clickMenu={clickMenu}/>
         )

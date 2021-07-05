@@ -40,6 +40,7 @@ const Li = styled.li`
 
 `
 function DropDown({menuItem, i,clickMenu}) {
+    const user = JSON.parse(localStorage.getItem('user'));       
     const [toggle,setToggle]=useState(false);
     const toggleDropdown = (e) =>{
         setToggle(!toggle)
@@ -71,6 +72,10 @@ function DropDown({menuItem, i,clickMenu}) {
                         <span onClick={() =>openModalWrite(2)} >
                             <Li key={k}>{subMenu.name}</Li>
                         </span>
+                        :subMenu.name === "담당자연결" ?
+                        <a href={`tel:${user.brand_tel}`} >
+                            <Li key={k}>{subMenu.name}</Li>
+                        </a>
                         :
                         <Link to={subMenu.link}  onClick={()=>clickMenu()} >
                             <Li key={k}>{subMenu.name}</Li>

@@ -368,6 +368,17 @@ export const UrlBody = (type, data) => {
                     "manname":user.name
                 }
             }
+        case "as_comment_proc":
+            return{
+                url:"/BM/API/team/as_comment_proc.asp",
+                body:{
+                    "sn":data.sn,
+                    "contents":data.contents,
+                    "man_info_sn":user.man_info_sn,
+                    "userid":user.userid,
+                    "name":user.name
+                }
+            }    
         
         default: return null;
     }

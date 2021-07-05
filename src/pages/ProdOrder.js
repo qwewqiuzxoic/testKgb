@@ -52,7 +52,7 @@ function ProdOrder() {
     const dispatch = useDispatch();
     const state = useSelector(state=>state.totalListReducer);
     const {list,loading} = state;
-    
+    // const List = list !== undefined ?list:[]
     useEffect(() => {
         dispatch(totalListThunk("goods_order_list",{}));
         return () => {
@@ -71,7 +71,7 @@ function ProdOrder() {
                 <Button bg="#3397B9" color="#ffffff" text="조회" w="60px" h="34px" fontSize="11px"/>
             </DateArea>
             {
-                !loading &&  list?.map((item, index) => 
+                !loading && list &&  list?.map((item, index) => 
                 <div>
                     <OrderBox key={item.goo_idx} order={item}/>
                     <br/>

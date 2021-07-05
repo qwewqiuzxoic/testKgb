@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { FlexBox, ChangeFont } from '../commonStyle';
 import styled from 'styled-components';
 
@@ -66,7 +66,9 @@ const Total = styled.div`
     }
 `;
 function OrderBox({order}) {
-
+    const OrderList = order.optlist !==undefined ? order.optlist:[];
+    useEffect(() => {
+    }, [order])
   return (
     <Wrapper>
         <Top>
@@ -76,12 +78,13 @@ function OrderBox({order}) {
             </Date>
             <Status color="#2F8DB7">{order.order_proc}</Status>
         </Top>
-        {order && order.optlist.map((item, index)=>
+        {
+        order && OrderList.map((item, index)=>
             <Product>
                 <Btn>
                     <img src={process.env.PUBLIC_URL + '/images/ico_x.png'} alt='삭제'/>
                 </Btn>
-                <Name>{order.goods_name}</Name>
+                <Name>{item.goods_name}</Name>
                 <OptionWrap>
                     <Option><span>옵션:</span> {item.goods_option}</Option>
                     <Option><span>수량:</span> {item.ea}개</Option>
@@ -91,7 +94,8 @@ function OrderBox({order}) {
                     <p><span>총 판매금액 </span>{parseInt(item.tot_price).toLocaleString()}원</p>
                 </Price>
             </Product>
-        )}
+        )
+        }
         
         <Total>
             <Price isTotal={true}><span>총금액 </span>{parseInt(order.total_price).toLocaleString()}원</Price>

@@ -3,10 +3,11 @@ import { picturecheckDetailError, picturecheckDetailLoading, picturecheckDetailS
 import { PICTURECHECK_DETAIL_SUCCESS } from "../types/pictureCheck.type";
 
 
-const user = JSON.parse(localStorage.getItem('user'));       
 
 
 export const getPictureCheckList = (kind,teamType) => dispatch  => {
+    const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(picturecheckLoading())
     const url = kind === "1" ?'/BM/API/team/biz_sitecheck_list.asp' :'/BM/API/team/biz_agencycheck_list.asp';
     console.log({
@@ -31,6 +32,8 @@ export const getPictureCheckList = (kind,teamType) => dispatch  => {
 }
 
 export const getPictureCheckDetail = (kind,sn) => dispatch  => {
+    const user = JSON.parse(localStorage.getItem('user'));       
+
     dispatch(picturecheckDetailLoading())
     const url = kind === "1" ?'/BM/API/team/biz_sitecheck_view.asp' :'/BM/API/team/biz_agencycheck_desc.asp';
     console.log(sn)
