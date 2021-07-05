@@ -6,7 +6,7 @@ import CommentList from './CommentList'
 
 
 import styled from 'styled-components';
-import { Gutter, BottomBox } from '../commonStyle';
+import { BottomBox } from '../commonStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAsDetail, postAsComment } from '../../redux/thunkFn/as.thunk';
 import ConfirmModal from '../../components/base/ConfirmModal';
@@ -18,7 +18,7 @@ import Loading from '../commonStyle/Loading';
 
 const Wrapper = styled.div`
   ${BottomBox()};
-  ${Gutter()};
+  padding:0 12px 30px;
   padding-top:5px;
 `;
 function CommentBox({title, subtit, showCheck, commentlist,sn,type, list}) {

@@ -8,8 +8,8 @@ import { totalListThunk } from '../redux/thunkFn/total.thunk';
 import Button from '../components/commonStyle/Button'
 
 const Wrapper = styled.div`
-    position: absolute;
-    top:50px;
+    position: fixed;
+    top:0;
     left:0;
     right:0;
     background: #fafafa;
