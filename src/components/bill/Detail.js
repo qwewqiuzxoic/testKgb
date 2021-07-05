@@ -66,7 +66,6 @@ const Total = styled.div`
 `;
 const Detail = () => {
     const data = useSelector(state => state.billDetailReducer.data);
-    console.log(data)
     return (
         <Wrapper>
             <Head>

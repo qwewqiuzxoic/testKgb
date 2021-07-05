@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from '../components/commonStyle/Head';
 import Button from '../components/commonStyle/Button'
 import OrderBox from '../components/Prod/OrderBox'
@@ -52,13 +52,21 @@ function ProdOrder() {
     const dispatch = useDispatch();
     const state = useSelector(state=>state.totalListReducer);
     const {list,loading} = state;
+    const [orderDay,setOrderDay] = useState();
+    const [nList,setNList] = useState([]);
     // const List = list !== undefined ?list:[]
     useEffect(() => {
         dispatch(totalListThunk("goods_order_list",{}));
         return () => {
         }
     }, [])
-
+    const changeDay = (e) =>{
+        setOrderDay(e);
+    }
+    const searchDay = () =>{
+        setNList(list.filter(item => item.order_date === orderDay));
+        console.log(orderDay);
+    }
   return (
       <Wrapper>
         <Head title="자재주문 내역" subtit="KGB의 자재주문 내역입니다"/>
@@ -67,11 +75,19 @@ function ProdOrder() {
                 <Select>
                     <Option>주문일</Option>
                 </Select>
-                <Input type="text" id="date_order" placeholder="날짜를 선택해주세요"  textAlign="left"  onFocus={(e)=> {e.currentTarget.type = "date";e.currentTarget.focus();}} max="9999-12-31"></Input>
-                <Button bg="#3397B9" color="#ffffff" text="조회" w="60px" h="34px" fontSize="11px"/>
+                <Input type="text" id="date_order" placeholder="날짜를 선택해주세요"  textAlign="left"  onFocus={(e)=> {e.currentTarget.type = "date";e.currentTarget.focus();}} max="9999-12-31" onChange={(e)=>changeDay(e.target.value)}></Input>
+                <Button onclick={searchDay} bg="#3397B9" color="#ffffff" text="조회" w="60px" h="34px" fontSize="11px"/>
             </DateArea>
             {
-                !loading && list &&  list?.map((item, index) => 
+                nList !== [] && nList?.map((item, index) => 
+                <div>
+                    <OrderBox key={item.goo_idx} order={item}/>
+                    <br/>
+                </div>
+                )  
+            }
+            {
+                nList.length === 0 && !loading && list &&  list?.map((item, index) => 
                 <div>
                     <OrderBox key={item.goo_idx} order={item}/>
                     <br/>

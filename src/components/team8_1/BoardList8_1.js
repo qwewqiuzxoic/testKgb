@@ -43,7 +43,7 @@ const ContentDate = styled.div`
 `;
 
 
-function BoardList8_1({title, regdate, board_sn, index, onClick}) {
+function BoardList8_1({title, regdate, board_sn, index, onClick, loginname}) {
    
   return (
     <Wrapper index={index} onClick={onClick}>
@@ -52,7 +52,7 @@ function BoardList8_1({title, regdate, board_sn, index, onClick}) {
         <Date>{regdate}</Date>
       </Layout>
       <PostInfo>
-        <Content>상조회비 입출금내용</Content>
+        <Content>{loginname}</Content>
         <ContentDate>{regdate} 기준</ContentDate>
       </PostInfo>
     </Wrapper>

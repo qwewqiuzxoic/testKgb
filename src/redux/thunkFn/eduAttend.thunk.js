@@ -11,7 +11,6 @@ export const geteduAttendList= () => dispatch => {
             man_info_sn :user.man_info_sn,
             brand :user.brand
         }).then(function (res) {
-            console.log(res)
             dispatch(getAduAttendListSuccess(res.data));
         }).catch(function (error) {
             dispatch(getAduAttendListError(error))
@@ -29,7 +28,6 @@ export const usePointEvnet= (point=0,nowPoint) => dispatch => {
             point : point,
             nowPoint : nowPoint
         }).then(function (res) {
-            console.log(res)
             dispatch(EduPointUseSuccess(res.data));
         }).catch(function (error) {
             dispatch(EduPointUseError(error))
@@ -45,7 +43,6 @@ export const getEduSurveyList = (page) => dispatch => {
             man_info_sn : user.man_info_sn,
             brand : user.brand
         }).then(function (res) {
-            console.log(res)
             dispatch(eduSurveySuccess(res.data));
         }).catch(function (error) {
             dispatch(eduSurveyError(error))
@@ -63,7 +60,7 @@ export const getEduisuList = () => dispatch => {
             man_info_sn : user.man_info_sn,
             brand : user.brand
         }).then(function (res) {
-            console.log(res)
+            //console.log(res)
             dispatch(eduisuSuccess(res.data));
         }).catch(function (error) {
             dispatch(eduisuError(error))

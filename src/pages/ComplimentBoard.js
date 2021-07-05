@@ -35,7 +35,6 @@ let user = JSON.parse(localStorage.getItem('user'));
 function ComplimentBoard() {
     const array = window.location.href.slice('/');
     const type = array[array.length - 1];
-    console.log(type)
     const boardName = type === "2" ?"칭찬하기" : "꾸중하기";
     if(user===null){
         user = JSON.parse(localStorage.getItem('user'));

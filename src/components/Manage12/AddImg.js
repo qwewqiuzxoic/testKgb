@@ -79,7 +79,7 @@ function AddImg({title, setName, type, selectedFiles, setSelectedFiles}) {
       formData.append("codeFile", "브랜드평가사진");
  
       dispatch(totalMesAnThunk("file_save",formData, { "Content-Type": "multipart/form-data"}));
-      console.log(title)
+      //console.log(title)
       setName(type);
     }
     

@@ -282,7 +282,6 @@ export const UrlBody = (type, data) => {
                 body:data
             }
         case "file_save":   //브랜드평가 사진제출 업로드
-        console.log(data)
             return{
                 url:"http://mis.kgb.co.kr/BM/API/common/file_save.asp",
                 body:data
@@ -379,7 +378,14 @@ export const UrlBody = (type, data) => {
                     "name":user.name
                 }
             }    
-        
+        case "del_board_proc_basic":
+            return{
+                url:"/BM/API/board/board_proc_basic.asp",
+                body:{
+                    "mode":"DP",
+                    sn:data.sn
+                }
+            }
         default: return null;
     }
 }

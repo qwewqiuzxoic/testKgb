@@ -13,6 +13,8 @@ import InputGroup from '../components/commonStyle/InputGroup';
 import { boardPostInput } from '../redux/actionFn/board';
 import TextAreaGroup from '../components/commonStyle/TextAreaGroup';
 import { Link, useHistory } from 'react-router-dom';
+import { totalMesThunk } from '../redux/thunkFn/total.thunk';
+import ConfirmModal from '../components/base/ConfirmModal';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -152,6 +154,7 @@ function BoardDetail({match}) {
   const confirmPass = ()=>{
     if(inputValue === boardDetail.passwd){
       setOpenModifyModal(true);
+      setModifyText({...modifyText,password:inputValue})
     } else{
       setOpenModifyModal(false);
     }
@@ -164,6 +167,17 @@ function BoardDetail({match}) {
   }
   const toBack = ()=>{
     history.goBack();
+  }
+
+  const [delCheck,setDelCheck] = useState(false);
+  const delCheckFn = () =>{
+    setDelCheck(true);
+    //dispatch(totalMesThunk("del_board_proc_basic",{sn:sn}))
+  }
+  const delSn = ()=>{
+    setDelCheck(false);
+    dispatch(totalMesThunk("del_board_proc_basic",{sn:sn}));
+    toBack();
   }
 return(
   <Wrapper>
@@ -195,10 +209,10 @@ return(
               </ContentBox>
               <ButtonArea>
                 {
-                  type !== "1"?null:<Button onclick={openModal} bg="#DFE5EA" color="#ACB6BC" text="수정" w="24%" h="44px" fs="12px"></Button>
+                  type !== "1" && type !== "4"?null:<Button onclick={openModal} bg="#DFE5EA" color="#ACB6BC" text="수정" w="24%" h="44px" fs="12px"></Button>
                 }
                 {
-                  type !== "1"?null:<Button bg="#DFE5EA" color="#ACB6BC" text="삭제" w="24%" h="44px" fs="12px"></Button>
+                  type !== "1" && type !== "4"?null:<Button onclick={delCheckFn} bg="#DFE5EA" color="#ACB6BC" text="삭제" w="24%" h="44px" fs="12px"></Button>
                 }
                 
                 <Button onclick={toBack} bg="#3397B9" color="#ffffff" text="목록" w="49%" h="44px" fs="12px"></Button>
@@ -211,13 +225,14 @@ return(
             </Modal>
             <Modal open={ openModifyModal } close={ closeModal } header="글쓰기">
               <InputGroup id="title" title="제목" ph="제목을 입력해주세요" setInputValue2={setInputValue2} value={data.title}/>
-              <InputGroup id="password" title="비밀번호" ph="비밀번호을 입력해주세요" setInputValue2={setInputValue2} value={data.password}/>              
+              {/* <InputGroup id="password" title="비밀번호" ph="비밀번호을 입력해주세요" setInputValue2={setInputValue2} value={data.password}/>               */}
               <InputGroup id="email" title="이메일" ph="이메일을 입력해주세요" setInputValue2={setInputValue2} value={data.email}/>
               <TextAreaGroup id="contents" title="내용" ph="내용을 입력해주세요" setInputValue2={setInputValue2} value={data.contents}/>
               <Button onclick={onsubmit} bg="#3397B9" color="#ffffff" text="저장" height="44px" fontSize="12px" mgt="30px"></Button>       
             </Modal>    
             </div>
           }
+          <ConfirmModal open={delCheck} text="정말로 삭제하시겠습니까?" onsubmit={delSn}></ConfirmModal>
           
       </Wrapper>
 )

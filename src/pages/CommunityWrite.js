@@ -52,7 +52,7 @@ function CommunityWrite() {
         }else{
             dispatch(submitSuggestion(inputValue,"오더장사","비리제보"));
         }
-        console.log(result)
+        //console.log(result)
       
         //dispatch(submitSuggestion(inputValue))
     }

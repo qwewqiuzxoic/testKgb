@@ -308,21 +308,21 @@ function Team3_1({match}) {
   //출발지 정보입력이 변경되었을경우
   useEffect(() => {
     if(orderSave.StTrdist !== undefined && orderSave.StTrdist !== "0" && orderSave.StTrdist !== firstData.StTrdist){
-      console.log("출발지 이송거리 변경")
+      //console.log("출발지 이송거리 변경")
       firstData.StTrdist = "0";
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
   }, [orderSave.StTrdist])
   useEffect(() => {
     if(orderSave.StFloor !== undefined && orderSave.StFloor !== "0" && orderSave.StFloor !== firstData.StFloor){
-      console.log("출발지 StFloor 변경")
+      //console.log("출발지 StFloor 변경")
       firstData.StFloor = "0";
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
   }, [orderSave.StFloor])
   useEffect(() => {
     if(orderSave.StStep !== undefined && orderSave.StStep !== "0" && orderSave.StStep !== firstData.StStep){
-      console.log("출발지 StStep 변경")
+      //console.log("출발지 StStep 변경")
       firstData.StStep = "0";
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
@@ -330,21 +330,21 @@ function Team3_1({match}) {
   //////////////////////////////////////////////////////////////
   useEffect(() => {
     if(orderSave.EdTrdist !== undefined && orderSave.EdTrdist !== "0" && orderSave.EdTrdist !== firstData.EdTrdist){
-      console.log("도착지 이송거리 변경")
+      //console.log("도착지 이송거리 변경")
       firstData.EdTrdist = "0";
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
   }, [orderSave.EdTrdist])
   useEffect(() => {
     if(orderSave.EdFloor !== undefined && orderSave.EdFloor !== "0" && orderSave.EdFloor !== firstData.EdFloor){
-      console.log("도착지 EdFloor 변경")
+     // console.log("도착지 EdFloor 변경")
       firstData.StFloor = "0";
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
   }, [orderSave.EdFloor])
   useEffect(() => {
     if(orderSave.EdStep !== undefined && orderSave.EdStep !== "0" && orderSave.EdStep !== firstData.EdStep){
-      console.log("도착지 EdStep 변경")
+      //console.log("도착지 EdStep 변경")
       firstData.EdStep = "0";
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
@@ -352,32 +352,32 @@ function Team3_1({match}) {
   //El 과 사다리 StSadari:"",StEL:"",
   useEffect(() => {
     if(orderSave.StSadari === "1" && orderSave.StSadari !== firstData.StSadari){
-      console.log("출발지 사다리 변경")
+      //console.log("출발지 사다리 변경")
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
   }, [orderSave.StSadari])
   useEffect(() => {
     if(orderSave.StEL === "1" && orderSave.StEL !== firstData.StEL){
-      console.log("출발지 StEL 변경")
+      //console.log("출발지 StEL 변경")
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
   }, [orderSave.StEL])
 
   useEffect(() => {
     if(orderSave.EdSadari === "1" && orderSave.EdSadari !== firstData.EdSadari){
-      console.log("도착지 사다리 변경")
+      //console.log("도착지 사다리 변경")
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
   }, [orderSave.EdSadari])
   useEffect(() => {
     if(orderSave.EdEL === "1" && orderSave.EdEL !== firstData.EdEL){
-      console.log("도착지 StEL 변경")
+      //console.log("도착지 StEL 변경")
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
   }, [orderSave.EdEL])
   //옵션비용변경
   useEffect(() => {
-    console.log(orderSave.cboMoveOptionVal)
+    //console.log(orderSave.cboMoveOptionVal)
     if(orderSave.cboMoveOptionVal !== undefined){
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
@@ -385,7 +385,7 @@ function Team3_1({match}) {
   useEffect(()=>{
     if(Object.keys(AnData).length !== 0){  
       setInit(AnData);
-      console.log(AnData)
+      //console.log(AnData)
       disaptch(totalDataAnInit());
     }
   },[AnData])
@@ -399,7 +399,7 @@ function Team3_1({match}) {
     })
   },[orderSave.CostMove, orderSave.CostOption, orderSave.MoneyDiscount, orderSave.MoneyPromise])
   const subMit = () =>{
-    console.log({...orderSave,order_info_sn:sn !== undefined ?sn:""})
+    //console.log({...orderSave,order_info_sn:sn !== undefined ?sn:""})
    disaptch(totalMesThunk("save_contract",{...orderSave,order_info_sn:sn !== undefined ?sn:""}));
 
   }

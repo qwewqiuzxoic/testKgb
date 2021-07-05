@@ -14,10 +14,17 @@ const Wrapper = styled.div`
 
 function BoardListWrap8_1({boardCode, onClick}) {
     const dispatch = useDispatch();
-    const list = useSelector(state => state.warningListReducer.list);
+    const list = useSelector(state => boardCode === "1"?state.warningListReducer.list:state.boardReducer.boardList);
+    const loading = useSelector(state => boardCode === "1"?state.warningListReducer.loading:state.boardReducer.loading);
+    const user = JSON.parse(localStorage.getItem('user'));
+
 
     useEffect(() => {
-        dispatch(warningCallList())
+      if(boardCode === "1"){
+        dispatch(warningCallList());
+      } else if( boardCode === "2"){
+        dispatch(getBoardList(user.brand,"상조회",1));
+      }
         return () => {
         }
     }, [])
@@ -35,7 +42,6 @@ function BoardListWrap8_1({boardCode, onClick}) {
   
       if (scrollTop + clientHeight >= scrollHeight) {
         pageCount.current += 1;
-        console.log(pageCount)
         dispatch(warningCallList(pageCount.current))
 
       }
@@ -47,8 +53,8 @@ function BoardListWrap8_1({boardCode, onClick}) {
     }, [])
   return (
     <Wrapper>
-        {list.length ==0? <Loading/>:list.map((post, index)=> (
-            <BoardList8_1 key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index} onClick={()=>onClick(post.board_sn)}/>
+        {loading ? <Loading/>:list.map((post, index)=> (
+            <BoardList8_1 key={index} title={post.title} regdate={post.regdate} board_sn={post.board_sn} index={index} onClick={()=>onClick(post.board_sn)} loginname={post.loginname}/>
         ))}
     </Wrapper>
   );

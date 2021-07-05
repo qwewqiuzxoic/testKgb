@@ -37,7 +37,6 @@ const user = JSON.parse(localStorage.getItem('user'));
         axios.post(url, {
             sn:sn
         }).then(function (res) {
-            console.log(res)
             dispatch(getWarningDetailSuccess(res.data));
         }).catch(function (error) {
             dispatch(getWarningDetailError(error))

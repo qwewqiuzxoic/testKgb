@@ -57,7 +57,7 @@ function AddImgWrap({setChange3}) {
     }
   }
   const subMit = ()=>{
-    console.log(carImg,boxImg,clothImg)
+    //console.log(carImg,boxImg,clothImg)
     if(clothImg[0] !== undefined || carImg[0] !== undefined || boxImg[0] !== undefined){
       dispatch(totalMesThunk("brand_photo_proc",{
         img_car01:carImg[0] === undefined? "" : carImg[0],
@@ -74,7 +74,7 @@ function AddImgWrap({setChange3}) {
     }
   }
   useEffect(()=>{
-    console.log(name)
+    //console.log(name)
   },[name])
   useEffect(() => {
     if(state){

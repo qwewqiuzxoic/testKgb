@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHappyCallDetail, warningCallList } from '../redux/thunkFn/warning.thunk';
 import Loading from '../components/commonStyle/Loading';
+import { getBoardDetail } from '../redux/thunkFn/borad.thunk';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -41,17 +42,21 @@ const InnerCont = styled.div`
 
 function Team8_1({match}) {
     const code = match.params.boardTitle;
-    const [title, subtitle] = code === "1" ?["월 평가(경고현황)","월 평가 목록입니다."]:["상조회","KGB의 상조회입니다"]
+    const [title, subtitle] = code === "1" ?["월 평가(경고현황)","월 평가 목록입니다."]:["상조회","상조회 목록입니다"]
     console.log(code)
     const [ modalOpenDetail, setModalOpenDetail ] = useState(false);
     const [ modalOpenWrite, setModalOpenWrite ] = useState(false);
     
     const dispatch = useDispatch();
-    const {data,loading} = useSelector(state=>state.warningDetailReducer)
+    const {data,loading} = useSelector(state=> code ==="1"?state.warningDetailReducer:state.boardDetailReducer);
 
     const openModalDetail = (sn) => {
         setModalOpenDetail(true);
-        dispatch(getHappyCallDetail(sn));
+        if(code === "1"){
+          dispatch(getHappyCallDetail(sn));
+        } else if(code ==="2"){
+          dispatch(getBoardDetail(sn));
+        }
         document.body.style.overflow = 'hidden';
     }
     const closeModalDetail = () => {
@@ -72,12 +77,12 @@ function Team8_1({match}) {
       <Wrapper>
             <BoardTitle title={title} subtit={subtitle} boardCode={code}/>
             <ContentArea>
-                <BoardListWrap8_1 boardCode={code} onClick={ openModalDetail }/>
+                <BoardListWrap8_1 code={code} boardCode={code} onClick={ openModalDetail }/>
             </ContentArea>
-            {
+            {/* {
               code === "1" ? null:
               <FloatingBtn bg="#009B90" icon="ico_add" onClick={ openModalWrite }/>
-            }
+            } */}
             <Modal open={ modalOpenDetail } close={ closeModalDetail } header="상세내역">
             {loading && <Loading></Loading>}
 

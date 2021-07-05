@@ -44,9 +44,7 @@ export const getBoardTopList = (brandName, boardName, length = 5) => dispatch  =
              if(res.data.list.length === 0){
                 dispatch(boardTopSuccess(res.data.list));
              }
-             console.log(res.data.list);
         }).catch(function (error) {
-            console.log(error);
             dispatch(boardTopError(error))
         })
 
@@ -55,7 +53,6 @@ export const getBoardTopList = (brandName, boardName, length = 5) => dispatch  =
 export const getBoardDetail = (sn) => dispatch => {
     dispatch(boardDetailLoading())
     const url = '/BM/API/board/desc.asp';
-    console.log(url)
 
         axios.post(url, {
             "sn": sn
@@ -63,7 +60,6 @@ export const getBoardDetail = (sn) => dispatch => {
             dispatch(boardDetailSuccess(res.data));
              // response  
         }).catch(function (error) {
-            console.log(error);
             dispatch(boardDetailError(error))
         })
 
@@ -78,7 +74,6 @@ export const postRMDBoard = (data,fn) => dispatch =>{
     dispatch(boardPostLoading());
     const url = '/BM/API/board/board_proc_basic.asp';
     axios.post(url, data).then(function(res){
-        console.log(res)
         dispatch(boardPostSuccess(res.result));
         if(fn !== undefined) fn();
     }).catch(function (error){
@@ -123,7 +118,6 @@ export const getEduBoardList = (brandName,boardName,count, length = 10) => dispa
             "pagesize" : length
         }).then(function (res) {
             if(count === 1){
-                console.log(res.data.list)
                 dispatch(boardSuccess(res.data.list,boardName))
             }else{ 
                 dispatch(boardConcatSuccess(res.data.list,boardName))
@@ -136,7 +130,6 @@ export const getEduBoardList = (brandName,boardName,count, length = 10) => dispa
 export const getEduBoardDetail = (sn) => dispatch => {
     dispatch(boardDetailLoading())
     const url = '/BM/API/edu/pds_common_view.asp';
-    console.log(url)
 
         axios.post(url, {
             "sn": sn
@@ -144,7 +137,7 @@ export const getEduBoardDetail = (sn) => dispatch => {
             dispatch(boardDetailSuccess(res.data));
              // response  
         }).catch(function (error) {
-            console.log(error);
+            //console.log(error);
             dispatch(boardDetailError(error))
         })
 
@@ -165,7 +158,6 @@ export const getEduMovieBoardList = (brandName,boardName,count, length = 10) => 
             "pagesize" : length
         }).then(function (res) {
             if(count === 1){
-                console.log(res.data.list)
                 dispatch(boardSuccess(res.data.list,boardName))
             }else{ 
                 dispatch(boardConcatSuccess(res.data.list,boardName))
@@ -177,14 +169,12 @@ export const getEduMovieBoardList = (brandName,boardName,count, length = 10) => 
 export const getEduMovieBoardDetail = (sn) => dispatch => {
     dispatch(boardDetailLoading())
     const url = '/BM/API/edu/pds_movie_view.asp';
-    console.log(url)
         axios.post(url, {
             "sn": sn
         }).then(function (res) {
             dispatch(boardDetailSuccess(res.data));
              // response  
         }).catch(function (error) {
-            console.log(error);
             dispatch(boardDetailError(error))
         })
 

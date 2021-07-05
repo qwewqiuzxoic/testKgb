@@ -56,7 +56,6 @@ function TopCom({clickMenu, bg}) {
     function handleClick() {
         history.goBack();
       }
-      console.log(urlArr)
     useEffect(() => {
         if(urlArr[1] === "board"){
             if(urlArr[2]==="1"){
@@ -121,7 +120,11 @@ function TopCom({clickMenu, bg}) {
         }else if(urlArr[1] === "Msg"){
             setTitle("쪽지")
         }else if(urlArr[1] === "manage13"){
-            setTitle("교육설문")
+            if(urlArr[2]==="1"){
+                setTitle("교육설문")
+            }else if(urlArr[2] === "2"){
+                setTitle("교육이수")
+            }
         }else if(urlArr[1] === "Manage9_1"){
             setTitle("실시간 화상교육")
         }else if(urlArr[1] === "Manage10_1"){

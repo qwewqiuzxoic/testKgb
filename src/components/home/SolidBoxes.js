@@ -45,7 +45,6 @@ const ImgArea = styled.div`
 `
 function SolidBoxes() {
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log(user.brand_tel)
   const boxes = [
     {
         title : "담당자 연결",
