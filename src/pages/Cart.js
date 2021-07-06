@@ -158,8 +158,7 @@ function Cart() {
         if(list){
             allCheckedHandler(true);
             setChecked(true);
-
-            setTtPirce(parseInt(state.tot_price))
+            setTtPirce(parseInt(state.tot_price));
         }
         return () => {
             
