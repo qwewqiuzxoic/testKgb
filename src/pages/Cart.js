@@ -20,9 +20,6 @@ const ContentArea = styled.div`
 `;
 const BtnArea1 = styled.div`
     ${FlexBox()};
-    >button{
-        width:49%;
-    }
 `;
 const TotalPrice = styled.div`
     margin-top:30px;
