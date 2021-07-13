@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../commonStyle';
 import Loading from '../commonStyle/Loading';
-
+import NoPost from '../commonStyle/NoPost';
 
 const Wrapper = styled.div`
   position:relative;
@@ -38,7 +38,6 @@ function BoardListWrap({boardCode, tabCheck, tab}) {
         setChList(list.filter(item => item.tname !== user.tname))
       } else{
         setChList(list)
-
       }
 
       return () => {
@@ -60,6 +59,7 @@ function BoardListWrap({boardCode, tabCheck, tab}) {
           tname={post.tname}
           />
       ))}
+      {loading ===false && chList.length === 0 && <NoPost></NoPost>}
       {loading ? <Loading/>:null}
 
     </Wrapper>
