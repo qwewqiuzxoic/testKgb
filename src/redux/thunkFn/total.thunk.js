@@ -1,6 +1,6 @@
 import axios from "axios";
 import { UrlBody } from "../../util/UrlBody";
-import { totalAnMesError, totalAnMesLoading, totalAnMesSuccess, totalDataAnError, totalDataAnLoading, totalDataAnSuccess, totalDataError, totalDataLoading, totalDataSuccess, totalListError, totalListLoading, totalListSuccess, totalMesError, totalMesLoading, totalMesSuccess } from "../actionFn/total";
+import { totalAnMesError, totalAnMesLoading, totalAnMesSuccess, totalDataAnError, totalDataAnLoading, totalDataAnSuccess, totalDataError, totalDataLoading, totalDataSuccess, totalListConcatError, totalListConcatLoading, totalListConcatSuccess, totalListError, totalListLoading, totalListSuccess, totalMesError, totalMesLoading, totalMesSuccess } from "../actionFn/total";
 String.prototype.replaceAll = function(org, dest) {
     return this.split(org).join(dest);
 }
@@ -41,6 +41,18 @@ export const totalListThunk= (type,data,fn) => dispatch => {
             dispatch(totalListError(error));
         })
 }
+
+export const totalListConcatThunk = (type,data) => dispatch =>{
+    const {url,body} = UrlBody(type,data);
+    dispatch(totalListConcatLoading());
+    axios.post(url, body).then(function (res) {
+        dispatch(totalListConcatSuccess(res.data));
+    }).catch(function (error) {
+        dispatch(totalListError(error));
+    })
+
+}
+
 
 export const totalDataThunk= (type,data) => dispatch => {
     const {url,body} = UrlBody(type,data);

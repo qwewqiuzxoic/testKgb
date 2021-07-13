@@ -72,8 +72,8 @@ const menuItems = [
             {name: '청구서관리', link:'/Bill'}, 
             {name: '일반자료실', link:'/board/9'}, 
             {name: '자재주문', link:'/ProdLists'}, 
-            {name: '자재주문내역', link:'/ProdOrder'}, 
             {name: '장바구니', link:'/Cart'}, 
+            {name: '자재주문내역', link:'/ProdOrder'}, 
             {name: '홈페이지연결', link:'/'}, 
             {name: '담당자연결', link:'/'}
         ]
@@ -83,16 +83,18 @@ const menuItems = [
 
 
 function Nav({clickMenu}) {
-    //const [isOpen, setOpen] = useState(false);
-    const toggleDropdown = (e) =>{
-        //console.log(e)
+    const [isOpen, setOpen] = useState("");
+
+    const toggleDropdown = (i) =>{
+        setOpen(i)
     }
+    
   return (
     <Wrapper>
         {menuItems.map(function(menuItem, i) {
             if (menuItem.subMenus != undefined) {
                 return (
-                    <DropDown key={i} menuItem={menuItem} clickMenu={clickMenu} i={i}/>
+                    <DropDown key={i} menuItem={menuItem} clickMenu={clickMenu} i={i} total={toggleDropdown} totalV={isOpen}/>
                     // <ul key={i}>
                     //     <Row index={i} onClick={(e) => toggleDropdown(e)}>
                     //         <span>{menuItem.name}</span>

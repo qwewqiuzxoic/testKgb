@@ -123,7 +123,7 @@ function TopCom({clickMenu, bg}) {
             if(urlArr[2]==="1"){
                 setTitle("교육설문")
             }else if(urlArr[2] === "2"){
-                setTitle("교육이수")
+                setTitle("이수대상교육")
             }
         }else if(urlArr[1] === "Manage9_1"){
             setTitle("실시간 화상교육")

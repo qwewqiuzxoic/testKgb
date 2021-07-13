@@ -84,11 +84,14 @@ export const UrlBody = (type, data) => {
                 }
             }
         case "order_list":
+            console.log(data)
             return{
                 url:"/BM/API/seller/get_order_list.asp",
                 body:{
                     "biz_sn":user.biz_sn,
-                    "brand":user.brand
+                    "brand":user.brand,
+                    "page":data.page,
+                    "pagesize":data.pagesize
                 }
             }
         case "set_contract":
@@ -144,6 +147,13 @@ export const UrlBody = (type, data) => {
                     "Ed_Step":  data.EdStep,
                     "cboMoveOptionVal":data.cboMoveOptionVal === undefined ? "" : data.cboMoveOptionVal,
                     "MoveCBM":data.MoveCBM
+                }
+            }
+        case "get_moveday_info":
+            return{
+                url:"/BM/API/seller/get_moveday_info.asp",
+                body:{
+                    moveday:data.moveday
                 }
             }
         case "save_contract":
@@ -384,6 +394,13 @@ export const UrlBody = (type, data) => {
                 body:{
                     "mode":"DP",
                     sn:data.sn
+                }
+            }
+        case "air_clean_list":
+            return{
+                url:"/BM/API/team/air_clean_list.asp",
+                body:{
+                    "brand":user.brand,
                 }
             }
         default: return null;

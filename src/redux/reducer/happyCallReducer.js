@@ -27,6 +27,22 @@ export function happyCallListReducer(state = happyCallInit, action){
                 result:"",
                 list:[]
             }
+        case "HAPPYCALL_LIST_CONCAT_LOADING":
+            return{
+                ...state,
+                loading:true,
+                error:"",
+                result:"",
+                list:state.list
+            }
+        case "HAPPYCALL_LIST_CONCAT_SUCCESS":
+            return{
+                ...state,
+                loading:false,
+                error:action.data,
+                result:"",
+                list:state.list.concat(action.data.list)
+            }
         default: return state;
     }
 }

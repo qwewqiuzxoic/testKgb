@@ -52,8 +52,8 @@ function SnsLinks({name, num, color,user}) {
         if(brand === "KGB포장이사서비스"){
             setUrl(["https://www.facebook.com/Kgb%ED%8F%AC%EC%9E%A5%EC%9D%B4%EC%82%AC-388811408150653/?form=MY01SV&OCID=MY01SV","https://www.instagram.com/kgbstory/?form=MY01SV&OCID=MY01SV"]);
         } else if(brand === "YES2404"){
-            setUrl(["https://www.facebook.com/%EC%98%88%EC%8A%A42404-162594137582358/?form=MY01SV&OCID=MY01SV","https://www.facebook.com/KGByes2424/"]);
-        } else if(brand === "yes2424 "){
+            setUrl(["https://www.facebook.com/%EC%98%88%EC%8A%A42404-162594137582358/?form=MY01SV&OCID=MY01SV","https://www.instagram.com/yes2404story/?form=MY01SV&OCID=MY01SV"]);
+        } else if(brand === "이사이사"){
             setUrl(["https://www.facebook.com/KGByes2424/","https://www.instagram.com/yes2424story/?form=MY01SV&OCID=MY01SV"]);
         } else {
             setUrl(["",""]);

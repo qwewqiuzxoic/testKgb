@@ -1,5 +1,5 @@
 import { totalListInit, totalMesInit } from "../actionFn/total";
-import { totalAnData, totalData } from "../init/init";
+import { totalAnData, totalData, totalList,  } from "../init/init";
 
 export function totalMesReducer(state = totalMesInit,action){
     switch(action.type){
@@ -64,7 +64,8 @@ export function totalAnMesReducer(state = totalMesInit,action){
 }
 
 
-export function totalListReducer(state = totalListInit,action){
+export function totalListReducer(state = totalList,action){
+    console.log(state)
     switch (action.type){
         case "API_LIST_SUCCESS":
             return{
@@ -79,7 +80,6 @@ export function totalListReducer(state = totalListInit,action){
         case "API_LIST_LOADING":
             return{
                 ...state,
-                list:[],
                 loading: true,
                 error:action.data,
                 result:"",
@@ -94,14 +94,34 @@ export function totalListReducer(state = totalListInit,action){
             result:"",
             message:""
         }
+        case "API_LIST_CONCAT_SUCCESS":
+            return{
+                ...state,
+                list:state.list.concat(action.data.list),
+                // list:action.data.list,
+                 loading: false,
+                 error:"",
+                // result:action.data.result,
+                // message:action.data.message
+            }
+        case "API_LIST_CONCAT_LOADING":
+            return{
+                ...state,
+                loading: true,
+                error:action.data,
+                result:"",
+                message:""
+            }
         case "API_LIST_INIT":
-            return totalListInit;
+            return totalList;
         default:
             return{
                 ...state
             }
     }
 }
+
+
 
 
 

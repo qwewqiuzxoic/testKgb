@@ -259,6 +259,7 @@ function Team3_1({match}) {
   }
   //계약종류
   const conOrderSetState = (e) =>{
+    console.log(e.target.value)
     setOrderSave({
       ...orderSave,
       CboOrderStatus:e.target.value
@@ -399,6 +400,17 @@ function Team3_1({match}) {
     })
   },[orderSave.CostMove, orderSave.CostOption, orderSave.MoneyDiscount, orderSave.MoneyPromise])
   const subMit = () =>{
+    console.log(orderSave)
+    console.log(orderSave.CustName)
+    console.log(orderSave.StPhone )
+    console.log( orderSave.CboOrderStatus)
+    console.log(orderSave.EdAddr1)
+    console.log(orderSave)
+    console.log(orderSave)
+
+    if(orderSave.CustName === "" ||orderSave.StPhone === "" || orderSave.CboOrderStatus === "" || orderSave.EdAddr1 === "" || orderSave.EdAddr4 === "" || orderSave.StAddr1 === "" || orderSave.StAddr4 === ""){
+      return;
+    }
     //console.log({...orderSave,order_info_sn:sn !== undefined ?sn:""})
    disaptch(totalMesThunk("save_contract",{...orderSave,order_info_sn:sn !== undefined ?sn:""}));
 
@@ -426,7 +438,7 @@ function Team3_1({match}) {
           </Section>
           <Section open={open}>
             <GroupTitle title="이사정보"/>
-            <OrderDate DayMove={orderSave.DayMove} DayBox={orderSave.DayBox} setOrderChange={setOrderChange}/>
+            <OrderDate DayMove={orderSave.DayMove} DayBox={orderSave.DayBox} DayMoveText={orderSave.CODE_MOVEDAY} DayBoxText={orderSave.CODE_BOXDAY}setOrderChange={setOrderChange}/>
           </Section>
           <Section open={open}>
             <GroupTitle title="정보입력"/>
@@ -440,6 +452,7 @@ function Team3_1({match}) {
               EdAddr3={orderSave.EdAddr3}
               EdAddr4={orderSave.EdAddr4}
               setAddressChange={setAddressChange}
+              setOrderChange={setOrderChange}
               />
           </Section>
           <Section open={open}>

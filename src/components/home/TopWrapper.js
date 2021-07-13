@@ -6,6 +6,7 @@ import { FlexBox, ChangeFont, Gutter } from '../commonStyle';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMainDaySc } from '../../redux/thunkFn/schedule.thunk';
+import { useHistory } from 'react-router-dom';
 
 
 const Wrapper = styled.div`
@@ -151,6 +152,12 @@ function getAfTomorrowdate(){
   return year + "." + month + "." + day;
 }
 function TopWrapper() {
+  const history = useHistory();
+  const user = JSON.parse(localStorage.getItem('user'))  ;
+  if(Object.keys(user).length === 0) {
+    history.push('/login');
+  }
+ 
   const date = getToday();
   const tomm = getTomorrowdate();
   const afTomm = getAfTomorrowdate();
@@ -170,7 +177,6 @@ function TopWrapper() {
     end:'',
   });
   const daySc = useSelector(state=>state.dayScReducer.list);
-  const user = JSON.parse(localStorage.getItem('user'));       
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -180,7 +186,7 @@ function TopWrapper() {
     }
     }, [])
   
-  if(daySc.length == 0){
+  if(daySc && daySc.length === 0){
     return(
     <Wrapper>
      

@@ -122,7 +122,7 @@ function ComplimentBoard() {
             <BoardList />
             </NoticeWrap> */}
             {/* <BoardListWrap/>  */}
-            <BoardListWrap boardCode="2" tabCheck={true} tab={tab}/>
+            <BoardListWrap boardCode={type} tabCheck={true} tab={tab}/>
             </ContentArea>
             
             {/* <FloatingBtn bg="#009B90" icon="ico_add" onClick={ openModal }/> */}

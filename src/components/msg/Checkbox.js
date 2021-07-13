@@ -11,7 +11,7 @@ const Checkbox = ({ isAllChecked, issue, checkedItemHandler, isCircle, index, gb
 
     const checkHandler = ({ target }) => {
         setChecked(!bChecked);
-        checkedItemHandler(issue.gb_idx, target.checked);
+        checkedItemHandler(issue.msg_sn, target.checked);
       };
     
       const allCheckHandler = () => setChecked(isAllChecked);

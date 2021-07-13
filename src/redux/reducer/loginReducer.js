@@ -19,7 +19,8 @@ export default function loginReducer(state = authInit, action) {
             localStorage.setItem('user', JSON.stringify(action.data));
             return{
                 ...state,
-                user:action.data
+                user:action.data,
+                loading:false
             }     
         default: 
             return state;

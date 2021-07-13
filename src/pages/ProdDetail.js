@@ -10,6 +10,7 @@ import { totalListThunk, totalMesThunk } from '../redux/thunkFn/total.thunk';
 import Loading from '../components/commonStyle/Loading';
 import ConfirmModal from '../components/base/ConfirmModal';
 import { totalMesInit } from '../redux/actionFn/total';
+import { useHistory } from 'react-router-dom';
 
 const Wrapper = styled.div`
 `;
@@ -114,7 +115,9 @@ function ProdDetail({match}) {
         }
         dispatch(totalMesThunk("goods_basket_add",data));
     }
-    const confirmSubmit = () =>{
+    let history = useHistory();
+
+    const confirmSubmit1 = () =>{
         dispatch(totalMesInit());
         dispatch(totalListThunk("goos_view",{good_name:name,photo_sn:sn}));
         setTPrice(0);
@@ -124,6 +127,20 @@ function ProdDetail({match}) {
             price:[],
             cnt:[]
         })
+        history.push("/ProdLists");
+    }
+
+    const confirmSubmit2 = () =>{
+        dispatch(totalMesInit());
+        dispatch(totalListThunk("goos_view",{good_name:name,photo_sn:sn}));
+        setTPrice(0);
+        setBasket({
+            gs_idx:[],
+            optionname:[],
+            price:[],
+            cnt:[]
+        })
+        history.push("/Cart");
     }
     useEffect(() => {
         dispatch(totalListThunk("goos_view",{good_name:name,photo_sn:sn}));
@@ -155,7 +172,7 @@ function ProdDetail({match}) {
             </DetailBox>
             {listRes.loading && <Loading></Loading>}
 
-            <ConfirmModal open={mesRes.result !== "success" ? false: true}text={mesRes.message} onsubmit={confirmSubmit}></ConfirmModal>
+            <ConfirmModal open={mesRes.result !== "success" ? false: true}text={mesRes.message} onsubmit1={confirmSubmit1} onsubmit2={confirmSubmit2} twoBtn={true}></ConfirmModal>
 
         </Wrapper>
   );

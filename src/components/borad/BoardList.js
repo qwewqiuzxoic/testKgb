@@ -34,6 +34,14 @@ const Title = styled.div`
     font-size:13px;
   }
 `;
+const NoticeLabel = styled.div`
+  display: ${(props) => props.className === 'important' || props.className === 'notice' ? 'inline-block' : 'none'};
+  font-size: ${(props) => props.theme.fontSizes.s};
+  padding:2px 8px;
+  border: 1px solid #404345;
+  border-radius:20px;
+  margin-right:5px;
+`;
 const PostInfo = styled.div`
   ${FlexBox('left')}
   span{
@@ -62,7 +70,7 @@ function BoardList({index,boardCode, board_sn, cnt, countview, loginname, regdat
     <Wrapper index={index} className={classname && classname}>
         <Title >
           <Link to={`/boarddetail/${board_sn}/${boardCode}`}>
-          <span>{title}</span>
+          <p><NoticeLabel className={classname && classname}>공지</NoticeLabel>{title}</p>
           </Link>
         </Title>
         <PostInfo >

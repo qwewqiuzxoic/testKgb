@@ -1,22 +1,31 @@
 import axios from "axios";
-import { getHappyCallDetailError, getHappyCallDetailLoading, getHappyCallDetailSuccess, getHappyCallError, getHappyCallLoading, getHappyCallSuccess } from "../actionFn/happyCall";
+import { getHappyCallConcatLoading, getHappyCallConcatSuccess, getHappyCallDetailError, getHappyCallDetailLoading, getHappyCallDetailSuccess, getHappyCallError, getHappyCallLoading, getHappyCallSuccess } from "../actionFn/happyCall";
 
 
 
-export const getHappyCallList = (kind,teamType) => dispatch  => {
+export const getHappyCallList = (kind,teamType,pageCount) => dispatch  => {
 const user = JSON.parse(localStorage.getItem('user'));       
-
-    dispatch(getHappyCallLoading())
+    if(pageCount === 1) {
+        dispatch(getHappyCallLoading());
+    }else{
+        dispatch(getHappyCallConcatLoading());
+    }
     const url = kind === "1" ?'/BM/API/team/biz_happycall_list.asp' :'/BM/API/team/biz_nonhappycall_list.asp';
         axios.post(url, {
             biz_sn :user.biz_sn,
             code_brand : user.brand,
-            pagesize : 20,
+            page:pageCount,
+            pagesize : 10,
             tabtype : teamType,
         }).then(function (res) {
-            dispatch(getHappyCallSuccess(res.data));
+            if(pageCount === 1){
+                dispatch(getHappyCallSuccess(res.data));
+            }else{
+                dispatch(getHappyCallConcatSuccess(res.data));
+            }
+
         }).catch(function (error) {
-            dispatch(getHappyCallError(error))
+            dispatch(getHappyCallError(error));
         })
 }
 

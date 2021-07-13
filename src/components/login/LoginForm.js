@@ -3,8 +3,12 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {login} from '../../redux/thunkFn/login.thunk'
+import Modal from '../../components/base/Modal'
 //style관련
 import styled from 'styled-components';
+import Loading from '../commonStyle/Loading';
+import ConfirmModal from '../base/ConfirmModal';
+import { totalMesInit } from '../../redux/actionFn/total';
 
 const Wrapper = styled.div`
     margin: 0 auto;
@@ -121,17 +125,33 @@ function LoginForm({ backLocation }) {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const dispatch = useDispatch();
     const user = useSelector(state=>state.loginReducer.user);
+    const loading = useSelector(state=>state.loginReducer.loading);
     const onSubmit = data => {
         dispatch(login(data.id,data.password));
     }
+    const [sucCheck,setSucCheck] = useState(false);
     useEffect(() => {
         if(user.userid){
             history.push(backlocation);
+        }else if(user.userid === ""){
+            setSucCheck(true);
         }
         return () => {
         }
     }, [user])
 
+    const [ modalOpen, setModalOpen ] = useState(false);
+    const openModal = () => {
+        setModalOpen(true);
+    }
+    const closeModal = () => {
+        setModalOpen(false);
+    }
+
+    const confirmModal = () =>{
+        dispatch(totalMesInit());
+        setSucCheck(false);
+    }
     return (
     <Wrapper>
         <LogoBox>
@@ -141,18 +161,22 @@ function LoginForm({ backLocation }) {
         <FormBox onSubmit={handleSubmit(onSubmit)}>
             <input {...register("id",{required:true})} placeholder="아이디"/>
             {errors.email?.type === 'required' && <MsgError>email을 입력해주세요</MsgError>}
-            <input {...register("password",{required:true})} placeholder="비밀번호"/>
+            <input type="password" {...register("password",{required:true})} placeholder="비밀번호"/>
             {errors.password?.type === 'required' && <MsgError>비밀번호를 입력해주세요</MsgError>}
             <BtnLogin type="submit" value="로그인" />
         </FormBox>
+        {loading && <Loading></Loading>}
+        {<ConfirmModal open={sucCheck} text="로그인정보가 없습니다." onsubmit={confirmModal}></ConfirmModal>}
         <CheckboxContainer>
             <input type="checkbox" id="autoLogin"></input>
             <label htmlFor="autoLogin">자동로그인</label>
         </CheckboxContainer>
         <ContactBtnContainer>
-            <ContactBtn>본사 담당자 연결</ContactBtn>
+            <ContactBtn onClick={openModal}>본사 담당자 연결</ContactBtn>
         </ContactBtnContainer>      
-
+        <Modal open={ modalOpen } close={ closeModal } header="담당자 리스트">
+              번호리스트 
+        </Modal>
     </Wrapper>
   );
 }

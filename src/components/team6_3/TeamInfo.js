@@ -37,33 +37,25 @@ function TeamInfo() {
         <Label htmlFor="gbn">지원구분</Label>
         <Select id="gbn" name="gbn" placeholder="지원구분을 선택해주세요" onChange={e=>setInputValue2(e)}>
         <option value="">지원구분을 선택해주세요</option>
-        <option value="지원구분 1">지원구분 1</option>
-        <option value="지원구분 2">지원구분 2</option>
-        <option value="지원구분 3">지원구분 3</option>
-        <option value="지원구분 4">지원구분 4</option>
-        <option value="지원구분 5">지원구분 5</option>
-        <option value="지원구분 6">지원구분 6</option>
+        <option value="대기">대기</option>
+        <option value="요청">요청</option>
+        
         </Select>
         <Label htmlFor="brand">브랜드</Label>
         <Select id="brand" name="brand" placeholder="브랜드을 선택해주세요" onChange={e=>setInputValue2(e)}>
         <option value="">브랜드을 선택해주세요</option>
-        <option value="브랜드 1">브랜드 1</option>
-        <option value="브랜드 2">브랜드 2</option>
-        <option value="브랜드 3">브랜드 3</option>
-        <option value="브랜드 4">브랜드 4</option>
-        <option value="브랜드 5">브랜드 5</option>
-        <option value="브랜드 6">브랜드 6</option>
+        <option value="KGB이사">KGB이사</option>
+        <option value="YES2404">YES2404</option>
+        <option value="이사이사">이사이사</option>
+        <option value="용달캡">용달캡</option>
         </Select>
         <InputGroup id="manName" title="지원자" value={data.manName} setInputValue2={setInputValue2}/>
         <Label htmlFor="code_ton">차량</Label>
         <Select id="code_ton" name="code_ton" placeholder="차량을 선택해주세요" onChange={e=>setInputValue2(e)}>
         <option value="">차량을 선택해주세요</option>
-        <option value="차량 1">차량 1</option>
-        <option value="차량 2">차량 2</option>
-        <option value="차량 3">차량 3</option>
-        <option value="차량 4">차량 4</option>
-        <option value="차량 5">차량 5</option>
-        <option value="차량 6">차량 6</option>
+        <option value="1톤">1톤</option>
+        <option value="2.5톤">2.5톤</option>
+        <option value="5톤">5톤</option>
         </Select>
         <InputGroup id="personNum" title="인원" value={data.personNum} setInputValue2={setInputValue2}/>
         <InputGroup id="phone" title="핸드폰 번호" value={data.phone} setInputValue2={setInputValue2}/>

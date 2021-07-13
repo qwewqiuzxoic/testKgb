@@ -10,11 +10,13 @@ import { getAsDetail } from '../redux/thunkFn/as.thunk';
 import Loading from '../components/commonStyle/Loading';
 import Modal from '../components/base/Modal';
 import InputGroup from '../components/commonStyle/InputGroup';
+import Row from '../components/bill/Row';
 import { boardPostInput } from '../redux/actionFn/board';
 import TextAreaGroup from '../components/commonStyle/TextAreaGroup';
 import { Link, useHistory } from 'react-router-dom';
 import { totalMesThunk } from '../redux/thunkFn/total.thunk';
 import ConfirmModal from '../components/base/ConfirmModal';
+import { totalMesInit } from '../redux/actionFn/total';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -67,6 +69,9 @@ const Desc = styled.div`
     margin-bottom:10px;
   }
 `;
+const Process = styled.div`
+  margin-top : 30px;
+`
 const ButtonArea = styled.div`
   ${FlexBox()}
   margin:30px 0;
@@ -91,6 +96,8 @@ function BoardDetail({match}) {
   const loading1 = useSelector(state => state.boardDetailReducer.loading);
   const loading2 = useSelector(state => state.getAsDetailReducer.loading);
   const loading = type === "asy" ? loading2:loading1;
+
+  const {result} = useSelector(state => state.totalMesReducer);
 
   const data = useSelector(state => state.getAsDetailReducer);
 
@@ -167,11 +174,17 @@ function BoardDetail({match}) {
   }
   const toBack = ()=>{
     history.goBack();
+    
   }
 
   const [delCheck,setDelCheck] = useState(false);
+  const [delPassCheck,setDelPassCheck] = useState(false);
   const delCheckFn = () =>{
-    setDelCheck(true);
+    if(inputValue === boardDetail.passwd){
+      setDelCheck(true);
+    } else{
+      setDelCheck(false);
+    }
     //dispatch(totalMesThunk("del_board_proc_basic",{sn:sn}))
   }
   const delSn = ()=>{
@@ -179,6 +192,18 @@ function BoardDetail({match}) {
     dispatch(totalMesThunk("del_board_proc_basic",{sn:sn}));
     toBack();
   }
+  const checkDelPass = () =>{
+    setDelPassCheck(true)
+  }
+  const checkDelPassClose = () =>{
+    setDelPassCheck(false)
+  }
+  useEffect(() => {
+    dispatch(totalMesInit())
+    return () => {
+      
+    }
+  }, [])
 return(
   <Wrapper>
           {
@@ -202,23 +227,25 @@ return(
                 </InnerCont>
                 <InnerCont dangerouslySetInnerHTML={ {__html: boardDetail.content} }>
                 </InnerCont>
-                {
-                  boardDetail.asresult && <div>진행상황 {boardDetail.asresult}</div>
-                }
               </Desc>
+              <Process>
+                {
+                  boardDetail.asresult && <Row dt="진행상황" dtColor="#ACB6BC" dd={boardDetail.asresult} ddColor="#3397B9" ddWeight="bold"></Row>
+                }
+                </Process>
               </ContentBox>
               <ButtonArea>
                 {
                   type !== "1" && type !== "4"?null:<Button onclick={openModal} bg="#DFE5EA" color="#ACB6BC" text="수정" w="24%" h="44px" fs="12px"></Button>
                 }
                 {
-                  type !== "1" && type !== "4"?null:<Button onclick={delCheckFn} bg="#DFE5EA" color="#ACB6BC" text="삭제" w="24%" h="44px" fs="12px"></Button>
+                  type !== "1" && type !== "4"?null:<Button onclick={()=>checkDelPass()} bg="#DFE5EA" color="#ACB6BC" text="삭제" w="24%" h="44px" fs="12px"></Button>
                 }
                 
-                <Button onclick={toBack} bg="#3397B9" color="#ffffff" text="목록" w="49%" h="44px" fs="12px"></Button>
+                <Button onclick={toBack} bg="#3397B9" color="#ffffff" text="목록" w={type !== "1" && type !== "4"? "100%" : "49%"} h="44px" fs="12px"></Button>
               </ButtonArea>
           </ContentArea>
-          <CommentBox list={boardDetail.list} sn={sn} type={type} commentlist={boardDetail.list}></CommentBox>
+          <CommentBox list={boardDetail.list} sn={sn} tname={boardDetail.tname} type={type} commentlist={boardDetail.list}></CommentBox>
           <Modal open={ modalOpen } close={ closeModal } header="비밀번호 확인" >
               <InputGroup id="title" title="비밀번호" ph="제목을 입력해주세요"  value={inputValue}setInputValue={setInputValue}/>
               <Button onclick={confirmPass} bg="#3397B9" color="#ffffff" text="확인" height="44px" fontSize="12px" mgt="30px"></Button>       
@@ -232,6 +259,10 @@ return(
             </Modal>    
             </div>
           }
+          <Modal open={ delPassCheck } close={ checkDelPassClose } header="비밀번호 확인" >
+              <InputGroup id="title" title="비밀번호" ph="제목을 입력해주세요"  value={inputValue}setInputValue={setInputValue}/>
+              <Button onclick={delCheckFn} bg="#3397B9" color="#ffffff" text="확인" height="44px" fontSize="12px" mgt="30px"></Button>       
+            </Modal>
           <ConfirmModal open={delCheck} text="정말로 삭제하시겠습니까?" onsubmit={delSn}></ConfirmModal>
           
       </Wrapper>

@@ -10,7 +10,6 @@ const Wrapper = styled.div`
     box-shadow: 4px 4px 5px #33333314;
     align-items:center;
     ${FlexBox()};
-    cursor:pointer;
 `;
 const Layout = styled.div`
 
@@ -36,6 +35,8 @@ function EduBox(props) {
     <Wrapper>
       <Layout>
         <Title>{props.title}</Title>
+        {props.time && props.page === "2" && <Date>진도율 : {props.time} %</Date>}
+        {props.time === "" && props.page === "2" && <Date>진도율 : 0 %</Date>}
         <Date>{props.date}</Date>
         <Date>{props.date2 !== undefined ?  "~"+props.date2:"" }</Date>
       </Layout>

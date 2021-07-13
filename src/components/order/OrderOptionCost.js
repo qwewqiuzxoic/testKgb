@@ -54,11 +54,17 @@ const costOptions=[
   {value : "옵션5" , id: "costOption5", name:"costOption"},
   {value : "옵션6" , id: "costOption6", name:"costOption"},
 ]
-String.prototype.replaceAll = function(org, dest) {
-  return this.split(org).join(dest);
-}
+
 function OrderOptionCost({AddOptmoneyStr,addOptionPrice}) {
-  const addOptmoneyStr = AddOptmoneyStr ? AddOptmoneyStr.replaceAll(/[0-9]/g, "").replaceAll("|",",").replaceAll("-","").split(",") : [];
+  String.prototype.replaceAll = function(org, dest) {
+    return this.split(org).join(dest);
+  }
+  Array.prototype.replaceAllAr = function(org,dest){
+    return this.map(item=>{
+      return item.split(org)[0]
+    })
+  }
+  const addOptmoneyStr = AddOptmoneyStr ? AddOptmoneyStr.replaceAll("|",",").split(",").replaceAllAr("-")  : [];
   const [checkedInputs, setCheckedInputs] = useState([]);
 
   //const [selectedValue,setSelectedValue]= useState("작업정보옵션을 선택해주세요");
@@ -86,19 +92,13 @@ function OrderOptionCost({AddOptmoneyStr,addOptionPrice}) {
     }
   }, [dispatch])
   useEffect(() => {
-    if(!loading && checkedInputs === []){
+    if(checkedInputs.length === 0){
+      
       setCheckedInputs(addOptmoneyStr);
     }
-    return () => {
-    }
-  }, [state])
-  useEffect(() => {
-    addOptionPrice(checkedInputs);
-
-    return () => {
-      
-    }
-  }, [checkedInputs])
+    
+  }, [addOptmoneyStr])
+ 
   return (
     <Wrapper>
       <Select onClick={handleClick} toggle={toggle}>

@@ -1,4 +1,4 @@
-import React, {useState}  from 'react';
+import React, {useRef, useState}  from 'react';
 import H1 from '../components/commonStyle/H1'
 import Button from '../components/commonStyle/Button'
 import FloatingBtn from '../components/commonStyle/FloatingBtn'
@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { FlexBox, Gutter, ChangeFont } from '../components/commonStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { totalListThunk } from '../redux/thunkFn/total.thunk';
+import { totalListConcatThunk, totalListThunk } from '../redux/thunkFn/total.thunk';
 import Loading from '../components/commonStyle/Loading';
 import { Link } from 'react-router-dom';
 
@@ -105,10 +105,34 @@ function Team2_1() {
     const dispatch = useDispatch();
     const data = useSelector(state =>state.totalListReducer);
     const {list,loading} = data;
+    const pageCount = useRef(1);
+
     useEffect(() => {
-        dispatch(totalListThunk("order_list",{}));
+        dispatch(totalListThunk("order_list",{page:pageCount,pagesize:10}));
         return () => {
         }
+    }, [])
+
+    const infiniteScroll = () => {
+        let scrollHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.body.scrollHeight
+        );
+        let scrollTop = Math.max(
+          document.documentElement.scrollTop,
+          document.body.scrollTop
+        );
+        let clientHeight = document.documentElement.clientHeight;
+    
+        if (scrollTop + clientHeight >= scrollHeight) {
+          pageCount.current += 1;
+          dispatch(totalListConcatThunk("order_list",{page:pageCount,pagesize:10}));
+        }
+      };
+    useEffect(() => {
+        window.addEventListener('scroll',infiniteScroll);
+  
+        return () => window.removeEventListener('scroll', infiniteScroll)
     }, [])
 
   return (

@@ -22,11 +22,12 @@ const ImgWrap = styled.div`
 `;
 const TextWrap = styled.div`
   font-size: 13px;
-  padding:4px 0 0 4px;
+  padding:4px 0 24px 4px;
   cursor:pointer;
 `;
 const Name = styled.div`
   cursor:pointer;
+  text-align: center;
 `;
 
 

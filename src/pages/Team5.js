@@ -61,7 +61,7 @@ const LeftTitle = styled.div`
 `;
 const user = JSON.parse(localStorage.getItem('user'));       
 
-function Board({match}) {
+function Team5({match}) {
     const {result,message} =  useSelector(state => state.totalMesReducer);
 
     const [uploadImg, setUploadImg] = useState({
@@ -119,7 +119,7 @@ function Board({match}) {
     
   return (
       <Wrapper>
-            <Head title="팀 단체사진" subtit="KGB의 우리팀톡톡입니다" pb="90px"/>
+            <Head title="팀 단체사진" subtit="팀 단체사진입니다" pb="90px"/>
             <ContentArea>
                 <ImgBox>
                 {uploadImg.file ? profile_preview : "첨부파일을 등록해주세요"}         
@@ -145,4 +145,4 @@ function Board({match}) {
   );
 }
 
-export default Board;
+export default Team5;

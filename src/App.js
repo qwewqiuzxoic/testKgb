@@ -4,7 +4,8 @@ import {
   Switch,
   Route,
   Link,
-  useHistory
+  useHistory,
+  Redirect
 } from "react-router-dom";
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -41,6 +42,7 @@ import ProdDetail from "./pages/ProdDetail";
 import Cart from "./pages/Cart";
 import ProdOrder from "./pages/ProdOrder";
 import ComplimentBoard from "./pages/ComplimentBoard";
+import Privacy from "./pages/Privacy";
 
 import {signIn} from './deletData/Auth'
 import PrivateRoute from './util/PrivateRoute'
@@ -153,7 +155,10 @@ function App() {
                 <PrivateRoute path="/Cart" component={Cart}/>
                 <PrivateRoute path="/ProdDetail/:sn/:goods/:price" component={ProdDetail}/>
                 <PrivateRoute path="/ProdOrder" component={ProdOrder}/>
+                <PrivateRoute path="/Privacy" component={Privacy}/>
+                <PrivateRoute path="/:id" component={Home} />
                 <PrivateRoute path="/" component={Home}/>
+                <PrivateRoute path="" component={Home}/>
               </Switch>
             :null}
         </div>

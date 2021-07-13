@@ -5,6 +5,8 @@ import CallBox from './CallBox.js';
 import SnsLinks from './SnsLinks.js';
 import { Gutter, FlexBox } from '../commonStyle';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const Wrapper = styled.div`
     top:0;
@@ -53,9 +55,31 @@ const SnsArea = styled.div`
     margin-top:45px;
     ${Gutter()}
 `
+const LinkArea = styled.div`
+    margin-top:45px;
+    ${Gutter()};
+    text-align:center;
+`
 
 function Menu({clickMenu}) {
-  const user = JSON.parse(localStorage.getItem('user'))  ;
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user)
+  const [text,setText] = useState('');
+  useEffect(() => {
+    if(user.brand ==="YES2404"){
+      setText("YES2404");
+    }else if( user.brand === "이사이사"){
+      setText("YES2424");
+    }else if( user.brand === "KGB포장이사서비스"){
+      setText("KGB포장이사");
+    }else if( user.brand === "용달캡"){
+      setText("Ycap");
+    }else if( user.brand === "협력업체"){
+      setText("YES2404");
+    }else if( user.brand === "본사담당자"){
+      setText("");
+    }
+  }, [])
 
   return (
     <Wrapper>
@@ -71,12 +95,15 @@ function Menu({clickMenu}) {
       </TopBox>
       <Nav clickMenu={clickMenu}></Nav>
       <BottomBox>
-          <CallBox name ="KGB포장이사 담당자" num={user.brand_tel} color="#009B90"/>
+          <CallBox name ={`${text} 담당자`} num={user.brand_tel} color="#009B90"/>
           <CallBox name ="자재 담당자" num={user.goods_tel} color="#3397B9"/>
       </BottomBox>
       <SnsArea>
             <SnsLinks user={user}/>
       </SnsArea>
+      <LinkArea>
+        <Link to="/Privacy" onClick={()=>{clickMenu()}}>개인정보처리방침</Link>
+      </LinkArea>
     </Wrapper>
   );
 }

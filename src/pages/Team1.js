@@ -146,6 +146,10 @@ function Team1({match}) {
   const changeMonth = (v,e) =>{
     dispatch(getMonthSc(getYear2(v),getMonth2(v),page));
   }
+  const formatDate = (date) =>{
+    date = moment(date).format('DD');
+    return date;
+  }
   useEffect(() => {
     dispatch(getMonthSc(year,month,page));
     dispatch(getDaySc(tday,page));
@@ -158,7 +162,7 @@ function Team1({match}) {
       <Wrapper>
         <TopBg>
             <H1 title={ page === "1" ? "작업일정 (월별)" : "교육일정/신청" } subtit=""></H1>
-            <Calendar tileContent={checkDay} value={dateState} data="aa" onClickMonth={(value,event)=>changeMonth(value,event)} onChange={changeDate} calendarType="US" locale="EN"/>
+            <Calendar tileContent={checkDay} value={dateState} data="aa" onClickMonth={(value,event)=>changeMonth(value,event)} onChange={changeDate} calendarType="US" locale="ko" formatDay={(locale, date) => formatDate(date)}/>
         </TopBg>
         <Labels isTaskPage={ page === "1" ? true : false }></Labels>
         <ScheduleBox>

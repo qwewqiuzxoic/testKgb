@@ -32,6 +32,7 @@ export const getMsgSendList= () => dispatch => {
 
 export const postMsgDel= (list, kind) => dispatch => {
     dispatch(getMsgDelLoading());
+    console.log(list)
     const url = kind === 1 ?'/BM/API/board/msg_send_del.asp':'/BM/API/board/msg_rcv_del.asp';
         axios.post(url, {
             "del_msg_sn": list

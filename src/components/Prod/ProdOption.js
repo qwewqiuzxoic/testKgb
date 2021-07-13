@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 
 `;
 const Name = styled.div`
-
+    font-size:${(props)=>props.theme.fontSizes.l};
 `;
 const Layout = styled.div`
     ${FlexBox()};
@@ -68,7 +68,7 @@ function Products({name, option,price,tPrice,setTPrice,index,FnSetBasket}) {
 
   return (
       <Wrapper>
-        <Name>{ name } / { option }/{price}</Name>
+        <Name>{ name }</Name>
         <Layout>
             <Qt>
                 <BtnQ onClick={decreaseNumber} isPlus={false}/>

@@ -44,10 +44,11 @@ const Contents = styled.div`
     white-space: pre-wrap;
 `
 const BtnArea = styled.div`
+    ${FlexBox()};
     margin-top: -16px;
 `
 
-const ConfirmModal = ( {open, text, onsubmit} ) => {
+const ConfirmModal = ( {open, text, onsubmit, twoBtn, onsubmit1, onsubmit2} ) => {
     return (
         <Wrapper className={ open ? 'openModal modal' : 'modal' }>
             { open ? (
@@ -58,7 +59,14 @@ const ConfirmModal = ( {open, text, onsubmit} ) => {
                     </Header>
                     
                     <BtnArea>
-                        <Button onclick={onsubmit} bg="#3397B9" color="#ffffff" text="확인" height="44px" fontSize="12px" mgt="30px"></Button>  
+                        {twoBtn ?
+                         <>
+                             <Button onclick={onsubmit1} bg="#DFE5EA" color="#404345" text="자재주문 목록" w="49%" h="44px" fs="12px" mgt="30px"></Button>
+                             <Button onclick={onsubmit2} bg="#3397B9" color="#ffffff" text="장바구니 가기" w="49%" h="44px" fs="12px" mgt="30px"></Button>
+                        </>
+                        :
+                        <Button onclick={onsubmit} bg="#3397B9" color="#ffffff" text="확인" height="44px" fontSize="12px" mgt="30px"></Button>
+                        }
                     </BtnArea>   
                 </Section>
                 </>

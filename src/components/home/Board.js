@@ -43,7 +43,7 @@ function Board() {
         <BoardTitArea name="공지사항" rightText="더보기 +" lineColor="linear-gradient(90deg, #009B90 0%, #27C281 100%) 0% 0% " bgColor="#DFE5EA" color="#404345" rightColor="#404345"></BoardTitArea>
        {}
         <div>
-          {boardList.length == 0 ? "LOADING": boardList.map((post, index)=> (
+          {boardList && boardList.map((post, index)=> (
             <Post key={index} title={post.title}  desc={post.desc} >
                 <Title>
                   <Link to={`boarddetail/5/${post.board_sn}`}>

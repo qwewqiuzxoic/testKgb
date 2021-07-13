@@ -20,19 +20,18 @@ function Customer({CustName,MoveType ,StPhone, mobile, setOrderChange}) {
   return (
     <div>
       <ContentArea>
-          <InputGroup id="CustName" name="CustName" setInputValue2={setOrderChange} title="고객명" value={CustName}/>
-          <InputGroup id="StPhone" name="StPhone" setInputValue2={setOrderChange}title="대표전화 (SMS)" value={StPhone}/>
+          <InputGroup id="CustName" name="CustName" setInputValue2={setOrderChange} title="고객명(필수)" value={CustName}/>
+          <InputGroup id="StPhone" name="StPhone" setInputValue2={setOrderChange}title="대표전화 (SMS) (필수)" value={StPhone}/>
           <InputGroup id="mobile" title="mobile" name="mobile" setInputValue2={setOrderChange} value={mobile}/>
       </ContentArea>
       <Label htmlFor="select_m_type">이사형태</Label>
-      <Select id="MoveType" name="이사형태" name="MoveType" placeholder={MoveType} value={MoveType}>
+      <Select id="MoveType" name="이사형태" name="MoveType" placeholder={MoveType} value={MoveType} onChange={(e)=>{setOrderChange(e)}}>
         <option value="일반">{MoveType}</option>
-        <option value="형태 1">형태 1</option>
-        <option value="형태 2">형태 2</option>
-        <option value="형태 3">형태 3</option>
-        <option value="형태 4">형태 4</option>
-        <option value="형태 5">형태 5</option>
-        <option value="형태 6">형태 6</option>
+        <option value="가정이사">가정이사</option>
+        <option value="사무실이사">사무실이사</option>
+        <option value="보관이사">보관이사</option>
+        <option value="해외이사">해외이사</option>
+        <option value="원룸이사">원룸이사</option>
       </Select>
     </div>
   );

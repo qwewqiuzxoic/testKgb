@@ -30,6 +30,10 @@ const BlueBtn = styled.div`
     ${FlexBox('center')};
     align-items: center;
     color:#ffffff;
+    img{
+        width:21px;
+        height:21px;
+    }
 `;
 function Manage13({match}) {
     const page = match.params.page;
@@ -48,8 +52,8 @@ function Manage13({match}) {
             })
         } else if ( page === "2"){
             setTitle({
-                title:"교육이수",
-                subtitle:"KGB의 교육이수입니다"       
+                title:"이수대상교육",
+                subtitle:"KGB의 이수대상교육입니다"       
             })
         }
         dispatch(getEduSurveyList(page));
@@ -64,18 +68,18 @@ function Manage13({match}) {
             <ContentArea>
                 {
                     list && list.map((item,index) => 
-                    <EduBox title={item.title} date={item.edu_date}>
-                        {item.edu_time}
+                    <EduBox page={page} title={item.title} date={item.edu_date} time={item.proc}>
+                        {/* {item.edu_time} */}
                         {/* {item.proc} */}
                         {/* {item.board_sn} */}
                         {/* {item.url ? item.url:item.movie} */}
-                        {item.proc === "Y" ? <BlueBtn>설문</BlueBtn> :( item.proc === "N" || item.proc === "")  && !item.movie ?<BlueBtn>설문 종료</BlueBtn> : item.movie && item.proc === "" ?
+                        {item.proc === "Y" ? <a href={item.url} target="_blank"><BlueBtn>설문</BlueBtn></a> :( item.proc === "N" || item.proc === "")  && !item.movie ?<BlueBtn>설문 종료</BlueBtn> : item.movie && item.proc === "" ?
                         <a target="_blank" href={item.movie}>
-                        <BlueBtn>0</BlueBtn>
+                        <BlueBtn><img src={process.env.PUBLIC_URL + '/images/ico_video.png'} alt="교육수강아이콘"/></BlueBtn>
                         </a>
                         :
                         <a target="_blank" href={item.movie}>
-                        <BlueBtn>{item.proc}</BlueBtn>
+                        <BlueBtn><img src={process.env.PUBLIC_URL + '/images/ico_video.png'} alt="교육수강아이콘"/></BlueBtn>
                         </a>
                         }
                     </EduBox>

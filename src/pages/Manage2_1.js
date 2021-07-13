@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getHappyCallList } from '../redux/thunkFn/happyCall.thunk';
 import { Link } from 'react-router-dom';
 import Loading from '../components/commonStyle/Loading';
+import { useRef } from 'react';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -70,17 +71,42 @@ function Manage2_1({match}) {
   const page = match.params.page;
   const [title,subtit] =  page === "1" ? ["계약 해피콜","KGB의 계약 해피콜입니다"] : ["미계약 해피콜","KGB의 미계약 해피콜입니다"];
   const [tab,setTab]= useState(0);
+  const pageCount = useRef(1);
   const teamChange = (num,team) => {
-    setTab(num)
-    dispatch(getHappyCallList(page,team))
+    pageCount.current = 1;
+    setTab(num);
+    dispatch(getHappyCallList(page,team,1));
   }
   const dispatch = useDispatch();
   const {list,loading} = useSelector(state => state.happyCallListReducer);
     useEffect(() => {
-        dispatch(getHappyCallList(page,"Y"));
+        dispatch(getHappyCallList(page,"Y",1));
         return () => {
         }
     }, [])
+
+    const infiniteScroll = () => {
+      let scrollHeight = Math.max(
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight
+      );
+      let scrollTop = Math.max(
+        document.documentElement.scrollTop,
+        document.body.scrollTop
+      );
+      let clientHeight = document.documentElement.clientHeight;
+  
+      if (scrollTop + clientHeight >= scrollHeight) {
+        pageCount.current += 1;
+        dispatch(getHappyCallList(page,tab === "0" ? "Y":"N",pageCount));
+
+      }
+    };
+  useEffect(() => {
+      window.addEventListener('scroll',infiniteScroll);
+
+      return () => window.removeEventListener('scroll', infiniteScroll)
+  }, [])
   return (
     <>
       <Wrapper>
@@ -94,7 +120,7 @@ function Manage2_1({match}) {
             loading && <Loading></Loading>
           }
             {/* <Search id="search1" ph="이사일/입력일 기준으로 월별검색해주세요"/> */}
-            {list.map((item, index)=> (
+            {list && list.map((item, index)=> (
                 <Link to={`/Manage2_2/${page}/${item.sn}`}>
                 <Box key={index}>
                     <Row>
@@ -108,9 +134,13 @@ function Manage2_1({match}) {
                         <Dt>입력날짜</Dt>
                         <Dd>{item.regdate}</Dd>
                     </Row>
+                    {
+                    page !== "2"  && 
                     <Row>
                         <Score score={item.point}></Score>
                     </Row>
+                    }
+                    
                 </Box>
                 </Link>
             ))}

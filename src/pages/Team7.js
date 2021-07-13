@@ -122,16 +122,18 @@ function Team7() {
       <Wrapper>
         <Head title="긴급연락망" subtit="KGB의 긴급연락망입니다" pb="90px"/>
         <Tabs>
-          <TabName className={tab === "YCAP" ? "selected": ""} onClick={()=>tabChange(0,"YCAP")}>YCAP</TabName>
-          <TabName className={tab === "KGB이사" ? "selected": ""} onClick={()=>tabChange(1,"KGB이사")}>KGB이사</TabName>
-          <TabName className={tab === "YES2404" ? "selected": ""} onClick={()=>tabChange(2,"YES2404")}>YES2404</TabName>
-          <TabName className={tab === "YES24041" ? "selected": ""} onClick={()=>tabChange(3,"YES24041")}>YES2404</TabName>
+        <TabName className={tab === "KGB이사" ? "selected": ""} onClick={()=>tabChange(1,"KGB이사")}>KGB이사</TabName>
+        <TabName className={tab === "YES2404" ? "selected": ""} onClick={()=>tabChange(2,"YES2404")}>YES2404</TabName>
+        <TabName className={tab === "YES2424" ? "selected": ""} onClick={()=>tabChange(3,"YES2424")}>YES2424</TabName>
+        <TabName className={tab === "YCAP" ? "selected": ""} onClick={()=>tabChange(0,"YCAP")}>YCAP</TabName>
+          
+          
         </Tabs>
         <ContentArea>
           <TableTitle title="가맹차주 (서울)" color = "#009B90"/>
           <Table>
             <TableHead>
-              <div>번호</div>
+              <div>팀명</div>
               <div>이름</div>
               <div className="tel">전화번호</div>
             </TableHead>
@@ -140,7 +142,7 @@ function Team7() {
                 list && list.filter(itme=>
                     itme.code_areaname === "서울"
                   ).map((item,index)=>
-                  <Row region={item.code_areaname} agent={item.code_area} head={item.chk_head} name={item.manname} call={item.tel}></Row>
+                  <Row region={item.code_areaname} agent={item.code_area} head={item.chk_head} name={item.manname} call={item.tel} num={item.teamname}></Row>
                 )
               }
             </TableBody>
@@ -148,7 +150,7 @@ function Team7() {
           <TableTitle title="가맹차주 (경인)" color = "#009B90"/>
           <Table>
             <TableHead>
-              <div>번호</div>
+              <div>팀명</div>
               <div>이름</div>
               <div className="tel">전화번호</div>
             </TableHead>
@@ -157,7 +159,7 @@ function Team7() {
                 list && list.filter(itme=>
                     itme.code_areaname === "경인"
                   ).map((item,index)=>
-                  <Row region={item.code_areaname} agent={item.code_area} head={item.chk_head} name={item.manname} call={item.tel}></Row>
+                  <Row region={item.code_areaname} agent={item.code_area} head={item.chk_head} name={item.manname} call={item.tel} num={item.teamname}></Row>
                 )
               }
             </TableBody>
@@ -165,7 +167,7 @@ function Team7() {
           <TableTitle title="가맹차주 (그외)" color = "#009B90"/>
           <Table>
             <TableHead>
-              <div>번호</div>
+              <div>팀명</div>
               <div>이름</div>
               <div className="tel">전화번호</div>
             </TableHead>
@@ -174,7 +176,7 @@ function Team7() {
                 list && list.filter(itme=>
                     itme.code_areaname !== "경인" && itme.code_areaname !== "서울"
                   ).map((item,index)=>
-                  <Row region={item.code_areaname} agent={item.code_area} head={item.chk_head} name={item.manname} call={item.tel}></Row>
+                  <Row region={item.code_areaname} agent={item.code_area} head={item.chk_head} name={item.manname} call={item.tel} num={item.teamname}></Row>
                 )
               }
             </TableBody>

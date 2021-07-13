@@ -42,7 +42,7 @@ function Team6_3() {
   const dispatch = useDispatch();
   const history = useHistory();
   const {data,result} =  useSelector(state =>state.workingDayFormReducer);
-
+  const [checkEm,setCheckEm] = useState(false);
   const isEmptyObject = (obj) =>{
     const objKey = Object.keys(obj);
     const val = objKey.filter(key =>{
@@ -54,6 +54,7 @@ function Team6_3() {
     const postData = data;
     const len =  isEmptyObject(data).length;
     if(len>0){
+      setCheckEm(true);
       return false;
     }
     dispatch(postWorkingDayForm(postData))
@@ -84,6 +85,7 @@ function Team6_3() {
           </Section>
           <Section>
             <Button bg="#3397B9" color="#ffffff" onclick={onSubmit} text="저장" height="44px" fontSize="12px" mgt="40px"/>
+            {checkEm && <span style={{color:"red"}}>모든 빈칸을 채워주세요</span>}
           </Section>
       </Wrapper>
     </>

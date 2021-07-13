@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   padding:0 12px 30px;
   padding-top:5px;
 `;
-function CommentBox({title, subtit, showCheck, commentlist,sn,type, list}) {
+function CommentBox({title, subtit, showCheck, commentlist,sn,type, list, tname}) {
   const [text,setText] = useState("");
   const dispatch = useDispatch();
   const {result,message,loading} = useSelector(state => state.postAsCommentReducer)
@@ -37,7 +37,8 @@ function CommentBox({title, subtit, showCheck, commentlist,sn,type, list}) {
     }
 
   }
- 
+  const user = JSON.parse(localStorage.getItem('user'))  ;       
+
   const confirmSubmit = () =>{
     if(type === "asy"){
       dispatch(getAsDetail(sn));
@@ -52,13 +53,17 @@ function CommentBox({title, subtit, showCheck, commentlist,sn,type, list}) {
 
   return (
     <Wrapper>
-      <div>
         {/* {type} <br></br>
         {sn} */}
-         <GroupTitle title="댓글작성" />
-         <InputGroup id="comment" title="" ph="댓글 내용을 입력해주세요"setInputValue={setText} value={text}/>
-         <Button onclick={commentSubmit}bg="#404345" color="#ffffff" text="댓글 저장하기" height="44px" fontSize="12px" mgt="10px"/>
-       </div>
+        {type === "3"? null:type === "2" && tname !== user.teamname?null:
+        <div>
+          <GroupTitle title="댓글작성" />
+          <InputGroup id="comment" title="" ph="댓글 내용을 입력해주세요"setInputValue={setText} value={text}/>
+          <Button onclick={commentSubmit}bg="#404345" color="#ffffff" text="댓글 저장하기" height="44px" fontSize="12px" mgt="10px"/>
+        </div>
+        }
+      
+         
        {/* {showCheck &&
        
        } */}

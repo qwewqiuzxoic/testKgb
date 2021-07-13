@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPhoneList } from '../redux/thunkFn/phoneList.thunk';
+import { totalListThunk } from '../redux/thunkFn/total.thunk';
 
 
 const Wrapper = styled.div`
@@ -73,10 +74,11 @@ const TableBody = styled.div`
 `;
 
 const data = [];
-const Row = ({region,agent, name, call,head}) => (
+const Row = ({region,agent, name, call,head,teamname}) => (
   <TableRow className="row">
     <div>{region}</div>
     <div>{agent}</div>
+    <div>{teamname}</div>
     <div>{name}{head === "Y"?"(권역장)":null}</div>
     <div className="tel"><a href={`tel:${call}`}>{call}</a></div>  
   </TableRow>
@@ -86,11 +88,11 @@ function Team10() {
   const [tableData, setTableData] = useState(data);
   const rows = tableData.map( (rowData) => <Row {...rowData} />);
   const dispatch = useDispatch();
-  const list = useSelector(state=>state.phoneListReducer.list)
+  const list = useSelector(state=>state.totalListReducer.list)
   const user = JSON.parse(localStorage.getItem('user'));       
 
   useEffect(() => {
-    dispatch(getPhoneList(2,user.brand));
+    dispatch(totalListThunk("air_clean_list",{}));
 
     return () => {
     }
@@ -105,12 +107,13 @@ function Team10() {
               <div>구분</div>
               <div>담당자</div>
               <div>업체명</div>
+              <div>이름</div>
               <div className="tel">전화번호</div>
             </TableHead>
             <TableBody>
               {
                 list && list.map((item,index)=>
-                  <Row region={item.code_areaname} agent={item.code_area} head={item.chk_head} name={item.manname} call={item.tel}></Row>
+                  <Row region={item.code_type} teamname={item.teamname} agent={item.code_area} head={item.chk_head} name={item.manname} call={item.tel}></Row>
                 )
               }
             </TableBody>

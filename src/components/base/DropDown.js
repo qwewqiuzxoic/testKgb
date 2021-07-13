@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Gutter, FlexBox } from '../commonStyle';
 import { modalCloase, modalOpen } from '../../redux/reducer/ModalReducer';
+import { useEffect } from 'react';
 
 const Row = styled.div`
     ${ Gutter('0 0 0 21px') };
@@ -39,20 +40,30 @@ const Li = styled.li`
     cursor:pointer;
 
 `
-function DropDown({menuItem, i,clickMenu}) {
+function DropDown({menuItem, i,clickMenu,total, totalV}) {
     const user = JSON.parse(localStorage.getItem('user'));       
     const [toggle,setToggle]=useState(false);
-    const toggleDropdown = (e) =>{
-        setToggle(!toggle)
+    const toggleDropdown = (i) =>{
+        total(i);
+        setToggle(!toggle);
     }
     const dispatch= useDispatch();
     const openModalWrite = (type) => {
-        dispatch(modalOpen(type))
+        dispatch(modalOpen(type));
     }
-  
+    useEffect(() => {
+        if(totalV !== i){
+            setToggle(false);
+        }
+        return () => {
+            
+        }
+    }, [totalV])
+   
+   
   return (
     <ul>
-        <Row index={i}  onClick={(e) => toggleDropdown(e)}>
+        <Row index={i}  onClick={(e) => toggleDropdown(i)}>
             <span>{menuItem.name}</span>
             <IconBox>
                 { toggle ? 
@@ -64,16 +75,26 @@ function DropDown({menuItem, i,clickMenu}) {
             {menuItem.subMenus.map(function(subMenu, k) {
                 if(toggle){
                     return (
-                        subMenu.name =="건의함"? 
+                        subMenu.name === "상조회" && user.brand === "KGB이사"
+                        ?
+                        null
+                        :
+                        subMenu.name === "건의함"? 
                         <span onClick={() =>openModalWrite(1)} >
                             <Li key={k}>{subMenu.name}</Li>
                         </span>
-                        : subMenu.name =="비리제보"? 
+                        :user.brand !== "KGB이사" && subMenu.name ==="대리점실사체크리스트"?null
+                        :
+                        subMenu.name === "비리제보"? 
                         <span onClick={() =>openModalWrite(2)} >
                             <Li key={k}>{subMenu.name}</Li>
                         </span>
                         :subMenu.name === "담당자연결" ?
                         <a href={`tel:${user.brand_tel}`} >
+                            <Li key={k}>{subMenu.name}</Li>
+                        </a>
+                        : subMenu.name === "홈페이지연결" ? 
+                        <a href={user.homepage} target="_blank">
                             <Li key={k}>{subMenu.name}</Li>
                         </a>
                         :

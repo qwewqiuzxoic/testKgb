@@ -120,7 +120,7 @@ function ASTipBoard() {
             <BoardListWrap boardCode="8"/>
             </ContentArea>
             
-            <FloatingBtn bg="#009B90" icon="ico_add" onClick={ openModal }/>
+            {/* <FloatingBtn bg="#009B90" icon="ico_add" onClick={ openModal }/> */}
             <Modal open={ modalOpen } close={ closeModal } header="글쓰기" >
               <InputGroup id="title" title="제목" ph="제목을 입력해주세요" setInputValue2={setInputValue2} value={data.title}/>
               <InputGroup id="username" title="작성자"  setInputValue2={setInputValue2} value={data.username}/>

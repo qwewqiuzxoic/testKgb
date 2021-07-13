@@ -55,10 +55,13 @@ function Manage11_1_4() {
                     })}
                 </ContentArea>
             }    
-            {btn_flag === "N"? null:null}
+            {btn_flag === "N"? null:
+            
             <Link to="/Manage11">
                 <FloatingBtn bg="#009B90" icon="ico_add" />
             </Link>
+            }
+            
 
       </Wrapper>
   );

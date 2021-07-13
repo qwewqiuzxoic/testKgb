@@ -32,7 +32,7 @@ const Input = styled.input`
   }
 `;
 
-function PopUpAddress({Addr1,Addr2,Addr3,Addr4,type, setAddressChange}) {
+function PopUpAddress({Addr1,Addr2,Addr3,Addr4,type, setAddressChange, setOrderChange}) {
 const [address, setPAddress] = useState({open:false, data:""});
   const openAddress = () => {
     setPAddress({
@@ -49,7 +49,6 @@ const [address, setPAddress] = useState({open:false, data:""});
       open:false,
       data:data
     })
-    console.log(data)
     if(data !== undefined){
       setAddressChange(data,type);
     }
@@ -75,7 +74,7 @@ const [address, setPAddress] = useState({open:false, data:""});
             <FindAddress onClose={closeAddress} />
           )}
       </div>
-      <Input type="text" placeholder="상세주소를 입력해주세요" value={Addr4}/>    
+      <Input type="text" name={type==="St"?"StAddr4":"EdAddr4"} placeholder="상세주소를 입력해주세요" value={Addr4} onChange={(e)=>setOrderChange(e)}/>    
     </Wrapper>
   );
 }

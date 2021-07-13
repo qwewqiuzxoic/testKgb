@@ -58,13 +58,14 @@ function SolidBoxes() {
         desc : "홈페이지로 바로 이동하실 수 있습니다",
         bg: "#2F8DB7",
         img: 'ico_page.png',
+        num:false
     },
 ]
 
   return (
     <Wrapper>
       {boxes.map((box, index)=> (
-          <SolidBox key={index} title={box.title}  desc={box.desc} bg={box.bg} width="48%" padding="16px 20px" href={ box.num ? `tel:${user.brand_tel}` : '#'}>
+          <SolidBox key={index} title={box.title}  desc={box.desc} bg={box.bg} target={ box.num ? "" : "_blank"} width="48%" padding="16px 20px" href={ box.num ? `tel:${user.brand_tel}` : user.homepage} ta>
             <TextArea>
               <p>{box.title}</p>
               <span>{box.desc}</span>

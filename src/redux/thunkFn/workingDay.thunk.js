@@ -35,7 +35,9 @@ export const getWorkingDayDetailChange = (sn) => dispatch  => {
 }
 
 export const postWorkingDayForm = (data) => dispatch =>{
-   
+    console.log(data)
+    console.log(data)
+    console.log(data)
     dispatch(workingDayFormLoading());
     const url = '/BM/API/team/sup_proc.asp';
     axios.post(url,data).then(function (res) {
