@@ -168,7 +168,6 @@ function Team3_1({match}) {
       MoveDetCBM:wet,
       ItemDetailStr:itemDetailStr
     })
-
     setOpen(false);
   }
 
@@ -177,6 +176,7 @@ function Team3_1({match}) {
   const sn = match.params.sn;
   const {data:firstData,loading:firstLoading} = useSelector(state => state.totalDataReducer);
   const {data:AnData,loading:AnLoading} = useSelector(state => state.totalDataAnReducer);
+  const {movedayinfo} = useSelector(state => state.movedayReducer);
   const disaptch = useDispatch();
 
   const [orderSave, setOrderSave] = useState(firstData);
@@ -187,8 +187,19 @@ function Team3_1({match}) {
       
     })
   }
-
-
+  const orderDayMove = ()=>{
+    setOrderSave({
+      ...orderSave,
+      CODE_MOVEDAY:movedayinfo
+    })
+  }
+  const orderBoxMove = ()=>{
+    setOrderSave({
+      ...orderSave,
+      CODE_BOXDAY:movedayinfo
+    })
+  }
+  //포장일 변경
 
 
   /////////////////////////
@@ -302,10 +313,17 @@ function Team3_1({match}) {
     if(orderSave.DayMove !== firstData.DayMove){
       //console.log("이사일 변경")
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:211111000}));
+      orderDayMove();
     }
    
-  }, [orderSave.DayMove])
-
+  }, [orderSave.DayMove, movedayinfo])
+  useEffect(() => {
+    if(orderSave.DayBox !== firstData.DayBox){
+      //console.log("이사일 변경")
+      orderBoxMove();
+    }
+   
+  }, [orderSave.DayBox, movedayinfo])
   //출발지 정보입력이 변경되었을경우
   useEffect(() => {
     if(orderSave.StTrdist !== undefined && orderSave.StTrdist !== "0" && orderSave.StTrdist !== firstData.StTrdist){
@@ -400,13 +418,6 @@ function Team3_1({match}) {
     })
   },[orderSave.CostMove, orderSave.CostOption, orderSave.MoneyDiscount, orderSave.MoneyPromise])
   const subMit = () =>{
-    console.log(orderSave)
-    console.log(orderSave.CustName)
-    console.log(orderSave.StPhone )
-    console.log( orderSave.CboOrderStatus)
-    console.log(orderSave.EdAddr1)
-    console.log(orderSave)
-    console.log(orderSave)
 
     if(orderSave.CustName === "" ||orderSave.StPhone === "" || orderSave.CboOrderStatus === "" || orderSave.EdAddr1 === "" || orderSave.EdAddr4 === "" || orderSave.StAddr1 === "" || orderSave.StAddr4 === ""){
       return;
@@ -438,7 +449,7 @@ function Team3_1({match}) {
           </Section>
           <Section open={open}>
             <GroupTitle title="이사정보"/>
-            <OrderDate DayMove={orderSave.DayMove} DayBox={orderSave.DayBox} DayMoveText={orderSave.CODE_MOVEDAY} DayBoxText={orderSave.CODE_BOXDAY}setOrderChange={setOrderChange}/>
+            <OrderDate DayMove={orderSave.DayMove} DayBox={orderSave.DayBox} DayMoveText={orderSave.CODE_MOVEDAY} DayMoveText2={orderSave.CODE_BOXDAY} DayBoxText={orderSave.CODE_BOXDAY}setOrderChange={setOrderChange}/>
           </Section>
           <Section open={open}>
             <GroupTitle title="정보입력"/>

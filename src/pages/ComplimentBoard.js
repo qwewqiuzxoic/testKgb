@@ -54,7 +54,7 @@ function ComplimentBoard() {
         setModalOpen(false);
     }
     const callback = () =>{
-        dispatch(getBoardList(user.brand,boardName,1))
+        dispatch(getBoardList(user.brand,boardName,1,{tabType:tab === 1 ?"Y":"N",type:type}))
         pageCount.current = 1;
         closeModal();
       }
@@ -76,16 +76,29 @@ function ComplimentBoard() {
     // dispatch(getBoardList(user.brand,boardName.name,pageCount.current))
 
     const dispatch = useDispatch();
+    const [tab, setTab] = useState(1);
+
     useEffect(() => {
-        dispatch(getBoardList(user.brand,boardName,pageCount.current))
+      if(tab === 1){
+        pageCount.current = 1;
+        dispatch(getBoardList(user.brand,boardName,pageCount.current,{tabType:"Y",type:type}));
+      }else if(tab === 2){
+        pageCount.current = 1;
+        dispatch(getBoardList(user.brand,boardName,pageCount.current,{tabType:"N",type:type}));
+      }
         return () => {
         }
+    }, [tab])
+    
+    useEffect(() => {
+      dispatch(getBoardList(user.brand,boardName,pageCount.current,{tabType:"Y",type:type}))
+      return () => {
+      }
     }, [])
-    const [tab, setTab] = useState(1);
     const tabChagne = (num) =>{
         setTab(num);
     }
-    const infiniteScroll = () => {
+    const infiniteScroll = (tab) => {
         let scrollHeight = Math.max(
           document.documentElement.scrollHeight,
           document.body.scrollHeight
@@ -95,18 +108,17 @@ function ComplimentBoard() {
           document.body.scrollTop
         );
         let clientHeight = document.documentElement.clientHeight;
-    
         if (scrollTop + clientHeight >= scrollHeight) {
+
           pageCount.current += 1;
-          dispatch(getBoardList(user.brand,boardName,pageCount.current))
-  
+          dispatch(getBoardList(user.brand,boardName,pageCount.current,{tabType:tab === 1 ?"Y":"N",type:type}))
         }
       };
     useEffect(() => {
-        window.addEventListener('scroll',infiniteScroll);
+        window.addEventListener('scroll',()=>infiniteScroll(tab));
 
-        return () => window.removeEventListener('scroll', infiniteScroll)
-    }, [])
+        return () => window.removeEventListener('scroll',()=> infiniteScroll(tab))
+    }, [tab])
 
   
     //우리팀 톡톡 1
@@ -122,7 +134,7 @@ function ComplimentBoard() {
             <BoardList />
             </NoticeWrap> */}
             {/* <BoardListWrap/>  */}
-            <BoardListWrap boardCode={type} tabCheck={true} tab={tab}/>
+            <BoardListWrap boardCode={type} tabCheck={true} />
             </ContentArea>
             
             {/* <FloatingBtn bg="#009B90" icon="ico_add" onClick={ openModal }/> */}

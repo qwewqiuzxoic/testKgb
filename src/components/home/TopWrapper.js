@@ -203,8 +203,8 @@ function TopWrapper() {
                 <Date>2021.01.01</Date>
             </TitArea> */}
             <UserArea>
-                <p>{user.userid}</p>
-                <p>{user.goods_tel}</p>
+                <p>{daySc[0].custname}</p>
+                <p>{daySc[0].phone}</p>
             </UserArea>
             <TrackingArea>
                 <TrackBg>
@@ -223,7 +223,7 @@ function TopWrapper() {
             {daySc[1].custname === "" ?<NullBox>일정없음</NullBox> :
               <Desc>
               <Name>{daySc[1].custname}</Name>
-              <Phone>{daySc[1].Phone}</Phone>
+              <Phone>{daySc[1].phone}</Phone>
               <RouteArea>
                 <GreyText>{daySc[1].saddr1} {daySc[1].saddr2} {daySc[1].saddr3}</GreyText>
                 <ArrowBox>
@@ -239,7 +239,7 @@ function TopWrapper() {
               {daySc[2].custname === "" ?<NullBox>일정없음</NullBox> :
               <Desc>
               <Name>{daySc[2].custname}</Name>
-              <Phone>{daySc[2].Phone}</Phone>
+              <Phone>{daySc[2].phone}</Phone>
               <RouteArea>
                 <GreyText>{daySc[2].saddr1} {daySc[2].saddr2} {daySc[2].saddr3}</GreyText>
                 <ArrowBox>

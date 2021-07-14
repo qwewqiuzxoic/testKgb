@@ -79,8 +79,12 @@ const Row = ({region,agent, name, call,head,teamname}) => (
     <div>{region}</div>
     <div>{agent}</div>
     <div>{teamname}</div>
-    <div>{name}{head === "Y"?"(권역장)":null}</div>
-    <div className="tel"><a href={`tel:${call}`}>{call}</a></div>  
+    <div>
+      {name}{head === "Y"?"(권역장)":null}
+      <br/>
+      <a href={`tel:${call}`}>{call}</a> 
+    </div>
+  
   </TableRow>
 );
 
@@ -105,10 +109,9 @@ function Team10() {
           <Table>
             <TableHead>
               <div>구분</div>
-              <div>담당자</div>
+              <div>지역</div>
               <div>업체명</div>
               <div>이름</div>
-              <div className="tel">전화번호</div>
             </TableHead>
             <TableBody>
               {

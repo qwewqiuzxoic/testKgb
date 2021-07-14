@@ -27,7 +27,14 @@ export const totalAnData = {
     error:"",
     data:{}
 }
-
+//포장일 이사일
+export const moveDayInit = {
+    result:"",
+    message:"",
+    movedayinfo:"",
+    loading:false, 
+    error:""   
+}
 
 //로그인 초기상태
 export const authInit = {

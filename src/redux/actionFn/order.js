@@ -1,37 +1,24 @@
-import {ORDER_CALL, ORDER_CAR, ORDER_CONTRACT, ORDER_DESTINATION, ORDER_DISTANCE, ORDER_ERROR, ORDER_LOADING, ORDER_MOVEDATE, ORDER_MOVEFORM, ORDER_NAME, ORDER_OPTION_1, ORDER_OPTION_2, ORDER_PACKINGDATE, ORDER_PHONE, ORDER_STARTINGPOINT} from '../types/order.type'
+import { GET_MOVEDAY_ERROR, GET_MOVEDAY_INIT, GET_MOVEDAY_LOADING, GET_MOVEDAY_SUCCESS } from "../types/order.type"
 
-
-
-export const orderLoading = () => {
+export const getMoveDaySuccess = (data)=>{
     return{
-        type: ORDER_LOADING
+        type:GET_MOVEDAY_SUCCESS,
+        data:data
     }
 }
-
-export const orderError= () => {
+export const getMoveDayLoading = ()=>{
     return{
-        type: ORDER_ERROR
+        type:GET_MOVEDAY_LOADING
     }
 }
-//거리 주소 입력하면 결과값 받아와 리턴
-export const orderDistance = (distance) => {
-    return {
-        type: ORDER_DISTANCE,
-        data: distance
-    }
-}
-
-//옵션에 따른 값
-export const orderOption1 = (option) => {
+export const getMoveDayError = (data)=>{
     return{
-        type: ORDER_OPTION_1,
-        data: option
+        type:GET_MOVEDAY_ERROR,
+        data:data
     }
 }
-export const orderOption2 = (option) => {
+export const getMoveDayInit = ()=>{
     return{
-        type: ORDER_OPTION_2,
-        data: option
+        type:GET_MOVEDAY_INIT
     }
 }
-

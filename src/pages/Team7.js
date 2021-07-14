@@ -5,6 +5,7 @@ import { FlexBox, Gutter, ChangeFont } from '../components/commonStyle';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPhoneList } from '../redux/thunkFn/phoneList.thunk';
+import Loading from '../components/commonStyle/Loading';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -105,6 +106,7 @@ function Team7() {
   const rows = tableData.map( (rowData) => <Row {...rowData} />);
   const dispatch = useDispatch();
   const list = useSelector(state=>state.phoneListReducer.list)
+  const loading = useSelector(state=>state.phoneListReducer.loading)
   const user = JSON.parse(localStorage.getItem('user')); 
   const tabChange = (num,text) =>{
     dispatch(getPhoneList(1,text));
@@ -124,11 +126,12 @@ function Team7() {
         <Tabs>
         <TabName className={tab === "KGB이사" ? "selected": ""} onClick={()=>tabChange(1,"KGB이사")}>KGB이사</TabName>
         <TabName className={tab === "YES2404" ? "selected": ""} onClick={()=>tabChange(2,"YES2404")}>YES2404</TabName>
-        <TabName className={tab === "YES2424" ? "selected": ""} onClick={()=>tabChange(3,"YES2424")}>YES2424</TabName>
-        <TabName className={tab === "YCAP" ? "selected": ""} onClick={()=>tabChange(0,"YCAP")}>YCAP</TabName>
-          
+        <TabName className={tab === "YES2424" ? "selected": ""} onClick={()=>tabChange(3,"이사이사")}>YES2424</TabName>
+        <TabName className={tab === "YCAP" ? "selected": ""} onClick={()=>tabChange(0,"용달캡")}>YCAP</TabName>
           
         </Tabs>
+        
+
         <ContentArea>
           <TableTitle title="가맹차주 (서울)" color = "#009B90"/>
           <Table>
@@ -181,7 +184,8 @@ function Team7() {
               }
             </TableBody>
           </Table>
-        </ContentArea>      
+        </ContentArea>     
+        
       </Wrapper>
     </>
   );

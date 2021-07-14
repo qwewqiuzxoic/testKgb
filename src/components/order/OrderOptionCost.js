@@ -93,11 +93,10 @@ function OrderOptionCost({AddOptmoneyStr,addOptionPrice}) {
   }, [dispatch])
   useEffect(() => {
     if(checkedInputs.length === 0){
-      
       setCheckedInputs(addOptmoneyStr);
     }
     
-  }, [addOptmoneyStr])
+  }, [AddOptmoneyStr])
  
   return (
     <Wrapper>

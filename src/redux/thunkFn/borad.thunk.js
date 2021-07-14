@@ -1,20 +1,37 @@
 import axios from 'axios'
 import {boardError, boardLoading, boardSuccess,boardDetailError, boardDetailLoading, boardDetailSuccess, boardPostLoading, boardPostError,boardPostSuccess, boardTopSuccess, boardTopLoading, boardTopError, boardConcatLoading, boardConcatSuccess} from '../actionFn/board'
-export const getBoardList = (brandName, boardName,count, length = 10) => dispatch  => {
+export const getBoardList = (brandName, boardName,count,types, length = 10) => dispatch  => {
+    const user = JSON.parse(localStorage.getItem('user'));       
     if(count === 1){
         dispatch(boardLoading())
     }else{
         dispatch(boardConcatLoading())
     }
-    const url = '/BM/API/board/basic.asp';
-        axios.post(url, {
-            "code_board" : boardName,
-            "code_brand" : brandName,
-            "is_notice" : 0,
-            "board_cate" : "",
-            "page" : count,
-            "pagesize" : length
-        }).then(function (res) {
+    const body = types ?
+    {
+        "biz_sn":user.biz_sn,
+        "brand":brandName,
+        "pagesize":length,
+        "page":count,
+        "tabtype":types.tabType
+    }
+    :
+    {
+        "code_board" : boardName,
+        "code_brand" : brandName,
+        "is_notice" : 0,
+        "board_cate" : "",
+        "page" : count,
+        "pagesize" : length,
+    }
+    const url = types ? 
+    types.type === "2"?
+    '/BM/API/seller/good_op_list.asp'
+    :
+    '/BM/API/seller/bad_op_list.asp'
+    :
+    '/BM/API/board/basic.asp';
+        axios.post(url, body).then(function (res) {
             if(count === 1){
                 dispatch(boardSuccess(res.data.list,boardName))
             }else{

@@ -117,6 +117,7 @@ function BoardDetail({match}) {
   const closeModal = () => {
     setModalOpen(false);
     setOpenModifyModal(false);
+    setPassWarning(false);
   }
   const setInputValue2 = (data) =>{
     setModifyText({
@@ -145,8 +146,6 @@ function BoardDetail({match}) {
     }else if(type === "asy"){
       dispatch(getAsDetail(sn));
     }
-
-      
   }, [])
   const [openPass,setOpenPass] = useState(false);
   const onclick= () => {
@@ -154,6 +153,7 @@ function BoardDetail({match}) {
   }
   const [checkPass,setCheckPass] = useState("");
   const [openModifyModal, setOpenModifyModal]=useState(false);
+  const [passWarning,setPassWarning] = useState(false);
   const onchange=(e)=>{
     const {value} = e.target;
     setCheckPass(value)
@@ -161,9 +161,11 @@ function BoardDetail({match}) {
   const confirmPass = ()=>{
     if(inputValue === boardDetail.passwd){
       setOpenModifyModal(true);
+      setPassWarning(false);
       setModifyText({...modifyText,password:inputValue})
     } else{
       setOpenModifyModal(false);
+      setPassWarning(true);
     }
   }
   const callback = () =>{
@@ -182,8 +184,10 @@ function BoardDetail({match}) {
   const delCheckFn = () =>{
     if(inputValue === boardDetail.passwd){
       setDelCheck(true);
+      setPassWarning(false);
     } else{
       setDelCheck(false);
+      setPassWarning(true);
     }
     //dispatch(totalMesThunk("del_board_proc_basic",{sn:sn}))
   }
@@ -196,6 +200,7 @@ function BoardDetail({match}) {
     setDelPassCheck(true)
   }
   const checkDelPassClose = () =>{
+    setPassWarning(false);
     setDelPassCheck(false)
   }
   useEffect(() => {
@@ -248,7 +253,9 @@ return(
           <CommentBox list={boardDetail.list} sn={sn} tname={boardDetail.tname} type={type} commentlist={boardDetail.list}></CommentBox>
           <Modal open={ modalOpen } close={ closeModal } header="비밀번호 확인" >
               <InputGroup id="title" title="비밀번호" ph="제목을 입력해주세요"  value={inputValue}setInputValue={setInputValue}/>
-              <Button onclick={confirmPass} bg="#3397B9" color="#ffffff" text="확인" height="44px" fontSize="12px" mgt="30px"></Button>       
+              {passWarning && <div style={{color:"red"}}>비밀번호를 확인해주세요</div>}  
+              <Button onclick={confirmPass} bg="#3397B9" color="#ffffff" text="확인" height="44px" fontSize="12px" mgt="30px"></Button>
+             
             </Modal>
             <Modal open={ openModifyModal } close={ closeModal } header="글쓰기">
               <InputGroup id="title" title="제목" ph="제목을 입력해주세요" setInputValue2={setInputValue2} value={data.title}/>
@@ -261,6 +268,7 @@ return(
           }
           <Modal open={ delPassCheck } close={ checkDelPassClose } header="비밀번호 확인" >
               <InputGroup id="title" title="비밀번호" ph="제목을 입력해주세요"  value={inputValue}setInputValue={setInputValue}/>
+              {passWarning && <div style={{color:"red"}}>비밀번호를 확인해주세요</div>}  
               <Button onclick={delCheckFn} bg="#3397B9" color="#ffffff" text="확인" height="44px" fontSize="12px" mgt="30px"></Button>       
             </Modal>
           <ConfirmModal open={delCheck} text="정말로 삭제하시겠습니까?" onsubmit={delSn}></ConfirmModal>

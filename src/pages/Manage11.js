@@ -63,12 +63,14 @@ function Manage11({match}) {
             ...data,
             page:data.page+1
         });
+        window.scrollTo(0, 0);
     }
     const decreaseIndex = ()=>{
         setData({
             ...data,
             page:data.page-1
         });
+        window.scrollTo(0, 0);
     }
     const updateData = (index,result)=>{
         if(sn!==undefined){

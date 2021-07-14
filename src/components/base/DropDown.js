@@ -85,6 +85,9 @@ function DropDown({menuItem, i,clickMenu,total, totalV}) {
                         </span>
                         :user.brand !== "KGB이사" && subMenu.name ==="대리점실사체크리스트"?null
                         :
+                        user.brand !== "KGB이사" && subMenu.name ==="상조회"?
+                        null
+                        :
                         subMenu.name === "비리제보"? 
                         <span onClick={() =>openModalWrite(2)} >
                             <Li key={k}>{subMenu.name}</Li>
