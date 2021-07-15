@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {login} from '../../redux/thunkFn/login.thunk'
-import Modal from '../../components/base/Modal'
+import ContactModal from '../../components/login/ContactModal'
 //style관련
 import styled from 'styled-components';
 import Loading from '../commonStyle/Loading';
@@ -174,9 +174,7 @@ function LoginForm({ backLocation }) {
         <ContactBtnContainer>
             <ContactBtn onClick={openModal}>본사 담당자 연결</ContactBtn>
         </ContactBtnContainer>      
-        <Modal open={ modalOpen } close={ closeModal } header="담당자 리스트">
-              번호리스트 
-        </Modal>
+        <ContactModal open={ modalOpen } close={ closeModal } header="담당자 리스트"></ContactModal>
     </Wrapper>
   );
 }

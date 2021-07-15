@@ -1,4 +1,4 @@
-import React, {useEffect, useState}  from 'react';
+import React, {useEffect, useRef, useState}  from 'react';
 import H1 from '../components/commonStyle/H1'
 import Button from '../components/commonStyle/Button'
 import GroupTitle from '../components/commonStyle/GroupTitle'
@@ -417,8 +417,40 @@ function Team3_1({match}) {
       MoneyRemain: parseInt(orderSave.CostMove) + parseInt(orderSave.CostOption) + parseInt(orderSave.MoneyDiscount) - parseInt(orderSave.MoneyPromise) 
     })
   },[orderSave.CostMove, orderSave.CostOption, orderSave.MoneyDiscount, orderSave.MoneyPromise])
+  //필수항목 체크
+  const [nesCheck1,setNesCheck1]= useState(false);
+  const [nesCheck2,setNesCheck2]= useState(false);
+  const [nesCheck3,setNesCheck3]= useState(false);
+  const [nesCheck4,setNesCheck4]= useState(false);
+  const [nesCheck5,setNesCheck5]= useState(false);
   const subMit = () =>{
-
+    if(orderSave.CustName === ""){
+      setNesCheck1(true);
+    } else{
+      setNesCheck1(false);
+    }
+    if(orderSave.StPhone === ""){
+      setNesCheck2(true);
+    } else{
+      setNesCheck2(false);
+    }
+    if(orderSave.CboOrderStatus === ""){
+      setNesCheck3(true);
+    } else{
+      setNesCheck3(false);
+    }
+    if(orderSave.EdAddr1 === "" || orderSave.EdAddr4 === ""){
+      setNesCheck4(true);
+    } else{
+      setNesCheck4(false);
+    }
+   
+    if(orderSave.StAddr1 === "" || orderSave.StAddr4 === ""){
+      setNesCheck5(true);
+    } else{
+      setNesCheck5(false);
+    }
+   
     if(orderSave.CustName === "" ||orderSave.StPhone === "" || orderSave.CboOrderStatus === "" || orderSave.EdAddr1 === "" || orderSave.EdAddr4 === "" || orderSave.StAddr1 === "" || orderSave.StAddr4 === ""){
       return;
     }
@@ -433,10 +465,22 @@ function Team3_1({match}) {
     history.push("/Team2_1");
 
 }
+
+const [toggle,setToggle]=useState(false);
+const ref22 = useRef();
+
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (ref22.current &&!ref22.current.contains(event.target)) {
+      setToggle(false);
+    }
+  };
+  document.addEventListener("mousedown", handleClickOutside);
+}, [ref22]);
+
   return (
     <>
-      
-      <Wrapper>
+      <Wrapper >
         {
           !open?
             <div>
@@ -445,7 +489,7 @@ function Team3_1({match}) {
         </TopBg>
           <Section open={open}>
             <GroupTitle title="고객정보"/>
-            <Customer CustName={orderSave.CustName} MoveType={orderSave.MoveType} StPhone={orderSave.StPhone} mobile={orderSave.mobile} setOrderChange={setOrderChange}/>
+            <Customer nesCheck1={nesCheck1} nesCheck2={nesCheck2}CustName={orderSave.CustName} MoveType={orderSave.MoveType} StPhone={orderSave.StPhone} mobile={orderSave.mobile} setOrderChange={setOrderChange}/>
           </Section>
           <Section open={open}>
             <GroupTitle title="이사정보"/>
@@ -464,6 +508,8 @@ function Team3_1({match}) {
               EdAddr4={orderSave.EdAddr4}
               setAddressChange={setAddressChange}
               setOrderChange={setOrderChange}
+              nesCheck5={nesCheck5}
+              nesCheck4={nesCheck4}
               />
           </Section>
           <Section open={open}>
@@ -500,11 +546,14 @@ function Team3_1({match}) {
           </Section>
           <Section open={open}>
             <GroupTitle title="옵션 비용"/>
-            <OrderOptionCost AddOptmoneyStr={orderSave.AddOptmoneyStr} addOptionPrice={addOptionPrice}/>
+            <div ref={ref22}>
+            <OrderOptionCost   toggle={toggle} setToggle={setToggle} AddOptmoneyStr={orderSave.AddOptmoneyStr} addOptionPrice={addOptionPrice}/>
+            </div>
+            
           </Section>
           <Section open={open}>
            <GroupTitle title="계약 정보"/>
-            <Ordercontract1 CboOrderStatus={orderSave.CboOrderStatus} conOrderSetState={conOrderSetState}/>
+            <Ordercontract1 nesCheck3={nesCheck3 }CboOrderStatus={orderSave.CboOrderStatus} conOrderSetState={conOrderSetState}/>
           </Section>
           <Section open={open}>
            <GroupTitle title="차량정보"/>

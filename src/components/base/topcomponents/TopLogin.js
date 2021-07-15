@@ -16,6 +16,7 @@ const PageName = styled.div`
     line-height:50px;
     font-size: ${(props) => props.theme.fontSizes.l};
     font-weight:bold;
+    color:#fff;
     img{
         width: 50px;
         height: auto;

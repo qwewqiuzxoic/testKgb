@@ -15,6 +15,7 @@ const Wrapper = styled.div`
 const ContentArea = styled.div`
     position:relative;
     margin-top:30px;
+    margin-bottom:50px;
     ${Gutter()};
       
 `;
@@ -29,34 +30,13 @@ const TableHead = styled.div`
       display: flex;
       background-color: #F3F7FB;
       border-top: 1px solid #82898E;
-      div{
-        flex: 1;
-        height:41px;
-        line-height: 41px;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        &.tel{
-            flex-grow:1.5;
-        }
-      }
+      height:41px;
+      align-items: center;
 `;
 const TableRow = styled.div`
       display: flex;
       background-color: #fff;
       align-items: center;
-      div{
-        flex: 1;
-        height:41px;
-        line-height: 41px;
-        border-bottom: 1px solid #DFE5EA;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        &.tel{
-            flex-grow:1.5;
-        }
-      }
       img{
         display: inline-block;
         width:22px;
@@ -70,21 +50,20 @@ const TableRow = styled.div`
       }
 `;
 const TableBody = styled.div`
-  padding-bottom:50px;
+`;
+const Cell = styled.div`
+  flex: 1;
+  flex-grow: ${(props) => props.w ? props.w : '1'};
+  padding:4px 0;
 `;
 
 const data = [];
 const Row = ({region,agent, name, call,head,teamname}) => (
   <TableRow className="row">
-    <div>{region}</div>
-    <div>{agent}</div>
-    <div>{teamname}</div>
-    <div>
-      {name}{head === "Y"?"(권역장)":null}
-      <br/>
-      <a href={`tel:${call}`}>{call}</a> 
-    </div>
-  
+    <Cell w='1'>{region}</Cell>
+    <Cell w='1.5'>{agent}</Cell>
+    <Cell w='2'>{teamname}</Cell>
+    <Cell w='1.5'><p>{name}{head === "Y"?"(권역장)":null}</p><a href={`tel:${call}`}>{call}</a></Cell>  
   </TableRow>
 );
 
@@ -108,10 +87,10 @@ function Team10() {
         <ContentArea>
           <Table>
             <TableHead>
-              <div>구분</div>
-              <div>지역</div>
-              <div>업체명</div>
-              <div>이름</div>
+              <Cell w='1'>구분</Cell>
+              <Cell w='1.5'>지역</Cell>
+              <Cell w='2'>업체명</Cell>
+              <Cell w='1.5'>이름</Cell>
             </TableHead>
             <TableBody>
               {

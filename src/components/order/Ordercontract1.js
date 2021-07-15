@@ -19,7 +19,7 @@ const Label = styled.label`
   ${LabelStyle()};
 `;
 
-function Ordercontract1({CboOrderStatus,conOrderSetState}) {
+function Ordercontract1({CboOrderStatus,conOrderSetState, nesCheck3}) {
   
   return (
   <Wrapper> 
@@ -34,6 +34,7 @@ function Ordercontract1({CboOrderStatus,conOrderSetState}) {
           <RadioGroup id="contract3" name="CboOrderStatus" value="지명계약중" label="지명 계약중" checked={CboOrderStatus === "지명계약중" ? true : false} radioChange={conOrderSetState}></RadioGroup>
           <RadioGroup id="contract4" name="CboOrderStatus" value="지명견적오더토스중" label="오더토스" checked={CboOrderStatus === "지명견적오더토스중" ? true : false} radioChange={conOrderSetState}></RadioGroup>
         </Layout>
+        {nesCheck3 && <div style={{color:"red"}}>필수 입력 사항입니다.</div>}
   </Wrapper>
   );
 }

@@ -16,12 +16,14 @@ const Select = styled.select`
   ${SelectStyle()};
 `;
 
-function Customer({CustName,MoveType ,StPhone, mobile, setOrderChange}) {
+function Customer({CustName,MoveType ,StPhone, mobile, setOrderChange,nesCheck1,nesCheck2}) {
   return (
     <div>
       <ContentArea>
           <InputGroup id="CustName" name="CustName" setInputValue2={setOrderChange} title="고객명(필수)" value={CustName}/>
+          {nesCheck1 && <div style={{color:"red"}}>필수 입력 사항입니다.</div>}
           <InputGroup id="StPhone" name="StPhone" setInputValue2={setOrderChange}title="대표전화 (SMS) (필수)" value={StPhone}/>
+          {nesCheck2 && <div style={{color:"red"}}>필수 입력 사항입니다.</div>}
           <InputGroup id="mobile" title="mobile" name="mobile" setInputValue2={setOrderChange} value={mobile}/>
       </ContentArea>
       <Label htmlFor="select_m_type">이사형태</Label>

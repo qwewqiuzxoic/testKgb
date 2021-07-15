@@ -34,6 +34,7 @@ const TabName = styled.div`
 const ContentArea = styled.div`
     position:relative;
     margin-top:30px;
+    margin-bottom:50px;
     ${Gutter()};
       
 `;
@@ -48,34 +49,14 @@ const TableHead = styled.div`
       display: flex;
       background-color: #F3F7FB;
       border-top: 1px solid #82898E;
-      div{
-        flex: 1;
-        height:41px;
-        line-height: 41px;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        &.tel{
-            flex-grow:1.5;
-        }
-      }
+      height:41px;
+      align-items: center;
 `;
 const TableRow = styled.div`
       display: flex;
       background-color: #fff;
       align-items: center;
-      div{
-        flex: 1;
-        height:41px;
-        line-height: 41px;
-        border-bottom: 1px solid #DFE5EA;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        &.tel{
-            flex-grow:1.5;
-        }
-      }
+      min-height:41px;
       img{
         display: inline-block;
         width:22px;
@@ -89,16 +70,20 @@ const TableRow = styled.div`
       }
 `;
 const TableBody = styled.div`
-  padding-bottom:50px;
+`;
+const Cell = styled.div`
+  flex: 1;
+  flex-grow: ${(props) => props.w ? props.w : '1'};
+  padding:4px 0;
 `;
 
 const data = [];
 const Row = ({region,agent, name, call,head}) => (
   <TableRow className="row">
-    <div>{region}</div>
-    <div>{agent}</div>
-    <div>{name}{head === "Y"?"(권역장)":null}</div>
-    <div className="tel"><a href={`tel:${call}`}>{call}</a></div>  
+    <Cell w='1'>{region}</Cell>
+    <Cell w='1.5'>{agent}</Cell>
+    <Cell w='1.5'>{name}{head === "Y"?"(권역장)":null}</Cell>
+    <Cell w='2'><a href={`tel:${call}`}>{call}</a></Cell>  
   </TableRow>
 );
 
@@ -134,10 +119,10 @@ function Team9() {
         <ContentArea>
           <Table>
             <TableHead>
-              <div>권역</div>
-              <div>대리점명</div>
-              <div>대표자</div>
-              <div>전화번호</div>
+              <Cell w='1'>권역</Cell>
+              <Cell w='1.5'>대리점명</Cell>
+              <Cell w='1.5'>대표자</Cell>
+              <Cell w='2'>전화번호</Cell>
             </TableHead>
             <TableBody>
               {

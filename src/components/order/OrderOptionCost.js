@@ -55,7 +55,7 @@ const costOptions=[
   {value : "옵션6" , id: "costOption6", name:"costOption"},
 ]
 
-function OrderOptionCost({AddOptmoneyStr,addOptionPrice}) {
+function OrderOptionCost({AddOptmoneyStr,addOptionPrice, setToggle, toggle,ref}) {
   String.prototype.replaceAll = function(org, dest) {
     return this.split(org).join(dest);
   }
@@ -68,7 +68,6 @@ function OrderOptionCost({AddOptmoneyStr,addOptionPrice}) {
   const [checkedInputs, setCheckedInputs] = useState([]);
 
   //const [selectedValue,setSelectedValue]= useState("작업정보옵션을 선택해주세요");
-  const [toggle,setToggle]=useState(false);
   const [DList,setDList] = useState([]);
   const changeHandler = (checked, id) => {
     if (checked) {
@@ -99,7 +98,7 @@ function OrderOptionCost({AddOptmoneyStr,addOptionPrice}) {
   }, [AddOptmoneyStr])
  
   return (
-    <Wrapper>
+    <Wrapper ref={ref}>
       <Select onClick={handleClick} toggle={toggle}>
         <Selected>
           {checkedInputs.map((selected, i) => (
