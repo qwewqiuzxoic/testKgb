@@ -46,6 +46,9 @@ function Manage6() {
                         <img src={process.env.PUBLIC_URL + '/images/img_manual.png'} alt="매뉴얼학습"/>
                     </Box>
                 </a>
+                <span>
+                    클릭하시면 새창으로 열립니다.
+                </span>
             </ContentArea>
       </Wrapper>
       
