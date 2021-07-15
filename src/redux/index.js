@@ -10,7 +10,7 @@ import {pictureCheckReducer,pictureCheckDetailReducer} from './reducer/pictureCh
 import {happyCallListReducer,happyCallDetailReducer} from './reducer/happyCallReducer'
 import {warningListReducer,warningDetailReducer} from './reducer/warningReducer'
 import phoneListReducer from './reducer/phoneListReducer'
-import {eduAttendListReducer,usePointReducer, eduSurveyListReducer,eduisuListReducer} from './reducer/eduAttendReducer'
+import {eduAttendListReducer,usePointReducer,eduManualReducer,  eduSurveyListReducer,eduisuListReducer} from './reducer/eduAttendReducer'
 import {getAsListReducer,getAsDetailReducer,postAsCommentReducer} from './reducer/asReducer'
 import {billDetailReducer,billListReducer} from './reducer/billReducer'
 import { msgDelReducer, msgSendListReducer, msgRcvListReducer, msgAddReducer,msgSendReducer} from './reducer/msgReducer'
@@ -64,6 +64,7 @@ const rootReducer = combineReducers({
     totalDataReducer,
     totalDataAnReducer,
     totalAnMesReducer,
-    movedayReducer
+    movedayReducer,
+    eduManualReducer
 });
 export default rootReducer;

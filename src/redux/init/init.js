@@ -256,6 +256,15 @@ export const phoneListInit = {
     result:"",
     list:[]
 }
+//메뉴얼 학습 초기페이지
+export const eduManual = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+    docurl:""
+}
+
 
 //교육참석내역 리스트
 export const eduAttendListInit = {

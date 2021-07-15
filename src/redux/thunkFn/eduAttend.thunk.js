@@ -1,5 +1,5 @@
 import axios from "axios";
-import {  eduisuError, eduisuLoading, eduisuSuccess, EduPointUseError, EduPointUseLoading, EduPointUseSuccess, eduSurveyError, eduSurveyLoading, eduSurveySuccess, getAduAttendListError, getAduAttendListLoading, getAduAttendListSuccess } from "../actionFn/eduAttend";
+import {  eduisuError, eduisuLoading, eduisuSuccess, EduPointUseError, EduPointUseLoading, EduPointUseSuccess, eduSurveyError, eduSurveyLoading, eduSurveySuccess, getAduAttendListError, getAduAttendListLoading, getAduAttendListSuccess, getAduManualError, getAduManualLoading, getAduManualSuccess } from "../actionFn/eduAttend";
 
 
 export const geteduAttendList= () => dispatch => {
@@ -67,4 +67,22 @@ export const getEduisuList = () => dispatch => {
         })
 
 
+}
+
+
+
+export const getEduManual = () => dispatch=>{
+    const user = JSON.parse(localStorage.getItem('user'));       
+
+    dispatch(getAduManualLoading());
+    const url = '/BM/API/edu/edu_manual.asp';
+        axios.post(url, {
+            man_info_sn : user.man_info_sn,
+            brand : user.brand
+        }).then(function (res) {
+            //console.log(res)
+            dispatch(getAduManualSuccess(res.data));
+        }).catch(function (error) {
+            dispatch(getAduManualError(error));
+        })
 }

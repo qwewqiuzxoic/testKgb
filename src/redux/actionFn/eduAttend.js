@@ -1,4 +1,4 @@
-import { EDUATTEND_LIST_ERROR, EDUATTEND_LIST_LOADING, EDUATTEND_LIST_SUCCESS, EDUISU_LIST_ERROR, EDUISU_LIST_LOADING, EDUISU_LIST_SUCCESS, EDUPOINT_USE_ERROR, EDUPOINT_USE_LOADING, EDUPOINT_USE_SUCCESS, EDUSURVEY_LIST_ERROR, EDUSURVEY_LIST_LOADING, EDUSURVEY_LIST_SUCCESS } from "../types/eduAttend.type"
+import { EDUATTEND_LIST_ERROR, EDUATTEND_LIST_LOADING, EDUATTEND_LIST_SUCCESS, EDUISU_LIST_ERROR, EDUISU_LIST_LOADING, EDUISU_LIST_SUCCESS, EDUPOINT_USE_ERROR, EDUPOINT_USE_LOADING, EDUPOINT_USE_SUCCESS, EDUSURVEY_LIST_ERROR, EDUSURVEY_LIST_LOADING, EDUSURVEY_LIST_SUCCESS, EDU_MANUAL_ERROR, EDU_MANUAL_INIT, EDU_MANUAL_LOADING, EDU_MANUAL_SUCCESS } from "../types/eduAttend.type"
 
 
 export const getAduAttendListSuccess = (data) =>{
@@ -74,5 +74,28 @@ export const eduisuError = (data)=>{
     return{
         type:EDUISU_LIST_ERROR,
         data
+    }
+}
+
+export const getAduManualSuccess = (data)=>{
+    return{
+        type:EDU_MANUAL_SUCCESS,
+        data
+    }
+}
+export const getAduManualLoading = ()=>{
+    return{
+        type:EDU_MANUAL_LOADING
+    }
+}
+export const getAduManualError = (data)=>{
+    return{
+        type:EDU_MANUAL_ERROR,
+        data
+    }
+}
+export const getAduManualInit = ()=>{
+    return{
+        type:EDU_MANUAL_INIT
     }
 }

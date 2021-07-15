@@ -1,4 +1,4 @@
-import { eduAttendListInit, eduisuListInit, eduPointUseInit, eduSurveyListInit } from "../init/init";
+import { eduAttendListInit, eduisuListInit, eduManual, eduPointUseInit, eduSurveyListInit } from "../init/init";
 
 
 export function eduAttendListReducer(state = eduAttendListInit, action) {
@@ -145,5 +145,42 @@ export function eduisuListReducer(state = eduisuListInit, action){
                 list:[]
             }
         default :return state;
+    }
+}
+
+export const EDU_MANUAL_SUCCESS = "EDU_MANUAL_SUCCESS";
+export const EDU_MANUAL_LOADING = "EDU_MANUAL_LOADING";
+export const EDU_MANUAL_ERROR = "EDU_MANUAL_ERROR";
+export const EDU_MANUAL_INIT = "EDU_MANUAL_INIT";
+
+export function eduManualReducer(state= eduManual,action){
+    switch(action.type){
+        case "EDU_MANUAL_SUCCESS":
+            return{
+                loading:false,
+                error:"",
+                result:action.data.result,
+                message:action.data.message,
+                docurl:action.data.docurl
+            }
+        case "EDU_MANUAL_LOADING":
+            return{
+                loading:true,
+                error:"",
+                result:"",
+                message:"",
+                docurl:""
+            }
+        case "EDU_MANUAL_ERROR":
+            return{
+                loading:false,
+                error:action.data,
+                result:"",
+                message:"",
+                docurl:""
+            }
+        case "EDU_MANUAL_INIT":
+            return eduManual
+        default: return state
     }
 }

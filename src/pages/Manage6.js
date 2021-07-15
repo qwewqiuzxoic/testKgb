@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from '../components/commonStyle/Head';
 import { FlexBox, Gutter} from '../components/commonStyle';
 
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { getEduManual } from '../redux/thunkFn/eduAttend.thunk';
 
 const Wrapper = styled.div`
     background:#FAFAFA;
@@ -27,14 +29,23 @@ const Box = styled.div`
     }
 `
 function Manage6() {
-   
+    const dispatch = useDispatch();
+    const {docurl} = useSelector(state=>state.eduManualReducer);
+    useEffect(() => {
+        dispatch(getEduManual());
+        return () => {
+        }
+    }, [])
+    
   return (
       <Wrapper>
-            <Head title="매뉴얼 학습" subtit="kgb의 매뉴얼학습입니다"/>
+            <Head title="매뉴얼 학습" subtit="매뉴얼 학습입니다"/>
             <ContentArea>
-                <Box>
-                <img src={process.env.PUBLIC_URL + '/images/img_manual.png'} alt="매뉴얼학습"/>
-                </Box>
+                <a href={docurl} target="_blank">
+                    <Box>
+                        <img src={process.env.PUBLIC_URL + '/images/img_manual.png'} alt="매뉴얼학습"/>
+                    </Box>
+                </a>
             </ContentArea>
       </Wrapper>
       
