@@ -260,7 +260,7 @@ function Team3_1({match}) {
   }
 //옵션 추가 비용
   const addOptionPrice = (list) =>{
-    //console.log(list)
+    console.log(list)
     setOrderSave({
       ...orderSave,
       cboMoveOptionVal:list.join("^"),
@@ -424,6 +424,8 @@ function Team3_1({match}) {
   const [nesCheck4,setNesCheck4]= useState(false);
   const [nesCheck5,setNesCheck5]= useState(false);
   const subMit = () =>{
+    console.log(orderSave)
+
     if(orderSave.CustName === ""){
       setNesCheck1(true);
     } else{
@@ -454,8 +456,7 @@ function Team3_1({match}) {
     if(orderSave.CustName === "" ||orderSave.StPhone === "" || orderSave.CboOrderStatus === "" || orderSave.EdAddr1 === "" || orderSave.EdAddr4 === "" || orderSave.StAddr1 === "" || orderSave.StAddr4 === ""){
       return;
     }
-    //console.log({...orderSave,order_info_sn:sn !== undefined ?sn:""})
-   disaptch(totalMesThunk("save_contract",{...orderSave,order_info_sn:sn !== undefined ?sn:""}));
+   //disaptch(totalMesThunk("save_contract",{...orderSave,order_info_sn:sn !== undefined ?sn:""}));
 
   }
   let history = useHistory();

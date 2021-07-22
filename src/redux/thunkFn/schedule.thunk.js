@@ -1,5 +1,5 @@
 import axios from "axios";
-import { dayScError, dayScGetdata, dayScLoading, monthScError, monthScGetdata, monthScLoading } from "../actionFn/schedule";
+import { dayScError, dayScGetdata, dayScLoading, monthScError, monthScGetdata, monthScLoading, sondayError, sondayLoading, sondaySuccess } from "../actionFn/schedule";
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -76,5 +76,18 @@ const user = JSON.parse(localStorage.getItem('user'));
         dispatch(dayScGetdata(res.data))
     }).catch(function(error){
         dispatch(dayScError(error))
+    })
+}
+
+export const getSonDayList = (yy,mm) => dispatch =>{
+    dispatch(sondayLoading());
+    const url ='/BM/API/seller/get_sonday_info.asp';
+    axios.post(url,{
+        "dDateY":yy,
+        "dDateM":mm
+    }).then(res =>{
+        dispatch(sondaySuccess(res.data))
+    }).catch(function(error){
+        dispatch(sondayError(error))
     })
 }

@@ -31,6 +31,29 @@ const TabName = styled.div`
       cursor: auto;
   }
 `;
+const RegionTabs = styled.div`
+    ${Gutter()};
+    ${FlexBox('flex-start')};
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top:30px;
+`;
+const RegionTabName = styled.div`
+    padding: 4px 12px;
+    border-radius: 20px;
+    border:1px solid ${(props) => props.theme.colors.grey1};
+    margin-left:4px;
+    margin-bottom:8px;
+    cursor:pointer;
+    &.selected{
+      background : rgba(255, 255, 255, .3);
+      color: ${(props) => props.theme.colors.primary};
+      border:1px solid ${(props) => props.theme.colors.primary};
+      font-weight: bold;
+      cursor: auto;
+  }
+`;
+
 const ContentArea = styled.div`
     position:relative;
     margin-top:30px;
@@ -91,31 +114,45 @@ const Row = ({region,agent, name, call,head}) => (
 function Team9() {
   const [tableData, setTableData] = useState(data);
   const [tab,setTab]= useState("");
+  const [areaTab,setAreaTab] = useState("전체");
   const rows = tableData.map( (rowData) => <Row {...rowData} />);
   const dispatch = useDispatch();
   const list = useSelector(state=>state.phoneListReducer.list)
   const user = JSON.parse(localStorage.getItem('user'));       
-  const tabChange = (num,text) =>{
-    dispatch(getPhoneList(1,text));
+  const tabChange = (num,text,area) =>{
+    dispatch(getPhoneList(2,text,area));
     setTab(text);
   } 
+  const areaTabChange = (text,area) =>{
+    dispatch(getPhoneList(2,text,area));
+    setAreaTab(area);
+  }
   useEffect(() => {
-    dispatch(getPhoneList(2,user.brand));
+    dispatch(getPhoneList(2,user.brand,areaTab));
     setTab(user.brand);
 
     return () => {
     }
   }, [])
+  const areaArr =  ["전체","서울동부","서울서부","서울남부","서울북부","경기동부","경기서부","경기남부","경기북부","인천부천","대전충청","대구경북","부산경남울산","광주전라","강원","제주"]
   return (
     <>
       <Wrapper>
         <Head title="권역 및 대표" subtit="KGB의 권역 및 대표입니다" pb="90px"/>
         <Tabs>
-        <TabName className={tab === "YCAP" ? "selected": ""} onClick={()=>tabChange(0,"YCAP")}>YCAP</TabName>
-          <TabName className={tab === "KGB이사" ? "selected": ""} onClick={()=>tabChange(1,"KGB이사")}>KGB이사</TabName>
-          <TabName className={tab === "YES2404" ? "selected": ""} onClick={()=>tabChange(2,"YES2404")}>YES2404</TabName>
-          <TabName className={tab === "YES24041" ? "selected": ""} onClick={()=>tabChange(3,"YES24041")}>YES2404</TabName>
+          <TabName className={tab === "KGB이사" ? "selected": ""} onClick={()=>tabChange(1,"KGB이사",areaTab)}>KGB이사</TabName>
+          <TabName className={tab === "YES2404" ? "selected": ""} onClick={()=>tabChange(2,"YES2404",areaTab)}>YES2404</TabName>
+          <TabName className={tab === "이사이사" ? "selected": ""} onClick={()=>tabChange(3,"이사이사",areaTab)}>YES2424</TabName>
+          <TabName className={tab === "용달캡" ? "selected": ""} onClick={()=>tabChange(0,"용달캡",areaTab)}>YCAP</TabName>
         </Tabs>
+        <RegionTabs>
+          {
+            areaArr.map((item,index)=>
+            <RegionTabName className={areaTab === item ? "selected": ""} onClick={()=>areaTabChange(tab,item)}>{item}</RegionTabName>
+            )
+          }
+          
+        </RegionTabs>
         <ContentArea>
           <Table>
             <TableHead>

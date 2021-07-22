@@ -51,7 +51,6 @@ function Manage6() {
                 </span>
             </ContentArea>
       </Wrapper>
-      
   );
 }
 

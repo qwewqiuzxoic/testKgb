@@ -27,6 +27,14 @@ export const totalAnData = {
     error:"",
     data:{}
 }
+//손없는날
+export const sonDayInit = {
+    loading:false,
+    error:"",
+    result:"",
+    message:"",
+    list:[]
+}
 //포장일 이사일
 export const moveDayInit = {
     result:"",

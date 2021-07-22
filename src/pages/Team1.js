@@ -9,7 +9,7 @@ import '../styles/Calender.css'
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyle';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDaySc, getMonthSc } from '../redux/thunkFn/schedule.thunk';
+import { getDaySc, getMonthSc, getSonDayList } from '../redux/thunkFn/schedule.thunk';
 
 
 const Wrapper = styled.div`
@@ -141,18 +141,29 @@ function Team1({match}) {
         <div className="state_wrapper">{text}</div>
       );
   }
+
+  const sonDayList = useSelector(state => state.sonDayReducer.list).map(item=>item["daymove"])
   const month = getMonth();
   const year = getYear();
   const changeMonth = (v,e) =>{
     dispatch(getMonthSc(getYear2(v),getMonth2(v),page));
+    if(page === "1"){
+      dispatch(getSonDayList(getYear2(v),getMonth2(v)));
+    }
   }
   const formatDate = (date) =>{
-    date = moment(date).format('DD');
+    date = <div style={sonDayList.includes(moment(date).format('YYYY-MM-DD'))?{color:"#ff9a9a"}:{}}>
+      {moment(date).format('DD')}
+    </div>
+    
     return date;
   }
   useEffect(() => {
     dispatch(getMonthSc(year,month,page));
     dispatch(getDaySc(tday,page));
+    if(page === "1"){
+      dispatch(getSonDayList(year,month));
+    }
     return () => {
       
     }

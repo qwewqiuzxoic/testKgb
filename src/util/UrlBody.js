@@ -400,7 +400,7 @@ export const UrlBody = (type, data) => {
             return{
                 url:"/BM/API/team/air_clean_list.asp",
                 body:{
-                    "brand":user.brand,
+                    "biz_sn":user.biz_sn,
                 }
             }
         default: return null;

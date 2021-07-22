@@ -70,6 +70,7 @@ function OrderOptionCost({AddOptmoneyStr,addOptionPrice, setToggle, toggle,ref})
   //const [selectedValue,setSelectedValue]= useState("작업정보옵션을 선택해주세요");
   const [DList,setDList] = useState([]);
   const changeHandler = (checked, id) => {
+    console.log(DList)
     if (checked) {
       setCheckedInputs([...checkedInputs, id]);
     } else {
@@ -96,6 +97,10 @@ function OrderOptionCost({AddOptmoneyStr,addOptionPrice, setToggle, toggle,ref})
     }
     
   }, [AddOptmoneyStr])
+  useEffect(() => {
+    addOptionPrice(checkedInputs)
+    
+  }, [checkedInputs])
  
   return (
     <Wrapper ref={ref}>

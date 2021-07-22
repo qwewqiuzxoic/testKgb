@@ -58,8 +58,8 @@ const Cell = styled.div`
 `;
 
 const data = [];
-const Row = ({region,agent, name, call,head,teamname}) => (
-  <TableRow className="row">
+const Row = ({region,agent, name, call,head,teamname, index}) => (
+  <TableRow className="row" style={index=== 0?{color:"#009b90"}:{color:"black"}}>
     <Cell w='1'>{region}</Cell>
     <Cell w='1.5'>{agent}</Cell>
     <Cell w='2'>{teamname}</Cell>
@@ -95,7 +95,7 @@ function Team10() {
             <TableBody>
               {
                 list && list.map((item,index)=>
-                  <Row region={item.code_type} teamname={item.teamname} agent={item.code_area} head={item.chk_head} name={item.manname} call={item.tel}></Row>
+                  <Row key={index} region={item.code_type} index={index} teamname={item.teamname} agent={item.code_area} head={item.chk_head} name={item.manname} call={item.tel}></Row>
                 )
               }
             </TableBody>

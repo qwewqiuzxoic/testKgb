@@ -203,7 +203,7 @@ function TopWrapper() {
                 <Date>2021.01.01</Date>
             </TitArea> */}
             <UserArea>
-                <p>{daySc[0].custname}</p>
+                <p>{daySc[0].custname === "" ? "일정없음":daySc[0].custname}</p>
                 <p>{daySc[0].phone}</p>
             </UserArea>
             <TrackingArea>
