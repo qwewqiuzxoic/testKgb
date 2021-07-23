@@ -248,7 +248,6 @@ function Team3_1({match}) {
   const radioChangeEd = (e) =>{
     firstData.EdSadari = "0"
     firstData.EdEL = "0"
-  
     setOrderSave({
       ...orderSave,
       EdSadari:"0",
@@ -257,6 +256,17 @@ function Team3_1({match}) {
       EdLoop:"0",
       [e.target.value]:"1",
     })
+  }
+  //사다리 등등 옵션 해지
+  const radioFalse = (e) =>{
+    if(e.target.checked){
+      e.target.checked = false;
+      setOrderSave({
+        ...orderSave,
+        [e.target.value]:"0",
+      })
+    }
+    
   }
 //옵션 추가 비용
   const addOptionPrice = (list) =>{
@@ -299,6 +309,7 @@ function Team3_1({match}) {
     }
   }, [orderSave.StAddr1])
   useEffect(() => {
+    console.log(123)
     if(orderSave.StAddr1 !== firstData.StAddr1 || orderSave.EdAddr1 !== firstData.EdAddr1){
       if( orderSave.StAddr1 !== "" && orderSave.EdAddr1 !== "" ){
         //console.log("주소지 변경 ================")
@@ -374,17 +385,26 @@ function Team3_1({match}) {
       //console.log("출발지 사다리 변경")
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
+    if(orderSave.StSadari === "0"){
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    } 
   }, [orderSave.StSadari])
   useEffect(() => {
     if(orderSave.StEL === "1" && orderSave.StEL !== firstData.StEL){
       //console.log("출발지 StEL 변경")
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
+    if(orderSave.StEL === "0"){
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    } 
   }, [orderSave.StEL])
 
   useEffect(() => {
     if(orderSave.EdSadari === "1" && orderSave.EdSadari !== firstData.EdSadari){
       //console.log("도착지 사다리 변경")
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    }
+    if(orderSave.EdSadari === "0"){
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
   }, [orderSave.EdSadari])
@@ -393,6 +413,9 @@ function Team3_1({match}) {
       //console.log("도착지 StEL 변경")
       disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
     }
+    if(orderSave.EdEL === "0"){
+      disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:200000010}));
+    } 
   }, [orderSave.EdEL])
   //옵션비용변경
   useEffect(() => {
@@ -403,12 +426,23 @@ function Team3_1({match}) {
   }, [orderSave.cboMoveOptionVal])
   useEffect(()=>{
     if(Object.keys(AnData).length !== 0){  
-      setInit(AnData);
+      if(Object.keys(AnData).includes('MoveDistKM')){
+        setInit({...AnData,MoveDistKm:AnData.MoveDistKM === undefined ? "":AnData.MoveDistKM});
+      } else{
+        setInit(AnData);
+      }
+      console.log({...AnData,MoveDistKm:AnData.MoveDistKM})
       //console.log(AnData)
       disaptch(totalDataAnInit());
     }
   },[AnData])
 
+  //이사물량
+  useEffect(()=>{
+    //211110010
+    disaptch(totalAnDataThunck("get_movepay",{...orderSave,ExecType:211110010}));
+  },[orderSave.MoveCBM])
+  
   //합계 계산로직
   useEffect(()=>{
     setOrderSave({
@@ -456,7 +490,7 @@ function Team3_1({match}) {
     if(orderSave.CustName === "" ||orderSave.StPhone === "" || orderSave.CboOrderStatus === "" || orderSave.EdAddr1 === "" || orderSave.EdAddr4 === "" || orderSave.StAddr1 === "" || orderSave.StAddr4 === ""){
       return;
     }
-   //disaptch(totalMesThunk("save_contract",{...orderSave,order_info_sn:sn !== undefined ?sn:""}));
+  // disaptch(totalMesThunk("save_contract",{...orderSave,order_info_sn:sn !== undefined ?sn:""}));
 
   }
   let history = useHistory();
@@ -529,6 +563,7 @@ useEffect(() => {
             Trdist={orderSave.StTrdist}
             setOrderChange={setOrderChange}
             radioChange={radioChangeSt}
+            radioFalse={radioFalse}
             name="StAdd"
             />
             <br/>
@@ -542,6 +577,7 @@ useEffect(() => {
             Trdist={orderSave.EdTrdist}
             setOrderChange={setOrderChange}
             radioChange={radioChangeEd}
+            radioFalse={radioFalse}
             name="EdAdd"
             />
           </Section>

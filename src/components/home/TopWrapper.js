@@ -6,7 +6,7 @@ import { FlexBox, ChangeFont, Gutter } from '../commonStyle';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMainDaySc } from '../../redux/thunkFn/schedule.thunk';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 
 const Wrapper = styled.div`
@@ -202,16 +202,18 @@ function TopWrapper() {
                 <TitName>오늘일정</TitName>
                 <Date>2021.01.01</Date>
             </TitArea> */}
+            <Link to={daySc[0].sn?`/Team3_1/${daySc[0].sn}`:null}>
             <UserArea>
-                <p>{daySc[0].custname === "" ? "일정없음":daySc[0].custname}</p>
+                <p>{ Object.keys(daySc[0]).includes("custname") && daySc[0].custname === "" ? "일정없음":daySc[0].custname}</p>
                 <p>{daySc[0].phone}</p>
             </UserArea>
+            </Link>
             <TrackingArea>
                 <TrackBg>
                 </TrackBg>
                 <img src={process.env.PUBLIC_URL + '/images/car.png'} alt="현재위치"/>
                 <TrackAddr>
-                    <p>{daySc[0].saddr1 && daySc[0].saddr1} {daySc[0].saddr2} {daySc[0].saddr3}</p>
+                    <p>{daySc[0].saddr1} {daySc[0].saddr2} {daySc[0].saddr3}</p>
                     <p>{daySc[0].eaddr1} {daySc[0].eaddr2} {daySc[0].eaddr3}</p>
                 </TrackAddr>
             </TrackingArea>
@@ -220,32 +222,32 @@ function TopWrapper() {
           {/* 맵함수.... */}
           <MainBox width="48%" padding="16px 20px">
             <LineTitArea name="내일일정"  lineColor="linear-gradient(90deg, rgba(0, 155, 144, 1) 0%, rgba(39, 194, 129, 1) 100%)" bgColor="#DFE5EA" color="#009B90" weight="bold"></LineTitArea>
-            {daySc[1].custname === "" ?<NullBox>일정없음</NullBox> :
+            { Object.keys(daySc[1]).includes("custname") && daySc[1].custname === "" ?<NullBox>일정없음</NullBox> :
               <Desc>
               <Name>{daySc[1].custname}</Name>
               <Phone>{daySc[1].phone}</Phone>
               <RouteArea>
-                <GreyText>{daySc[1].saddr1} {daySc[1].saddr2} {daySc[1].saddr3}</GreyText>
+                <GreyText>{daySc[1].saddr3}</GreyText>
                 <ArrowBox>
                   <img src={process.env.PUBLIC_URL + '/images/arrowRoute.png'} alt="이동" />
                 </ArrowBox>
-                <GreyText>{daySc[1].eaddr1} {daySc[1].eaddr2} {daySc[1].eaddr3}</GreyText>
+                <GreyText>{daySc[1].eaddr3}</GreyText>
               </RouteArea>
             </Desc>
               }
           </MainBox>
           <MainBox width="48%" padding="16px 20px">
             <LineTitArea name="모레일정" lineColor="linear-gradient(90deg, #009B90 0%, #2F8DB7 100%)" bgColor="#F3F7FB" color="#2F8EB6" weight="bold"></LineTitArea>
-              {daySc[2].custname === "" ?<NullBox>일정없음</NullBox> :
+              { Object.keys(daySc[2]).includes("custname") && daySc[2].custname === "" ?<NullBox>일정없음</NullBox> :
               <Desc>
               <Name>{daySc[2].custname}</Name>
               <Phone>{daySc[2].phone}</Phone>
               <RouteArea>
-                <GreyText>{daySc[2].saddr1} {daySc[2].saddr2} {daySc[2].saddr3}</GreyText>
+                <GreyText>{daySc[2].saddr3}</GreyText>
                 <ArrowBox>
                   <img src={process.env.PUBLIC_URL + '/images/arrowRoute.png'} alt="이동" />
                 </ArrowBox>
-                <GreyText>{daySc[2].eaddr1} {daySc[2].eaddr2} {daySc[2].eaddr3}</GreyText>
+                <GreyText>{daySc[2].eaddr3}</GreyText>
               </RouteArea>
             </Desc>
               }

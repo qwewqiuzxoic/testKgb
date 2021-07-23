@@ -151,6 +151,7 @@ function Team1({match}) {
       dispatch(getSonDayList(getYear2(v),getMonth2(v)));
     }
   }
+  //3397B9 
   const formatDate = (date) =>{
     date = <div style={sonDayList.includes(moment(date).format('YYYY-MM-DD'))?{color:"#ff9a9a"}:{}}>
       {moment(date).format('DD')}
@@ -178,7 +179,7 @@ function Team1({match}) {
         <Labels isTaskPage={ page === "1" ? true : false }></Labels>
         <ScheduleBox>
           <SelectedDay>
-            <p>{moment(dateState).format('dddd DD, MMMM')}</p>
+            <p>{moment(dateState).format('YYYY-MM-DD')}</p>
             <span>{moment(dateState).format('YYYY-MM-DD')===moment(new Date()).format('YYYY-MM-DD') ? '오늘' : ''}</span>
           </SelectedDay>
           <Schedules data={daySc} page={page} selectDay={selectDay}></Schedules>

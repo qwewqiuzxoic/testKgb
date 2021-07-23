@@ -23,11 +23,11 @@ const RadioLabel = styled.label`
     }
 `;
 
-function RadioGroup({id, name, label, checked ,radioChange, value}) {
+function RadioGroup({id, name, label, checked ,radioChange, value, radioFalse}) {
   
   return (
     <Wrapper>
-        <Radio type="radio" name={name} id={id+name} value={value} checked={checked} onChange={e=>radioChange(e)}/>
+        <Radio type="radio" name={name} id={id+name} value={value} checked={checked} onChange={e=>radioChange(e)} onClick={(e)=>radioFalse(e)}/>
         <RadioLabel htmlFor={id+name}>
           <span>{label}</span>
         </RadioLabel>

@@ -27,7 +27,7 @@ const Label = styled.label`
 const Input = styled.input`
   ${InputStyle()};
 `;
-function OrderAddressOption({title,name ,EL, Floor, Loop, Sadari, Step, gondora,Trdist, radioChange, setOrderChange}) {
+function OrderAddressOption({title,name ,EL, Floor, Loop, Sadari, Step, gondora,Trdist, radioChange, setOrderChange, radioFalse}) {
   return (
     <Wrapper>
       <Group>
@@ -46,12 +46,12 @@ function OrderAddressOption({title,name ,EL, Floor, Loop, Sadari, Step, gondora,
       작업정보 옵션
       </Label>
       <Layout>
-        <RadioGroup id="workOption1" value={name === "StAdd" ? "StSadari" : "EdSadari"} name={name} label="사다리차 이용" checked={Sadari === "1"?true:false} radioChange={radioChange}></RadioGroup>
-        <RadioGroup id="workOption2" value={name === "StAdd" ? "StEL" : "EdEL"} name={name} label="엘리베이터" checked={EL === "1"?true:false} radioChange={radioChange}></RadioGroup>
+        <RadioGroup id="workOption1" value={name === "StAdd" ? "StSadari" : "EdSadari"} name={name} label="사다리차 이용" checked={Sadari === "1"?true:false} radioChange={radioChange} radioFalse={radioFalse}></RadioGroup>
+        <RadioGroup id="workOption2" value={name === "StAdd" ? "StEL" : "EdEL"} name={name} label="엘리베이터" checked={EL === "1"?true:false} radioChange={radioChange} radioFalse={radioFalse}></RadioGroup>
       </Layout>
       <Layout>
-        <RadioGroup id="workOption3" value={name === "StAdd" ? "Stgondora" : "EdGondora"} name={name}  label="곤도라 사용" checked={gondora === "1"?true:false} radioChange={radioChange}></RadioGroup>
-        <RadioGroup id="workOption4" value={name === "StAdd" ? "StLoop" : "EdLoop"} name={name}  label="로프 사용" checked={Loop === "1"?true:false} radioChange={radioChange}></RadioGroup>
+        <RadioGroup id="workOption3" value={name === "StAdd" ? "Stgondora" : "EdGondora"} name={name}  label="곤도라 사용" checked={gondora === "1"?true:false} radioChange={radioChange} radioFalse={radioFalse}></RadioGroup>
+        <RadioGroup id="workOption4" value={name === "StAdd" ? "StLoop" : "EdLoop"} name={name}  label="로프 사용" checked={Loop === "1"?true:false} radioChange={radioChange} radioFalse={radioFalse}></RadioGroup>
       </Layout>
       </Group>
     </Wrapper>

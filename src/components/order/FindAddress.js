@@ -19,7 +19,8 @@ const Wrapper = styled.div`
 
 function FindAddress(props) {
     const handlePostCode = (data) => {
-        let fullAddress = data.jibunAddress;
+        console.log(data)
+        let fullAddress = data.jibunAddress !== "" ? data.jibunAddress : data.autoJibunAddress;
         let extraAddress = ''; 
         let bcode = data.bcode
         

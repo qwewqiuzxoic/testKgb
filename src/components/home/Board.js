@@ -34,8 +34,8 @@ function Board() {
   const dispatch = useDispatch();
 
   const boardList = useSelector(state => state.boardReducer.boardList);
-  useEffect(() => {
-      dispatch(getBoardList(user.brand,"소사장공지사항",1,4))
+  useEffect(() => { //user.brand,"소사장공지사항",pageCount.current
+      dispatch(getBoardList(user.brand,"소사장공지사항",1,"",4))
   }, [])
 
   return (
