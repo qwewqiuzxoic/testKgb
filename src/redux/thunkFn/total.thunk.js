@@ -71,8 +71,6 @@ export const totalDataThunk= (type,data) => dispatch => {
 
 export const totalAnDataThunck = (type,data) => dispatch => {
     const {url,body} = UrlBody(type,data);
-    console.log(body);
-
     dispatch(totalDataAnLoading());
         axios.post(url, body).then(function (res) {
             // ////console.log(res)
