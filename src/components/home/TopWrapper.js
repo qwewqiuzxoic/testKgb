@@ -153,7 +153,7 @@ function getAfTomorrowdate(){
 }
 function TopWrapper() {
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem('user'))  ;
+  const user = localStorage.getItem('user') !== null ? localStorage.getItem('user') : {};
   if(Object.keys(user).length === 0) {
     history.push('/login');
   }

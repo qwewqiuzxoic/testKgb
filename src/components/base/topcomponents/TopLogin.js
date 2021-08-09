@@ -42,7 +42,7 @@ function TopLogin({clickMenu}) {
       <PageName>
           로그인
       </PageName>
-      <IconMenu onClick={()=>{clickMenu()}}>
+      <IconMenu >
       </IconMenu>
     </Wrapper>
   );

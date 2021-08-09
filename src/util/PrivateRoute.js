@@ -2,11 +2,13 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 function PrivateRoute ({ component: Component, ...rest }) {
+    console.log(localStorage.getItem('user'))
+    const user =  localStorage.getItem('user') !== null ? localStorage.getItem('user') : {};
     return (
         <Route
             {...rest}
             render = {props => 
-                Object.keys(localStorage.getItem('user')).length === 0?(
+                Object.keys(user).length !== 0?(
                     <Component {...props} />
                 ) : ( 
                     <Redirect to={{
