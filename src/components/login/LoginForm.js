@@ -9,7 +9,6 @@ import styled from 'styled-components';
 import Loading from '../commonStyle/Loading';
 import ConfirmModal from '../base/ConfirmModal';
 import { totalMesInit } from '../../redux/actionFn/total';
-
 const Wrapper = styled.div`
     margin: 0 auto;
     padding: 0 24px;
@@ -61,7 +60,7 @@ const CheckboxContainer = styled.div`
         &:checked + label{
             &:after{
                 content:'';
-                background:url(/images/checkbox_on.svg) no-repeat center;
+                background: url(${(props) => process.env.PUBLIC_URL + '/images/checkbox_on.png'}) no-repeat center;
                 background-size: 15px;
                 width:15px;
                 height:15px;
@@ -80,7 +79,7 @@ const CheckboxContainer = styled.div`
             content:'';
             width:15px;
             height:15px;
-            background:url(/images/checkbox_off.svg) no-repeat center;
+            background:url(${(props) => process.env.PUBLIC_URL + '/images/checkbox_off.png'}) no-repeat center;
             background-size: 15px;
         }
         img{
@@ -112,13 +111,12 @@ const ContactBtn = styled.a`
         right:0;
         margin:0 auto;
         content:'';
-        background: url(/images/ico_plus.png) no-repeat center;
+        background: url(${(props) => process.env.PUBLIC_URL + 'images/ico_plus.png'}) no-repeat center;
         background-size: 25px;
         width: 25px;
         height: 25px;
     }
 `
-
 function LoginForm({ backLocation }) {
     const backlocation = backLocation;
     let history = useHistory();
