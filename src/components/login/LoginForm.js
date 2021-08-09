@@ -131,7 +131,7 @@ function LoginForm({ backLocation }) {
     useEffect(() => {
         if(Object.keys(user).length !== 0){
             history.push(backlocation);
-        }else if(Object.keys(user).length === 0){
+        }else if(user.userid === ""){
             setSucCheck(true);
         }
         return () => {
