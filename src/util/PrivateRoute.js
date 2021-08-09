@@ -8,7 +8,7 @@ function PrivateRoute ({ component: Component, ...rest }) {
         <Route
             {...rest}
             render = {props => 
-                Object.keys(user).length !== 0?(
+                Object.keys(user).length !== 0 || Object.keys(user) === {} ? (
                     <Component {...props} />
                 ) : ( 
                     <Redirect to={{

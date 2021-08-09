@@ -73,6 +73,7 @@ import WorkDayChangeBoard from "./pages/WorkDayChangeBoard";
 function App() {
   // axios.get("http://localhost:3001/memo/2").then(res=>{
   // })
+  axios.defaults.baseURL = 'https://misapp.kgb.co.kr/';
 
   const user = useSelector(state=>state.loginReducer.user);
   const userS = useSelector(state=>state.loginReducer);
