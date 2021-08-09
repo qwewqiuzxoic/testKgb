@@ -65,7 +65,7 @@ function SolidBoxes() {
   return (
     <Wrapper>
       {boxes.map((box, index)=> (
-          <SolidBox key={index} title={box.title}  desc={box.desc} bg={box.bg} target={ box.num ? "" : "_blank"} width="48%" padding="16px 20px" href={ box.num ? `tel:${user.brand_tel}` : user.homepage} ta>
+          <SolidBox key={index} title={box.title}  desc={box.desc} bg={box.bg} target={ box.num ? "" : "_blank"} width="48%" padding="16px 20px" href={ box.num ? `tel:${user.brand_tel === null ?"":user.brand_tel}` : user.homepage} ta>
             <TextArea>
               <p>{box.title}</p>
               <span>{box.desc}</span>
