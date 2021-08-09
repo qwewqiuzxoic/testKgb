@@ -78,16 +78,8 @@ function App() {
   const user = useSelector(state=>state.loginReducer.user);
   const userS = useSelector(state=>state.loginReducer);
   const open = useSelector(state=>state.ModalReducer.open);
-  const user2 = JSON.parse(localStorage.getItem('user'))  ;       
-
   const [menu, setMenu] = useState(true);
-  useEffect(() => {
-    if(user2 === null){
-      localStorage.setItem('user', JSON.stringify(user));
-    }
-      return () => {
-        }
-  }, [userS])
+ 
 
 
   return (
