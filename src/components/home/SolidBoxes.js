@@ -61,7 +61,6 @@ function SolidBoxes() {
         num:false
     },
 ]
-
   return (
     <Wrapper>
       {boxes.map((box, index)=> (

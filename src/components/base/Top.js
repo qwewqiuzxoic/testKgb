@@ -22,11 +22,15 @@ function Top({setMenu,menu}) {
           setUrl(location.pathname);
        }) 
     },[history]) 
+    useEffect(() => {
+        setUrl(window.location.pathname);
+     },[window.location.pathname]) 
+    
     if(menuState){
         return(
             <Menu clickMenu={clickMenu}/>
         )
-    } else if(url === "/Login" || url === "/login"){
+    } else if(url.includes("Login") ||url.includes("login") ){
         return (
             <TopLogin clickMenu={clickMenu}/>
         )
