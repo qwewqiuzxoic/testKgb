@@ -157,14 +157,14 @@ function Team9() {
           <Table>
             <TableHead>
               <Cell w='1'>권역</Cell>
-              <Cell w='1.5'>대리점명</Cell>
+              <Cell w='1.5'>대리점명/팀명</Cell>
               <Cell w='1.5'>대표자</Cell>
               <Cell w='2'>전화번호</Cell>
             </TableHead>
             <TableBody>
               {
                 list && list.map((item,index)=>
-                  <Row region={item.code_areaname} agent={item.code_area} head={item.chk_head} name={item.manname} call={item.tel}></Row>
+                  <Row region={item.code_areaname} agent={item.teamname} head={item.chk_head} name={item.manname} call={item.tel}></Row>
                 )
               }
             </TableBody>
