@@ -9,9 +9,10 @@ export const login = (userid,password) => dispatch  => {
             userid: userid,
             password: password
         }).then(function (res) {
-            localStorage.setItem('user', JSON.stringify(res.data.user));
             dispatch(loginSuccess(res.data.user));
-            localStorage.setItem('user', JSON.stringify(res.data.user));
+            if(res.data.user.man_info_sn !== undefined){
+                localStorage.setItem('user', JSON.stringify(res.data.user));
+            }
             //console.log(JSON.parse(localStorage.getItem('user')));
              // response  
         }).catch(function (error) {

@@ -129,7 +129,7 @@ function LoginForm({ backLocation }) {
     }
     const [sucCheck,setSucCheck] = useState(false);
     useEffect(() => {
-        if(Object.keys(user).length !== 0){
+        if(Object.keys(user).length !== 0 && user.userid !== ""){
             history.push(backlocation);
         }else if(user.userid === ""){
             setSucCheck(true);
