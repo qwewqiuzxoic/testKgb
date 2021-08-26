@@ -64,22 +64,22 @@ const Contents = styled.div`
 const contacts = [
     {
         team: 'KGB이사',
-        name: '당담자',
+        name: '담당자',
         call: '01048624024',
     },
     {
         team: 'YES2404',
-        name: '당담자',
+        name: '담당자',
         call: '01099713156',
     },
     {
         team: 'YES2424',
-        name: '당담자',
+        name: '담당자',
         call: '01033453158',
     },
     {
         team: 'Ycap',
-        name: '당담자',
+        name: '담당자',
         call: '01022683158',
     },
 ]
