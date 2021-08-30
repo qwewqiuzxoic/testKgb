@@ -37,7 +37,11 @@ function BoardListWrap({boardCode, tabCheck, tab}) {
       }else if(tab === 2){
         setChList(list.filter(item => item.tname !== user.tname))
       } else{
-        setChList(list)
+        if(typeof list === undefined) {
+          setChList([]);
+        }else{
+          setChList(list);
+        }
       }
 
       return () => {

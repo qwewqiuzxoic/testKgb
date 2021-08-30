@@ -28,6 +28,18 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+        crossorigin="anonymous"></script>
+       
+        <h1 id="HelloWorld">Hello World !!!</h1>
+        <button onclick="getFirebaseToken()">aaa</button>
+        <script>
+          function getFirebaseToken() {
+             $('#HelloWorld').html(Android.getFirebaseToken());
+            }
+        </script>
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -39,5 +51,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    
   </body>
 </html>
