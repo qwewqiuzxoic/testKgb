@@ -124,8 +124,9 @@ function LoginForm({ backLocation }) {
     const dispatch = useDispatch();
     const user = useSelector(state=>state.loginReducer.user);
     const loading = useSelector(state=>state.loginReducer.loading);
+    const android = window.Android;
     const onSubmit = data => {
-        dispatch(login(data.id,data.password));
+        dispatch(login(data.id, data.password, android.getFirebaseToken())); //안드로이드 토큰 관련 추가
     }
     const [sucCheck,setSucCheck] = useState(false);
     useEffect(() => {

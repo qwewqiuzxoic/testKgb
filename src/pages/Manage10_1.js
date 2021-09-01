@@ -44,6 +44,14 @@ const GreyBtn = styled.div`
 function Manage10_1() {
     const dispatch = useDispatch();
     const {loading,list} = useSelector(state=>state.totalListReducer);
+    const android = window.Android;
+    const onclick = ()=> {
+        android.showQRReader();
+    }
+    const [qrStr, setQrStr] = useState('text')
+    const QRResponse = (str)=>{
+        setQrStr(str);
+    }
     useEffect(() => {
         dispatch(totalListThunk("edu_att_list",{}))
         return () => {
@@ -62,7 +70,10 @@ function Manage10_1() {
                 </ContentArea>
                )
             }
-           
+            <button onClick={onclick}>
+                qr확인용 버튼
+            </button>
+            {qrStr}
             {loading && <Loading></Loading>}
       </Wrapper>
   );

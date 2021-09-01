@@ -44,7 +44,7 @@ const ContentArea = styled.div`
 //     billListReducer
 
 function Bill() {
-  const [tab,setTab]= useState(0);
+  const [tab,setTab]= useState(1);
   const dispatch = useDispatch();
   const {loading, list} = useSelector(state => state.billListReducer);
   useEffect(() => {
@@ -59,8 +59,8 @@ function Bill() {
       <Wrapper>
         <Head title="청구서 관리" subtit="KGB의 청구서입니다" pb="90px"/>
         <Tabs>
-          <TabName className={tab === 0 ? "selected": ""} onClick={()=>setTab(0)}>청구내역</TabName>
           <TabName className={tab === 1 ? "selected": ""} onClick={()=>setTab(1)}>청구서</TabName>
+          <TabName className={tab === 0 ? "selected": ""} onClick={()=>setTab(0)}>청구내역</TabName>
         </Tabs>
         <ContentArea>
             {loading && <Loading></Loading>}

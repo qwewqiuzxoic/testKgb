@@ -30,12 +30,14 @@ function CommentList({list}) {
         {list && list.map((item,index) => 
         <div>
           { item.as_content &&
-            <Comment key={index} text={item.as_content} regdate={item.regdate} regloginid={item.regloginid}>
+            <Comment key={index} text={item.as_content} regdate={item.regdate} regloginid={item.regloginname}>
+            {/* <Comment key={index} text={item.as_content} regdate={item.regdate} regloginid={item.regloginid}> */}
             </Comment>
           }
           {
             item.content && 
-            <Comment key={index} text={item.content} regdate={item.regdate} regloginid={item.regloginid}>
+            <Comment key={index} text={item.content} regdate={item.regdate} regloginid={item.regloginname}>
+            {/* <Comment key={index} text={item.content} regdate={item.regdate} regloginid={item.regloginid}> */}
             </Comment>
           }
          

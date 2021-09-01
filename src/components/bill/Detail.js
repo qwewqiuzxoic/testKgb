@@ -70,40 +70,40 @@ const Detail = () => {
         <Wrapper>
             <Head>
                 <Subtit>내청구서</Subtit>
-                <Title>{data.billtitle }</Title>
+                <Title>{data && data.billtitle }</Title>
             </Head>
             <Bg>
                 <TopRow>
-                    <Team>{data.teamname}<span>{data.manname}</span></Team>
+                    <Team>{data && data.teamname}<span>{data && data.manname}</span></Team>
                     {/* <Num>YESMAN NO : 2460</Num> */}
                 </TopRow>
                 <Section>
                     <Bold>청구금액</Bold>
-                    <Row dt="상표 사용료" dd={data.yesmanno}/>
-                    <Row dt="전화착실료" dd={data.moneytelarrival}/>
-                    <Row dt="교육비" dd={data.moneyedu}/>
-                    <Row dt="특별교육비" dd={data.moneysedu}/>
-                    <Row dt="연체료" dd={data.moneyadd}/>
-                    <Row dt="위약금" dd={data.moneypenalty}/>
-                    <Row dt="가입금" dd={data.moneyenterence}/>
-                    <Row dt="보증금" dd={data.moneypromise}/>
-                    <Row dt="전화권" dd={data.moneyteluse}/>
+                    <Row dt="상표 사용료" dd={data && data.yesmanno}/>
+                    <Row dt="전화착실료" dd={data && data.moneytelarrival}/>
+                    <Row dt="교육비" dd={data && data.moneyedu}/>
+                    <Row dt="특별교육비" dd={data && data.moneysedu}/>
+                    <Row dt="연체료" dd={data && data.oneyadd}/>
+                    <Row dt="위약금" dd={data && data.oneypenalty}/>
+                    <Row dt="가입금" dd={data && data.oneyenterence}/>
+                    <Row dt="보증금" dd={data && data.oneypromise}/>
+                    <Row dt="전화권" dd={data && data.oneyteluse}/>
                 </Section>
                 <Section>
-                    <Row dt="합계" dd={data.moneytotal}/>
-                    <Row dt="전월미수금" dd={data.moneyunpaid}/>
-                    <Row dt="청구합계" dd={data.moneyreqtotal}/>
+                    <Row dt="합계" dd={data && data.moneytotal}/>
+                    <Row dt="전월미수금" dd={data && data.moneyunpaid}/>
+                    <Row dt="청구합계" dd={data && data.moneyreqtotal}/>
                 </Section>
                 <Section last="last">
                     <Total>총 청구금액</Total>
-                    <Row dt="입금액" dd={data.incommoney} ddWeight='bold' ddColor='#009B90'/>
-                    <Row dt="잔액" dd={data.reserverpay} ddWeight='bold' ddColor='#009B90'/>
+                    <Row dt="입금액" dd={data && data.incommoney} ddWeight='bold' ddColor='#009B90'/>
+                    <Row dt="잔액" dd={data && data.reserverpay} ddWeight='bold' ddColor='#009B90'/>
                 </Section>
             </Bg>
             {/* 신용카드결제 부분입니다 */}
             <PayBox isCard={true}/>
             {/* 신용카드결제 부분입니다 */}
-            <PayBox isCard={false} bankname={data.bankname} contbrand={data.contbrand} bankaccount={data.bankaccount}/>
+            <PayBox isCard={false} bankname={data && data.bankname} contbrand={data && data.contbrand} bankaccount={data && data.bankaccount}/>
         </Wrapper>
     );
   };

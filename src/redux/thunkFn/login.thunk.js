@@ -2,12 +2,14 @@ import axios from 'axios'
 import {loginError, loginLoading, loginSuccess} from '../actionFn/auth';
 import { useHistory } from "react-router-dom";
 
-export const login = (userid,password) => dispatch  => {
+export const login = (userid,password,token) => dispatch  => {
+    console.log(userid,password,token);
     dispatch(loginLoading())
     const url = '/BM/API/auth/login.asp';
         axios.post(url, {
             userid: userid,
-            password: password
+            password: password,
+            token:token
         }).then(function (res) {
             dispatch(loginSuccess(res.data.user));
             if(res.data.user.man_info_sn !== undefined){

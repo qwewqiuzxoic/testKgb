@@ -15,7 +15,7 @@ const Bg = styled.div`
 `;
 const Bar = styled.div`
     position:relative;
-    width: ${(props) => props.score ? `${props.score/24*100}%` : 0};
+    width: ${(props) => props.score ? `${props.score}%` : 0};
     height:15px;
     background: transparent linear-gradient(90deg, #009B90 0%, #27C281 60%, #A8D58B 100%) 0% 0% no-repeat padding-box;
     border-radius:7.5px;
