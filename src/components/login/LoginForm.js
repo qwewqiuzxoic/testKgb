@@ -125,7 +125,17 @@ function LoginForm({ backLocation }) {
     const user = useSelector(state=>state.loginReducer.user);
     const loading = useSelector(state=>state.loginReducer.loading);
     const android = window.Android;
+    const [token, setToken] = useState('');
+    const [uuid, setUuid] = useState('');
+    const firebaseTokenAndUUID = (firebaseToken, UUID)=>{
+        setToken(firebaseToken);
+        setUuid(UUID);
+    }
     const onSubmit = data => {
+        if(android !== {}){
+            android.getFirebaseToken();
+            firebaseTokenAndUUID();
+        }
         dispatch(login(data.id, data.password, android.getFirebaseToken())); //안드로이드 토큰 관련 추가
     }
     const [sucCheck,setSucCheck] = useState(false);
@@ -153,6 +163,11 @@ function LoginForm({ backLocation }) {
     }
     return (
     <Wrapper>
+        {android.getFirebaseToken()}
+        <br></br>
+        {token}
+        <br></br>
+        {uuid}
         <LogoBox>
             <img src={process.env.PUBLIC_URL + '/images/logo.svg'}/>
         </LogoBox>
