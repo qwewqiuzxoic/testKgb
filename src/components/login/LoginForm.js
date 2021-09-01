@@ -134,7 +134,8 @@ function LoginForm({ backLocation }) {
     const onSubmit = data => {
         if(android !== {}){
             android.getFirebaseToken();
-            firebaseTokenAndUUID();
+            alert(android.getFirebaseToken());
+            alert(uuid);
         }
         dispatch(login(data.id, data.password, android.getFirebaseToken())); //안드로이드 토큰 관련 추가
     }
@@ -167,6 +168,9 @@ function LoginForm({ backLocation }) {
         <br></br>
         {token}
         <br></br>
+        <div>
+            uuid
+        </div>
         {uuid}
         <LogoBox>
             <img src={process.env.PUBLIC_URL + '/images/logo.svg'}/>

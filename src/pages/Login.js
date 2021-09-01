@@ -6,11 +6,6 @@ function Login({location}) {
     
   return (
     <div>
-      로그인테스트1112312313
-      {token}
-      ////////
-      ///////
-      <br></br>
       <LoginForm backLocation={backLocation}/>
     </div>
   );
