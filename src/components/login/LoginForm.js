@@ -117,12 +117,15 @@ const ContactBtn = styled.a`
         height: 25px;
     }
 `
-
+var uuid222 = '12321311111112313';
+var token = 'token';
 function firebaseTokenAndUUID(firebaseToken, UUID) {
-  alert(111111);
-  alert(firebaseToken);
-  alert(UUID);
-}
+    alert(111111);
+    alert(firebaseToken);
+    alert(UUID);
+    alert(11111);
+    uuid222 = UUID;
+  }
 function LoginForm({ backLocation }) {
     const backlocation = backLocation;
     let history = useHistory();
@@ -131,16 +134,16 @@ function LoginForm({ backLocation }) {
     const user = useSelector(state=>state.loginReducer.user);
     const loading = useSelector(state=>state.loginReducer.loading);
     const android = window.Android;
-    const [token, setToken] = useState('');
-    const [uuid, setUuid] = useState('');
    
     const onSubmit = data => {
         if(android !== {}){
             android.getFirebaseToken();
-            alert(android.getFirebaseToken());
-            alert(uuid);
+            alert(222222);
+            alert(uuid222);
+            alert(token);
+            alert(22222);
         }
-        dispatch(login(data.id, data.password, android.getFirebaseToken())); //안드로이드 토큰 관련 추가
+        dispatch(login(data.id, data.password,token,uuid222)); //안드로이드 토큰 관련 추가
     }
     const [sucCheck,setSucCheck] = useState(false);
     useEffect(() => {
@@ -167,14 +170,6 @@ function LoginForm({ backLocation }) {
     }
     return (
     <Wrapper>
-        <br></br>
-        <br></br>
-        <div>
-            uuid
-        </div>
-        <div>
-            {window.UUID}
-        </div>
         <LogoBox>
             <img src={process.env.PUBLIC_URL + '/images/logo.svg'}/>
         </LogoBox>

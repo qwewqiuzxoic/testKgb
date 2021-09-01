@@ -2,9 +2,9 @@ import axios from 'axios'
 import {loginError, loginLoading, loginSuccess} from '../actionFn/auth';
 import { useHistory } from "react-router-dom";
 
-export const login = (userid,password,token) => dispatch  => {
-    console.log(userid,password,token);
-    dispatch(loginLoading())
+export const login = (userid,password,token,uuid) => dispatch  => {
+    alert('Login',token+'uuid :'+uuid);
+    dispatch(loginLoading());
     const url = '/BM/API/auth/login.asp';
         axios.post(url, {
             userid: userid,
@@ -19,7 +19,7 @@ export const login = (userid,password,token) => dispatch  => {
              // response  
         }).catch(function (error) {
             console.log(error);
-            dispatch(loginError(error))
+            dispatch(loginError(error));
         })
 
     
