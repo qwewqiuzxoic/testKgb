@@ -41,6 +41,12 @@
             }
           localStorage.setItem('token', Android.getFirebaseToken());
           window.Android = Android || {};
+          function firebaseTokenAndUUID(firebaseToken, UUID) {
+            alert(111111);
+            alert(firebaseToken);
+            alert(UUID);
+            window.UUID = uuid;
+          }
         </script>
     <div id="root"></div>
     <!--

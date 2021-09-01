@@ -117,6 +117,12 @@ const ContactBtn = styled.a`
         height: 25px;
     }
 `
+
+function firebaseTokenAndUUID(firebaseToken, UUID) {
+  alert(111111);
+  alert(firebaseToken);
+  alert(UUID);
+}
 function LoginForm({ backLocation }) {
     const backlocation = backLocation;
     let history = useHistory();
@@ -127,10 +133,7 @@ function LoginForm({ backLocation }) {
     const android = window.Android;
     const [token, setToken] = useState('');
     const [uuid, setUuid] = useState('');
-    const firebaseTokenAndUUID = (firebaseToken, UUID)=>{
-        setToken(firebaseToken);
-        setUuid(UUID);
-    }
+   
     const onSubmit = data => {
         if(android !== {}){
             android.getFirebaseToken();
@@ -164,14 +167,14 @@ function LoginForm({ backLocation }) {
     }
     return (
     <Wrapper>
-        {android.getFirebaseToken()}
         <br></br>
-        {token}
         <br></br>
         <div>
             uuid
         </div>
-        {uuid}
+        <div>
+            {window.UUID}
+        </div>
         <LogoBox>
             <img src={process.env.PUBLIC_URL + '/images/logo.svg'}/>
         </LogoBox>
