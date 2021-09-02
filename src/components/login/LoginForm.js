@@ -128,11 +128,7 @@ function LoginForm({ backLocation }) {
     const loading = useSelector(state=>state.loginReducer.loading);
    
     const onSubmit = data => {
-        alert(11);
-        alert(uuid);
-        alert(token);
-        alert(11);
-        dispatch(login(data.id, data.password)); //안드로이드 토큰 관련 추가
+        dispatch(login(data.id, data.password,token,uuid)); //안드로이드 토큰 관련 추가
     }
     const [sucCheck,setSucCheck] = useState(false);
     useEffect(() => {
