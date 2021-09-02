@@ -158,9 +158,6 @@ function LoginForm({ backLocation }) {
 
     return (
     <Wrapper>
-        {token}
-        <br></br>
-        {uuid}
         <LogoBox>
             <img src={process.env.PUBLIC_URL + '/images/logo.svg'}/>
         </LogoBox>

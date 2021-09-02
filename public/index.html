@@ -44,6 +44,9 @@
             localStorage.setItem('token', firebaseToken);
             localStorage.setItem('UUID', UUID);
           }
+          function QRResponse(str) {
+            localStorage.setItem('qrToken', str);
+          }
           window.Android = Android || {};
           if(window.Android !== {}){
             Android.getFirebaseToken();
