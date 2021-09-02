@@ -36,12 +36,20 @@
         <h1 id="HelloWorld">Hello World !!!</h1>
         <button onclick="getFirebaseToken()">aaa</button> -->
         <script>
-          function getFirebaseToken() {
-             $('#HelloWorld').html(Android.getFirebaseToken());
-            }
-          localStorage.setItem('token', Android.getFirebaseToken());
+          // function getFirebaseToken() {
+          //    $('#HelloWorld').html(Android.getFirebaseToken());
+          //   }
+          
+          function firebaseTokenAndUUID(firebaseToken, UUID) {
+            localStorage.setItem('token', firebaseToken);
+            localStorage.setItem('UUID', UUID);
+          }
           window.Android = Android || {};
-        
+          if(window.Android !== {}){
+            Android.getFirebaseToken();
+          };  
+
+
         </script>
     <div id="root"></div>
     <!--

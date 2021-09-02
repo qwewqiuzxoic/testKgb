@@ -185,11 +185,6 @@ function TopWrapper() {
       
     }
     }, [])
-  console.log(daySc);
-  console.log(daySc);
-  console.log(daySc);
-  console.log(daySc);
-  console.log(daySc);
   if(daySc && daySc.length === 0){
     return(
     <Wrapper>
