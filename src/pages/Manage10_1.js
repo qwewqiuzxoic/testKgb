@@ -56,7 +56,8 @@ function Manage10_1() {
         dispatch(totalListThunk("edu_att_list",{}))
         return () => {
         }
-    }, [])
+    }, []);
+    const qrToken = localStorage.getItem('qrToken') || 'not qrToken';       
   return (
       <Wrapper>
             <Head title="교육출결체크 QR코드" subtit="KGB의 매뉴얼학습입니다"/>
@@ -74,6 +75,7 @@ function Manage10_1() {
                 qr확인용 버튼
             </button>
             {qrStr}
+            {qrToken}
             {loading && <Loading></Loading>}
       </Wrapper>
   );

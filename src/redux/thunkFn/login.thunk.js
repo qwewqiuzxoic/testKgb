@@ -3,10 +3,6 @@ import {loginError, loginLoading, loginSuccess} from '../actionFn/auth';
 import { useHistory } from "react-router-dom";
 
 export const login = (userid,password,token,uuid) => dispatch  => {
-    alert('token : ' + token);
-    alert('uuid : ' + uuid);
-    alert(uuid);
-    alert(uuid);
     dispatch(loginLoading());
     const url = '/BM/API/auth/login.asp';
         axios.post(url, {
