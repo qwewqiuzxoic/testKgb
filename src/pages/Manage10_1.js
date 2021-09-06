@@ -58,14 +58,18 @@ function Manage10_1() {
     const qrToken = localStorage.getItem('qrToken') || 'not qrToken';       
 
     useEffect(() => {
-        window.addEventListener('storage', () => {
-            const theme = localStorage.getItem('qrToken');
-            console.log(theme);
-            setQrStr(theme);
-          })
+        function checkUserData() {
+            const item = localStorage.getItem('qrToken');
+        
+            if (item) {
+                setQrStr(item);
+            }
+          }
+        window.addEventListener('storage', checkUserData);
         return () => {
-        }
-    }, []);
+            window.removeEventListener('storage', checkUserData);
+          }
+    }, [qrStr]);
   return (
       <Wrapper>
             <Head title="교육출결체크 QR코드" subtit="KGB의 매뉴얼학습입니다"/>
