@@ -58,6 +58,14 @@ function Manage10_1() {
         }
     }, []);
     const qrToken = localStorage.getItem('qrToken') || 'not qrToken';       
+
+    useEffect(() => {
+        alert(qrStr);
+        setQrStr(localStorage.getItem('qrToken'));
+        alert(qrStr);
+        return () => {
+        }
+    }, [localStorage.getItem('qrToken')]);
   return (
       <Wrapper>
             <Head title="교육출결체크 QR코드" subtit="KGB의 매뉴얼학습입니다"/>
@@ -75,7 +83,6 @@ function Manage10_1() {
                 qr확인용 버튼
             </button>
             {qrStr}
-            {qrToken}
             {loading && <Loading></Loading>}
       </Wrapper>
   );
