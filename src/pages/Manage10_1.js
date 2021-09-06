@@ -49,9 +49,7 @@ function Manage10_1() {
         android.showQRReader();
     }
     const [qrStr, setQrStr] = useState('text')
-    const QRResponse = (str)=>{
-        setQrStr(str);
-    }
+  
     useEffect(() => {
         dispatch(totalListThunk("edu_att_list",{}))
         return () => {
@@ -60,12 +58,14 @@ function Manage10_1() {
     const qrToken = localStorage.getItem('qrToken') || 'not qrToken';       
 
     useEffect(() => {
-        alert(qrStr);
-        setQrStr(localStorage.getItem('qrToken'));
-        alert(qrStr);
+        window.addEventListener('storage', () => {
+            const theme = localStorage.getItem('qrToken');
+            console.log(theme);
+            setQrStr(theme);
+          })
         return () => {
         }
-    }, [localStorage.getItem('qrToken')]);
+    }, []);
   return (
       <Wrapper>
             <Head title="교육출결체크 QR코드" subtit="KGB의 매뉴얼학습입니다"/>
@@ -82,6 +82,7 @@ function Manage10_1() {
             <button onClick={onclick}>
                 qr확인용 버튼
             </button>
+            <div>qrqerqeqeqe</div>
             {qrStr}
             {loading && <Loading></Loading>}
       </Wrapper>
