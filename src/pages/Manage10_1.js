@@ -60,8 +60,9 @@ function Manage10_1() {
     useEffect(() => {
         function checkUserData() {
             const item = localStorage.getItem('qrToken');
-        
+            alert(item);
             if (item) {
+                alert(item);
                 setQrStr(item);
             }
           }
