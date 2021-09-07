@@ -48,29 +48,45 @@ function Manage10_1() {
     const onclick = ()=> {
         android.showQRReader();
     }
-    const [qrStr, setQrStr] = useState('text')
-  
+    const [qrStr, setQrStr] = useState('text');
+    
+    const onclick2 = () => {
+      
+
+        localStorage.setItem('qrToken', '12121');
+    }
+
     useEffect(() => {
         dispatch(totalListThunk("edu_att_list",{}))
         return () => {
         }
     }, []);
-    const qrToken = localStorage.getItem('qrToken') || 'not qrToken';       
+
 
     useEffect(() => {
-        function checkUserData() {
-            const item = localStorage.getItem('qrToken');
-            alert(item);
-            if (item) {
-                alert(item);
-                setQrStr(item);
-            }
-          }
-        window.addEventListener('storage', checkUserData);
+        // Load the todos on mount
+       
+        // Respond to the `storage` event
+        function storageEventHandler(event) {
+            const todosString = localStorage.getItem("qrToken");
+            alert('qr');
+            alert(todosString);
+            setQrStr(todosString);
+        }
+        // Hook up the event handler
+        window.addEventListener("itemInserted", storageEventHandler,false);
         return () => {
-            window.removeEventListener('storage', checkUserData);
-          }
-    }, [qrStr]);
+            // Remove the handler when the component unmounts
+            window.removeEventListener("itemInserted", storageEventHandler);
+        };
+    }, []);
+    useEffect(()=>{
+        if(qrStr !== 'text'){
+            alert('useEff');
+            alert(qrStr);
+        }
+       
+    },[qrStr])
   return (
       <Wrapper>
             <Head title="교육출결체크 QR코드" subtit="KGB의 매뉴얼학습입니다"/>
@@ -86,6 +102,9 @@ function Manage10_1() {
             }
             <button onClick={onclick}>
                 qr확인용 버튼
+            </button>
+            <button onClick={onclick2}>
+                fhfhfhfh
             </button>
             <div>qrqerqeqeqe</div>
             {qrStr}

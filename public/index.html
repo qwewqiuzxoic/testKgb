@@ -45,6 +45,8 @@
             localStorage.setItem('UUID', UUID);
           }
           function QRResponse(str) {
+            var event = new Event('itemInserted'); //강제로 이벤트 심기
+            window.dispatchEvent(event);
             localStorage.setItem('qrToken', str);
             alert(str);
           }
