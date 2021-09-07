@@ -87,9 +87,6 @@ function Manage13({match}) {
                     </EduBox>
                     )
                 }
-                {
-                    list.length === 0 && <NoPost></NoPost>
-                }
             </ContentArea>
             {
                 loading && <Loading></Loading>
