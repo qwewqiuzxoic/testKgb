@@ -59,7 +59,7 @@ const menuItems = [
             {name: '교육참석내역', link:'/Edu8_9'}, 
             {name: '교육자료실(일반 / 영상)', link:'/board/7'}, 
             {name: '이수대상 교육', link:'/manage13/2'}, 
-            {name: '교육평가', link:'/'}, 
+            {name: '교육평가', link:'/NotPage'}, 
             {name: '실시간 화상교육', link:'/Manage9_1'}, 
             {name: '교육출결체크', link:'/Manage10_1'}, 
             {name: '교육설문', link:'/manage13/1'}, 

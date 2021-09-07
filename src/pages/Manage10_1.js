@@ -7,6 +7,8 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../components/commonStyle/Loading';
 import { totalListThunk } from '../redux/thunkFn/total.thunk';
+import axios from 'axios'
+import NoPost from '../components/commonStyle/NoPost';
 
 const Wrapper = styled.div`
     background:#FAFAFA;
@@ -45,17 +47,9 @@ function Manage10_1() {
     const dispatch = useDispatch();
     const {loading,list} = useSelector(state=>state.totalListReducer);
     const android = window.Android;
-    const onclick = ()=> {
-        android.showQRReader();
-    }
+    const user = JSON.parse(localStorage.getItem('user'));
     const [qrStr, setQrStr] = useState('text');
-    
-    const onclick2 = () => {
-      
-
-        localStorage.setItem('qrToken', '12121');
-    }
-
+    console.log(user.man_info_sn)
     useEffect(() => {
         dispatch(totalListThunk("edu_att_list",{}))
         return () => {
@@ -69,8 +63,7 @@ function Manage10_1() {
         // Respond to the `storage` event
         function storageEventHandler(event) {
             const todosString = localStorage.getItem("qrToken");
-            alert('qr');
-            alert(todosString);
+         
             setQrStr(todosString);
         }
         // Hook up the event handler
@@ -84,29 +77,41 @@ function Manage10_1() {
         if(qrStr !== 'text'){
             alert('useEff');
             alert(qrStr);
+            const url = qrStr + '&man_info_sn=' +user.man_info_sn;
+            axios.post(url,null).then(function(res){
+                alert(res);
+                localStorage.setItem('qrToken', 'text');
+                setQrStr('text');
+                dispatch(totalListThunk("edu_att_list",{}))
+            }).catch(function(err){
+                alert(err);
+            })
         }
        
     },[qrStr])
   return (
       <Wrapper>
             <Head title="교육출결체크 QR코드" subtit="KGB의 매뉴얼학습입니다"/>
+            <ContentArea>
             {
                list && list.map((item,index)=>
-               <ContentArea key={index}>
-                    <EduBox title="이사서비스 매뉴얼" date="2020.02.28">
+              
+                    <EduBox key={index} title="이사서비스 매뉴얼" date={item.sdate}>
                         <BlueBtn>입실</BlueBtn>
                         <GreyBtn>퇴실</GreyBtn>
                     </EduBox>
-                </ContentArea>
+                
                )
             }
+            </ContentArea>
+            {
+                list.length === 0 && <NoPost></NoPost>
+            }
+              
             <button onClick={onclick}>
                 qr확인용 버튼
             </button>
-            <button onClick={onclick2}>
-                fhfhfhfh
-            </button>
-            <div>qrqerqeqeqe</div>
+           
             {qrStr}
             {loading && <Loading></Loading>}
       </Wrapper>

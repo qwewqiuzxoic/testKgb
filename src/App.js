@@ -68,6 +68,7 @@ import EduReferenceBoard from "./pages/EduReferenceBoard";
 import ASTipBoard from "./pages/ASTipBoard";
 import ReferenceBoard from "./pages/ReferenceBoard";
 import WorkDayChangeBoard from "./pages/WorkDayChangeBoard";
+import NotPage from "./pages/NotPage";
 
 
 function App() {
@@ -149,6 +150,7 @@ function App() {
                 <PrivateRoute path="/ProdDetail/:sn/:goods/:price" component={ProdDetail}/>
                 <PrivateRoute path="/ProdOrder" component={ProdOrder}/>
                 <PrivateRoute path="/Privacy" component={Privacy}/>
+                <PrivateRoute path="/NotPage" component={NotPage}/>
                 <PrivateRoute path="/:id" component={Home} />
                 <PrivateRoute path="/" component={Home}/>
                 <PrivateRoute path="" component={Home}/>

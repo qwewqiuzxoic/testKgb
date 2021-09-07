@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEduSurveyList } from '../redux/thunkFn/eduAttend.thunk';
 import Loading from '../components/commonStyle/Loading';
+import NoPost from '../components/commonStyle/NoPost';
 
 const Wrapper = styled.div`
     background:#FAFAFA;
@@ -44,6 +45,7 @@ function Manage13({match}) {
  
     const dispatch = useDispatch();
     const {list,loading} = useSelector(state=>state.eduSurveyListReducer);
+  
     useEffect(() => {
         if(page === "1"){
             setTitle({
@@ -73,7 +75,7 @@ function Manage13({match}) {
                         {/* {item.proc} */}
                         {/* {item.board_sn} */}
                         {/* {item.url ? item.url:item.movie} */}
-                        {item.proc === "Y" ? <a href={item.url} target="_blank"><BlueBtn>설문</BlueBtn></a> :( item.proc === "N" || item.proc === "")  && !item.movie ?<BlueBtn>설문 종료</BlueBtn> : item.movie && item.proc === "" ?
+                        {item.proc === "Y" ? <a href={item.url} target="_blank"><BlueBtn>설문</BlueBtn></a> :( item.proc === "N" || item.proc === "")  && !item.movie ?<BlueBtn>설문<br> </br>종료</BlueBtn> : item.movie && item.proc === "" ?
                         <a target="_blank" href={item.movie}>
                         <BlueBtn><img src={process.env.PUBLIC_URL + '/images/ico_video.png'} alt="교육수강아이콘"/></BlueBtn>
                         </a>
@@ -84,6 +86,9 @@ function Manage13({match}) {
                         }
                     </EduBox>
                     )
+                }
+                {
+                    list.length === 0 && <NoPost></NoPost>
                 }
             </ContentArea>
             {
