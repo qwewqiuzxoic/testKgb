@@ -126,10 +126,14 @@ function LoginForm({ backLocation }) {
     const dispatch = useDispatch();
     const user = useSelector(state=>state.loginReducer.user);
     const loading = useSelector(state=>state.loginReducer.loading);
-   
+    const token = localStorage.getItem('token') || 'not token';       
+    const uuid = localStorage.getItem('UUID') || 'not UUID';     
     const onSubmit = data => {
+        alert(uuid);
+        alert(token);
         dispatch(login(data.id, data.password,token,uuid)); //안드로이드 토큰 관련 추가
     }
+    
     const [sucCheck,setSucCheck] = useState(false);
     useEffect(() => {
         if(Object.keys(user).length !== 0 && user.userid !== ""){
@@ -153,8 +157,7 @@ function LoginForm({ backLocation }) {
         dispatch(totalMesInit());
         setSucCheck(false);
     }
-    const token = localStorage.getItem('token') || 'not token';       
-    const uuid = localStorage.getItem('UUID') || 'not UUID';       
+      
 
     return (
     <Wrapper>
