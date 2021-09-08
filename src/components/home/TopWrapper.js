@@ -239,7 +239,7 @@ function TopWrapper() {
           </MainBox>
           <MainBox width="48%" padding="16px 20px">
             <LineTitArea name="모레일정" lineColor="linear-gradient(90deg, #009B90 0%, #2F8DB7 100%)" bgColor="#F3F7FB" color="#2F8EB6" weight="bold"></LineTitArea>
-            <Link to={daySc[0].sn?`/Team3_1/${daySc[2].sn}`:'/'}>
+            <Link to={daySc[2].sn?`/Team3_1/${daySc[2].sn}`:'/'}>
               { Object.keys(daySc[2]).includes("custname") && daySc[2].custname === "" ?<NullBox>일정없음</NullBox> :
               <Desc>
               <Name>{daySc[2].custname}</Name>

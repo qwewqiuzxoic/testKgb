@@ -75,7 +75,7 @@ function Manage13({match}) {
                         {/* {item.proc} */}
                         {/* {item.board_sn} */}
                         {/* {item.url ? item.url:item.movie} */}
-                        {item.proc === "Y" ? <a href={item.url} target="_blank"><BlueBtn>설문</BlueBtn></a> :( item.proc === "N" || item.proc === "")  && !item.movie ?<BlueBtn>설문<br> </br>종료</BlueBtn> : item.movie && item.proc === "" ?
+                        {item.proc === "Y" ? <a href={item.url} target="_blank"><BlueBtn>설문</BlueBtn></a> :( item.proc === "N" || item.proc === "")  && !item.movie ?<BlueBtn>설문 종료</BlueBtn> : item.movie && item.proc === "" ?
                         <a target="_blank" href={item.movie}>
                         <BlueBtn><img src={process.env.PUBLIC_URL + '/images/ico_video.png'} alt="교육수강아이콘"/></BlueBtn>
                         </a>

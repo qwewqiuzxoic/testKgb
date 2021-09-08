@@ -20,7 +20,5 @@ export const login = (userid,password,token,uuid) => dispatch  => {
         }).catch(function (error) {
             console.log(error);
             dispatch(loginError(error));
-        })
-
-    
+        });
 }
