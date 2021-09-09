@@ -116,7 +116,7 @@ function Team6_1() {
                  <Box key={index} onClick={ ()=>openModal(list.sn) }>
                      <Row>
                          <Title>{list.teamname}</Title>
-                         <State color="#009944">{list.code_worksupport}</State>
+                         <State color={list.code_worksupport==="요청"?"#009944":"#92dcff"}>{list.code_worksupport}</State>
                      </Row>
                      <Row>
                          <Name>{list.manname}</Name>

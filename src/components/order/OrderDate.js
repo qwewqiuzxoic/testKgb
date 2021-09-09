@@ -49,8 +49,8 @@ function OrderDate({DayMove, DayBox, DayMoveText, DayMoveText2, DayBoxText,  set
       <Layout>
         <Label htmlFor="date_move">이사날짜</Label>
         <Label htmlFor="CODE_MOVEDAY">이사일 정보</Label>
-        <Input type="text" id="date_move" placeholder="날짜를 선택해주세요" name="DayMove" value={DayMove}  textAlign="center" onFocus={(e)=> {e.currentTarget.type = "date";e.currentTarget.focus();}} max="9999-12-31" onChange={(e)=>setOrderChangeFn(e)}></Input>
-        <Input type="text" id="CODE_MOVEDAY" name="CODE_MOVEDAY" value={DayMoveText}  textAlign="center"  onChange={(e)=>setOrderChange(e)}></Input>
+        <Input type="text" id="date_move" placeholder="날짜를 선택해주세요" name="DayMove" value={DayMove}  textAlign="center" onFocus={(e)=> {e.currentTarget.type = "date";e.currentTarget.focus();}} max="9999-12-31" onChange={(e)=>setOrderChangeFn(e)} readonly ></Input>
+        <Input type="text" id="CODE_MOVEDAY" name="CODE_MOVEDAY" value={DayMoveText}  textAlign="center"  onChange={(e)=>setOrderChange(e)} readonly ></Input>
       </Layout>
       <Layout>
         <Label htmlFor="date_packing">포장일 날짜</Label>

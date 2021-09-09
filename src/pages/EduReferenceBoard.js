@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom'
 
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBoardList, getBoardTopList, getEduBoardList, getEduMovieBoardList, postRMDBoard } from '../redux/thunkFn/borad.thunk';
+import { getBoardList, getTopEduBoardList, getEduBoardList, getEduMovieBoardList, postRMDBoard } from '../redux/thunkFn/borad.thunk';
 import { boardInit, boardPostInput, boardPostLoginInput, boardPostModifyInput } from '../redux/actionFn/board';
 
 const Wrapper = styled.div`
@@ -30,6 +30,7 @@ const NoticeWrap = styled.div`
     border-radius: 0;
   }
 `;
+
 let user = JSON.parse(localStorage.getItem('user'));   
 
 function EduReferenceBoard() {
@@ -44,9 +45,11 @@ function EduReferenceBoard() {
     const setInputValue2 = (data) =>{
         dispatch(boardPostInput(data))
       }
-    const pageCount = useRef(1)
+    const pageCount = useRef(1);
     const data =  useSelector(state =>state.boardPostReducer.data);
-    const boardData =  useSelector(state => state.boardPostReducer.data)
+    const boardData =  useSelector(state => state.boardPostReducer.data);
+    const boarTopdData =  useSelector(state => state.boardTopReducer.boardList);
+
     const [ modalOpen, setModalOpen ] = useState(false);
     const openModal = () => {
         dispatch(boardPostLoginInput(user,name,"INS"))
@@ -81,9 +84,11 @@ function EduReferenceBoard() {
     // const list = useSelector(state => state.boardTopReducer.boardList);
     useEffect(() => {
         if(tab === 1){
-        dispatch(getEduBoardList(user.brand,name,pageCount.current))
-        } else{
-        dispatch(getEduMovieBoardList(user.brand,name,pageCount.current))
+        dispatch(getEduBoardList(user.brand,name,pageCount.current));
+        dispatch(getTopEduBoardList(user.brand,name,0));
+        } else {
+        dispatch(getEduMovieBoardList(user.brand,name,pageCount.current));
+        dispatch(getTopEduBoardList(user.brand,name,1));
         }
         return () => {
         }
@@ -122,7 +127,14 @@ function EduReferenceBoard() {
             <BoardTitle title="자료실"subtit="자료실 게시판입니다" 
             check={false} tabCheck={true} tabName={["일반자료실","영상자료실"]} tab={tab} changeTab={tabChagne}/>
             <ContentArea>
-           
+            <NoticeWrap>
+
+            { boarTopdData.map((item,index)=>{
+              return (
+                  <BoardList key={index} title={item.title} regdate={item.regdate} board_sn={item.board_sn} index={index} loginname={item.loginname} tname={item.tname} countview={item.countview} cnt={item.cnt} adu={item.adu} typeCheck={item.teamNm} classname="important" boardCode="5"/>
+              )
+            })} 
+            </NoticeWrap>
 
             <BoardListWrap boardCode="7"/>
             </ContentArea>

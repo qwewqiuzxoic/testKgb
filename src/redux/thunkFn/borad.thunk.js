@@ -64,8 +64,6 @@ export const getBoardTopList = (brandName, boardName, length = 5) => dispatch  =
         }).catch(function (error) {
             dispatch(boardTopError(error))
         })
-
-    
 }
 export const getBoardDetail = (sn) => dispatch => {
     dispatch(boardDetailLoading())
@@ -120,7 +118,20 @@ export const postModifyBoard = (data,fn) => dispatch =>{
 
 }
 
-
+export const getTopEduBoardList = (brandName,boardName,count, length = 10) => dispatch  => {
+    dispatch(boardTopLoading());
+    const url = count === 0 ? '/BM/API/edu/pds_common_list.asp' : '/BM/API/edu/pds_movie_list.asp';
+        axios.post(url, {
+            "code_brand" : brandName,
+            "is_notice" : 1,
+            "page" : count,
+            "pagesize" : length
+        }).then(function (res) {
+            dispatch(boardTopSuccess(res.data.list))
+        }).catch(function (error) {
+            dispatch(boardTopError(error))
+        })
+}
 export const getEduBoardList = (brandName,boardName,count, length = 10) => dispatch  => {
     if(count === 1){
         dispatch(boardLoading())
@@ -130,7 +141,7 @@ export const getEduBoardList = (brandName,boardName,count, length = 10) => dispa
     const url = '/BM/API/edu/pds_common_list.asp';
         axios.post(url, {
             "code_brand" : brandName,
-            "is_notice" : 1,
+            "is_notice" : 0,
             "page" : count,
             "pagesize" : length
         }).then(function (res) {
@@ -147,7 +158,6 @@ export const getEduBoardList = (brandName,boardName,count, length = 10) => dispa
 export const getEduBoardDetail = (sn) => dispatch => {
     dispatch(boardDetailLoading())
     const url = '/BM/API/edu/pds_common_view.asp';
-
         axios.post(url, {
             "sn": sn
         }).then(function (res) {
@@ -157,7 +167,6 @@ export const getEduBoardDetail = (sn) => dispatch => {
             //console.log(error);
             dispatch(boardDetailError(error))
         })
-
 }
 
 export const getEduMovieBoardList = (brandName,boardName,count, length = 10) => dispatch  => {
@@ -170,7 +179,7 @@ export const getEduMovieBoardList = (brandName,boardName,count, length = 10) => 
 
         axios.post(url, {
             "code_brand" : brandName,
-            "is_notice" : 0,
+            "is_notice" : 1,
             "page" : count,
             "pagesize" : length
         }).then(function (res) {
