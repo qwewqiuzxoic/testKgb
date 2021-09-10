@@ -129,9 +129,7 @@ function LoginForm({ backLocation }) {
     const token = localStorage.getItem('token') || 'not token';       
     const uuid = localStorage.getItem('UUID') || 'not UUID';     
     const onSubmit = data => {
-        alert(localStorage.getItem('token'));
-        alert(uuid);
-        dispatch(login(data.id, data.password,token,uuid)); //안드로이드 토큰 관련 추가
+        dispatch(login(data.id, data.password,localStorage.getItem('token'),localStorage.getItem('UUID') )); //안드로이드 토큰 관련 추가
     }
     
     const [sucCheck,setSucCheck] = useState(false);
