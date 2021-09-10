@@ -172,6 +172,7 @@ function LoginForm({ backLocation }) {
             {errors.password?.type === 'required' && <MsgError>비밀번호를 입력해주세요</MsgError>}
             <BtnLogin type="submit" value="로그인" />
         </FormBox>
+        {token}
         {loading && <Loading></Loading>}
         {<ConfirmModal open={sucCheck} text="로그인정보가 없습니다." onsubmit={confirmModal}></ConfirmModal>}
         <CheckboxContainer>
