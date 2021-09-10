@@ -39,10 +39,17 @@
           // function getFirebaseToken() {
           //    $('#HelloWorld').html(Android.getFirebaseToken());
           //   }
-          
+          if(window.Android !== {}){
+            Android.getFirebaseToken();
+          };  
+
           function firebaseTokenAndUUID(firebaseToken, UUID) {
             localStorage.setItem('token', firebaseToken);
             localStorage.setItem('UUID', UUID);
+          }
+          function getFirebaseToken() {
+        // IOS token 호출하는 함수.
+              window.webkit.messageHandlers.ios.postMessage("getFirebaseToken");
           }
           function QRResponse(str) {
             localStorage.setItem('qrToken', str);
@@ -51,11 +58,9 @@
             window.dispatchEvent(event);
             alert(str);
           }
+          
           window.Android = Android || {};
-          if(window.Android !== {}){
-            Android.getFirebaseToken();
-          };  
-
+      
 
         </script>
     <div id="root"></div>

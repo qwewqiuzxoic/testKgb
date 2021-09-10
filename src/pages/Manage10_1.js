@@ -49,18 +49,21 @@ function Manage10_1() {
     const android = window.Android;
     const user = JSON.parse(localStorage.getItem('user'));
     const [qrStr, setQrStr] = useState('text');
-    console.log(user.man_info_sn)
     useEffect(() => {
         dispatch(totalListThunk("edu_att_list",{}))
         return () => {
         }
     }, []);
 
-
+    const onclick = ()=> {
+        if(android !== {}){
+            android.showQRReader();
+        } else {
+            window.webkit.messageHandlers.ios.postMessage("showQR");
+        }
+        
+    }
     useEffect(() => {
-        // Load the todos on mount
-       
-        // Respond to the `storage` event
         function storageEventHandler(event) {
             const todosString = localStorage.getItem("qrToken");
          
@@ -75,11 +78,8 @@ function Manage10_1() {
     }, []);
     useEffect(()=>{
         if(qrStr !== 'text'){
-            alert('useEff');
-            alert(qrStr);
             const url = qrStr + '&man_info_sn=' +user.man_info_sn;
             axios.post(url,null).then(function(res){
-                alert(res);
                 localStorage.setItem('qrToken', 'text');
                 setQrStr('text');
                 dispatch(totalListThunk("edu_att_list",{}))
@@ -87,7 +87,6 @@ function Manage10_1() {
                 alert(err);
             })
         }
-       
     },[qrStr])
   return (
       <Wrapper>
@@ -97,7 +96,7 @@ function Manage10_1() {
                list && list.map((item,index)=>
               
                     <EduBox key={index} title="이사서비스 매뉴얼" date={item.sdate}>
-                        <BlueBtn>입실</BlueBtn>
+                        <BlueBtn onClick={onclick} >입실</BlueBtn>
                         <GreyBtn>퇴실</GreyBtn>
                     </EduBox>
                 
