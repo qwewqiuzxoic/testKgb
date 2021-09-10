@@ -39,9 +39,12 @@
           // function getFirebaseToken() {
           //    $('#HelloWorld').html(Android.getFirebaseToken());
           //   }
+          window.Android = Android || {};
           if(window.Android !== {}){
             Android.getFirebaseToken();
-          };  
+          }; 
+           
+          window.webkit.messageHandlers.ios.postMessage("getFirebaseToken");
 
           function firebaseTokenAndUUID(firebaseToken, UUID) {
             localStorage.setItem('token', firebaseToken);
@@ -59,7 +62,7 @@
             alert(str);
           }
           
-          window.Android = Android || {};
+        
       
 
         </script>
