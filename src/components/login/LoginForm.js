@@ -129,7 +129,10 @@ function LoginForm({ backLocation }) {
     const token = localStorage.getItem('token') || 'not token';       
     const uuid = localStorage.getItem('UUID') || 'not UUID';     
     const onSubmit = data => {
-        dispatch(login(data.id, data.password,window.TOKEN,window.UUID)); //안드로이드 토큰 관련 추가
+        alert(window.TOKEN)
+        if(window.TOKEN !== undefined){
+            dispatch(login(data.id, data.password,window.TOKEN,window.UUID)); //안드로이드 토큰 관련 추가
+        }
     }
     
     const [sucCheck,setSucCheck] = useState(false);
@@ -156,10 +159,14 @@ function LoginForm({ backLocation }) {
         setSucCheck(false);
     }
       
-
+    useEffect(() => {
+        
+        return () => {
+            
+        }
+    }, [window.UUID])
     return (
     <Wrapper>
-        {window.UUID}
         <LogoBox>
             <img src={process.env.PUBLIC_URL + '/images/logo.svg'}/>
         </LogoBox>
@@ -171,7 +178,6 @@ function LoginForm({ backLocation }) {
             {errors.password?.type === 'required' && <MsgError>비밀번호를 입력해주세요</MsgError>}
             <BtnLogin type="submit" value="로그인" />
         </FormBox>
-        {token}
         {loading && <Loading></Loading>}
         {<ConfirmModal open={sucCheck} text="로그인정보가 없습니다." onsubmit={confirmModal}></ConfirmModal>}
         <CheckboxContainer>
