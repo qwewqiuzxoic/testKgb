@@ -1,5 +1,5 @@
 import axios from "axios";
-import { dayScError, dayScGetdata, dayScLoading, monthScError, monthScGetdata, monthScLoading, sondayError, sondayLoading, sondaySuccess } from "../actionFn/schedule";
+import { dayScError, dayScGetdata, dayScLoading,  dayScError2, dayScGetdata2, dayScLoading2,monthScError, monthScGetdata, monthScLoading, sondayError, sondayLoading, sondaySuccess } from "../actionFn/schedule";
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -61,7 +61,21 @@ const user = JSON.parse(localStorage.getItem('user'));
         dispatch(dayScError(error))
     })
 }
-
+export const getMainDaySc2 = () => dispatch => {
+    const user = JSON.parse(localStorage.getItem('user'));       
+    
+        dispatch(dayScLoading2());
+        const url ='/BM/API/main/main_schedule.asp';
+        axios.post(url,{
+            "brand": user.brand,
+            "biz_sn" : user.biz_sn
+        }).then(res =>{
+            dispatch(dayScGetdata2(res.data))
+        }).catch(function(error){
+            dispatch(dayScError2(error))
+        })
+    }
+    
 export const postEduSubmit = (sn) => dispatch =>{
 const user = JSON.parse(localStorage.getItem('user'));       
 

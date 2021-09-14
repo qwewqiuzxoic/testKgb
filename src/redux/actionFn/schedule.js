@@ -1,4 +1,4 @@
-import {D_SC_ERROR,D_SC_GETDATA,D_SC_LOADING,EDU_SUBMIT_ERROR,EDU_SUBMIT_INIT,EDU_SUBMIT_LOADING,EDU_SUBMIT_SUCCESS,M_SC_ERROR,M_SC_GETDATA,M_SC_LOADING, SONDAY_ERROR, SONDAY_INIT, SONDAY_LOADING, SONDAY_SUCCESS} from '../types/schedule.type';
+import {D_SC_ERROR,D_SC_GETDATA,D_SC_LOADING,D_SC_ERROR2,D_SC_GETDATA2,D_SC_LOADING2 ,EDU_SUBMIT_ERROR,EDU_SUBMIT_INIT,EDU_SUBMIT_LOADING,EDU_SUBMIT_SUCCESS,M_SC_ERROR,M_SC_GETDATA,M_SC_LOADING, SONDAY_ERROR, SONDAY_INIT, SONDAY_LOADING, SONDAY_SUCCESS} from '../types/schedule.type';
 
 
 export const monthScLoading = () =>{
@@ -38,6 +38,24 @@ export const dayScGetdata = (data) =>{
 export const dayScError = () =>{
     return{
         type: D_SC_ERROR
+    }
+}
+export const dayScLoading2 = () =>{
+    return{
+        type: D_SC_LOADING2
+    }
+}
+
+export const dayScGetdata2 = (data) =>{
+    return{
+        type: D_SC_GETDATA2,
+        data: data
+    }
+}
+
+export const dayScError2 = () =>{
+    return{
+        type: D_SC_ERROR2
     }
 }
 

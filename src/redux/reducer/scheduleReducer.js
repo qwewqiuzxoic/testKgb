@@ -1,5 +1,5 @@
-import { dayScInit, eduSubmitInit, monthScInit, sonDayInit } from "../init/init";
-import { D_SC_ERROR, D_SC_GETDATA, D_SC_LOADING, M_SC_ERROR, M_SC_GETDATA, M_SC_LOADING } from "../types/schedule.type";
+import { dayScInit, dayScInit2, eduSubmitInit, monthScInit, sonDayInit } from "../init/init";
+import { D_SC_ERROR, D_SC_GETDATA, D_SC_LOADING,D_SC_ERROR2,D_SC_GETDATA2,D_SC_LOADING2, M_SC_ERROR, M_SC_GETDATA, M_SC_LOADING } from "../types/schedule.type";
 
 export function monthScReducer(state = monthScInit,action){
     switch (action.type){
@@ -58,6 +58,41 @@ export function dayScReducer(state = dayScInit,action){
                 message:action.data.message
             }
         case D_SC_ERROR:
+            return{
+            ...state,
+            list:[],
+            loading: false,
+            error:action.data,
+            result:"",
+            message:""
+        }
+        default:
+            return{
+                ...state
+            }
+    }
+}
+export function dayScReducer2(state = dayScInit2,action){
+    switch (action.type){
+        case D_SC_LOADING2:
+            return{
+                ...state,
+                list:[],
+                loading: true,
+                error:action.data,
+                result:"",
+                message:""
+            }
+        case D_SC_GETDATA2:
+            return{
+                ...state,
+                list:action.data.list,
+                loading: false,
+                error:"",
+                result:action.data.result,
+                message:action.data.message
+            }
+        case D_SC_ERROR2:
             return{
             ...state,
             list:[],

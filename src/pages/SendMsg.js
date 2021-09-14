@@ -128,7 +128,7 @@ function SendMsg({changeTab}) {
                     <TabName className={tab === 1 ? "selected": ""} onClick={()=>changeInnerTab(1,"KGB이사")}>KGB이사</TabName>
                     <TabName className={tab === 2 ? "selected": ""} onClick={()=>changeInnerTab(2,"용달캡")}>YCAP</TabName>
                     <TabName className={tab === 3 ? "selected": ""} onClick={()=>changeInnerTab(3,"YES2404")}>YES2404</TabName>
-                    <TabName className={tab === 4 ? "selected": ""} onClick={()=>changeInnerTab(4,"이사이사")}>YES2404</TabName>
+                    <TabName className={tab === 4 ? "selected": ""} onClick={()=>changeInnerTab(4,"이사이사")}>YES2424</TabName>
                     <TabName className={tab === 5 ? "selected": ""} onClick={()=>changeInnerTab(5,"support")}>협력업체</TabName>
                 </Tabs>
                 {

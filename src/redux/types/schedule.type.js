@@ -6,6 +6,11 @@ export const M_SC_ERROR = 'M_SC_ERROR';
 export const D_SC_GETDATA = 'D_SC_GETDATA';
 export const D_SC_LOADING = 'D_SC_LOADING';
 export const D_SC_ERROR = 'D_SC_ERROR';
+ 
+
+export const D_SC_GETDATA2 = 'D_SC_GETDATA2';
+export const D_SC_LOADING2 = 'D_SC_LOADING2';
+export const D_SC_ERROR2 = 'D_SC_ERROR2';
 
 
 export const SONDAY_SUCCESS = 'SONDAY_SUCCESS';

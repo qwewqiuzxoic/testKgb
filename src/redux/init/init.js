@@ -123,7 +123,13 @@ export const dayScInit = {
     result:"",
     message:""
 }
-
+export const dayScInit2 = {
+    list:[],
+    loading: false,
+    error:{},
+    result:"",
+    message:""
+}
 //작업일 변경요청 --> 지원 대기 요청 으로 수정
 export const workingDayInit= {
     workingDayList:[],

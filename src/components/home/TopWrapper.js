@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { FlexBox, ChangeFont, Gutter } from '../commonStyle';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMainDaySc } from '../../redux/thunkFn/schedule.thunk';
+import { getMainDaySc2 } from '../../redux/thunkFn/schedule.thunk';
 import { Link, useHistory } from 'react-router-dom';
 
 
@@ -176,11 +176,11 @@ function TopWrapper() {
     start:'',
     end:'',
   });
-  const daySc = useSelector(state=>state.dayScReducer.list);
+  const daySc = useSelector(state=>state.dayScReducer2.list);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getMainDaySc());
+    dispatch(getMainDaySc2());
     return () => {
       
     }
@@ -201,7 +201,7 @@ function TopWrapper() {
                 <TitName>오늘일정</TitName>
                 <Date>2021.01.01</Date>
             </TitArea> */}
-            <Link to={daySc[0].sn?`/Team3_1/${daySc[0].sn}`:'/'}>
+            <Link to={ daySc[0].sn?`/Team3_1/${daySc[0].sn}`:'/'}>
             <UserArea>
                 <p>{ Object.keys(daySc[0]).includes("custname") && daySc[0].custname === "" ? "일정없음":daySc[0].custname}</p>
                 <p>{daySc[0].phone}</p>
