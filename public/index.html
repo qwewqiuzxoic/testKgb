@@ -49,12 +49,12 @@
           window.webkit.messageHandlers.ios.postMessage("getFirebaseToken");
 
           function firebaseTokenAndUUID(firebaseToken, UUID) {
+            document.querySelector('#token').innerHTML=firebaseToken;
+            document.querySelector('#uuid').innerHTML=UUID;
             localStorage.setItem('token', firebaseToken);
             localStorage.setItem('UUID', UUID);
             window.UUID = UUID;
             window.TOKEN = firebaseToken;
-            document.querySelector('#token').innerHTML=firebaseToken;
-            document.querySelector('#uuid').innerHTML=UUID;
           }
           function getFirebaseToken() {
             // IOS token 호출하는 함수.
