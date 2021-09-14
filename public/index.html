@@ -39,6 +39,7 @@
           // function getFirebaseToken() {
           //    $('#HelloWorld').html(Android.getFirebaseToken());
           //   }
+          var aaa = "asdasdasd";
           window.Android = Android || {};
           if(window.Android !== {}){
             Android.getFirebaseToken();
@@ -49,17 +50,17 @@
           function firebaseTokenAndUUID(firebaseToken, UUID) {
             localStorage.setItem('token', firebaseToken);
             localStorage.setItem('UUID', UUID);
+            window.UUID = UUID;
+            window.TOKEN = firebaseToken;
           }
           function getFirebaseToken() {
-        // IOS token 호출하는 함수.
-              window.webkit.messageHandlers.ios.postMessage("getFirebaseToken");
+            // IOS token 호출하는 함수.
+            window.webkit.messageHandlers.ios.postMessage("getFirebaseToken");
           }
           function QRResponse(str) {
             localStorage.setItem('qrToken', str);
-
             var event = new Event('itemInserted'); //강제로 이벤트 심기
             window.dispatchEvent(event);
-            alert(str);
           }
           
         
