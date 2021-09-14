@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 `
 const menuItems = [
     {
-        name: '작업/대리점 관리',
+        name: '대리점/팀 관리',
         subMenus: [
             {name: '작업일정(월별)', link:'/Team1/1'},
             {name: '방문견적 및 개인오더 입력', link:'/Team2_1'},

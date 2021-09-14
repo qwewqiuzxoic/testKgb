@@ -41,7 +41,7 @@ function Manage6() {
       <Wrapper>
             <Head title="매뉴얼 학습" subtit="매뉴얼 학습입니다"/>
             <ContentArea>
-                <a href={docurl} target="_blank">
+                <a href={docurl} >
                     <Box>
                         <img src={process.env.PUBLIC_URL + '/images/img_manual.png'} alt="매뉴얼학습"/>
                     </Box>

@@ -23,8 +23,14 @@ const Dt = styled.div`
     font-weight: bold;
     color:  ${(props) => props.theme.colors.grey2};
 `
+const Dd2 = styled.span`
+    ${ChangeFont(true, 200)};
+    color:  ${(props) => props.theme.colors.grey2};
+    font-weight: bold;
+`
 const Dd = styled.div`
     ${ChangeFont(true, 200)};
+    font-weight: bold;
 `
 function TotalPriceInfo({CostMove, CostOption, MoneyDiscount, CostTotal, MoneyPromise, MoneyRemain, Comment01_txt,setOrderChange}) {
   return (
@@ -34,7 +40,7 @@ function TotalPriceInfo({CostMove, CostOption, MoneyDiscount, CostTotal, MoneyPr
                 {/* 수정가능 */}
                 <Dt>이사요금</Dt>
                 <Dt>
-                    <input style={{width:"100px",textAlign:"right"}} type="text" value={CostMove} name="CostMove" onChange={(e)=>setOrderChange(e)}/>
+                    <input style={{width:"100px",textAlign:"right", fontWeight: "bold"}} type="text" value={CostMove.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} name="CostMove" onChange={(e)=>setOrderChange(e)}/>
                     <span>
                         원
                     </span>
@@ -45,7 +51,7 @@ function TotalPriceInfo({CostMove, CostOption, MoneyDiscount, CostTotal, MoneyPr
                 {/* 수정가능 */}
                 <Dt>옵션요금</Dt>
                 <Dt>
-                    <input style={{width:"100px",textAlign:"right"}}type="text" value={CostOption} name="CostOption" onChange={(e)=>setOrderChange(e)}/>   
+                    <input style={{width:"100px",textAlign:"right",fontWeight: "bold"}}type="text" value={CostOption.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} name="CostOption" onChange={(e)=>setOrderChange(e)}/>   
                     {/* <Dd>{CostOption}원</Dd> */}
                     <span>
                         원
@@ -57,7 +63,7 @@ function TotalPriceInfo({CostMove, CostOption, MoneyDiscount, CostTotal, MoneyPr
                 {/* 수정가능 */}
                 <Dt>추가할인</Dt>
                 <Dt>
-                    <input style={{width:"100px",textAlign:"right"}} type="text" value={MoneyDiscount} name="MoneyDiscount" onChange={(e)=>setOrderChange(e)}/> 
+                    <input style={{width:"100px",textAlign:"right", fontWeight: "bold"}} type="text" value={MoneyDiscount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} name="MoneyDiscount" onChange={(e)=>setOrderChange(e)}/> 
                     {/* <Dd>{MoneyDiscount}원</Dd> */}
                     <span>
                         원
@@ -67,13 +73,13 @@ function TotalPriceInfo({CostMove, CostOption, MoneyDiscount, CostTotal, MoneyPr
             </Row>
             <Row>
                 <Dt>합계</Dt>
-                <Dd>{CostTotal}원</Dd>
+                <Dd>{CostTotal.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}<Dd2>원</Dd2></Dd>
             </Row>
             <Row>
                 {/* 수정가능 */}
                 <Dt>계약금</Dt>
                 <Dt>
-                    <input style={{width:"100px",textAlign:"right"}} type="text" value={MoneyPromise} name="MoneyPromise" onChange={(e)=>setOrderChange(e)}/> 
+                    <input style={{width:"100px",textAlign:"right", fontWeight: "bold"}} type="text" value={MoneyPromise.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} name="MoneyPromise" onChange={(e)=>setOrderChange(e)}/> 
                     {/* <Dd>{MoneyPromise}원</Dd> */}
                     <span>
                         원
@@ -83,7 +89,7 @@ function TotalPriceInfo({CostMove, CostOption, MoneyDiscount, CostTotal, MoneyPr
             </Row>
             <Row>
                 <Dt>잔금</Dt>
-                <Dd>{MoneyRemain}원</Dd>
+                <Dd>{MoneyRemain.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}<Dd2>원</Dd2></Dd>
             </Row>
             <Row>
                 <Dt>특이사항</Dt>

@@ -221,7 +221,7 @@ return(
               {boardDetail.title}
               </Title>
               <PostInfo>
-                <Writer>{boardDetail.loginid}{boardDetail.strLoginname}({boardDetail.tname})</Writer>
+                <Writer>{boardDetail.loginid}{boardDetail.strLoginname}{boardDetail.loginname}({boardDetail.tname})</Writer>
                 <Date>{boardDetail.regdate}</Date>
               </PostInfo>
               <Desc>
@@ -238,6 +238,13 @@ return(
                   boardDetail.asresult && <Row dt="진행상황" dtColor="#ACB6BC" dd={boardDetail.asresult} ddColor="#3397B9" ddWeight="bold"></Row>
                 }
                 </Process>
+                {
+                  boardDetail.attfiles && boardDetail.attfiles.map(item =>
+                      <div>
+                        <a href={item.file_url} download={item.file_url}>{item.file_name}</a>
+                      </div>
+                    )
+                }
               </ContentBox>
               <ButtonArea>
                 {

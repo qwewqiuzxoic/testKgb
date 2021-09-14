@@ -158,7 +158,7 @@ function Team9() {
             <TableHead>
               <Cell w='1'>권역</Cell>
               <Cell w='1.5'>대리점명/팀명</Cell>
-              <Cell w='1.5'>대표자</Cell>
+              <Cell w='1.5'>사업자</Cell>
               <Cell w='2'>전화번호</Cell>
             </TableHead>
             <TableBody>

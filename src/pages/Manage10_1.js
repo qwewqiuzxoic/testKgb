@@ -32,15 +32,16 @@ const BlueBtn = styled.div`
     ${FlexBox('center')};
     align-items: center;
     color:#ffffff;
+    margin-right:8px;
 `;
 const GreyBtn = styled.div`
     width:45px;
     height:45px;
     border-radius:15px;
-    background:#F3F7FB;
+    background:#ff4747;
     ${FlexBox('center')};
     align-items: center;
-    color:#ACB6BC;
+    color:#ffffff;
     margin-left: 5px;
 `;
 function Manage10_1() {

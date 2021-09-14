@@ -24,7 +24,7 @@ function Customer({CustName,MoveType ,StPhone, mobile, setOrderChange,nesCheck1,
           {nesCheck1 && <div style={{color:"red"}}>필수 입력 사항입니다.</div>}
           <InputGroup id="StPhone" name="StPhone" setInputValue2={setOrderChange}title="대표전화 (SMS) (필수)" value={StPhone}/>
           {nesCheck2 && <div style={{color:"red"}}>필수 입력 사항입니다.</div>}
-          <InputGroup id="mobile" title="mobile" name="mobile" setInputValue2={setOrderChange} value={mobile}/>
+          <InputGroup id="mobile" title="핸드폰" name="mobile" setInputValue2={setOrderChange} value={mobile}/>
       </ContentArea>
       <Label htmlFor="select_m_type">이사형태</Label>
       <Select id="MoveType" name="이사형태" name="MoveType" placeholder={MoveType} value={MoveType} onChange={(e)=>{setOrderChange(e)}}>

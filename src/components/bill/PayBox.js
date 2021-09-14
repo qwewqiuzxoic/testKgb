@@ -102,7 +102,7 @@ const PayBox = ({isCard,bankname,contbrand,bankaccount}) => {
             <Row dt="예금주" dd={contbrand} ddWeight='bold'></Row>
             <Caution top='3px' left='0px'>현금 결제 전 꼭 확인해주세요 !</Caution>
             <InfoList>
-                <li>반드시 실명으로 입금해주시기 바랍니다.</li>
+                <li>반드시 실명 또는 가맹점 사업자명으로 입금해주시기 바랍니다.</li>
                 <li>관리비고지서를 못받았을때는 담당자에게 알려주시기 바랍니다.</li>
             </InfoList>
             </>

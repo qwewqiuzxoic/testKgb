@@ -20,7 +20,7 @@ const Title = styled.div`
 	/* webkit 엔진을 사용하지 않는 브라우저를 위한 속성. */
 	/* height = line-height * line = 1.2em * 3 = 3.6em  */
 	line-height: 1.2em;
-	height: 2.4em;
+	height: 3em;
   &.important, &.notice{
     display: static;
     -webkit-line-clamp: 1; /* ellipsis line */

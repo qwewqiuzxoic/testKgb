@@ -50,12 +50,13 @@ function CommentBox({title, subtit, showCheck, commentlist,sn,type, list, tname}
     
     setText("");
   }
-
+  console.log(tname !== user.teamname)
   return (
     <Wrapper>
         {/* {type} <br></br>
         {sn} */}
         {type === "3"? null:type === "2" && tname !== user.teamname?null:
+        type === "asy" && tname !== user.teamname? null:
         <div>
           <GroupTitle title="댓글작성" />
           <InputGroup id="comment" title="" ph="댓글 내용을 입력해주세요"setInputValue={setText} value={text}/>

@@ -35,7 +35,7 @@ const Number = styled.div`
 
 function CallBox({name, num, color}) {
   return (
-    <Wrapper href="tel:010">
+    <Wrapper href={`tel:${num}`}>
         {/* 위에 담당자 전화번호 넣어주세요 */}
         <Name color={color}>{name}</Name>
         <CallArea>

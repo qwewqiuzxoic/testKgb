@@ -101,7 +101,7 @@ const Detail = () => {
                 </Section>
             </Bg>
             {/* 신용카드결제 부분입니다 */}
-            <PayBox isCard={true}/>
+            {/* <PayBox isCard={true}/> */}
             {/* 신용카드결제 부분입니다 */}
             <PayBox isCard={false} bankname={data && data.bankname} contbrand={data && data.contbrand} bankaccount={data && data.bankaccount}/>
         </Wrapper>

@@ -130,7 +130,7 @@ function TopCom({clickMenu, bg}) {
         }else if(urlArr[1] === "Manage10_1"){
             setTitle("교육출결체크")
         }else if(urlArr[1] === "Manage6"){
-            setTitle("메뉴얼 학습")
+            setTitle("매뉴얼 학습")
         }else if(urlArr[1] === "Bill"){
             setTitle("청구서 관리")
         }else if(urlArr[1] === "ProdLists"){

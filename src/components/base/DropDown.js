@@ -97,7 +97,7 @@ function DropDown({menuItem, i,clickMenu,total, totalV}) {
                             <Li key={k}>{subMenu.name}</Li>
                         </a>
                         : subMenu.name === "홈페이지연결" ? 
-                        <a href={user.homepage} target="_blank">
+                        <a href={user.homepage}>
                             <Li key={k}>{subMenu.name}</Li>
                         </a>
                         :

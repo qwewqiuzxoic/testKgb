@@ -582,7 +582,7 @@ useEffect(() => {
             />
           </Section>
           <Section open={open}>
-            <GroupTitle title="옵션 비용"/>
+            <GroupTitle title="옵션 선택"/>
             <div ref={ref22}>
             <OrderOptionCost   toggle={toggle} setToggle={setToggle} AddOptmoneyStr={orderSave.AddOptmoneyStr} addOptionPrice={addOptionPrice}/>
             </div>

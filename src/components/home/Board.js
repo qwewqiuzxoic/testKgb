@@ -46,7 +46,7 @@ function Board() {
           {boardList && boardList.map((post, index)=> (
             <Post key={index} title={post.title}  desc={post.desc} >
                 <Title>
-                  <Link to={`boarddetail/5/${post.board_sn}`}>
+                  <Link to={`boarddetail/${post.board_sn}/5`}>
                   {post.title}
                   </Link>
                 </Title>

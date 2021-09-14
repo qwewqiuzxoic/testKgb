@@ -98,7 +98,7 @@ function Manage9_1() {
                 {listRes.list && listRes.list.map((item,index) => 
                     <EduBox title={item.title} date={item.edu_edate} date2={item.edu_sdate}>
                         <BlueBtn>
-                            <a href={item.movie} target='_blank'> 
+                            <a href={item.movie} > 
                             <img src={process.env.PUBLIC_URL + '/images/ico_video.png'} alt="교육수강아이콘"/>
                             </a>
                         </BlueBtn>

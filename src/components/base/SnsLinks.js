@@ -69,13 +69,13 @@ function SnsLinks({name, num, color,user}) {
         <Title>KGB SNS</Title>
         <IconBox color={color}>
            
-            <a href={url[0]} target='_blank'>
+            <a href={url[0]}>
             <img src={process.env.PUBLIC_URL + '/images/sns_f.svg'} alt="facebook" />
             </a>
-            <a href={url[1]} target='_blank'>
+            <a href={url[1]}>
             <img src={process.env.PUBLIC_URL + '/images/sns_i.svg'} alt="instagram" />
             </a>
-            <a href='https://www.youtube.com/channel/UCw7zP79swg32thGgyyOnD3w' target='_blank'>
+            <a href='https://www.youtube.com/channel/UCw7zP79swg32thGgyyOnD3w' >
             <img src={process.env.PUBLIC_URL + '/images/sns_y.svg'} alt="youtube" />
             </a>
         </IconBox>
