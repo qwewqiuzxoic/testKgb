@@ -28,6 +28,8 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="token"></div>
+    <div id="uuid"></div>
     <script
         src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
         integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
@@ -39,7 +41,6 @@
           // function getFirebaseToken() {
           //    $('#HelloWorld').html(Android.getFirebaseToken());
           //   }
-          var aaa = "asdasdasd";
           window.Android = Android || {};
           if(window.Android !== {}){
             Android.getFirebaseToken();
@@ -52,6 +53,8 @@
             localStorage.setItem('UUID', UUID);
             window.UUID = UUID;
             window.TOKEN = firebaseToken;
+            document.querySelector('#token').innerHTML=firebaseToken;
+            document.querySelector('#uuid').innerHTML=UUID;
           }
           function getFirebaseToken() {
             // IOS token 호출하는 함수.
