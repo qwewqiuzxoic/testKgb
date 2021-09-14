@@ -159,6 +159,7 @@ function LoginForm({ backLocation }) {
 
     return (
     <Wrapper>
+        {window.UUID}
         <LogoBox>
             <img src={process.env.PUBLIC_URL + '/images/logo.svg'}/>
         </LogoBox>
