@@ -40,12 +40,19 @@
           // function getFirebaseToken() {
           //    $('#HelloWorld').html(Android.getFirebaseToken());
           //   }
+        var IorA = navigator.userAgent.toLowerCase();
+        
+        if(IorA.indexOf("android") !== -1){
           window.Android = Android || {};
           if(window.Android !== {}){
             Android.getFirebaseToken();
           }; 
-           
+        }else if(IorA.indexOf("iphone") !== -1){
           window.webkit.messageHandlers.ios.postMessage("getFirebaseToken");
+
+        }
+          
+           
 
           function firebaseTokenAndUUID(firebaseToken, UUID) {
             localStorage.setItem('token', firebaseToken);
