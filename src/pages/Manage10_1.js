@@ -47,7 +47,8 @@ const GreyBtn = styled.div`
 function Manage10_1() {
     const dispatch = useDispatch();
     const {loading,list} = useSelector(state=>state.totalListReducer);
-   
+    const android = window.Android;
+
     const user = JSON.parse(localStorage.getItem('user'));
     const [qrStr, setQrStr] = useState('text');
     useEffect(() => {
@@ -59,7 +60,7 @@ function Manage10_1() {
     const onclick = ()=> {
         const osCheck = navigator.userAgent.toLowerCase();
         if(osCheck.indexOf("android") !== -1){
-            Android.showQRReader();
+            android.showQRReader();
         }else if(osCheck.indexOf("iphone") !== -1){
             window.webkit.messageHandlers.ios.postMessage("showQR");
         }
