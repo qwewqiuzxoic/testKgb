@@ -28,8 +28,7 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="token" style="display:none"></div>
-    <div id="uuid" style="display:none"></div>
+
     <script
         src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
         integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
@@ -49,8 +48,6 @@
           window.webkit.messageHandlers.ios.postMessage("getFirebaseToken");
 
           function firebaseTokenAndUUID(firebaseToken, UUID) {
-            document.querySelector('#token').innerHTML=firebaseToken;
-            document.querySelector('#uuid').innerHTML=UUID;
             localStorage.setItem('token', firebaseToken);
             localStorage.setItem('UUID', UUID);
             window.UUID = UUID;
