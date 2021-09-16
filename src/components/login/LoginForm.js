@@ -133,7 +133,6 @@ function LoginForm({ backLocation }) {
             dispatch(login(data.id, data.password,window.TOKEN,window.UUID)); //안드로이드 토큰 관련 추가
         }
     }
-    alert(window.TOKEN);
     const [sucCheck,setSucCheck] = useState(false);
     useEffect(() => {
         if(Object.keys(user).length !== 0 && user.userid !== ""){
