@@ -4,9 +4,9 @@ import {
   Switch,
   Route,
   Link,
-  useHistory,
   Redirect
 } from "react-router-dom";
+
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Team1 from './pages/Team1';
@@ -80,8 +80,6 @@ function App() {
   const userS = useSelector(state=>state.loginReducer);
   const open = useSelector(state=>state.ModalReducer.open);
   const [menu, setMenu] = useState(true);
- 
-
 
   return (
     <ThemeProvider theme={theme}>

@@ -446,3 +446,8 @@ export const orderIndividual = {
 }
 
 
+//뒤로가기 했을경우 페이지 메모리
+export const pageMemoInit = {
+    pageNum:1,
+    pageTitle:""
+}

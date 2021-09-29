@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import H1 from '../commonStyle/H1'
 import styled from 'styled-components';
 import { FlexBox, Gutter, BottomBox, ChangeFont } from '../commonStyle';
+import { useDispatch, useSelector } from 'react-redux';
+import { pageMemoNumChange } from '../../redux/actionFn/pageMemo';
+import { compose } from 'redux';
 
 
 const Wrapper = styled.div`
@@ -39,14 +42,18 @@ const TabName = styled.div`
 `;
 
 function BoardTitle({title, subtit, check, boardSubName, changeTeamNm, tab,boardTeamNm, tabCheck, tabName, changeTab}) {
+  const dispatch = useDispatch();
+  const tabD = useSelector(state=>state.pageMemoReducer.pageNum);
+
+  
   return (
     <Wrapper>
       <TopBg>
         <H1 title={title} subtit={subtit}></H1>
         {tabCheck ? 
         <Tabs>
-          <TabName className={tab===1 ? "selected":""} onClick={()=>changeTab(1)}>{tabName[0]}</TabName>
-          <TabName className={tab===2 ? "selected":""} onClick={()=>changeTab(2)}>{tabName[1]}</TabName>
+          <TabName className={tabD===1 ? "selected":""} onClick={()=>dispatch(pageMemoNumChange(1))}>{tabName[0]}</TabName>
+          <TabName className={tabD===2 ? "selected":""} onClick={()=>dispatch(pageMemoNumChange(2))}>{tabName[1]}</TabName>
         </Tabs>
         :
         null

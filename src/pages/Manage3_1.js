@@ -8,7 +8,8 @@ import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyl
 import { useDispatch, useSelector } from 'react-redux';
 import { getAsList, getAsListConcat } from '../redux/thunkFn/as.thunk';
 import Loading from '../components/commonStyle/Loading';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { pageMemoNum, pageMemoNumChange } from '../redux/actionFn/pageMemo';
 
 
 const Wrapper = styled.div`
@@ -121,7 +122,9 @@ const asLists = [
 ]
 
 function Manege3_1() {
-  const [tab,setTab]= useState(0);
+  const tabD = useSelector(state=>state.pageMemoReducer.pageNum);
+
+  const [tab,setTab]= useState(tabD);
   const [team,setTeam] = useState("Y");
   const dispatch = useDispatch();
   const pageCount = useRef(1);
@@ -130,6 +133,7 @@ function Manege3_1() {
     pageCount.current = 1;
     setTab(num);
     setTeam(team);
+    dispatch(pageMemoNumChange(num));
     dispatch(getAsList(team,1));
 
   }
@@ -152,8 +156,23 @@ function Manege3_1() {
   useEffect(() => {
     window.addEventListener('scroll',infiniteScroll);
     dispatch(getAsList("Y",1));
+    if(tabD === 0) {
+      dispatch(getAsList("Y",1));
+    } else {
+      dispatch(getAsList("N",1));
+    }
     return () => window.removeEventListener('scroll', infiniteScroll);
   }, [])
+
+
+  const history = useHistory();
+    useEffect(() => {
+      history.listen((location) => { 
+        dispatch(pageMemoNum(location.pathname));
+      }); 
+      return () => {
+      }
+    }, [])
   return (
     <>
       <Wrapper>

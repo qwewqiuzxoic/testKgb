@@ -17,6 +17,7 @@ import { msgDelReducer, msgSendListReducer, msgRcvListReducer, msgAddReducer,msg
 import { totalMesReducer,
     totalListReducer, totalDataReducer, totalDataAnReducer, totalAnMesReducer} from './reducer/totalReducer'
 import {movedayReducer} from './reducer/orderReducer'
+import {pageMemoReducer} from './reducer/pageMemoReducer'
 
 
 
@@ -67,6 +68,7 @@ const rootReducer = combineReducers({
     totalAnMesReducer,
     movedayReducer,
     eduManualReducer,
-    sonDayReducer
+    sonDayReducer,
+    pageMemoReducer
 });
 export default rootReducer;

@@ -6,9 +6,10 @@ import { FlexBox, Gutter, ChangeFont } from '../components/commonStyle';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHappyCallList } from '../redux/thunkFn/happyCall.thunk';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Loading from '../components/commonStyle/Loading';
 import { useRef } from 'react';
+import { pageMemoNum, pageMemoNumChange } from '../redux/actionFn/pageMemo';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -68,22 +69,29 @@ const Dd = styled.div`
 `
 
 function Manage2_1({match}) {
+  const tabD = useSelector(state=>state.pageMemoReducer.pageNum);
+
   const page = match.params.page;
   const [title,subtit] =  page === "1" ? ["계약 해피콜","KGB의 계약 해피콜입니다"] : ["미계약 해피콜","KGB의 미계약 해피콜입니다"];
-  const [tab,setTab]= useState(0);
+  const [tab,setTab]= useState(tabD);
   const pageCount = useRef(1);
   const teamChange = (num,team) => {
     pageCount.current = 1;
     setTab(num);
+    dispatch(pageMemoNumChange(num));
     dispatch(getHappyCallList(page,team,1));
   }
   const dispatch = useDispatch();
   const {list,loading} = useSelector(state => state.happyCallListReducer);
-    useEffect(() => {
+  useEffect(() => {
+      if(tabD === 0) {
         dispatch(getHappyCallList(page,"Y",1));
-        return () => {
-        }
-    }, [])
+      } else {
+        dispatch(getHappyCallList(page,"N",1));
+      }
+      return () => {
+      }
+  }, [])
 
     const infiniteScroll = () => {
       let scrollHeight = Math.max(
@@ -107,13 +115,22 @@ function Manage2_1({match}) {
 
       return () => window.removeEventListener('scroll', infiniteScroll)
   }, [])
+
+   const history = useHistory();
+    useEffect(() => {
+      history.listen((location) => { 
+        dispatch(pageMemoNum(location.pathname));
+      }); 
+      return () => {
+      }
+    }, [])
   return (
     <>
       <Wrapper>
         <Head title={title} subtit={subtit} pb="90px"/>
         <Tabs>
-          <TabName className={tab === 0 ? "selected": ""} onClick={()=>teamChange(0,"Y")}>우리팀</TabName>
-          <TabName className={tab === 1 ? "selected": ""} onClick={()=>teamChange(1,"N")}>다른팀</TabName>
+          <TabName className={tabD === 0 ? "selected": ""} onClick={()=>teamChange(0,"Y")}>우리팀</TabName>
+          <TabName className={tabD === 1 ? "selected": ""} onClick={()=>teamChange(1,"N")}>다른팀</TabName>
         </Tabs>
         <ContentArea>
           {

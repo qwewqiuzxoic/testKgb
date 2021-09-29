@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import { pageMemoUrl } from '../../redux/actionFn/pageMemo';
 import Menu from './Menu';
 import TopCom from './topcomponents/TopCom';
 import TopHome from './topcomponents/TopHome';
@@ -16,9 +18,13 @@ function Top({setMenu,menu}) {
     const clickMenu2 = () =>{
         history.push('/Team3_1');
     }
-    const history = useHistory() 
+    const history = useHistory();
+    const dispatch = useDispatch(); 
     useEffect(() => {
-       return history.listen((location) => { 
+        history.listen((location) => { 
+            dispatch(pageMemoUrl(location.pathname));
+        }); 
+        return history.listen((location) => { 
           setUrl(location.pathname);
        }) 
     },[history]) 

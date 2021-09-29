@@ -14,6 +14,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBoardList, getBoardTopList, getEduBoardList, getEduMovieBoardList, postRMDBoard } from '../redux/thunkFn/borad.thunk';
 import { boardInit, boardPostInput, boardPostLoginInput, boardPostModifyInput } from '../redux/actionFn/board';
+import { pageMemoNum } from '../redux/actionFn/pageMemo';
 
 const Wrapper = styled.div`
     background: #FAFAFA;
@@ -77,21 +78,24 @@ function ComplimentBoard() {
 
     const dispatch = useDispatch();
     const [tab, setTab] = useState(1);
-
+    const tabD = useSelector(state=>state.pageMemoReducer.pageNum);
     useEffect(() => {
-      if(tab === 1){
+      
+      if(tabD === 1){
         pageCount.current = 1;
         dispatch(getBoardList(user.brand,boardName,pageCount.current,{tabType:"Y",type:type}));
-      }else if(tab === 2){
+      }else if(tabD === 2){
         pageCount.current = 1;
         dispatch(getBoardList(user.brand,boardName,pageCount.current,{tabType:"N",type:type}));
       }
         return () => {
         }
-    }, [tab])
-    
+    }, [tabD])
+    const history = useHistory();
     useEffect(() => {
-      dispatch(getBoardList(user.brand,boardName,pageCount.current,{tabType:"Y",type:type}))
+      history.listen((location) => { 
+        dispatch(pageMemoNum(location.pathname));
+      }); 
       return () => {
       }
     }, [])
