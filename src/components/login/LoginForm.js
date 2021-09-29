@@ -129,9 +129,7 @@ function LoginForm({ backLocation }) {
     const token = localStorage.getItem('token') || 'not token';       
     const uuid = localStorage.getItem('UUID') || 'not UUID';     
     const onSubmit = data => {
-        if(window.TOKEN !== undefined){
             dispatch(login(data.id, data.password,window.TOKEN,window.UUID)); //안드로이드 토큰 관련 추가
-        }
     }
     const [sucCheck,setSucCheck] = useState(false);
     useEffect(() => {
