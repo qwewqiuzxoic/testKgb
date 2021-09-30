@@ -112,6 +112,8 @@ function App() {
                 {/* 작업일변경요청 */}
                 <PrivateRoute path="/board/10" component={WorkDayChangeBoard}/> 
                 <PrivateRoute path="/board/:boardTitle" component={Board}/>
+                <PrivateRoute path="app/boarddetail/:sn/:type" component={BoardDetail}/>
+                <PrivateRoute path="app/boarddetail/:sn" component={BoardDetail}/>
                 <PrivateRoute path="/boarddetail/:sn/:type" component={BoardDetail}/>
                 <PrivateRoute path="/boarddetail/:sn" component={BoardDetail}/>
                 <PrivateRoute path="/team1/:page" component={Team1}/>
