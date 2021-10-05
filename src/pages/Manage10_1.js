@@ -90,7 +90,7 @@ function Manage10_1() {
             axios.post(url,null).then(function(res){
                 localStorage.setItem('qrToken', 'text');
                 if(res.data.result === "success"){
-                    setQrModalOpen(true);
+                    qrModalOpen(true);
                 }
                 setQrStr('text');
                 dispatch(totalListThunk("edu_att_list",{}))
@@ -107,7 +107,7 @@ function Manage10_1() {
             {
                list && list.map((item,index)=>
               
-                    <EduBox key={index} title="이사서비스 매뉴얼" date={item}>
+                    <EduBox key={index} title={item.title} date={item.sdate}>
                         <BlueBtn onClick={onclick} >입실</BlueBtn>
                         <GreyBtn onClick={onclick}>퇴실</GreyBtn>
                     </EduBox>
