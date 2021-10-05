@@ -84,7 +84,7 @@ function Manage10_1() {
             const url = qrStr + '&man_info_sn=' +user.man_info_sn;
             axios.post(url,null).then(function(res){
                 localStorage.setItem('qrToken', 'text');
-                alert(res);
+                alert(JSON.stringify(res));
                 setQrStr('text');
                 dispatch(totalListThunk("edu_att_list",{}))
             }).catch(function(err){
