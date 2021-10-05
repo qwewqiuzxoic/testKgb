@@ -9,6 +9,7 @@ import Loading from '../components/commonStyle/Loading';
 import { totalListThunk } from '../redux/thunkFn/total.thunk';
 import axios from 'axios'
 import NoPost from '../components/commonStyle/NoPost';
+import ConfirmModal from '../components/base/ConfirmModal';
 
 const Wrapper = styled.div`
     background:#FAFAFA;
@@ -51,6 +52,10 @@ function Manage10_1() {
 
     const user = JSON.parse(localStorage.getItem('user'));
     const [qrStr, setQrStr] = useState('text');
+    const [qrModalOpen, setQrModalOpen] = useState(false);
+    const onsubmit = () =>{
+        setQrModalOpen(false);
+    }
     useEffect(() => {
         dispatch(totalListThunk("edu_att_list",{}))
         return () => {
@@ -84,8 +89,9 @@ function Manage10_1() {
             const url = qrStr + '&man_info_sn=' +user.man_info_sn;
             axios.post(url,null).then(function(res){
                 localStorage.setItem('qrToken', 'text');
-                alert(JSON.stringify(res));
-                alert(res.data.result);
+                if(res.data.result === "success"){
+                    qrModalOpen(true);
+                }
                 setQrStr('text');
                 dispatch(totalListThunk("edu_att_list",{}))
             }).catch(function(err){
@@ -93,6 +99,7 @@ function Manage10_1() {
             })
         }
     },[qrStr])
+
   return (
       <Wrapper>
             <Head title="교육출결체크 QR코드" subtit="KGB의 매뉴얼학습입니다"/>
@@ -112,12 +119,15 @@ function Manage10_1() {
                 list.length === 0 && <NoPost></NoPost>
             }
               
-            <button onClick={onclick}>
+            {/* <button onClick={onclick}>
                 qr확인용 버튼
             </button>
            
-            {qrStr}
+            {qrStr} */}
             {loading && <Loading></Loading>}
+
+            <ConfirmModal open={qrModalOpen} text={"출결이 확인되었습니다."} onsubmit={onsubmit}/>
+
       </Wrapper>
   );
 }
