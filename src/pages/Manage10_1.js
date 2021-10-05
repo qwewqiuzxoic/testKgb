@@ -90,7 +90,7 @@ function Manage10_1() {
             axios.post(url,null).then(function(res){
                 localStorage.setItem('qrToken', 'text');
                 if(res.data.result === "success"){
-                    qrModalOpen(true);
+                    setQrModalOpen(true);
                 }
                 setQrStr('text');
                 dispatch(totalListThunk("edu_att_list",{}))
