@@ -107,9 +107,9 @@ function Manage10_1() {
             {
                list && list.map((item,index)=>
               
-                    <EduBox key={index} title="이사서비스 매뉴얼" date={item.sdate}>
+                    <EduBox key={index} title="이사서비스 매뉴얼" date={item}>
                         <BlueBtn onClick={onclick} >입실</BlueBtn>
-                        <GreyBtn>퇴실</GreyBtn>
+                        <GreyBtn onClick={onclick}>퇴실</GreyBtn>
                     </EduBox>
                 
                )
