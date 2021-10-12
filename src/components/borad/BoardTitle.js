@@ -44,7 +44,10 @@ const TabName = styled.div`
 function BoardTitle({title, subtit, check, boardSubName, changeTeamNm, tab,boardTeamNm, tabCheck, tabName, changeTab}) {
   const dispatch = useDispatch();
   const tabD = useSelector(state=>state.pageMemoReducer.pageNum);
-
+  const fun=(num)=>{
+    changeTab(num);
+    dispatch(pageMemoNumChange(num))
+  }
   
   return (
     <Wrapper>
@@ -52,8 +55,8 @@ function BoardTitle({title, subtit, check, boardSubName, changeTeamNm, tab,board
         <H1 title={title} subtit={subtit}></H1>
         {tabCheck ? 
         <Tabs>
-          <TabName className={tabD===1 ? "selected":""} onClick={()=>dispatch(pageMemoNumChange(1))}>{tabName[0]}</TabName>
-          <TabName className={tabD===2 ? "selected":""} onClick={()=>dispatch(pageMemoNumChange(2))}>{tabName[1]}</TabName>
+          <TabName className={tabD===1 ? "selected":""} onClick={()=>fun(1)}>{tabName[0]}</TabName>
+          <TabName className={tabD===2 ? "selected":""} onClick={()=>fun(2)}>{tabName[1]}</TabName>
         </Tabs>
         :
         null

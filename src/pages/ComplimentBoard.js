@@ -115,7 +115,7 @@ function ComplimentBoard() {
         if (scrollTop + clientHeight >= scrollHeight) {
 
           pageCount.current += 1;
-          dispatch(getBoardList(user.brand,boardName,pageCount.current,{tabType:tab === 1 ?"Y":"N",type:type}))
+          dispatch(getBoardList(user.brand,boardName,pageCount.current,{tabType:tabD === 1 ?"Y":"N",type:type}))
         }
       };
     useEffect(() => {

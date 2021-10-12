@@ -47,7 +47,9 @@ const GreyBtn = styled.div`
 `;
 function Manage10_1() {
     const dispatch = useDispatch();
-    const {loading,list} = useSelector(state=>state.totalListReducer);
+    const getAuth = (key) => (obj) => { console.log(obj); return obj.totalListReducer[key]};
+    const loading = useSelector(getAuth("loading"));
+    const list = useSelector(getAuth("list"));
     const android = window.Android;
 
     const user = JSON.parse(localStorage.getItem('user'));
