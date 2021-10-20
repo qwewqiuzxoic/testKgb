@@ -8,7 +8,7 @@ import { FlexBox, Gutter, BottomBox, ChangeFont } from '../components/commonStyl
 import InputGroup from '../components/commonStyle/InputGroup';
 import TextAreaGroup from '../components/commonStyle/TextAreaGroup';
 import Button from '../components/commonStyle/Button';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';

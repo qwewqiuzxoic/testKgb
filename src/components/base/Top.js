@@ -29,6 +29,7 @@ function Top({setMenu,menu}) {
        }) 
     },[history]) 
     useEffect(() => {
+        window.scrollTo({ top: 0 });
         setUrl(window.location.pathname);
      },[window.location.pathname]) 
     
