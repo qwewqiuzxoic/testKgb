@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TopWrapper from '../components/home/TopWrapper';
 import GradientBoxes from '../components/home/GradientBoxes';
 import WhiteBoxes from '../components/home/WhiteBoxes';
@@ -22,6 +22,11 @@ const Wrapper = styled.div`
 `;
 
 function Home() {
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+    return () => {
+    }
+  }, [])
   return (
     <>
       <Wrapper>
