@@ -123,6 +123,8 @@ function LoginForm({ backLocation }) {
     const backlocation = backLocation;
     let history = useHistory();
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const [auto, setAuto] = useState(false);
+
     const dispatch = useDispatch();
     const user = useSelector(state=>state.loginReducer.user);
     const loading = useSelector(state=>state.loginReducer.loading);
@@ -161,6 +163,12 @@ function LoginForm({ backLocation }) {
             
         }
     }, [window.UUID])
+
+    //10/20
+
+
+
+
     return (
     <Wrapper>
         <LogoBox>
@@ -177,7 +185,7 @@ function LoginForm({ backLocation }) {
         {loading && <Loading></Loading>}
         {<ConfirmModal open={sucCheck} text="로그인정보가 없습니다." onsubmit={confirmModal}></ConfirmModal>}
         <CheckboxContainer>
-            <input type="checkbox" id="autoLogin"></input>
+            <input type="checkbox" id="autoLogin" name="autoLogin" onChange={()=>{setAuto(!auto)}}></input>
             <label htmlFor="autoLogin">자동로그인</label>
         </CheckboxContainer>
         <ContactBtnContainer>

@@ -95,30 +95,62 @@ function Team1({match}) {
         return null;
       for(var i=0; monthSc.length>i; i++){
         if(monthSc[i].daymove === day && page === "1"){
-            if(monthSc[i].title.includes("계약") ){
+            if(monthSc[i].title.includes("|")){
+              let msp = monthSc[i].title.split("|");
+              console.log(msp)
+              for(var j=0; j<msp.length; j++){
+                if(msp[j].includes("계약") ){
+                  text.push(<span className="state0"></span>)
+                }
+                if(msp[j].includes("지명오더") ){
+                    text.push(<span className="state1"></span>)
+                }
+                if(msp[j].includes("견적의뢰") ){
+                    text.push(<span className="state2"></span>)
+                }
+                if(msp[j].includes("미계약") ){
+                    text.push(<span className="state3"></span>)
+                }
+                if(msp[j].includes("중복견적") ){
+                    text.push(<span className="state4"></span>)
+                }
+                if(msp[j].includes("취소") ){
+                    text.push(<span className="state5"></span>)
+                }
+                if(msp[j].includes("KGB토스") ){
+                    text.push(<span className="state6"></span>)
+                }
+                if(msp[j].includes("기타") ){
+                    text.push(<span className="state7"></span>)
+                }
+              }
+            } else {
+              if(monthSc[i].title.includes("계약") ){
                 text.push(<span className="state0"></span>)
+              }
+              if(monthSc[i].title.includes("지명오더") ){
+                  text.push(<span className="state1"></span>)
+              }
+              if(monthSc[i].title.includes("견적의뢰") ){
+                  text.push(<span className="state2"></span>)
+              }
+              if(monthSc[i].title.includes("미계약") ){
+                  text.push(<span className="state3"></span>)
+              }
+              if(monthSc[i].title.includes("중복견적") ){
+                  text.push(<span className="state4"></span>)
+              }
+              if(monthSc[i].title.includes("취소") ){
+                  text.push(<span className="state5"></span>)
+              }
+              if(monthSc[i].title.includes("KGB토스") ){
+                  text.push(<span className="state6"></span>)
+              }
+              if(monthSc[i].title.includes("기타") ){
+                  text.push(<span className="state7"></span>)
+              }
             }
-            if(monthSc[i].title.includes("지명오더") ){
-                text.push(<span className="state1"></span>)
-            }
-            if(monthSc[i].title.includes("견적의뢰") ){
-                text.push(<span className="state2"></span>)
-            }
-            if(monthSc[i].title.includes("미계약") ){
-                text.push(<span className="state3"></span>)
-            }
-            if(monthSc[i].title.includes("중복견적") ){
-                text.push(<span className="state4"></span>)
-            }
-            if(monthSc[i].title.includes("취소") ){
-                text.push(<span className="state5"></span>)
-            }
-            if(monthSc[i].title.includes("KGB토스") ){
-                text.push(<span className="state6"></span>)
-            }
-            if(monthSc[i].title.includes("기타") ){
-                text.push(<span className="state7"></span>)
-            }
+            
         }else if(monthSc[i].dayedu === day && page === "2"){
           if(monthSc[i].edutype.includes("맞춤") ){
             text.push(<span className="state0"></span>)
