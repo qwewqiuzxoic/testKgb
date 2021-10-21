@@ -100,7 +100,6 @@ function Cart() {
         var price = list.filter(item=>{
             return item.gb_idx === gb_idx;
         })[0].total_price;
-        console.log(price)
         if (isChecked) {
             checkedProd.add(gb_idx);
             setCheckedProd(checkedProd);

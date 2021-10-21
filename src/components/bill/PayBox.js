@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import Button from '../commonStyle/Button';
 import { Gutter, FlexBox, ChangeFont } from '../commonStyle';
 import Row from './Row';
+import { useStore } from 'react-redux';
 
 const caution = css`
   ${({ top, left, right }) => css`
@@ -79,7 +80,30 @@ const Caution = styled.div`
 
 
 const PayBox = ({isCard,bankname,contbrand,bankaccount}) => {
-
+    const user = JSON.parse(localStorage.getItem('user'));
+    const [count, setCount] = useState("");
+    const [brand, setBrand] = useState("");
+    useEffect(() => {
+        if(user.brand ==="YES2404"){
+            setCount("485-003506-01-117");
+            setBrand("케이지비(주)");
+          }else if( user.brand === "이사이사"){
+            setCount("485-012612-01-070");
+            setBrand("예스2424(주)");
+          }else if( user.brand === "KGB포장이사서비스"){
+            setCount("485-003506-01-117");
+            setBrand("케이지비(주)");
+          }else if( user.brand === "용달캡"){
+            setCount("485-012612-01-070");
+            setBrand("예스2424(주)");
+          }else if( user.brand === "협력업체"){
+            setCount("");
+            setBrand("");
+          } else {
+            setCount("");
+            setBrand("");
+          }
+    }, [])
     return (
         <Wrapper>
             { isCard ? 
@@ -97,9 +121,9 @@ const PayBox = ({isCard,bankname,contbrand,bankaccount}) => {
             :
             <>
             <Title>현금 결제안내</Title>
-            <Row dt="결제계좌" dd={bankaccount} ddWeight='bold'></Row>
-            <Row dt="은행" dd={bankname} ddWeight='bold'></Row>
-            <Row dt="예금주" dd={contbrand} ddWeight='bold'></Row>
+            <Row dt="결제계좌" dd={bankaccount} ddWeight='bold'>{count}</Row>
+            <Row dt="은행" dd={bankname} ddWeight='bold'>기업은행</Row>
+            <Row dt="예금주" dd={contbrand} ddWeight='bold'>{brand}</Row>
             <Caution top='3px' left='0px'>현금 결제 전 꼭 확인해주세요 !</Caution>
             <InfoList>
                 <li>반드시 실명 또는 가맹점 사업자명으로 입금해주시기 바랍니다.</li>
