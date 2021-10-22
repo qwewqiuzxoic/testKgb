@@ -40,7 +40,6 @@ const [address, setPAddress] = useState({open:false, data:""});
       open:true,
       data:""
     })
-    document.body.style.overflow = 'hidden';
   }
   const closeAddress = (data) => {
     document.body.style.overflow = 'unset';

@@ -89,8 +89,6 @@ function Team6_1() {
     const openModal = (sn) => {
         setModalOpen(true);
         dispatch(getWorkingDayDetailChange(sn));
-        document.body.style.overflow = 'hidden';
-
     }
     const closeModal = () => {
         setModalOpen(false);
@@ -131,7 +129,7 @@ function Team6_1() {
                          <Dd>{list.phone}</Dd>
                      </Row>
                      <Row>
-                         <Dt>전지역</Dt>
+                         <Dt>대상지역</Dt>
                          <Dd>{list.arrivearea}</Dd>
                      </Row>
                      <Row>

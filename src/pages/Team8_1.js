@@ -57,7 +57,6 @@ function Team8_1({match}) {
         } else if(code ==="2"){
           dispatch(getBoardDetail(sn));
         }
-        document.body.style.overflow = 'hidden';
     }
     const closeModalDetail = () => {
         setModalOpenDetail(false);
@@ -65,7 +64,6 @@ function Team8_1({match}) {
     }
     const openModalWrite = () => {
         setModalOpenWrite(true);
-        document.body.style.overflow = 'hidden';
     }
     const closeModalWrite = () => {
         setModalOpenWrite(false);

@@ -143,14 +143,7 @@ function TopCom({clickMenu, bg}) {
         
       }
     useEffect(() => {
-        console.log(urlArr)
-        console.log(urlArr)
-        console.log(urlArr)
-        console.log(urlArr)
-        console.log(urlArr)
-        console.log(urlArr)
-        console.log(urlArr)
-        console.log(urlArr)
+       
         if(urlArr[1] === "board"){
             if(urlArr[2]==="1"){
                 setTitle("우리팀 톡톡");
@@ -249,7 +242,7 @@ function TopCom({clickMenu, bg}) {
             <img src={process.env.PUBLIC_URL + '/images/ico_back.svg'} alt="icon" />
         </IconBack>
         <PageName>
-            {title}  
+            {title === ""? <img style={{marginTop:"15px"}} src={process.env.PUBLIC_URL + '/images/logo_w.svg'}  />: title }  
         </PageName>
         <IconMenu onClick={()=>clickMenu()}>
             <img src={process.env.PUBLIC_URL + '/images/ico_menu.svg'} alt="KGB" />

@@ -60,7 +60,7 @@ function Modal2({modalOpen,closeModal}) {
                     <ModalTit>지원자</ModalTit>
                     <Row>
                         <Dt>[{data.code_brand}] {data.teamName}</Dt>
-                        <Dd>{data.phone}</Dd>
+                        <Dd><a  href={`tel:${data.phone}`}>{data.phone}</a></Dd>
                     </Row>
                 </Section>
                 <Section>
