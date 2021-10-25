@@ -90,7 +90,7 @@ export const UrlBody = (type, data) => {
                 body:{
                     "biz_sn":user.biz_sn,
                     "brand":user.brand,
-                    "page":data.page,
+                    "page":data.page.current,
                     "pagesize":data.pagesize
                 }
             }
