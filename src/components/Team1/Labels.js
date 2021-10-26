@@ -35,12 +35,12 @@ const LabelBox = styled.div`
 const labelTexts = [
     {
         bg: 'rgba(67, 201, 240, .2)',
-        color: '#43C9F0',
+        color: '#0026ff',
         text: '계약'
     },
     {
         bg: 'rgba(40, 241, 115, .2)',
-        color: '#28F173',
+        color: '#0dfa00',
         text: '지명오더'
     },
     {
