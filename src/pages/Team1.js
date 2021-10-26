@@ -99,7 +99,7 @@ function Team1({match}) {
               let msp = monthSc[i].title.split("|");
               for(var j=0; j<msp.length; j++){
                 console.log(msp[j]);
-                if(msp[j].includes("계약") ){
+                if(msp[j] === "계약" ){
                   text.push(<span className="state0"></span>)
                 }
                 if(msp[j].includes("지명오더") ){
@@ -108,7 +108,7 @@ function Team1({match}) {
                 if(msp[j].includes("견적의뢰") ){
                     text.push(<span className="state2"></span>)
                 }
-                if(msp[j].includes("미계약") ){
+                if(msp[j] === "미계약" ){
                     text.push(<span className="state3"></span>)
                 }
                 if(msp[j].includes("중복견적") ){
