@@ -97,8 +97,8 @@ function Team1({match}) {
         if(monthSc[i].daymove === day && page === "1"){
             if(monthSc[i].title.includes("|")){
               let msp = monthSc[i].title.split("|");
-              console.log(msp)
               for(var j=0; j<msp.length; j++){
+                console.log(msp[j]);
                 if(msp[j].includes("계약") ){
                   text.push(<span className="state0"></span>)
                 }
@@ -125,6 +125,7 @@ function Team1({match}) {
                 }
               }
             } else {
+              console.log(monthSc)
               if(monthSc[i].title.includes("계약") ){
                 text.push(<span className="state0"></span>)
               }
