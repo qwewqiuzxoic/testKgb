@@ -126,7 +126,7 @@ function Team1({match}) {
               }
             } else {
               console.log(monthSc)
-              if(monthSc[i].title.includes("계약") ){
+              if(monthSc[i].title === "계약" ){
                 text.push(<span className="state0"></span>)
               }
               if(monthSc[i].title.includes("지명오더") ){
@@ -135,7 +135,7 @@ function Team1({match}) {
               if(monthSc[i].title.includes("견적의뢰") ){
                   text.push(<span className="state2"></span>)
               }
-              if(monthSc[i].title.includes("미계약") ){
+              if(monthSc[i].title === "미계약" ){
                   text.push(<span className="state3"></span>)
               }
               if(monthSc[i].title.includes("중복견적") ){
