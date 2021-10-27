@@ -143,7 +143,7 @@ function Team9() {
           <TabName className={tab === "KGB이사" ? "selected": ""} onClick={()=>tabChange(1,"KGB이사",areaTab)}>KGB이사</TabName>
           <TabName className={tab === "YES2404" ? "selected": ""} onClick={()=>tabChange(2,"YES2404",areaTab)}>YES2404</TabName>
           <TabName className={tab === "이사이사" ? "selected": ""} onClick={()=>tabChange(3,"이사이사",areaTab)}>YES2424</TabName>
-          <TabName className={tab === "용달캡" ? "selected": ""} onClick={()=>tabChange(0,"용달캡",areaTab)}>YCAP</TabName>
+          <TabName className={tab === "용달캡" ? "selected": ""} onClick={()=>tabChange(0,"용달캡",areaTab)}>Ycap</TabName>
         </Tabs>
         <RegionTabs>
           {

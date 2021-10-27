@@ -55,6 +55,7 @@ function ProdOrder() {
     const [orderDay,setOrderDay] = useState();
     const [nList,setNList] = useState([]);
     // const List = list !== undefined ?list:[]
+    const [selectVal, setSelectVal] = useState(1);
     useEffect(() => {
         dispatch(totalListThunk("goods_order_list",{}));
         return () => {
@@ -72,8 +73,10 @@ function ProdOrder() {
         <Head title="자재주문 내역" subtit="KGB의 자재주문 내역입니다"/>
         <ContentArea>
             <DateArea>
-                <Select>
-                    <Option>주문일</Option>
+                <Select onChange={(e)=>{setSelectVal(e.target.value)}}>
+                    <Option value="1">주문일</Option>
+                    <Option value="2">결제일</Option>
+                    <Option value="3">출고일</Option>
                 </Select>
                 <Input type="text" id="date_order" placeholder="날짜를 선택해주세요"  textAlign="left"  onFocus={(e)=> {e.currentTarget.type = "date";e.currentTarget.focus();}} max="9999-12-31" onChange={(e)=>changeDay(e.target.value)}></Input>
                 <Button onclick={searchDay} bg="#3397B9" color="#ffffff" text="조회" w="60px" h="34px" fontSize="11px"/>
