@@ -251,7 +251,9 @@ export const UrlBody = (type, data) => {
                     "userid":user.userid,
                     "manname":user.name,
                     "biz_sn":user.biz_sn,
-                    "teamname":user.teamname
+                    "teamname":user.teamname,
+                    "datetype":data.datetype?data.datetype:"",
+                    "schdate":data.schdate?data.schdate:""
                 }
                     
             }

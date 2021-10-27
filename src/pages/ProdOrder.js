@@ -55,7 +55,7 @@ function ProdOrder() {
     const [orderDay,setOrderDay] = useState();
     const [nList,setNList] = useState([]);
     // const List = list !== undefined ?list:[]
-    const [selectVal, setSelectVal] = useState(1);
+    const [selectVal, setSelectVal] = useState("주문일");
     useEffect(() => {
         dispatch(totalListThunk("goods_order_list",{}));
         return () => {
@@ -65,8 +65,11 @@ function ProdOrder() {
         setOrderDay(e);
     }
     const searchDay = () =>{
-        setNList(list.filter(item => item.order_date === orderDay));
-        //console.log(orderDay);
+        var data ={
+            datetype:selectVal,
+            schdate:orderDay
+        }
+        dispatch(totalListThunk("goods_order_list",data));
     }
   return (
       <Wrapper>
@@ -74,9 +77,9 @@ function ProdOrder() {
         <ContentArea>
             <DateArea>
                 <Select onChange={(e)=>{setSelectVal(e.target.value)}}>
-                    <Option value="1">주문일</Option>
-                    <Option value="2">결제일</Option>
-                    <Option value="3">출고일</Option>
+                    <Option value="주문일">주문일</Option>
+                    <Option value="결제일">결제일</Option>
+                    <Option value="출고일">출고일</Option>
                 </Select>
                 <Input type="text" id="date_order" placeholder="날짜를 선택해주세요"  textAlign="left"  onFocus={(e)=> {e.currentTarget.type = "date";e.currentTarget.focus();}} max="9999-12-31" onChange={(e)=>changeDay(e.target.value)}></Input>
                 <Button onclick={searchDay} bg="#3397B9" color="#ffffff" text="조회" w="60px" h="34px" fontSize="11px"/>
