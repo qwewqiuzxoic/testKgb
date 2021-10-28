@@ -85,6 +85,9 @@ function Team10() {
       <Wrapper>
         <Head title="담당 외주업체" subtit="KGB의 담당 외주업체입니다" pb="56px"/>
         <ContentArea>
+          <div style={{color:"#009b90"}}>
+            ※ 옥색글씨 업체는 담당 외주업체 입니다.
+          </div>
           <Table>
             <TableHead>
               <Cell w='1'>구분</Cell>
