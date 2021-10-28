@@ -106,7 +106,7 @@ function Manage2_1({match}) {
   
       if (scrollTop + clientHeight >= scrollHeight) {
         pageCount.current += 1;
-        dispatch(getHappyCallList(page,tabD === "0" ? "Y":"N",pageCount.current));
+        dispatch(getHappyCallList(page,tab === 0 ? "Y":"N",pageCount.current));
 
       }
     };
@@ -114,7 +114,7 @@ function Manage2_1({match}) {
       window.addEventListener('scroll',infiniteScroll);
 
       return () => window.removeEventListener('scroll', infiniteScroll)
-  }, [])
+  }, [tab])
 
    const history = useHistory();
     useEffect(() => {
