@@ -106,7 +106,7 @@ function Manage2_1({match}) {
   
       if (scrollTop + clientHeight >= scrollHeight) {
         pageCount.current += 1;
-        dispatch(getHappyCallList(page,tab === "0" ? "Y":"N",pageCount));
+        dispatch(getHappyCallList(page,tabD === "0" ? "Y":"N",pageCount.current));
 
       }
     };
