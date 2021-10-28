@@ -130,7 +130,7 @@ function Team5({match}) {
                     <label htmlFor="uploadFile">
                         <span>{uploadImg.file.name}</span>
                         <IconBox>
-                            <img src={process.env.PUBLIC_URL + '/images/ico_upload.png'} alt="upload" />
+                            <img src={process.env.PUBLIC_URL + '/images/ico_upload.png'} alt="upload" style={{transform:"rotate(180deg)"}} />
                         </IconBox>
                     </label>
                     <input multiple accept="image/*" encType="multipart/form-data" id="uploadFile" type="file" style={{ display: 'none' }} onChange={handleFileOnChange} />
