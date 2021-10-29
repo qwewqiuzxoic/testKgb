@@ -4,7 +4,7 @@ import { getHappyCallConcatLoading, getHappyCallConcatSuccess, getHappyCallDetai
 
 
 export const getHappyCallList = (kind,teamType,pageCount) => dispatch  => {
-const user = JSON.parse(localStorage.getItem('user'));       
+    const user = JSON.parse(localStorage.getItem('user'));      
     if(pageCount === 1) {
         dispatch(getHappyCallLoading());
     }else{

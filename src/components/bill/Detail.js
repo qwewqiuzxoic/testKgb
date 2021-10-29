@@ -80,7 +80,7 @@ const Detail = () => {
                 <Section>
                     <Bold>청구금액</Bold>
                     <Row dt="상표 사용료" dd={data && data.yesmanno}/>
-                    <Row dt="전화착실료" dd={data && data.moneytelarrival}/>
+                    <Row dt="전화착신료" dd={data && data.moneytelarrival}/>
                     <Row dt="교육비" dd={data && data.moneyedu}/>
                     <Row dt="특별교육비" dd={data && data.moneysedu}/>
                     <Row dt="연체료" dd={data && data.oneyadd}/>

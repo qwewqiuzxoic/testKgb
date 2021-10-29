@@ -101,73 +101,73 @@ function Team1({match}) {
                 console.log(msp[j]);
                 if(msp[j] === "계약" ){
                   text.push(<span className="state0"></span>)
-                }
-                if(msp[j].includes("지명오더") ){
+                } else if(msp[j].includes("지명오더") ){
                     text.push(<span className="state1"></span>)
-                }
-                if(msp[j].includes("견적의뢰") ){
+                } else if(msp[j].includes("견적의뢰") ){
                     text.push(<span className="state2"></span>)
-                }
-                if(msp[j] === "미계약" ){
+                } else if(msp[j] === "미계약" ){
                     text.push(<span className="state3"></span>)
-                }
-                if(msp[j].includes("중복견적") ){
+                } else if(msp[j].includes("중복견적") ){
                     text.push(<span className="state4"></span>)
-                }
-                if(msp[j].includes("취소") ){
+                } else if(msp[j].includes("취소") ){
                     text.push(<span className="state5"></span>)
-                }
-                if(msp[j].includes("KGB토스") ){
+                } else if(msp[j].includes("KGB토스") ){
                     text.push(<span className="state6"></span>)
-                }
-                if(msp[j].includes("기타") ){
+                } else if(msp[j].includes("기타") ){
                     text.push(<span className="state7"></span>)
                 }
               }
             } else {
-              console.log(monthSc)
               if(monthSc[i].title === "계약" ){
                 text.push(<span className="state0"></span>)
-              }
-              if(monthSc[i].title.includes("지명오더") ){
+              } else if(monthSc[i].title.includes("지명오더") ){
                   text.push(<span className="state1"></span>)
-              }
-              if(monthSc[i].title.includes("견적의뢰") ){
+              } else if(monthSc[i].title.includes("견적의뢰") ){
                   text.push(<span className="state2"></span>)
-              }
-              if(monthSc[i].title === "미계약" ){
+              } else if(monthSc[i].title === "미계약" ){
                   text.push(<span className="state3"></span>)
-              }
-              if(monthSc[i].title.includes("중복견적") ){
+              } else if(monthSc[i].title.includes("중복견적") ){
                   text.push(<span className="state4"></span>)
-              }
-              if(monthSc[i].title.includes("취소") ){
+              } else if(monthSc[i].title.includes("취소") ){
                   text.push(<span className="state5"></span>)
-              }
-              if(monthSc[i].title.includes("KGB토스") ){
+              } else if(monthSc[i].title.includes("KGB토스") ){
                   text.push(<span className="state6"></span>)
-              }
-              if(monthSc[i].title.includes("기타") ){
+              } else if(monthSc[i].title.includes("기타") ){
                   text.push(<span className="state7"></span>)
               }
             }
             
         }else if(monthSc[i].dayedu === day && page === "2"){
-          if(monthSc[i].edutype.includes("맞춤") ){
-            text.push(<span className="state0"></span>)
+          if(monthSc[i].title.includes("|")){
+            let msp = monthSc[i].title.split("|");
+            for(var j=0; j<msp.length; j++){
+              if(msp[j].edutype.includes("맞춤") ){
+                text.push(<span className="state0"></span>)
+              } else if(msp[j].edutype.includes("정기") ){
+                  text.push(<span className="state1"></span>)
+              } else if(msp[j].edutype.includes("보충") ){
+                  text.push(<span className="state2"></span>)
+              } else if(msp[j].edutype.includes("특별") ){
+                  text.push(<span className="state3"></span>)
+              } else if(msp[j].edutype.includes("미교육") ){
+                text.push(<span className="state4"></span>)
+              }
+            }
+          } else{
+            if(monthSc[i].edutype.includes("맞춤") ){
+              text.push(<span className="state0"></span>)
+            } else if(monthSc[i].edutype.includes("정기") ){
+                text.push(<span className="state1"></span>)
+            } else if(monthSc[i].edutype.includes("보충") ){
+                text.push(<span className="state2"></span>)
+            } else if(monthSc[i].edutype.includes("특별") ){
+                text.push(<span className="state3"></span>)
+            } else if(monthSc[i].edutype.includes("미교육") ){
+              text.push(<span className="state4"></span>)
+            }else{
+              text.push(<span className="state5"></span>)
+            }
           }
-          if(monthSc[i].edutype.includes("정기") ){
-              text.push(<span className="state1"></span>)
-          }
-          if(monthSc[i].edutype.includes("보충") ){
-              text.push(<span className="state2"></span>)
-          }
-          if(monthSc[i].edutype.includes("특별") ){
-              text.push(<span className="state3"></span>)
-          }
-          if(monthSc[i].edutype.includes("미교육") ){
-            text.push(<span className="state4"></span>)
-        }
         }
       }
       return (
