@@ -98,7 +98,6 @@ function Team1({match}) {
             if(monthSc[i].title.includes("|")){
               let msp = monthSc[i].title.split("|");
               for(var j=0; j<msp.length; j++){
-                console.log(msp[j]);
                 if(msp[j] === "계약" ){
                   text.push(<span className="state0"></span>)
                 } else if(msp[j].includes("지명오더") ){
@@ -138,18 +137,18 @@ function Team1({match}) {
             }
             
         }else if(monthSc[i].dayedu === day && page === "2"){
-          if(monthSc[i].title.includes("|")){
+          if(monthSc[i].edutype.includes("|")){
             let msp = monthSc[i].title.split("|");
             for(var j=0; j<msp.length; j++){
-              if(msp[j].edutype.includes("맞춤") ){
+              if(msp[j].includes("맞춤") ){
                 text.push(<span className="state0"></span>)
-              } else if(msp[j].edutype.includes("정기") ){
+              } else if(msp[j].includes("정기") ){
                   text.push(<span className="state1"></span>)
-              } else if(msp[j].edutype.includes("보충") ){
+              } else if(msp[j].includes("보충") ){
                   text.push(<span className="state2"></span>)
-              } else if(msp[j].edutype.includes("특별") ){
+              } else if(msp[j].includes("특별") ){
                   text.push(<span className="state3"></span>)
-              } else if(msp[j].edutype.includes("미교육") ){
+              } else if(msp[j].includes("미교육") ){
                 text.push(<span className="state4"></span>)
               }
             }
