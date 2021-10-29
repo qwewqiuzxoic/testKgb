@@ -240,7 +240,8 @@ return(
                 </Process>
                 {
                   boardDetail.attfiles && boardDetail.attfiles.map(item =>
-                      <div>
+                      <div style={{dispaly:"flex"}}> 
+                        <img style={{width:"10px", display:"inline"}} src={process.env.PUBLIC_URL + '/images/clip.png'}/>
                         <a href={item.file_url} download={item.file_url}>{item.file_name}</a>
                       </div>
                     )
