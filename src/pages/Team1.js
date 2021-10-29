@@ -138,7 +138,7 @@ function Team1({match}) {
             
         }else if(monthSc[i].dayedu === day && page === "2"){
           if(monthSc[i].edutype.includes("|")){
-            let msp = monthSc[i].title.split("|");
+            let msp = monthSc[i].edutype.split("|");
             for(var j=0; j<msp.length; j++){
               if(msp[j].includes("맞춤") ){
                 text.push(<span className="state0"></span>)
