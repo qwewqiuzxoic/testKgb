@@ -56,7 +56,7 @@ function SnsLinks({name, num, color,user}) {
         } else if(brand === "이사이사"){
             setUrl(["https://www.facebook.com/KGByes2424/","https://www.instagram.com/yes2424story/?form=MY01SV&OCID=MY01SV"]);
         } else {
-            setUrl(["",""]);
+            setUrl(["https://www.facebook.com/Kgb%ED%8F%AC%EC%9E%A5%EC%9D%B4%EC%82%AC-388811408150653/?form=MY01SV&OCID=MY01SV","https://www.instagram.com/kgbstory/?form=MY01SV&OCID=MY01SV"]);
         }
         return () => {
             

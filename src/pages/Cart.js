@@ -192,7 +192,7 @@ function Cart() {
                         {/* <TabName isCard={true} className={tab === 0 ? "selected": ""} onClick={()=>setTab(0)}><span>카드결제</span></TabName> */}
                         <TabName isCard={false}  className={tab === 1 ? "selected": ""} onClick={()=>setTab(1)}><span>현금결제</span></TabName>
                     </Tabs>
-                    <PayBox isCard={false} bankname={data.bankname} contbrand={data.contbrand} bankaccount={data.bankaccount}/>
+                    <PayBox isCard={false} />
                     <Button bg="#3397B9" color="#ffffff" text="전체주문" h="44px" fs="13px" mgt="30px" onclick={basketOrder}></Button> 
                 </PaySection>
         </Wrapper>

@@ -79,7 +79,7 @@ const Caution = styled.div`
 `;
 
 
-const PayBox = ({isCard,bankname,contbrand,bankaccount}) => {
+const PayBox = ({isCard}) => {
     const user = JSON.parse(localStorage.getItem('user'));
     const [count, setCount] = useState("");
     const [brand, setBrand] = useState("");
@@ -121,9 +121,9 @@ const PayBox = ({isCard,bankname,contbrand,bankaccount}) => {
             :
             <>
             <Title>현금 결제안내</Title>
-            <Row dt="결제계좌" dd={bankaccount} ddWeight='bold'>{count}</Row>
-            <Row dt="은행" dd={bankname} ddWeight='bold'>기업은행</Row>
-            <Row dt="예금주" dd={contbrand} ddWeight='bold'>{brand}</Row>
+            <Row dt="결제계좌" dd={count} ddWeight='bold'>{count}</Row>
+            <Row dt="은행" dd={"기업은행"} ddWeight='bold'>기업은행</Row>
+            <Row dt="예금주" dd={brand} ddWeight='bold'>{brand}</Row>
             <Caution top='3px' left='0px'>현금 결제 전 꼭 확인해주세요 !</Caution>
             <InfoList>
                 <li>반드시 실명 또는 가맹점 사업자명으로 입금해주시기 바랍니다.</li>
