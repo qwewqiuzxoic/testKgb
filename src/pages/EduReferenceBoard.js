@@ -79,12 +79,13 @@ function EduReferenceBoard() {
         return val;
       }
     // dispatch(getBoardList(user.brand,boardName.name,pageCount.current))
+    const tabD = useSelector(state=>state.pageMemoReducer.pageNum);
 
     const dispatch = useDispatch();
     // const list = useSelector(state => state.boardTopReducer.boardList);
     useEffect(() => {
         pageCount.current = 1;
-        if(tab === 1){
+        if(tabD === 1){
         dispatch(getEduBoardList(user.brand,name,pageCount.current));
         dispatch(getTopEduBoardList(user.brand,name,0));
         } else {
@@ -93,7 +94,7 @@ function EduReferenceBoard() {
         }
         return () => {
         }
-    }, [tab])
+    }, [tabD])
 
     const infiniteScroll = () => {
       let scrollHeight = Math.max(

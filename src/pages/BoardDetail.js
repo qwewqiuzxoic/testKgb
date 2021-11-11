@@ -136,15 +136,16 @@ function BoardDetail({match}) {
 // 일반자료실 9
 // 작업일변경요청 10
   useEffect(() => {
-    if(type === "1" || type === "2" || type === "3" || type === "4" || type === "5"|| type === "6" || type === "7" || type === "8" || type === "9" || type === "10"){
+    if(type === "1" || type === "2" || type === "3" || type === "4" || type === "5"|| type === "6" || type === "8" || type === "9" || type === "10"){
       dispatch(getBoardDetail(sn));
     }else if(type === "1"){
       dispatch(getEduBoardDetail(sn));
     }else if(type === "2"){
-
       dispatch(getEduMovieBoardDetail(sn));
     }else if(type === "asy"){
       dispatch(getAsDetail(sn));
+    } else if(type === "7"){
+      dispatch(getEduMovieBoardDetail(sn));
     }
   }, [])
   const [openPass,setOpenPass] = useState(false);
@@ -232,6 +233,10 @@ return(
                 </InnerCont>
                 <InnerCont dangerouslySetInnerHTML={ {__html: boardDetail.content} }>
                 </InnerCont>
+                
+                {boardDetail.movie && <iframe src={boardDetail.movie}>
+
+                </iframe> }
               </Desc>
               <Process>
                 {
