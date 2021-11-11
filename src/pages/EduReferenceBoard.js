@@ -83,6 +83,7 @@ function EduReferenceBoard() {
     const dispatch = useDispatch();
     // const list = useSelector(state => state.boardTopReducer.boardList);
     useEffect(() => {
+        pageCount.current = 1;
         if(tab === 1){
         dispatch(getEduBoardList(user.brand,name,pageCount.current));
         dispatch(getTopEduBoardList(user.brand,name,0));
