@@ -124,7 +124,7 @@ export const getTopEduBoardList = (brandName,boardName,count, length = 10) => di
         axios.post(url, {
             "code_brand" : brandName,
             "is_notice" : 1,
-            "page" : count,
+            "page" : 1,
             "pagesize" : length
         }).then(function (res) {
             dispatch(boardTopSuccess(res.data.list))
@@ -179,7 +179,7 @@ export const getEduMovieBoardList = (brandName,boardName,count, length = 10) => 
 
         axios.post(url, {
             "code_brand" : brandName,
-            "is_notice" : 1,
+            "is_notice" : 0,
             "page" : count,
             "pagesize" : length
         }).then(function (res) {
