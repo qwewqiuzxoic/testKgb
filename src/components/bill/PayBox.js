@@ -79,30 +79,53 @@ const Caution = styled.div`
 `;
 
 
-const PayBox = ({isCard}) => {
+const PayBox = ({isCard,type}) => {
     const user = JSON.parse(localStorage.getItem('user'));
     const [count, setCount] = useState("");
     const [brand, setBrand] = useState("");
     useEffect(() => {
+      if(type === "cart"){
         if(user.brand ==="YES2404"){
-            setCount("485-003506-01-117");
-            setBrand("케이지비(주)");
-          }else if( user.brand === "이사이사"){
-            setCount("485-012612-01-070");
-            setBrand("예스2424(주)");
-          }else if( user.brand === "KGB포장이사서비스"){
-            setCount("485-003506-01-117");
-            setBrand("케이지비(주)");
-          }else if( user.brand === "용달캡"){
-            setCount("485-012612-01-070");
-            setBrand("예스2424(주)");
-          }else if( user.brand === "협력업체"){
-            setCount("");
-            setBrand("");
-          } else {
-            setCount("");
-            setBrand("");
-          }
+          setCount("485-003506-01-117");
+          setBrand("케이지비(주)");
+        }else if( user.brand === "이사이사"){
+          setCount("485-012612-01-070");
+          setBrand("예스2424(주)");
+        }else if( user.brand === "KGB포장이사서비스"){
+          setCount("485-003506-01-117");
+          setBrand("케이지비(주)");
+        }else if( user.brand === "용달캡"){
+          setCount("485-012612-01-070");
+          setBrand("예스2424(주)");
+        }else if( user.brand === "협력업체"){
+          setCount("");
+          setBrand("");
+        } else {
+          setCount("");
+          setBrand("");
+        }
+      }else{
+        if(user.brand ==="YES2404"){
+          setCount("485-003506-01-100");
+          setBrand("KGB(주)");
+        }else if( user.brand === "이사이사"){
+          setCount("485-012612-01-055");
+          setBrand("예스2424(주)");
+        }else if( user.brand === "KGB포장이사서비스"){
+          setCount("485-003506-01-099");
+          setBrand("KGB(주)");
+        }else if( user.brand === "용달캡"){
+          setCount("485-012612-04-091");
+          setBrand("예스2424(주)");
+        }else if( user.brand === "협력업체"){
+          setCount("");
+          setBrand("");
+        } else {
+          setCount("");
+          setBrand("");
+        }
+      }
+        
     }, [])
     return (
         <Wrapper>

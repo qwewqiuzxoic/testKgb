@@ -19,14 +19,14 @@ const Title = styled.div`
 	-webkit-box-orient: vertical;
 	/* webkit 엔진을 사용하지 않는 브라우저를 위한 속성. */
 	/* height = line-height * line = 1.2em * 3 = 3.6em  */
-	line-height: 1.2em;
-	height: 3em;
+	line-height: 1.3em;
+	height: ${(props) => props.className === 'important' || props.className === 'notice' ? '3em' : '2.7em'};;
   &.important, &.notice{
     display: static;
     -webkit-line-clamp: 1; /* ellipsis line */
     -webkit-box-orient: vertical;
     line-height: 1.2em;
-    height: 1.2em;
+    height: 3em;
     margin-bottom:8px;
   }
   span{
@@ -62,15 +62,22 @@ const Date = styled.div`
   font-size: ${(props) => props.theme.fontSizes.s};
   color:#ACB6BC;
 `;
+const pText =styled.p`
+  idth:30px; 
+  padding:0 5px; 
+  overflow:hidden; 
+  text-overflow:ellipsis; 
+  white-space:nowrap;
+`
 
 
 function BoardList({index,boardCode, board_sn, cnt, countview, loginname, regdate, title, tname, classname}) {
    
   return (
     <Wrapper index={index} className={classname && classname}>
-        <Title >
+        <Title className={classname && classname}>
           <Link to={`/boarddetail/${board_sn}/${boardCode}`}>
-          <p><NoticeLabel className={classname && classname}>공지</NoticeLabel>{title}</p>
+          <p><NoticeLabel className={classname && classname}>공지</NoticeLabel><pText>{title}</pText></p>
           </Link>
         </Title>
         <PostInfo >

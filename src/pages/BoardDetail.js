@@ -234,7 +234,7 @@ return(
                 <InnerCont dangerouslySetInnerHTML={ {__html: boardDetail.content} }>
                 </InnerCont>
                 
-                {boardDetail.movie && <iframe src={boardDetail.movie}>
+                {boardDetail.movie && <iframe src={boardDetail.movie} frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen> 
 
                 </iframe> }
               </Desc>
